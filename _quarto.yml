@@ -1,0 +1,85 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - objectives.qmd
+    - variant-context.qmd
+    - gtex.qmd
+    - hubmap.qmd
+    - pharos.qmd
+    - prioritization.qmd
+    - conclusion.qmd
+  resources:
+    - data
+    - notebooks/*.ipynb
+    - images
+    - knowledge-checks.js
+
+website:
+  title: "Prioritizing Candidate Genetic Variants"
+  site-url: "https://cfdetrainingcenter.github.io/candidate-genetic-var/"
+  repo-url: "https://github.com/CFDETrainingCenter/candidate-genetic-var"
+  repo-actions: [source, issue]
+  page-navigation: true
+  navbar:
+    background: secondary
+    foreground: light
+    search: true
+    right:
+      - icon: github
+        href: "https://github.com/CFDETrainingCenter/candidate-genetic-var"
+        aria-label: "View the source repository on GitHub"
+  sidebar:
+    style: docked
+    search: false
+    contents:
+      - href: index.qmd
+        text: "1. Module Introduction"
+      - href: objectives.qmd
+        text: "2. Introduction to APIs"
+      - href: variant-context.qmd
+        text: "3. Variant and Gene Context"
+      - href: gtex.qmd
+        text: "4. Tissue-Level Expression: GTEx"
+      - href: hubmap.qmd
+        text: "5. Cell-Type Resolution: HuBMAP"
+      - href: pharos.qmd
+        text: "6. Protein Context and Druggability: IDG/Pharos"
+      - href: prioritization.qmd
+        text: "7. Variant Prioritization and Interpretation"
+      - href: conclusion.qmd
+        text: "8. Conclusion"
+format:
+  live-html:
+    theme:
+      - cosmo
+      - styles.scss
+    toc: true
+    toc-depth: 2
+    code-copy: true
+    code-overflow: wrap
+    include-after-body: includes/knowledge-checks.html
+    link-external-icon: true
+    link-external-newwindow: true
+    pyodide:
+      packages:
+        - pandas
+        - matplotlib
+        - requests
+      resources:
+        - data/variants.csv
+        - data/gtex_expression.csv
+        - data/hubmap_cell_expression.csv
+        - data/pharos_target_context.csv
+        - data/integrated_prioritization.csv
+    live:
+      show-hints: true
+      show-solutions: true
+      show-grading: true
+
+execute:
+  freeze: auto
+
+language:
+  title-block-published: "Updated"

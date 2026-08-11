@@ -1,0 +1,146 @@
+---
+title: "Protein Context and Druggability: IDG/Pharos"
+---
+
+## What are IDG and Pharos?
+
+IDG stands for **Illuminating the Druggable Genome**. This NIH Common Fund
+program develops knowledge and research tools for understudied proteins in
+druggable protein families.
+
+Pharos is an IDG information resource. It brings together data about human
+proteins and drug targets from many sources. In this lesson, we use Pharos to
+look at protein knowledge and target development level.
+
+## Target development levels
+
+Pharos uses four target development levels, called TDLs:
+
+- **Tclin:** The target is linked to the action of an approved drug.
+- **Tchem:** The target has strong small-molecule activity data that meet
+  Pharos rules.
+- **Tbio:** The target has biological information but does not meet the Tclin
+  or Tchem rules.
+- **Tdark:** The target has less information and belongs to a selected target
+  family.
+
+TDL is not a score for disease importance. A Tclin protein is not automatically
+more important to a disease than a Tbio protein.
+
+## How the Pharos API Works
+
+Pharos uses GraphQL. GraphQL is an API query language that lets a request name
+the fields it needs. The notebook function below asks for target identifiers,
+TDL, publication counts, ligand counts, and protein interaction counts.
+
+First, load the saved Pharos response and display the target records.
+
+```{pyodide}
+from pathlib import Path
+
+import pandas as pd
+import requests
+
+DATA_DIR = Path("data") if Path("data").exists() else Path("../data")
+pharos = pd.read_csv(DATA_DIR / "pharos_target_context.csv")
+pharos
+```
+
+Next, define the GraphQL query and a function that requests current target
+information for one gene symbol.
+
+```{pyodide}
+PHAROS_GRAPHQL_URL = "https://pharos-api.ncats.io/graphql"
+TARGET_QUERY = """
+query TargetContext($symbol: String!) {
+  target(q: {sym: $symbol}) {
+    sym
+    name
+    uniprot
+    tdl
+    publicationCount
+    ligandCounts { name value }
+    ppiCounts { name value }
+  }
+}
+"""
+
+
+def fetch_pharos_target(
+    gene_symbol: str,
+    timeout_seconds: int = 30,
+) -> dict[str, object]:
+    """Return current Pharos context for one gene symbol."""
+    response = requests.post(
+        PHAROS_GRAPHQL_URL,
+        json={
+            "query": TARGET_QUERY,
+            "variables": {"symbol": gene_symbol},
+        },
+        timeout=timeout_seconds,
+    )
+    response.raise_for_status()
+    payload = response.json()
+    if payload.get("errors"):
+        raise RuntimeError(payload["errors"])
+    return payload["data"]["target"]
+
+
+# Example, intentionally not executed during routine notebook runs:
+# current_myh7 = fetch_pharos_target("MYH7")
+```
+
+::: {.module-activity}
+## Review Target Context
+
+This is the summary code from the Pharos notebook. Choose **Run Code** to keep
+the TDL and other protein information in separate columns.
+
+Select the protein fields used for interpretation and sort the targets by TDL
+and gene.
+
+```{pyodide}
+target_summary = pharos.loc[
+    :,
+    [
+        "gene_symbol",
+        "target_name",
+        "tdl",
+        "drug_count",
+        "publication_count",
+        "ppi_count",
+    ],
+].sort_values(["tdl", "gene_symbol"])
+target_summary
+```
+:::
+
+::: {.knowledge-check data-answer="Approved-drug context" data-correct="Tclin describes approved-drug context for the protein target." data-incorrect="TDL describes the protein target. It does not show that a specific variant causes disease."}
+<fieldset>
+<legend><code>MYH7</code> is Tclin in the saved Pharos data. What does this support?</legend>
+<div class="answer-options">
+<label class="answer-option"><input type="radio" name="pharos-kc1" value="Approved-drug context"><span>Approved-drug context</span></label>
+<label class="answer-option"><input type="radio" name="pharos-kc1" value="Variant causality"><span>Variant causality</span></label>
+</div>
+<button class="knowledge-submit" type="button">Submit</button>
+<p class="knowledge-feedback" aria-live="polite" hidden></p>
+</fieldset>
+:::
+
+::: {.knowledge-check data-answer="No" data-correct="TDL and biological relevance answer different questions." data-incorrect="A Tbio protein may still be the best candidate for a biological follow-up."}
+<fieldset>
+<legend>Should a Tbio candidate be removed only because another candidate is Tclin?</legend>
+<div class="answer-options">
+<label class="answer-option"><input type="radio" name="pharos-kc2" value="Yes"><span>Yes</span></label>
+<label class="answer-option"><input type="radio" name="pharos-kc2" value="No"><span>No</span></label>
+</div>
+<button class="knowledge-submit" type="button">Submit</button>
+<p class="knowledge-feedback" aria-live="polite" hidden></p>
+</fieldset>
+:::
+
+<div class="notebook-actions">
+<a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/04_pharos_target_context.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View notebook on GitHub</a>
+<a class="notebook-download" href="notebooks/04_pharos_target_context.ipynb" download><i class="bi bi-download" aria-hidden="true"></i>Download .ipynb</a>
+<a class="notebook-download" href="https://pharos.nih.gov/api"><i class="bi bi-braces" aria-hidden="true"></i>Pharos API explorer</a>
+</div>

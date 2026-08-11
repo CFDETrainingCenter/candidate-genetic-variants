@@ -1,0 +1,147 @@
+---
+title: "Tissue-Level Expression: GTEx"
+---
+
+## What is GTEx?
+
+GTEx stands for **Genotype-Tissue Expression**. This NIH Common Fund program
+created a reference resource for studying gene expression and genetic
+regulation across human tissues.
+
+This lesson uses median transcripts per million, or TPM. TPM is a normalized
+measure of RNA abundance. We use it to ask two simple questions:
+
+- Is each candidate gene detected in the heart?
+- How does its median expression differ between atrial appendage and left
+  ventricle?
+
+GTEx uses bulk tissue. A bulk sample combines signals from many cell types. It
+does not show which cells produced the RNA signal.
+
+## How the GTEx API Works
+
+The notebook uses this function to show how a GTEx API request is built. The
+gene IDs, tissue IDs, dataset version, and timeout are written in the request.
+The live call is commented out so the lesson does not depend on the API.
+
+First, load the saved GTEx response and preview its tissue-expression values.
+
+```{pyodide}
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import requests
+
+DATA_DIR = Path("data") if Path("data").exists() else Path("../data")
+gtex = pd.read_csv(DATA_DIR / "gtex_expression.csv")
+gtex.head()
+```
+
+Next, define the API endpoint and a reusable function for requesting current
+GTEx values.
+
+```{pyodide}
+GTEX_EXPRESSION_URL = (
+    "https://gtexportal.org/api/v2/expression/medianGeneExpression"
+)
+
+
+def fetch_gtex_expression(
+    gencode_ids: list[str],
+    tissue_ids: list[str],
+    timeout_seconds: int = 30,
+) -> pd.DataFrame:
+    """Return current GTEx median expression for explicit genes and tissues."""
+    response = requests.get(
+        GTEX_EXPRESSION_URL,
+        params={
+            "gencodeId": gencode_ids,
+            "datasetId": "gtex_v10",
+            "tissueSiteDetailId": tissue_ids,
+        },
+        timeout=timeout_seconds,
+    )
+    response.raise_for_status()
+    return pd.DataFrame(response.json()["data"])
+
+
+# Example, intentionally not executed during routine notebook runs:
+# live_gtex = fetch_gtex_expression(
+#     gtex["gencode_id"].unique().tolist(),
+#     ["Heart_Atrial_Appendage", "Heart_Left_Ventricle"],
+# )
+```
+
+::: {.callout-note title="Why use saved data?"}
+The required analysis uses a saved GTEx v10 response. Everyone gets the same
+result, even if the live API is unavailable or changes later.
+:::
+
+::: {.module-activity}
+## Compare Heart Tissues
+
+This is the analysis and plot from the GTEx notebook. Choose **Run Code** in
+each block. You can then change the sort column or plot colors if you want to
+explore.
+
+First, reshape the saved data so each heart tissue has its own column.
+
+```{pyodide}
+heart_expression = (
+    gtex.pivot(
+        index="gene_symbol",
+        columns="tissue_name",
+        values="median_tpm",
+    )
+    .sort_values("Heart - Left Ventricle", ascending=False)
+)
+heart_expression
+```
+
+Next, draw a bar chart to compare expression across genes and heart tissues.
+
+```{pyodide}
+axis = heart_expression.plot.bar(
+    color=["#3d64b3", "#764c82"],
+    figsize=(9, 5),
+)
+axis.set_ylabel("Median expression (TPM)")
+axis.set_xlabel("Candidate gene")
+axis.set_title("GTEx v10 heart-tissue expression")
+plt.xticks(rotation=0)
+plt.tight_layout()
+plt.show()
+```
+:::
+
+::: {.knowledge-check data-answer="MYH7" data-correct="MYH7 has the highest left-ventricle median TPM in this dataset." data-incorrect="Review the first row of the sorted table."}
+<fieldset>
+<legend>Which candidate has the highest median expression in left ventricle in this saved GTEx dataset?</legend>
+<div class="answer-options">
+<label class="answer-option"><input type="radio" name="gtex-kc1" value="MYH7"><span>MYH7</span></label>
+<label class="answer-option"><input type="radio" name="gtex-kc1" value="LMNA"><span>LMNA</span></label>
+<label class="answer-option"><input type="radio" name="gtex-kc1" value="PKP2"><span>PKP2</span></label>
+</div>
+<button class="knowledge-submit" type="button">Submit</button>
+<p class="knowledge-feedback" aria-live="polite" hidden></p>
+</fieldset>
+:::
+
+::: {.knowledge-check data-answer="Biological context" data-correct="GTEx supports tissue context, not variant causality." data-incorrect="GTEx measures gene expression at the tissue level. It does not test whether a variant causes disease."}
+<fieldset>
+<legend>What does high expression in heart tissue support?</legend>
+<div class="answer-options">
+<label class="answer-option"><input type="radio" name="gtex-kc2" value="Biological context"><span>Biological context</span></label>
+<label class="answer-option"><input type="radio" name="gtex-kc2" value="Variant causality"><span>Variant causality</span></label>
+</div>
+<button class="knowledge-submit" type="button">Submit</button>
+<p class="knowledge-feedback" aria-live="polite" hidden></p>
+</fieldset>
+:::
+
+<div class="notebook-actions">
+<a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/02_gtex_tissue_expression.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View notebook on GitHub</a>
+<a class="notebook-download" href="notebooks/02_gtex_tissue_expression.ipynb" download><i class="bi bi-download" aria-hidden="true"></i>Download .ipynb</a>
+<a class="notebook-download" href="https://gtexportal.org/api/v2/docs"><i class="bi bi-braces" aria-hidden="true"></i>GTEx API documentation</a>
+</div>

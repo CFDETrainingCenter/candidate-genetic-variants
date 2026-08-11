@@ -1,0 +1,127 @@
+---
+title: "Introduction to APIs"
+---
+
+## What is an API?
+
+API stands for **application programming interface**. An API gives software a
+standard way to ask another service for data or an action.
+
+For example, a script can send a gene and tissue ID to an API and receive gene
+expression data in a format that Python can read. This is easier to repeat than
+copying results from a website by hand.
+
+## Parts of an API request
+
+| Term | Meaning |
+|---|---|
+| Endpoint | The web address used for a specific task |
+| Request | The message sent to the API |
+| Parameter | A value that controls the request, such as a gene or tissue ID |
+| Response | The information returned by the API |
+| JSON | A common text format used to organize returned data |
+
+A reproducible API request records the endpoint, parameters, resource version,
+and date.
+
+## APIs used in this module
+
+| CFDE resource | How its API is used |
+|---|---|
+| [GTEx Portal API](https://gtexportal.org/api/v2/docs) | Request median expression for named genes and heart tissues |
+| [HuBMAP APIs](https://docs.hubmapconsortium.org/apis.html) | Find selected heart cells and retrieve indexed expression values |
+| [Pharos GraphQL API](https://pharos.nih.gov/api) | Request selected protein-target fields, including target development level |
+
+The candidate variant table is already saved in the repository. This module
+does not use an API to retrieve ClinVar records.
+
+## REST and GraphQL
+
+GTEx and HuBMAP provide REST-style APIs. A REST API usually has several
+endpoints. Each endpoint handles a task, such as retrieving expression data or
+finding cells. Parameters tell the endpoint which genes, tissues, or cells to
+return.
+
+**GraphQL** is an API query language. A GraphQL service often uses one endpoint.
+The request contains a query that names the exact fields needed. Variables hold
+values that can change, such as a gene symbol. The response follows the shape
+of the query, so the client receives the fields it requested.
+
+Pharos uses GraphQL. This query asks for a protein symbol, name, UniProt ID,
+target development level, and publication count:
+
+```graphql
+query TargetContext($symbol: String!) {
+  target(q: {sym: $symbol}) {
+    sym
+    name
+    uniprot
+    tdl
+    publicationCount
+  }
+}
+```
+
+GraphQL controls which fields are returned. It does not make those fields
+evidence that a variant causes disease.
+
+## Other common biomedical APIs
+
+| API | Example use |
+|---|---|
+| [NCBI E-utilities](https://www.ncbi.nlm.nih.gov/home/develop/api/) | Search and retrieve records from NCBI resources such as Gene, PubMed, and Protein |
+| [Ensembl REST API](https://rest.ensembl.org/) | Retrieve genes, variants, sequences, and comparative genomics data |
+| [UCSC Genome Browser API](https://genome.ucsc.edu/goldenpath/help/api.html) | Retrieve genome sequences and selected annotation tracks |
+
+APIs work best for focused requests. Complete downloads are often better for
+large datasets.
+
+::: {.module-activity}
+## Build an API Request Using E-utilities
+
+This activity uses NCBI E-utilities as a simple example of an API URL. It is not
+part of the module's candidate variant workflow and does not retrieve ClinVar
+records.
+
+The code builds an NCBI Gene search URL without sending the request. Change
+`MYH7` to another gene symbol and choose **Run Code**.
+
+```{pyodide}
+from urllib.parse import urlencode
+
+endpoint = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
+parameters = {
+    "db": "gene",
+    "term": "MYH7[gene] AND Homo sapiens[organism]",
+    "retmode": "json",
+}
+request_url = f"{endpoint}?{urlencode(parameters)}"
+request_url
+```
+:::
+
+::: {.knowledge-check data-answer="Pharos" data-correct="Pharos uses GraphQL to request selected protein-target fields." data-incorrect="GTEx and HuBMAP use REST-style APIs in this module."}
+<fieldset>
+<legend>Which resource uses GraphQL in this module?</legend>
+<div class="answer-options">
+<label class="answer-option"><input type="radio" name="api-kc1" value="GTEx"><span>GTEx</span></label>
+<label class="answer-option"><input type="radio" name="api-kc1" value="HuBMAP"><span>HuBMAP</span></label>
+<label class="answer-option"><input type="radio" name="api-kc1" value="Pharos"><span>Pharos</span></label>
+</div>
+<button class="knowledge-submit" type="button">Submit</button>
+<p class="knowledge-feedback" aria-live="polite" hidden></p>
+</fieldset>
+:::
+
+::: {.knowledge-check data-answer="To keep the required results stable" data-correct="Saved responses keep the required results stable when an API changes or is unavailable." data-incorrect="Saved data improve lesson stability. They do not prove that the data are current or clinically correct."}
+<fieldset>
+<legend>Why does this module use saved API responses for the required analysis?</legend>
+<div class="answer-options">
+<label class="answer-option"><input type="radio" name="api-kc2" value="To keep the required results stable"><span>To keep the required results stable</span></label>
+<label class="answer-option"><input type="radio" name="api-kc2" value="To prove every record is current"><span>To prove every record is current</span></label>
+<label class="answer-option"><input type="radio" name="api-kc2" value="To replace data-source documentation"><span>To replace data-source documentation</span></label>
+</div>
+<button class="knowledge-submit" type="button">Submit</button>
+<p class="knowledge-feedback" aria-live="polite" hidden></p>
+</fieldset>
+:::

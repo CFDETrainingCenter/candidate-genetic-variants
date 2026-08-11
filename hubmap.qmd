@@ -1,0 +1,158 @@
+---
+title: "Cell-Type Resolution: HuBMAP"
+---
+
+## What is HuBMAP?
+
+HuBMAP stands for **Human BioMolecular Atlas Program**. This NIH Common Fund
+program maps cells and molecules inside human tissues. Its goal is to help
+researchers study tissue organization at cellular resolution.
+
+GTEx gives us a bulk tissue average. A heart tissue sample can include muscle
+cells, fibroblasts, blood vessel cells, immune cells, and other cell types.
+HuBMAP helps us ask which sampled cell types show expression of a candidate
+gene.
+
+Cell-level results still need care. They depend on the cell labels, samples,
+processing steps, and number of cells in each group.
+
+## About the saved data
+
+This teaching dataset summarizes up to 500 cells for each selected heart cell
+type. It includes the number of matching cells and the number used in the
+summary.
+
+The values are normalized expression from the HuBMAP Cells API. They are not
+TPM, so do not compare their numeric size directly with GTEx values.
+
+::: {.callout-warning title="Missing does not mean zero"}
+The HuBMAP expression index did not return `LMNA` or `PKP2` when these data were
+collected. Their values are marked as missing. This does not show that the genes
+are not expressed.
+:::
+
+## How the HuBMAP API Works
+
+The notebook function below sends an explicit cell query to the HuBMAP Cells
+API. The example calls are commented out so the lesson does not depend on a
+live service.
+
+First, load the saved HuBMAP response and preview the cell-type records.
+
+```{pyodide}
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import requests
+
+DATA_DIR = Path("data") if Path("data").exists() else Path("../data")
+hubmap = pd.read_csv(DATA_DIR / "hubmap_cell_expression.csv")
+hubmap.head()
+```
+
+Next, create a small table showing which candidate genes have indexed values.
+
+```{pyodide}
+availability = (
+    hubmap.loc[:, ["gene_symbol", "availability"]]
+    .drop_duplicates()
+    .sort_values("gene_symbol")
+)
+availability
+```
+
+Then, define the Cells API endpoint and a function that creates a query handle
+for a selected organ or cell type.
+
+```{pyodide}
+HUBMAP_CELLS_URL = "https://cells.api.hubmapconsortium.org/api/"
+
+
+def create_cell_query_handle(
+    input_type: str,
+    input_values: list[str],
+    timeout_seconds: int = 30,
+) -> str:
+    """Create a HuBMAP Cells API handle for an explicit cell query."""
+    form_data = [("input_type", input_type)]
+    form_data.extend(("input_set", value) for value in input_values)
+    response = requests.post(
+        f"{HUBMAP_CELLS_URL}cell/",
+        data=form_data,
+        timeout=timeout_seconds,
+    )
+    response.raise_for_status()
+    return response.json()["results"][0]["query_handle"]
+
+
+# Example, intentionally not executed during routine notebook runs:
+# heart_handle = create_cell_query_handle("organ", ["Heart"])
+# ventricular_handle = create_cell_query_handle("celltype", ["CL:0002131"])
+```
+
+::: {.module-activity}
+## Compare Heart Cell Types
+
+This is the analysis and plot from the HuBMAP notebook. Choose **Run Code** in
+each block. Keep the missing values visible when you interpret the result.
+
+First, keep the available records and arrange their expression values by cell
+type and gene.
+
+```{pyodide}
+available = hubmap[hubmap["availability"] == "available"].copy()
+expression_matrix = available.pivot(
+    index="cell_type_label",
+    columns="gene_symbol",
+    values="mean_normalized_expression",
+)
+expression_matrix
+```
+
+Next, draw a bar chart to compare candidate-gene expression across heart cell
+types.
+
+```{pyodide}
+axis = expression_matrix.plot.bar(
+    color=["#3d64b3", "#764c82", "#0078ae"],
+    figsize=(10, 5),
+)
+axis.set_ylabel("Mean normalized expression in teaching extract")
+axis.set_xlabel("HuBMAP cell type")
+axis.set_title("Cell-type context for indexed candidate genes")
+plt.xticks(rotation=35, ha="right")
+plt.tight_layout()
+plt.show()
+```
+:::
+
+::: {.knowledge-check data-answer="The value was not available" data-correct="The API index did not provide a value. Missing data are not the same as measured zero." data-incorrect="A missing indexed value cannot show that expression was absent."}
+<fieldset>
+<legend>How should you interpret a blank <code>LMNA</code> value in this saved dataset?</legend>
+<div class="answer-options">
+<label class="answer-option"><input type="radio" name="hubmap-kc1" value="The gene was not expressed"><span>The gene was not expressed</span></label>
+<label class="answer-option"><input type="radio" name="hubmap-kc1" value="The value was not available"><span>The value was not available</span></label>
+</div>
+<button class="knowledge-submit" type="button">Submit</button>
+<p class="knowledge-feedback" aria-live="polite" hidden></p>
+</fieldset>
+:::
+
+::: {.knowledge-check data-answer="No" data-correct="A group of 10 cells is useful for exploration, but it is too small for a strong population claim." data-incorrect="Small groups can give unstable averages and need more data."}
+<fieldset>
+<legend>The atrial cardiac-myocyte group has only 10 matching cells. Should a large mean from this group be treated as a stable estimate for the full population?</legend>
+<div class="answer-options">
+<label class="answer-option"><input type="radio" name="hubmap-kc2" value="Yes"><span>Yes</span></label>
+<label class="answer-option"><input type="radio" name="hubmap-kc2" value="No"><span>No</span></label>
+</div>
+<button class="knowledge-submit" type="button">Submit</button>
+<p class="knowledge-feedback" aria-live="polite" hidden></p>
+</fieldset>
+:::
+
+<div class="notebook-actions">
+<a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/03_hubmap_cell_type_expression.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View notebook on GitHub</a>
+<a class="notebook-download" href="notebooks/03_hubmap_cell_type_expression.ipynb" download><i class="bi bi-download" aria-hidden="true"></i>Download .ipynb</a>
+<a class="notebook-download" href="https://docs.hubmapconsortium.org/apis.html"><i class="bi bi-braces" aria-hidden="true"></i>HuBMAP API documentation</a>
+</div>

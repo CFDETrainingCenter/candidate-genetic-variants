@@ -1,0 +1,110 @@
+---
+title: "Variant and Gene Context"
+---
+
+## Start with the exact variant
+
+A variant is a change in a DNA sequence. A gene can contain many different
+variants, and each variant may have a different effect. Start with the exact
+allele, transcript, protein change, condition, and data source.
+
+Gene expression and protein information come later. They should not hide
+uncertainty or disagreement about the variant itself.
+
+ClinVar is a public NCBI archive. It stores submitted reports about human
+variants and health. ClinVar combines submissions and supporting evidence, but
+it does not independently change a submitted classification.
+
+This lesson uses five ClinVar-linked examples related to the heart failure
+scenario. The table is a saved teaching dataset. ClinVar records can change, so
+you should check the live record before using an annotation in clinical work.
+
+::: {.module-activity}
+## Inspect the Candidates
+
+This is the complete analysis from the variant background notebook. It loads
+the table, checks its structure, and creates a smaller summary. Choose
+**Run Code** to try it in your browser.
+
+First, load the saved candidate table and display all five variants.
+
+```{pyodide}
+from pathlib import Path
+
+import pandas as pd
+
+DATA_DIR = Path("data") if Path("data").exists() else Path("../data")
+variants = pd.read_csv(DATA_DIR / "variants.csv")
+variants
+```
+
+Next, check that the table contains the required fields and one variant per
+gene.
+
+```{pyodide}
+required_columns = {
+    "gene_symbol",
+    "hgvs_c",
+    "hgvs_p",
+    "condition",
+    "clinvar_variation_id",
+    "clinical_significance",
+}
+missing_columns = required_columns.difference(variants.columns)
+assert not missing_columns, f"Missing required columns: {sorted(missing_columns)}"
+assert variants["gene_symbol"].is_unique, "Expected one teaching variant per gene"
+assert variants["clinvar_variation_id"].notna().all()
+print(f"Validated {len(variants)} candidate variants.")
+```
+
+Finally, select the fields needed for review and sort the candidates by
+condition and gene.
+
+```{pyodide}
+candidate_summary = (
+    variants.loc[
+        :,
+        [
+            "gene_symbol",
+            "hgvs_c",
+            "hgvs_p",
+            "condition",
+            "clinical_significance",
+        ],
+    ]
+    .sort_values(["condition", "gene_symbol"])
+    .reset_index(drop=True)
+)
+candidate_summary
+```
+:::
+
+::: {.knowledge-check data-answer="Tissue expression" data-correct="GTEx adds tissue expression later." data-incorrect="Protein change and condition are already in the starting table."}
+<fieldset>
+<legend>Which field comes from a later evidence layer instead of the starting variant table?</legend>
+<div class="answer-options">
+<label class="answer-option"><input type="radio" name="variant-kc1" value="Tissue expression"><span>Tissue expression</span></label>
+<label class="answer-option"><input type="radio" name="variant-kc1" value="Protein change"><span>Protein change</span></label>
+<label class="answer-option"><input type="radio" name="variant-kc1" value="Condition"><span>Condition</span></label>
+</div>
+<button class="knowledge-submit" type="button">Submit</button>
+<p class="knowledge-feedback" aria-live="polite" hidden></p>
+</fieldset>
+:::
+
+::: {.knowledge-check data-answer="False" data-correct="Expression shows biological context. It does not prove pathogenicity." data-incorrect="Gene expression and variant pathogenicity are different types of evidence."}
+<fieldset>
+<legend>Expression of a candidate gene in heart tissue is enough to classify its variant as pathogenic.</legend>
+<div class="answer-options">
+<label class="answer-option"><input type="radio" name="variant-kc2" value="True"><span>True</span></label>
+<label class="answer-option"><input type="radio" name="variant-kc2" value="False"><span>False</span></label>
+</div>
+<button class="knowledge-submit" type="button">Submit</button>
+<p class="knowledge-feedback" aria-live="polite" hidden></p>
+</fieldset>
+:::
+
+<div class="notebook-actions">
+<a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/01_variant_background.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View notebook on GitHub</a>
+<a class="notebook-download" href="notebooks/01_variant_background.ipynb" download><i class="bi bi-download" aria-hidden="true"></i>Download .ipynb</a>
+</div>

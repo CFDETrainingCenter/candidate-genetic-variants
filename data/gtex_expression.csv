@@ -1,0 +1,11 @@
+gene_symbol,gencode_id,tissue_id,tissue_name,ontology_id,median_tpm,dataset_id,retrieved_date
+LMNA,ENSG00000160789.24,Heart_Atrial_Appendage,Heart - Atrial Appendage,UBERON:0006631,73.5527,gtex_v10,2026-08-11
+LMNA,ENSG00000160789.24,Heart_Left_Ventricle,Heart - Left Ventricle,UBERON:0006566,47.8760,gtex_v10,2026-08-11
+TNNT2,ENSG00000118194.21,Heart_Atrial_Appendage,Heart - Atrial Appendage,UBERON:0006631,2397.2900,gtex_v10,2026-08-11
+TNNT2,ENSG00000118194.21,Heart_Left_Ventricle,Heart - Left Ventricle,UBERON:0006566,2896.6600,gtex_v10,2026-08-11
+MYBPC3,ENSG00000134571.12,Heart_Atrial_Appendage,Heart - Atrial Appendage,UBERON:0006631,991.2920,gtex_v10,2026-08-11
+MYBPC3,ENSG00000134571.12,Heart_Left_Ventricle,Heart - Left Ventricle,UBERON:0006566,1364.1100,gtex_v10,2026-08-11
+PKP2,ENSG00000057294.16,Heart_Atrial_Appendage,Heart - Atrial Appendage,UBERON:0006631,41.4250,gtex_v10,2026-08-11
+PKP2,ENSG00000057294.16,Heart_Left_Ventricle,Heart - Left Ventricle,UBERON:0006566,67.1886,gtex_v10,2026-08-11
+MYH7,ENSG00000092054.13,Heart_Atrial_Appendage,Heart - Atrial Appendage,UBERON:0006631,558.1770,gtex_v10,2026-08-11
+MYH7,ENSG00000092054.13,Heart_Left_Ventricle,Heart - Left Ventricle,UBERON:0006566,4527.2800,gtex_v10,2026-08-11

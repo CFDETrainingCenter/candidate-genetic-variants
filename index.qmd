@@ -1,0 +1,63 @@
+---
+title: "Prioritizing Candidate Genetic Variants Using GTEx, HuBMAP, and IDG"
+subtitle: "A reproducible CFDE training module"
+description: "Use tissue, cell-type, and protein context to select candidate variants for further study."
+---
+
+## What is this module about?
+
+This module uses early-onset advanced heart failure as an example. You will add
+tissue, cell-type, and protein context to five candidate variants and select
+candidates for more study. The example was inspired by a [whole-genome
+sequencing study of early-onset advanced heart
+failure](https://www.nature.com/articles/s41598-025-88465-8).
+
+This is a research training module. It is not a clinical
+variant-classification workflow.
+
+## Learning objectives
+
+By the end of this module, you will be able to:
+
+1. Use GTEx to check whether genes linked to candidate variants are expressed
+   in a disease-related tissue.
+2. Use HuBMAP to study gene expression in specific cell types while accounting
+   for missing data and small groups.
+3. Use IDG and Pharos to interpret protein information and druggability.
+4. Combine several data sources to select candidate variants for more study.
+5. Explain what an application programming interface, or API, is and how APIs
+   support repeatable research.
+
+## Data sources used in this module
+
+| Resource | What it is | How this module uses it |
+|---|---|---|
+| [Candidate variant table](data/variants.csv) and [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/intro/) | The local table contains five teaching variants linked to ClinVar. ClinVar is NCBI's public archive of submitted reports about human variants and health. | Provides the starting variant annotations. The module does not query a ClinVar API. |
+| [GTEx v10](https://gtexportal.org/home/) | GTEx is an NIH Common Fund reference resource for studying gene expression and genetic regulation across human tissues. | A GTEx Portal REST API response provides median expression in heart atrial appendage and left ventricle. |
+| [HuBMAP](https://portal.hubmapconsortium.org/) | HuBMAP is an NIH Common Fund program that maps cells and molecules within human tissues. | A HuBMAP Cells API response provides expression summaries for selected heart cell types. |
+| [IDG](https://commonfund.nih.gov/IDG/) and [Pharos](https://pharos.nih.gov/) | IDG is an NIH Common Fund program focused on understudied druggable proteins. Pharos is its integrated protein-target information resource. | A Pharos GraphQL API response provides protein information and target development levels. |
+| [Integrated teaching table](data/integrated_prioritization.csv) | A local table created by joining the saved variant, GTEx, HuBMAP, and Pharos data by gene symbol. | Supports the final comparison while keeping each evidence layer in a separate column. |
+
+The website and notebooks use saved API responses so everyone gets the same
+results. The activities preserve the request code used for GTEx, HuBMAP, and
+Pharos.
+
+## How do I use this module?
+
+Work through the pages in order. Each main section has a short explanation, an
+activity, and two knowledge-check questions. Plan for about two hours to
+complete the module.
+
+- **Activities:** Run the same analysis code in the website or in the matching
+  section notebook. These are two ways to complete the same activity.
+- **Main Notebook Activity:** Use the integrated Jupyter notebook for the full
+  workflow from candidate variants to final interpretation.
+- View a notebook on GitHub or download it to run on your computer.
+- Use the saved data for the required analysis. Treat the live API code as an
+  example that may change over time.
+
+<div class="notebook-actions">
+<a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/05_variant_prioritization.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View main notebook on GitHub</a>
+<a class="notebook-download" href="notebooks/05_variant_prioritization.ipynb" download><i class="bi bi-download" aria-hidden="true"></i>Download main .ipynb</a>
+<a class="notebook-download" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/00_course_orientation.ipynb"><i class="bi bi-compass" aria-hidden="true"></i>View orientation notebook</a>
+</div>

@@ -1,0 +1,47 @@
+---
+title: "Conclusion"
+---
+
+## What you did
+
+You followed one candidate set through four evidence layers:
+
+1. Exact variant and condition information
+2. Bulk heart-tissue expression from GTEx
+3. Heart cell-type expression and data coverage from HuBMAP
+4. Protein knowledge and target development level from Pharos
+
+You then joined the layers in one table. Keeping each layer in its own column
+made the final decision easier to explain.
+
+You also saw how an API makes a data request clear and repeatable. Saved
+teaching data kept the required activities stable when live services could
+change or become unavailable.
+
+## Limits to remember
+
+- GTEx measures bulk tissue from people without the disease being studied.
+- The HuBMAP dataset has missing genes and some small cell groups.
+- Pharos describes protein knowledge and target development, not variant
+  effects.
+- None of these resources proves that a variant causes disease.
+
+## A checklist for future projects
+
+- Name the exact variant and the source of its annotation.
+- Ask what biological level each dataset measures.
+- Keep missing data separate from a measured zero.
+- Save dataset versions, identifiers, and retrieval dates.
+- Keep druggability separate from disease relevance.
+- End with a clear next step that can be tested.
+
+## Continue your work
+
+Use the notebooks to repeat the analyses, make the figures, and explore the API
+request code. The README explains how to create a local environment.
+
+<div class="notebook-actions">
+<a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/05_variant_prioritization.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View notebook on GitHub</a>
+<a class="notebook-download" href="notebooks/05_variant_prioritization.ipynb" download><i class="bi bi-download" aria-hidden="true"></i>Download .ipynb</a>
+<a class="notebook-download" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/tree/main/notebooks"><i class="bi bi-collection" aria-hidden="true"></i>Browse all notebooks</a>
+</div>

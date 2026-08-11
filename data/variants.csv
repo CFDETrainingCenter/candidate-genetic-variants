@@ -1,0 +1,6 @@
+gene_symbol,hgvs_c,hgvs_p,condition,clinvar_variation_id,clinvar_accession,clinical_significance,clinvar_url
+MYBPC3,c.1504C>T,p.Arg502Trp,Hypertrophic cardiomyopathy,42540,VCV000042540.107,Pathogenic,https://www.ncbi.nlm.nih.gov/clinvar/variation/42540/
+MYH7,c.1208G>A,p.Arg403Gln,Hypertrophic cardiomyopathy,14087,VCV000014087.59,Pathogenic,https://www.ncbi.nlm.nih.gov/clinvar/variation/14087/
+LMNA,c.568C>T,p.Arg190Trp,Dilated cardiomyopathy,66908,VCV000066908.61,Pathogenic,https://www.ncbi.nlm.nih.gov/clinvar/variation/66908/
+TNNT2,c.275G>A,p.Arg92Gln,Hypertrophic cardiomyopathy,12409,VCV000012409.31,Pathogenic,https://www.ncbi.nlm.nih.gov/clinvar/variation/12409/
+PKP2,c.235C>T,p.Arg79Ter,Arrhythmogenic right ventricular cardiomyopathy,6754,VCV000006754.80,Pathogenic,https://www.ncbi.nlm.nih.gov/clinvar/variation/6754/

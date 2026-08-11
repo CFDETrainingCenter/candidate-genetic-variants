@@ -1,0 +1,6 @@
+gene_symbol,hgvs_p,condition,gtex_atrial_tpm,gtex_ventricle_tpm,hubmap_ventricular_mean,hubmap_ventricular_percent_detected,hubmap_availability,pharos_tdl,pharos_drug_count,context_summary
+MYBPC3,p.Arg502Trp,Hypertrophic cardiomyopathy,991.2920,1364.1100,232.2100,30.8,available,Tbio,0,Heart-tissue and ventricular-cardiomyocyte context available
+MYH7,p.Arg403Gln,Hypertrophic cardiomyopathy,558.1770,4527.2800,1307.6360,39.8,available,Tclin,1,Heart-tissue and ventricular-cardiomyocyte context available
+LMNA,p.Arg190Trp,Dilated cardiomyopathy,73.5527,47.8760,,,not_available_in_cells_api_index,Tbio,0,Heart-tissue context available; cell-type value unavailable
+TNNT2,p.Arg92Gln,Hypertrophic cardiomyopathy,2397.2900,2896.6600,103.6811,38.2,available,Tbio,0,Heart-tissue and ventricular-cardiomyocyte context available
+PKP2,p.Arg79Ter,Arrhythmogenic right ventricular cardiomyopathy,41.4250,67.1886,,,not_available_in_cells_api_index,Tbio,0,Heart-tissue context available; cell-type value unavailable
