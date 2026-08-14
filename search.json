@@ -1,0 +1,362 @@
+[
+  {
+    "objectID": "conclusion.html",
+    "href": "conclusion.html",
+    "title": "Conclusion",
+    "section": "",
+    "text": "You started with all 54 variant rows reported in Supplementary Table S4 of the early-onset advanced heart-failure study (PMID: 39910139). Those rows represent 46 people and 25 genes.\nYou then examined four evidence layers:\n\nExact variant and condition information\nBulk heart-tissue expression from GTEx\nHeart cell-type expression and data coverage from HuBMAP\nProtein knowledge and target development level from Pharos\n\nYou joined the gene-level context back to all 54 variant rows. Keeping each layer in its own column made each follow-up choice easier to explain.\nThe API activities showed how to record a repeatable data request. Dated saved responses provide a backup if a live service changes or is unavailable.",
+    "crumbs": [
+      "8. Conclusion"
+    ]
+  },
+  {
+    "objectID": "conclusion.html#what-you-did",
+    "href": "conclusion.html#what-you-did",
+    "title": "Conclusion",
+    "section": "",
+    "text": "You started with all 54 variant rows reported in Supplementary Table S4 of the early-onset advanced heart-failure study (PMID: 39910139). Those rows represent 46 people and 25 genes.\nYou then examined four evidence layers:\n\nExact variant and condition information\nBulk heart-tissue expression from GTEx\nHeart cell-type expression and data coverage from HuBMAP\nProtein knowledge and target development level from Pharos\n\nYou joined the gene-level context back to all 54 variant rows. Keeping each layer in its own column made each follow-up choice easier to explain.\nThe API activities showed how to record a repeatable data request. Dated saved responses provide a backup if a live service changes or is unavailable.",
+    "crumbs": [
+      "8. Conclusion"
+    ]
+  },
+  {
+    "objectID": "conclusion.html#limits-to-remember",
+    "href": "conclusion.html#limits-to-remember",
+    "title": "Conclusion",
+    "section": "Limits to remember",
+    "text": "Limits to remember\n\nGTEx measures bulk tissue from people without the disease being studied.\nThe HuBMAP Cells API index does not contain every gene and cell-type pair.\nPharos describes protein knowledge and target development, not variant effects.\nThese resources add biological context. They do not reclassify the variants or prove that a variant causes disease.",
+    "crumbs": [
+      "8. Conclusion"
+    ]
+  },
+  {
+    "objectID": "conclusion.html#a-checklist-for-future-projects",
+    "href": "conclusion.html#a-checklist-for-future-projects",
+    "title": "Conclusion",
+    "section": "A checklist for future projects",
+    "text": "A checklist for future projects\n\nName the exact variant and the source of its annotation.\nAsk what biological level each dataset measures.\nKeep missing data separate from a measured zero.\nSave dataset versions, identifiers, and retrieval dates.\nKeep druggability separate from disease relevance.\nEnd with a clear next step that can be tested.",
+    "crumbs": [
+      "8. Conclusion"
+    ]
+  },
+  {
+    "objectID": "conclusion.html#continue-your-work",
+    "href": "conclusion.html#continue-your-work",
+    "title": "Conclusion",
+    "section": "Continue your work",
+    "text": "Continue your work\nUse the notebooks to repeat the analyses, make the figures, and explore the API request code. The README explains how to create a local environment.\n\nView notebook on GitHub Download .ipynb Browse all notebooks",
+    "crumbs": [
+      "8. Conclusion"
+    ]
+  },
+  {
+    "objectID": "pharos.html",
+    "href": "pharos.html",
+    "title": "Protein Context and Druggability: IDG/Pharos",
+    "section": "",
+    "text": "GTEx and HuBMAP added expression context to genes from the heart-failure paper. We now ask what is known about the proteins those genes encode.\nIDG stands for Illuminating the Druggable Genome. This NIH Common Fund program develops knowledge and research tools for understudied proteins in druggable protein families. Pharos is an IDG resource that combines information about human proteins and drug targets.\nPharos uses four target development levels, called TDLs:\n\nTclin: linked to the action of an approved drug\nTchem: has qualifying small-molecule activity data\nTbio: has biological information but does not meet Tclin or Tchem rules\nTdark: has limited information and belongs to a selected target family\n\nTDL describes a protein target. It does not rank the paper’s variants or change their study classifications.",
+    "crumbs": [
+      "6. Protein Context and Druggability: IDG/Pharos"
+    ]
+  },
+  {
+    "objectID": "pharos.html#what-do-idg-and-pharos-add",
+    "href": "pharos.html#what-do-idg-and-pharos-add",
+    "title": "Protein Context and Druggability: IDG/Pharos",
+    "section": "",
+    "text": "GTEx and HuBMAP added expression context to genes from the heart-failure paper. We now ask what is known about the proteins those genes encode.\nIDG stands for Illuminating the Druggable Genome. This NIH Common Fund program develops knowledge and research tools for understudied proteins in druggable protein families. Pharos is an IDG resource that combines information about human proteins and drug targets.\nPharos uses four target development levels, called TDLs:\n\nTclin: linked to the action of an approved drug\nTchem: has qualifying small-molecule activity data\nTbio: has biological information but does not meet Tclin or Tchem rules\nTdark: has limited information and belongs to a selected target family\n\nTDL describes a protein target. It does not rank the paper’s variants or change their study classifications.",
+    "crumbs": [
+      "6. Protein Context and Druggability: IDG/Pharos"
+    ]
+  },
+  {
+    "objectID": "pharos.html#how-the-pharos-api-works",
+    "href": "pharos.html#how-the-pharos-api-works",
+    "title": "Protein Context and Druggability: IDG/Pharos",
+    "section": "How the Pharos API Works",
+    "text": "How the Pharos API Works\nPharos uses GraphQL. The request names the exact target fields to return. The helper repeats that query for each of the paper’s 25 gene symbols and puts the responses in one table.\nFirst, load the published variants and the shared API helper.\n\n\n\n\n\n\nNext, query Pharos for the 25 unique genes. The commented line loads the saved response if the live service is unavailable.\n\n\n\n\n\n\n\n\n\n\n\n\nNoteLive data and backup\n\n\n\nThe default code queries Pharos. Target information can change. If the request fails, comment out the live line and uncomment the saved-data line.",
+    "crumbs": [
+      "6. Protein Context and Druggability: IDG/Pharos"
+    ]
+  },
+  {
+    "objectID": "pharos.html#review-the-25-protein-targets",
+    "href": "pharos.html#review-the-25-protein-targets",
+    "title": "Protein Context and Druggability: IDG/Pharos",
+    "section": "Review the 25 Protein Targets",
+    "text": "Review the 25 Protein Targets\nReturn to the paper’s unique genes and compare their protein information.\nFirst, count the target development levels in the current Pharos response.\n\n\n\n\n\n\nNext, keep the target fields used for interpretation and order the proteins by TDL, drug count, and gene symbol.",
+    "crumbs": [
+      "6. Protein Context and Druggability: IDG/Pharos"
+    ]
+  },
+  {
+    "objectID": "gtex.html",
+    "href": "gtex.html",
+    "title": "Tissue-Level Expression: GTEx",
+    "section": "",
+    "text": "The source paper gives us 54 variants in 25 genes. Our next question is whether those genes are expressed in heart tissue.\nGTEx stands for Genotype-Tissue Expression. This NIH Common Fund resource measures gene expression across human tissues. This lesson uses median transcripts per million, or TPM, from heart atrial appendage and left ventricle.\nGTEx uses bulk tissue, so each value combines signals from many cell types. It adds tissue context to a gene. It does not test the effect of a specific variant or change the class reported by the source paper.",
+    "crumbs": [
+      "4. Tissue-Level Expression: GTEx"
+    ]
+  },
+  {
+    "objectID": "gtex.html#what-does-gtex-add",
+    "href": "gtex.html#what-does-gtex-add",
+    "title": "Tissue-Level Expression: GTEx",
+    "section": "",
+    "text": "The source paper gives us 54 variants in 25 genes. Our next question is whether those genes are expressed in heart tissue.\nGTEx stands for Genotype-Tissue Expression. This NIH Common Fund resource measures gene expression across human tissues. This lesson uses median transcripts per million, or TPM, from heart atrial appendage and left ventricle.\nGTEx uses bulk tissue, so each value combines signals from many cell types. It adds tissue context to a gene. It does not test the effect of a specific variant or change the class reported by the source paper.",
+    "crumbs": [
+      "4. Tissue-Level Expression: GTEx"
+    ]
+  },
+  {
+    "objectID": "gtex.html#how-the-gtex-api-works",
+    "href": "gtex.html#how-the-gtex-api-works",
+    "title": "Tissue-Level Expression: GTEx",
+    "section": "How the GTEx API Works",
+    "text": "How the GTEx API Works\nThe live request first matches the paper’s 25 gene symbols to GENCODE v39 IDs. A second request asks for GTEx v10 median expression in two heart tissues. The helper returns the same columns used by the rest of the lesson.\nFirst, load the published variants and the shared API helper.\n\n\n\n\n\n\nNext, query GTEx for the 25 unique genes. The commented line loads the saved response if the live service is unavailable.\n\n\n\n\n\n\n\n\n\n\n\n\nNoteLive data and backup\n\n\n\nThe default code queries GTEx. Live values can change. If the request fails, comment out the live line and uncomment the saved-data line.",
+    "crumbs": [
+      "4. Tissue-Level Expression: GTEx"
+    ]
+  },
+  {
+    "objectID": "gtex.html#compare-heart-tissues",
+    "href": "gtex.html#compare-heart-tissues",
+    "title": "Tissue-Level Expression: GTEx",
+    "section": "Compare Heart Tissues",
+    "text": "Compare Heart Tissues\nRun the same tissue comparison used in the GTEx notebook.\nFirst, reshape the GTEx values and add the number of published variant rows connected to each gene.\n\n\n\n\n\n\nNext, plot the ten genes with the highest median left-ventricle expression. The full 25-gene table remains available above.",
+    "crumbs": [
+      "4. Tissue-Level Expression: GTEx"
+    ]
+  },
+  {
+    "objectID": "objectives.html",
+    "href": "objectives.html",
+    "title": "Introduction to APIs",
+    "section": "",
+    "text": "API stands for application programming interface. An API gives software a standard way to ask another service for data or an action.\nIn this module, code takes the 25 genes from the heart-failure paper and sends their identifiers to biological data services. The services return information in a format that Python can read. This is easier to repeat than copying results from a website by hand.",
+    "crumbs": [
+      "2. Introduction to APIs"
+    ]
+  },
+  {
+    "objectID": "objectives.html#what-is-an-api",
+    "href": "objectives.html#what-is-an-api",
+    "title": "Introduction to APIs",
+    "section": "",
+    "text": "API stands for application programming interface. An API gives software a standard way to ask another service for data or an action.\nIn this module, code takes the 25 genes from the heart-failure paper and sends their identifiers to biological data services. The services return information in a format that Python can read. This is easier to repeat than copying results from a website by hand.",
+    "crumbs": [
+      "2. Introduction to APIs"
+    ]
+  },
+  {
+    "objectID": "objectives.html#parts-of-an-api-request",
+    "href": "objectives.html#parts-of-an-api-request",
+    "title": "Introduction to APIs",
+    "section": "Parts of an API request",
+    "text": "Parts of an API request\n\n\n\n\n\n\n\nTerm\nMeaning\n\n\n\n\nEndpoint\nThe web address used for a specific task\n\n\nRequest\nThe message sent to the API\n\n\nParameter\nA value that controls the request, such as a gene or tissue ID\n\n\nResponse\nThe information returned by the API\n\n\nJSON\nA common text format used to organize returned data\n\n\n\nA reproducible API request records the endpoint, parameters, resource version, and date.",
+    "crumbs": [
+      "2. Introduction to APIs"
+    ]
+  },
+  {
+    "objectID": "objectives.html#apis-used-in-this-module",
+    "href": "objectives.html#apis-used-in-this-module",
+    "title": "Introduction to APIs",
+    "section": "APIs used in this module",
+    "text": "APIs used in this module\n\n\n\nCFDE resource\nHow its API is used\n\n\n\n\nGTEx Portal API\nRequest median expression for named genes and heart tissues\n\n\nHuBMAP APIs\nFind selected heart cells and retrieve indexed expression values\n\n\nPharos GraphQL API\nRequest selected protein-target fields, including target development level\n\n\n\nThe published variant table is saved in the repository. GTEx, HuBMAP, and Pharos are queried live by default, with dated saved responses as backups. ClinVar was one input to the paper’s original ranking pipeline, but this module does not query ClinVar or repeat the paper’s clinical classification.",
+    "crumbs": [
+      "2. Introduction to APIs"
+    ]
+  },
+  {
+    "objectID": "objectives.html#rest-and-graphql",
+    "href": "objectives.html#rest-and-graphql",
+    "title": "Introduction to APIs",
+    "section": "REST and GraphQL",
+    "text": "REST and GraphQL\nGTEx and HuBMAP provide REST-style APIs. A REST API usually has several endpoints. Each endpoint handles a task, such as retrieving expression data or finding cells. Parameters tell the endpoint which genes, tissues, or cells to return.\nGraphQL is an API query language. A GraphQL service often uses one endpoint. The request contains a query that names the exact fields needed. Variables hold values that can change, such as a gene symbol. The response follows the shape of the query, so the client receives the fields it requested.\nPharos uses GraphQL. This query asks for a protein symbol, name, UniProt ID, target development level, and publication count:\nquery TargetContext($symbol: String!) {\n  target(q: {sym: $symbol}) {\n    sym\n    name\n    uniprot\n    tdl\n    publicationCount\n  }\n}\nGraphQL controls which fields are returned. It does not make those fields evidence that a variant causes disease.",
+    "crumbs": [
+      "2. Introduction to APIs"
+    ]
+  },
+  {
+    "objectID": "objectives.html#other-common-biomedical-apis",
+    "href": "objectives.html#other-common-biomedical-apis",
+    "title": "Introduction to APIs",
+    "section": "Other common biomedical APIs",
+    "text": "Other common biomedical APIs\n\n\n\nAPI\nExample use\n\n\n\n\nNCBI E-utilities\nSearch and retrieve records from NCBI resources such as Gene, PubMed, and Protein\n\n\nEnsembl REST API\nRetrieve genes, variants, sequences, and comparative genomics data\n\n\nUCSC Genome Browser API\nRetrieve genome sequences and selected annotation tracks\n\n\n\nAPIs work best for focused requests. Complete downloads are often better for large datasets.",
+    "crumbs": [
+      "2. Introduction to APIs"
+    ]
+  },
+  {
+    "objectID": "objectives.html#build-an-api-request-using-e-utilities",
+    "href": "objectives.html#build-an-api-request-using-e-utilities",
+    "title": "Introduction to APIs",
+    "section": "Build an API Request Using E-utilities",
+    "text": "Build an API Request Using E-utilities\nThis activity uses NCBI E-utilities as a simple example of an API URL. It is not part of the module’s candidate variant workflow and does not retrieve ClinVar records.\nThe code builds an NCBI Gene search URL without sending the request. Change MYH7 to another gene symbol and choose Run Code.",
+    "crumbs": [
+      "2. Introduction to APIs"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Prioritizing Candidate Genetic Variants Using GTEx, HuBMAP, and IDG",
+    "section": "",
+    "text": "This module begins with a whole-genome sequencing study of early-onset advanced heart failure (PMID: 39910139). The researchers studied 102 Swedish heart transplant or heart-assist-device recipients. They used a computer pipeline to rank variants and clinical experts to classify them. Their Supplementary Table S4 reports 54 variant rows from 46 people across 25 genes.\nYou will use that complete published table. At each step, you will add a different kind of context to its 25 genes: tissue expression from GTEx, cell-type expression from HuBMAP, and protein information from Pharos. These resources can guide research follow-up. They do not replace the study’s variant classification or prove that a variant causes disease.",
+    "crumbs": [
+      "1. Module Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#what-is-this-module-about",
+    "href": "index.html#what-is-this-module-about",
+    "title": "Prioritizing Candidate Genetic Variants Using GTEx, HuBMAP, and IDG",
+    "section": "",
+    "text": "This module begins with a whole-genome sequencing study of early-onset advanced heart failure (PMID: 39910139). The researchers studied 102 Swedish heart transplant or heart-assist-device recipients. They used a computer pipeline to rank variants and clinical experts to classify them. Their Supplementary Table S4 reports 54 variant rows from 46 people across 25 genes.\nYou will use that complete published table. At each step, you will add a different kind of context to its 25 genes: tissue expression from GTEx, cell-type expression from HuBMAP, and protein information from Pharos. These resources can guide research follow-up. They do not replace the study’s variant classification or prove that a variant causes disease.",
+    "crumbs": [
+      "1. Module Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#learning-objectives",
+    "href": "index.html#learning-objectives",
+    "title": "Prioritizing Candidate Genetic Variants Using GTEx, HuBMAP, and IDG",
+    "section": "Learning objectives",
+    "text": "Learning objectives\nBy the end of this module, you will be able to:\n\nUse GTEx to check whether genes linked to candidate variants are expressed in a disease-related tissue.\nUse HuBMAP to study gene expression in specific cell types while accounting for missing data and small groups.\nUse IDG and Pharos to interpret protein information and druggability.\nCombine several data sources to select candidate variants for more study.\nExplain what an application programming interface, or API, is and how APIs support repeatable research.",
+    "crumbs": [
+      "1. Module Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#data-sources-used-in-this-module",
+    "href": "index.html#data-sources-used-in-this-module",
+    "title": "Prioritizing Candidate Genetic Variants Using GTEx, HuBMAP, and IDG",
+    "section": "Data sources used in this module",
+    "text": "Data sources used in this module\n\n\n\nResource\nWhat it is\nHow this module uses it\n\n\n\n\nCandidate variant table and source paper\nThe local table contains all 54 rows from the paper’s Supplementary Table S4.\nProvides the published HGVS names, study scores, classifications, phenotypes, and comments.\n\n\nGTEx v10\nGTEx is an NIH Common Fund reference resource for studying gene expression and genetic regulation across human tissues.\nA GTEx Portal REST API response provides median expression in heart atrial appendage and left ventricle.\n\n\nHuBMAP\nHuBMAP is an NIH Common Fund program that maps cells and molecules within human tissues.\nA HuBMAP Cells API response provides expression summaries for selected heart cell types.\n\n\nIDG and Pharos\nIDG is an NIH Common Fund program focused on understudied druggable proteins. Pharos is its integrated protein-target information resource.\nA Pharos GraphQL API response provides protein information and target development levels.\n\n\nIntegrated teaching table\nA local table created by joining the published variants with the saved GTEx, HuBMAP, and Pharos data by gene symbol.\nReturns gene-level context to all 54 variant rows while keeping each evidence layer separate.\n\n\n\nThe activities query GTEx, HuBMAP, and Pharos by default. Saved API responses are included as a backup if a live service is unavailable.",
+    "crumbs": [
+      "1. Module Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#how-do-i-use-this-module",
+    "href": "index.html#how-do-i-use-this-module",
+    "title": "Prioritizing Candidate Genetic Variants Using GTEx, HuBMAP, and IDG",
+    "section": "How do I use this module?",
+    "text": "How do I use this module?\nWork through the pages in order. Plan for about two hours.\n\nActivities: Run the same analysis code in the website or in the matching notebook.\nKnowledge checks: Select an answer after each main activity.\nComplete workflow: Use the integrated notebook to run every evidence layer in one place.\nLive APIs: The activities request current data by default. Each resource page shows how to switch to the saved response if needed.\n\n\nRead the source paper View main notebook on GitHub Download main .ipynb View orientation notebook",
+    "crumbs": [
+      "1. Module Introduction"
+    ]
+  },
+  {
+    "objectID": "variant-context.html",
+    "href": "variant-context.html",
+    "title": "Variant and Gene Context",
+    "section": "",
+    "text": "The source study performed whole-genome sequencing on heart tissue from people with early-onset advanced heart failure. Sequencing produced millions of variants. The researchers narrowed that list in several steps:\n\nThey focused on 369 genes connected to heart failure and related conditions.\nA ranking pipeline used call quality, predicted consequence, splicing, conservation, population frequency, protein predictions, and ClinVar.\nVariants with a study score of at least 15, plus previously reported likely pathogenic or pathogenic ClinVar variants, received manual review.\nClinical geneticists applied ACMG guidance and condition-specific rules.\n\nSupplementary Table S4 contains the variants the authors reported as pathogenic, likely pathogenic, or VUS with suggestive evidence. It has 54 rows from 46 people and 25 genes.\nThe study score and class are starting information. This module will not recalculate them. GTEx, HuBMAP, and Pharos answer different questions about the genes connected to those variants.",
+    "crumbs": [
+      "3. Variant and Gene Context"
+    ]
+  },
+  {
+    "objectID": "variant-context.html#how-the-candidate-list-was-created",
+    "href": "variant-context.html#how-the-candidate-list-was-created",
+    "title": "Variant and Gene Context",
+    "section": "",
+    "text": "The source study performed whole-genome sequencing on heart tissue from people with early-onset advanced heart failure. Sequencing produced millions of variants. The researchers narrowed that list in several steps:\n\nThey focused on 369 genes connected to heart failure and related conditions.\nA ranking pipeline used call quality, predicted consequence, splicing, conservation, population frequency, protein predictions, and ClinVar.\nVariants with a study score of at least 15, plus previously reported likely pathogenic or pathogenic ClinVar variants, received manual review.\nClinical geneticists applied ACMG guidance and condition-specific rules.\n\nSupplementary Table S4 contains the variants the authors reported as pathogenic, likely pathogenic, or VUS with suggestive evidence. It has 54 rows from 46 people and 25 genes.\nThe study score and class are starting information. This module will not recalculate them. GTEx, HuBMAP, and Pharos answer different questions about the genes connected to those variants.",
+    "crumbs": [
+      "3. Variant and Gene Context"
+    ]
+  },
+  {
+    "objectID": "variant-context.html#inspect-the-published-variants",
+    "href": "variant-context.html#inspect-the-published-variants",
+    "title": "Variant and Gene Context",
+    "section": "Inspect the Published Variants",
+    "text": "Inspect the Published Variants\nRun the same steps used in the variant-background notebook.\nFirst, load the complete Supplementary Table S4 teaching file and preview its published fields.\n\n\n\n\n\n\nNext, confirm the expected columns, row count, and paper identifier. These checks prevent later joins from silently losing records.\n\n\n\n\n\n\nSummarize the number of variant rows, people, genes, and missing protein HGVS annotations without removing any records.\n\n\n\n\n\n\nFinally, count the published variant classes within each heart-failure phenotype. The (P) label remains separate because the paper treated those rows as pathogenic secondary findings.",
+    "crumbs": [
+      "3. Variant and Gene Context"
+    ]
+  },
+  {
+    "objectID": "hubmap.html",
+    "href": "hubmap.html",
+    "title": "Cell-Type Resolution: HuBMAP",
+    "section": "",
+    "text": "GTEx showed that genes from the heart-failure paper are expressed in bulk heart tissue. We now ask which sampled heart cell types contain their RNA.\nHuBMAP stands for Human BioMolecular Atlas Program. This NIH Common Fund program maps cells and molecules within human tissues. Its Cells API can connect gene expression to cell labels such as ventricular cardiac myocyte, fibroblast, or macrophage.\nCell-level results depend on the samples, cell labels, processing, and group size. HuBMAP adds cell-type context to the paper’s genes. It does not test the effects of the 54 individual variants.",
+    "crumbs": [
+      "5. Cell-Type Resolution: HuBMAP"
+    ]
+  },
+  {
+    "objectID": "hubmap.html#what-does-hubmap-add",
+    "href": "hubmap.html#what-does-hubmap-add",
+    "title": "Cell-Type Resolution: HuBMAP",
+    "section": "",
+    "text": "GTEx showed that genes from the heart-failure paper are expressed in bulk heart tissue. We now ask which sampled heart cell types contain their RNA.\nHuBMAP stands for Human BioMolecular Atlas Program. This NIH Common Fund program maps cells and molecules within human tissues. Its Cells API can connect gene expression to cell labels such as ventricular cardiac myocyte, fibroblast, or macrophage.\nCell-level results depend on the samples, cell labels, processing, and group size. HuBMAP adds cell-type context to the paper’s genes. It does not test the effects of the 54 individual variants.",
+    "crumbs": [
+      "5. Cell-Type Resolution: HuBMAP"
+    ]
+  },
+  {
+    "objectID": "hubmap.html#how-the-hubmap-api-works",
+    "href": "hubmap.html#how-the-hubmap-api-works",
+    "title": "Cell-Type Resolution: HuBMAP",
+    "section": "How the HuBMAP API Works",
+    "text": "How the HuBMAP API Works\nThe Cells API first creates query handles for the heart and ventricular cardiac myocytes. It intersects those sets, samples up to 500 cells, and requests one gene at a time. Missing indexed values are recorded as unavailable, not zero.\nFirst, load the published variants and the shared API helper.\n\n\n\n\n\n\nNext, query ventricular cardiac myocytes for the 25 unique genes. This request can take longer than the other API calls. The commented line loads all six cell types from the saved response if the live service is unavailable.\n\n\n\n\n\n\n\n\n\n\n\n\nNoteLive data and backup\n\n\n\nThe default code queries HuBMAP. Live coverage can change. If the request fails, comment out the live line and uncomment the saved-data line.",
+    "crumbs": [
+      "5. Cell-Type Resolution: HuBMAP"
+    ]
+  },
+  {
+    "objectID": "hubmap.html#review-ventricular-cardiac-myocytes",
+    "href": "hubmap.html#review-ventricular-cardiac-myocytes",
+    "title": "Cell-Type Resolution: HuBMAP",
+    "section": "Review Ventricular Cardiac Myocytes",
+    "text": "Review Ventricular Cardiac Myocytes\nReturn to the paper’s 25 genes and examine one disease-relevant cell type.\nFirst, keep the ventricular cardiac-myocyte rows and count the genes with and without indexed expression values.\n\n\n\n\n\n\nNext, display the ten available genes with the highest mean expression in the 500-cell teaching sample.\n\n\n\n\n\n\nFinally, plot those mean expression values. Interpret the chart with the percent-detected values and missing-gene count above.",
+    "crumbs": [
+      "5. Cell-Type Resolution: HuBMAP"
+    ]
+  },
+  {
+    "objectID": "prioritization.html",
+    "href": "prioritization.html",
+    "title": "Variant Prioritization and Interpretation",
+    "section": "",
+    "text": "The source paper starts us with 54 classified variant rows. GTEx, HuBMAP, and Pharos describe the 25 genes connected to those rows. The final step joins that gene-level context back to every published variant.\nEach layer keeps its own meaning:\n\n\n\n\n\n\n\nEvidence\nQuestion answered\n\n\n\n\nPaper fields\nWhat variant, phenotype, score, and class did the study report?\n\n\nGTEx\nIs the gene expressed in the selected heart tissues?\n\n\nHuBMAP\nWas expression indexed in the selected heart cell type?\n\n\nPharos\nWhat protein and target-development information is available?\n\n\n\nWe will not add these fields into one pathogenicity score. Instead, we will state a follow-up question and select the columns that answer it.",
+    "crumbs": [
+      "7. Variant Prioritization and Interpretation"
+    ]
+  },
+  {
+    "objectID": "prioritization.html#return-context-to-every-variant",
+    "href": "prioritization.html#return-context-to-every-variant",
+    "title": "Variant Prioritization and Interpretation",
+    "section": "",
+    "text": "The source paper starts us with 54 classified variant rows. GTEx, HuBMAP, and Pharos describe the 25 genes connected to those rows. The final step joins that gene-level context back to every published variant.\nEach layer keeps its own meaning:\n\n\n\n\n\n\n\nEvidence\nQuestion answered\n\n\n\n\nPaper fields\nWhat variant, phenotype, score, and class did the study report?\n\n\nGTEx\nIs the gene expressed in the selected heart tissues?\n\n\nHuBMAP\nWas expression indexed in the selected heart cell type?\n\n\nPharos\nWhat protein and target-development information is available?\n\n\n\nWe will not add these fields into one pathogenicity score. Instead, we will state a follow-up question and select the columns that answer it.",
+    "crumbs": [
+      "7. Variant Prioritization and Interpretation"
+    ]
+  },
+  {
+    "objectID": "prioritization.html#build-the-evidence-matrix",
+    "href": "prioritization.html#build-the-evidence-matrix",
+    "title": "Variant Prioritization and Interpretation",
+    "section": "Build the Evidence Matrix",
+    "text": "Build the Evidence Matrix\nRun the complete integration workflow from the main notebook.\nFirst, load the published variant table and the shared API helpers.\n\n\n\n\n\n\nNext, query all three APIs for the paper’s 25 genes. HuBMAP takes the longest because it checks each gene separately. The commented lines load the saved responses if a live service is unavailable.\n\n\n\n\n\n\nThen, create one context row per gene. This step uses the two GTEx tissues, one HuBMAP cell type, and selected Pharos fields.\n\n\n\n\n\n\nJoin the 25 gene rows to all 54 variant rows. The many_to_one check allows several variants to share one gene while protecting against duplicate context rows.\n\n\n\n\n\n\nAsk a focused question: which DCM variant rows have measured ventricular cardiac-myocyte context, ordered by GTEx left-ventricle expression?\n\n\n\n\n\n\nKeep HuBMAP coverage gaps visible as a unique gene list for another atlas or experiment.\n\n\n\n\n\n\nFinally, find exact variant observations that occur in more than one subject.",
+    "crumbs": [
+      "7. Variant Prioritization and Interpretation"
+    ]
+  },
+  {
+    "objectID": "prioritization.html#write-a-short-interpretation",
+    "href": "prioritization.html#write-a-short-interpretation",
+    "title": "Variant Prioritization and Interpretation",
+    "section": "Write a short interpretation",
+    "text": "Write a short interpretation\nChoose one row from dcm_follow_up and write three sentences:\n\nReport the exact variant, phenotype, and study class.\nDescribe its GTEx and HuBMAP gene context with one limitation.\nDescribe its Pharos target context and name a useful next study.\n\nDo not say that GTEx, HuBMAP, or Pharos reclassified the variant. They did not.\n\nView notebook on GitHub Download .ipynb",
+    "crumbs": [
+      "7. Variant Prioritization and Interpretation"
+    ]
+  }
+]
