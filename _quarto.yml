@@ -19,8 +19,8 @@ project:
 
 website:
   title: "Prioritizing Candidate Genetic Variants"
-  site-url: "https://cfdetrainingcenter.github.io/candidate-genetic-var/"
-  repo-url: "https://github.com/CFDETrainingCenter/candidate-genetic-var"
+  site-url: "https://cfdetrainingcenter.github.io/candidate-genetic-variants/"
+  repo-url: "https://github.com/CFDETrainingCenter/candidate-genetic-variants"
   repo-actions: [source, issue]
   page-navigation: true
   navbar:
@@ -32,7 +32,7 @@ website:
         text: "Glossary"
         icon: book-fill
       - icon: github
-        href: "https://github.com/CFDETrainingCenter/candidate-genetic-var"
+        href: "https://github.com/CFDETrainingCenter/candidate-genetic-variants"
         aria-label: "View the source repository on GitHub"
   sidebar:
     style: docked

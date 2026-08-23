@@ -314,5 +314,5 @@ Use HuBMAP to ask whether the same genes have indexed expression in ventricular
 cardiac myocytes.
 
 <div class="notebook-actions">
-<a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/03_gtex_tissue_expression.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>
+<a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/03_gtex_tissue_expression.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>
 </div>

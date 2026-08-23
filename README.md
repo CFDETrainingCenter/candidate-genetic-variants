@@ -3,7 +3,7 @@
 A reproducible CFDE training module that uses tissue, cell-type, and protein
 context to prioritize candidate genetic variants for further study.
 
-The module is available as a [deployed training website](https://cfdetrainingcenter.github.io/candidate-genetic-var/).
+The module is available as a [deployed training website](https://cfdetrainingcenter.github.io/candidate-genetic-variants/).
 Learners can run the analysis code in the website or use the accompanying
 Jupyter notebooks.
 
@@ -105,7 +105,7 @@ transformations, missing-data handling, and limitations.
 
 ### Use the website
 
-Open the [rendered training module](https://cfdetrainingcenter.github.io/candidate-genetic-var/).
+Open the [rendered training module](https://cfdetrainingcenter.github.io/candidate-genetic-variants/).
 The website is already deployed. You only need a current web browser and an
 internet connection. You do not need to install Python, Jupyter, `uv`, or
 Quarto.
@@ -126,14 +126,14 @@ isolated environment for this module.
 If you use Git, open a terminal and run:
 
 ```bash
-git clone https://github.com/CFDETrainingCenter/candidate-genetic-var.git
-cd candidate-genetic-var
+git clone https://github.com/CFDETrainingCenter/candidate-genetic-variants.git
+cd candidate-genetic-variants
 ```
 
 If you do not use Git, open the repository's
-[GitHub page](https://github.com/CFDETrainingCenter/candidate-genetic-var),
+[GitHub page](https://github.com/CFDETrainingCenter/candidate-genetic-variants),
 select **Code > Download ZIP**, and extract the downloaded file. Then open a
-terminal in the extracted `candidate-genetic-var` folder.
+terminal in the extracted `candidate-genetic-variants` folder.
 
 The commands below must be run from the repository root. This is the folder
 that contains `README.md`, `requirements.txt`, and the `notebooks/` directory.
@@ -235,7 +235,7 @@ directory contains rendered website files.
 ## Repository structure
 
 ```text
-candidate-genetic-var/
+candidate-genetic-variants/
 ├── _quarto.yml
 ├── GLOSSARY.md
 ├── README.md
@@ -284,7 +284,7 @@ the `gh-pages` branch as its publishing source.
 
 ## Contributing
 
-Use [GitHub Issues](https://github.com/CFDETrainingCenter/candidate-genetic-var/issues)
+Use [GitHub Issues](https://github.com/CFDETrainingCenter/candidate-genetic-variants/issues)
 to report problems or suggest improvements. Pull requests should keep the
 Quarto source files in the repository root and should not commit rendered files
 from `docs/`.
