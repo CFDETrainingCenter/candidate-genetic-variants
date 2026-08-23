@@ -1,0 +1,342 @@
+---
+title: "Cell-Type Resolution: HuBMAP"
+aliases:
+  - /hubmap.html
+---
+
+**Estimated time:** 25 minutes
+
+Check which genes have indexed HuBMAP expression values in ventricular cardiac
+myocytes. Compare the average returned value with the percentage of returned
+records above zero.
+
+## Cell-type expression
+
+GTEx showed that genes from the heart-failure paper are expressed in bulk heart
+tissue. HuBMAP lets us examine records assigned to a selected heart cell type.
+
+HuBMAP stands for **Human BioMolecular Atlas Program**. This NIH Common Fund
+program maps cells and molecules within human tissues. The HuBMAP Cells API
+provides access to aggregated outputs from HuBMAP data-processing pipelines.
+It connects indexed expression values to labels such as ventricular cardiac
+myocyte, fibroblast, or macrophage.
+
+### Why ventricular cardiac myocytes?
+
+The [source paper](https://doi.org/10.1038/s41598-025-88465-8) studied
+early-onset advanced heart failure. The highest yield of pathogenic or likely
+pathogenic variants occurred in hypertrophic, dilated, and arrhythmogenic right
+ventricular cardiomyopathy. Sarcomeric variants were most common in the
+hypertrophic and dilated cardiomyopathy groups, while desmosomal variants were
+concentrated in arrhythmogenic right ventricular cardiomyopathy. Examples in
+the teaching table include the sarcomeric or contractile genes *MYH7*,
+*MYBPC3*, *TNNT2*, and *ACTC1*, and the desmosomal genes *DSG2*, *DSC2*, and
+*PKP2*.
+
+The paper did not perform a cell-type analysis. We select ventricular cardiac
+myocytes as a focused follow-up because the ventricles provide the heart's main
+pumping force, and many genes reported in the paper contribute to contraction
+or structural connections in cardiac muscle. This choice also follows directly
+from the GTEx left-ventricle result in the previous lesson.
+
+The request retrieves up to the first 500 indexed records labeled as regular
+ventricular cardiac myocytes. The fixed limit keeps the browser activity
+manageable.
+
+Learn more about the resource's APIs in the
+[HuBMAP API documentation](https://docs.hubmapconsortium.org/apis.html).
+
+### How to read the returned values
+
+Available samples and API indexing determine which genes can be compared.
+The returned values reflect the records, cell labels, and processed datasets
+available through the Cells API index.
+
+::: {.callout-tip title="Why HuBMAP helps"}
+GTEx combines expression from all cell types in a tissue sample. HuBMAP lets us
+query records assigned to a selected cell type. Here, we use it to identify
+candidate genes with indexed values in ventricular cardiac myocytes and compare
+their average values with the frequency of values above zero.
+:::
+
+## Querying the HuBMAP API
+
+The Cells API first creates query handles for the heart and ventricular cardiac
+myocytes. It intersects those sets, retrieves up to the first 500 records, and
+requests one gene at a time. A gene without an indexed value is labeled as
+unavailable.
+
+### Prepare the gene list and API helper
+
+Load the published variants, select the 25 unique gene symbols, and import the
+HuBMAP wrapper.
+
+::: {.module-activity}
+
+```{pyodide}
+from pathlib import Path
+import sys
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Locate the repository root.
+REPO_ROOT = Path.cwd() if Path("api_helpers.py").exists() else Path.cwd().parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+# Import the API wrapper.
+from api_helpers import fetch_hubmap_ventricular_context
+
+# Load the published variants.
+DATA_DIR = REPO_ROOT / "data"
+variants = pd.read_csv(DATA_DIR / "variants.csv")
+gene_symbols = sorted(variants["gene_symbol"].unique())
+pd.Series(gene_symbols, name="gene_symbol").head()
+```
+:::
+
+`gene_symbols` contains the 25 unique gene symbols in alphabetical order.
+`variants` retains all 54 published rows.
+
+### Request ventricular cardiac-myocyte expression
+
+Request ventricular cardiac-myocyte expression for the 25 genes. The wrapper
+queries one gene at a time, so this request may take longer than the GTEx
+request. Start by checking `availability`, then compare expression only among
+genes with returned measurements.
+
+::: {.module-activity}
+
+```{pyodide}
+# Query the 25 genes.
+hubmap = fetch_hubmap_ventricular_context(gene_symbols)
+
+# If the live request is unavailable, use the dated teaching response instead.
+# hubmap = pd.read_csv(DATA_DIR / "hubmap_cell_expression.csv")
+# hubmap = hubmap[
+#     hubmap["cell_type_id"] == "CL:0002131"
+# ].reset_index(drop=True)
+
+# Inspect expression and availability.
+hubmap.head()
+```
+:::
+
+Each row represents one queried gene in ventricular cardiac myocytes. The Cells
+API returns a quantitative value for each retrieved record. The wrapper
+calculates `mean_normalized_expression` as the average of those values and
+`percent_detected` as the percentage greater than zero. In this lesson,
+`percent_detected` therefore means "percentage of retrieved records above
+zero." `availability` records whether the index returned values for the gene.
+
+::: {.callout-note title="Live data"}
+Values are requested directly from HuBMAP. Coverage and service availability
+can change.
+:::
+
+### How the wrapper works
+
+The wrapper follows five steps:
+
+1. Create a query handle for heart records.
+2. Create a query handle for regular ventricular cardiac myocytes
+   (`CL:0002131`).
+3. Intersect the two sets.
+4. Retrieve up to the first 500 records for each gene.
+5. Calculate the mean returned value and the percentage of values above zero.
+
+The implementation and its support functions are in
+[`api_helpers.py`](../api_helpers.py).
+
+## Review ventricular cardiac myocytes
+
+Examine availability, expression, and detection for one disease-relevant cell
+type.
+
+### Summarize data availability
+
+Keep the ventricular cardiac-myocyte rows and count the genes with and without
+indexed expression values. Start with coverage before comparing measurements.
+
+::: {.module-activity}
+
+```{pyodide}
+# Select ventricular cardiac myocytes.
+ventricular = hubmap[
+    hubmap["cell_type_id"] == "CL:0002131"
+].copy()
+
+# Count genes by data availability.
+availability_summary = (
+    ventricular["availability"]
+    .value_counts()
+    .rename_axis("availability")
+    .reset_index(name="genes")
+)
+availability_summary
+```
+:::
+
+In the dated teaching data, 14 of the 25 genes have indexed ventricular
+cardiac-myocyte values and 11 are unavailable in the Cells API index. The next
+activity compares the 14 available genes.
+
+### Compare available genes
+
+Display all available genes in descending order of their mean returned value.
+The table retains `percent_detected` so you can compare average values with the
+percentage of retrieved records above zero.
+
+::: {.module-activity}
+
+```{pyodide}
+# Keep genes with returned values.
+available_ventricular = ventricular[
+    ventricular["availability"] == "available"
+]
+
+# Rank all available genes by their mean returned value.
+mean_ranked_genes = (
+    available_ventricular
+    .sort_values("mean_normalized_expression", ascending=False)
+    .set_index("gene_symbol")
+)
+mean_ranked_genes.loc[
+    :, ["mean_normalized_expression", "percent_detected"]
+]
+```
+:::
+
+*MYH7* and *DES* have the highest mean returned values in the dated teaching
+data. Their values are above zero in 39.8% and 35.2% of the retrieved records.
+The mean describes the magnitude of the returned values, while the percentage
+above zero describes how frequently a positive value appears.
+
+### Compare detection frequency
+
+Rank the available genes by percent detected and compare the result with the
+mean-expression ranking.
+
+:::: {.module-activity}
+
+```{pyodide}
+#| exercise: compare_hubmap_measures
+#| envir: global
+# Rank genes by detection frequency.
+top_detected_genes = (
+    available_ventricular
+    .nlargest(10, "______")
+    .set_index("gene_symbol")
+)
+top_detected_genes.loc[
+    :, ["mean_normalized_expression", "percent_detected"]
+]
+```
+
+::: {.hint exercise="compare_hubmap_measures"}
+Use the `percent_detected` column.
+:::
+
+::: {.solution exercise="compare_hubmap_measures"}
+```python
+# Rank genes by detection frequency.
+top_detected_genes = (
+    available_ventricular
+    .nlargest(10, "percent_detected")
+    .set_index("gene_symbol")
+)
+top_detected_genes.loc[
+    :, ["mean_normalized_expression", "percent_detected"]
+]
+```
+:::
+::::
+
+*TNNT2* ranks second by percent detected but sixth by mean expression in the
+dated teaching data. *DES* ranks second by mean expression and third by percent
+detected. The two summaries identify different expression patterns.
+
+### Plot ventricular expression
+
+Plot the mean returned values for the selected genes. Interpret the chart
+together with the percentage-above-zero table and availability summary.
+
+::: {.module-activity}
+
+```{pyodide}
+# Keep the 10 highest means for a readable plot.
+top_ventricular_genes = mean_ranked_genes.head(10)
+
+# Plot the mean returned values.
+axis = top_ventricular_genes["mean_normalized_expression"].plot.bar(
+    color="#3d64b3",
+    figsize=(10, 5),
+)
+axis.set_ylabel("Mean normalized expression")
+axis.set_xlabel("Gene from the source paper")
+axis.set_title("HuBMAP ventricular cardiac-myocyte context")
+plt.xticks(rotation=35, ha="right")
+plt.tight_layout()
+plt.show()
+```
+:::
+
+The plot uses the 10 highest means from the complete 14-gene table. The 11
+unavailable genes remain visible in the availability summary.
+
+## Check your understanding {.knowledge-check-heading}
+
+::: {.qmulti}
+
+What does a high mean returned value with a lower `percent_detected` indicate?
+
+- Larger returned values occur in a smaller portion of the retrieved records
+
+  > Correct. The mean captures value magnitude, while `percent_detected`
+  > captures the frequency of values above zero.
+
+- Every retrieved record has the same expression value
+
+  > A mean and a percentage above zero do not show that every record has the
+  > same value.
+
+- The gene is unavailable in the Cells API index
+
+  > An unavailable gene has no returned values and is excluded from this
+  > comparison.
+
+:::
+
+::: {.qmulti}
+
+What does an unavailable HuBMAP value mean here?
+
+- The expression index did not provide a value
+
+  > Correct. Keep this result separate from a returned value of zero.
+
+- The gene was not expressed
+
+  > Choose unavailable because the index returned no value for this gene.
+
+:::
+
+## Key points
+
+- HuBMAP connects indexed expression values with cell-type annotations from
+  processed atlas data.
+- Ventricular cardiac myocytes provide a focused cell context for the
+  cardiomyopathy phenotypes and cardiac-muscle genes reported in the paper.
+- The wrapper calculates a mean returned value and the percentage of returned
+  records above zero. These summaries can produce different gene rankings.
+- An unavailable indexed value and a returned value of zero are recorded
+  separately.
+
+**Next:** GTEx and HuBMAP provide tissue and cell-type expression context. Use
+Pharos to examine what is known about the proteins encoded by these genes and
+which research tools are available.
+
+<div class="notebook-actions">
+<a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/04_hubmap_cell_type_expression.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>
+</div>

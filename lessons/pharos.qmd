@@ -1,0 +1,335 @@
+---
+title: "Protein Knowledge and Research Context: IDG/Pharos"
+aliases:
+  - /pharos.html
+---
+
+**Estimated time:** 20 minutes
+
+Use Pharos to connect the paper's genes with protein knowledge and identify
+biological, chemical, or clinical records for closer review.
+
+## Protein target context
+
+GTEx and HuBMAP added expression context to genes from the heart-failure paper.
+We now ask what is known about the proteins those genes encode.
+
+IDG stands for **Illuminating the Druggable Genome**. This NIH Common Fund
+program develops knowledge and research tools for understudied proteins in
+druggable protein families. Pharos is an IDG resource that combines information
+about human proteins and drug targets. It brings protein identifiers,
+annotations, publications, interactions, ligands, drugs, and target-development
+categories into one resource.
+
+### Why use Pharos for this paper?
+
+The paper reports candidate variants in 25 protein-coding genes. GTEx and
+HuBMAP showed where those genes have indexed expression. Pharos adds a different
+question: what protein knowledge and experimental starting points have already
+been recorded for each gene?
+
+We selected fields that support that question:
+
+| Field | Why it is included |
+|---|---|
+| Gene symbol and UniProt ID | Connect the paper's gene to a specific protein target. |
+| Target Development Level | Summarize the target's Pharos development category. |
+| Publication count | Show the number of publications linked to the target. |
+| Protein-interaction count | Show the number of interaction records aggregated by Pharos. |
+| Ligand and drug counts | Identify targets whose chemical records warrant closer inspection. |
+
+Learn more about the available GraphQL fields in the
+[Pharos API documentation](https://pharos.nih.gov/api).
+
+### Target development levels
+
+Pharos uses four Target Development Levels, called TDLs:
+
+| TDL | Pharos criteria | How we use it here |
+|---|---|---|
+| **Tclin** | The target meets Pharos criteria for activity involving an approved drug. | Open the drug records and examine their mechanisms and indications. |
+| **Tchem** | The target has qualifying small-molecule activity but does not meet Tclin criteria. | Examine the ligand records for potency, selectivity, and experimental use. |
+| **Tbio** | Biological information is available, but the target does not meet Tclin or Tchem criteria. | Begin with mechanism, pathway, phenotype, or assay information. |
+| **Tdark** | Available knowledge is limited under the Pharos criteria. | Begin with foundational characterization and available reagents. |
+
+### Scope of target development levels
+
+TDL is a protein-level field. The study classification remains the
+variant-level field.
+
+::: {.callout-tip title="Why Pharos helps"}
+The expression resources provide tissue and cell-type context. Pharos adds
+protein identifiers, knowledge categories, and counts of linked publications,
+interactions, ligands, and drugs. These fields help identify which target
+records to inspect next.
+:::
+
+## Querying the Pharos API
+
+Pharos uses GraphQL. The request names the exact target fields to return. The
+helper repeats that query for each of the paper's 25 gene symbols and puts the
+responses in one table.
+
+### Prepare the gene list and API helper
+
+Load the published variants, select the 25 unique gene symbols, and import the
+Pharos wrapper.
+
+::: {.module-activity}
+
+```{pyodide}
+from pathlib import Path
+import sys
+
+import pandas as pd
+
+# Locate the repository root.
+REPO_ROOT = Path.cwd() if Path("api_helpers.py").exists() else Path.cwd().parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+# Import the API wrapper.
+from api_helpers import fetch_pharos_context
+
+# Load the published variants.
+DATA_DIR = REPO_ROOT / "data"
+variants = pd.read_csv(DATA_DIR / "variants.csv")
+gene_symbols = sorted(variants["gene_symbol"].unique())
+pd.Series(gene_symbols, name="gene_symbol").head()
+```
+:::
+
+`gene_symbols` contains the 25 unique gene symbols in alphabetical order.
+`variants` retains all 54 published rows.
+
+### Request protein-target context
+
+Request protein-target records for the 25 genes and display the first five
+targets. In the returned table, compare TDL with the separate publication,
+interaction, ligand, and drug counts.
+
+::: {.module-activity}
+
+```{pyodide}
+# Query the 25 genes.
+pharos = fetch_pharos_context(gene_symbols)
+
+# If the live request is unavailable, use the dated teaching response instead.
+# pharos = pd.read_csv(DATA_DIR / "pharos_target_context.csv")
+
+# Inspect target identifiers and evidence fields.
+pharos.head()
+```
+:::
+
+Each row represents one protein target. The preview connects its gene symbol
+and UniProt identifier to a TDL. The other fields count publications,
+protein-interaction records, ligands, and drugs linked to the target in Pharos.
+
+TDL and the count fields answer related but different questions. TDL follows
+Pharos development criteria. The counts describe records attached to the
+target. A Tchem target can therefore have ligand records while its drug count
+is zero.
+
+::: {.callout-note title="Live data"}
+Target records are requested directly from Pharos. Target information and
+service availability can change.
+:::
+
+### How the wrapper works
+
+::: {.callout-note collapse="true" title="GraphQL request"}
+The query requests only the protein fields used in this lesson:
+
+```graphql
+query TargetContext($symbol: String!) {
+  target(q: {sym: $symbol}) {
+    sym
+    name
+    uniprot
+    tdl
+    publicationCount
+    ligandCounts { name value }
+    ppiCounts { name value }
+  }
+}
+```
+
+`$symbol` is a query variable. For *MYLK3*, the wrapper sends
+`{"symbol": "MYLK3"}` separately from the query text. Pharos returns the
+selected fields under `data` and `target`. The wrapper extracts those fields
+and creates one table row per gene.
+
+The complete implementation is in
+[`api_helpers.py`](../api_helpers.py).
+:::
+
+## Review the protein targets
+
+Count the TDL categories and compare protein fields that can inform research
+follow-up.
+
+### Summarize target development levels
+
+Count the Target Development Levels in the current Pharos response. Complete
+the pandas method that counts each distinct category.
+
+:::: {.module-activity}
+
+```{pyodide}
+#| exercise: summarize_pharos_tdl
+#| envir: global
+# Count genes by TDL.
+tdl_summary = (
+    pharos["tdl"]
+    .______()
+    .rename_axis("tdl")
+    .reset_index(name="genes")
+)
+tdl_summary
+```
+
+::: {.hint exercise="summarize_pharos_tdl"}
+Use the pandas Series method that counts each distinct value.
+:::
+
+::: {.solution exercise="summarize_pharos_tdl"}
+```python
+# Count genes by TDL.
+tdl_summary = (
+    pharos["tdl"]
+    .value_counts()
+    .rename_axis("tdl")
+    .reset_index(name="genes")
+)
+tdl_summary
+```
+:::
+::::
+
+The `genes` column counts the queried targets assigned to each Pharos TDL. In
+the dated teaching data, 18 targets are Tbio, 4 are Tclin, and 3 are Tchem. No
+Tdark targets were returned. The Tclin targets are *TTR*, *DMD*, *KCNQ1*, and
+*MYH7*; the Tchem targets are *MYLK3*, *POLG*, and *TNNI3K*.
+
+### Compare target fields
+
+Keep the fields used for interpretation and order the proteins by TDL, drug
+count, and gene symbol. Include ligand counts so Tchem targets remain
+interpretable when their drug count is zero.
+
+::: {.module-activity}
+
+```{pyodide}
+# Select the target evidence fields.
+target_fields = pharos.loc[
+    :,
+    [
+        "gene_symbol",
+        "target_name",
+        "tdl",
+        "ligand_count",
+        "drug_count",
+        "publication_count",
+        "ppi_count",
+    ],
+].sort_values(
+    ["drug_count", "gene_symbol"],
+    ascending=[False, True],
+)
+
+# Place the named TDL categories in display order.
+ordered_targets = []
+for tdl in ["Tclin", "Tchem", "Tbio", "Tdark"]:
+    ordered_targets.append(target_fields[target_fields["tdl"].eq(tdl)])
+
+target_summary = pd.concat(ordered_targets, ignore_index=True)
+target_summary
+```
+:::
+
+Each row combines a target's TDL with its linked record counts. The contrasting
+patterns suggest different starting points:
+
+- *TTR* is Tclin with 41 ligand and 11 drug records. Open its Pharos target
+  record to inspect the named drugs, mechanisms, and indications.
+- *MYLK3* is Tchem with five ligand and one drug record. Its chemical records
+  are the next place to review potency, selectivity, and possible experimental
+  use.
+- *TNNT2* is Tbio with 441 linked publications and 167 protein-interaction
+  records. Its starting point is the recorded biology rather than a qualifying
+  chemical category.
+- *POLG* is Tchem with two ligand records and zero drug records. Its qualifying
+  chemical activity and its drug count are separate parts of the target record.
+
+### Find targets with drug records
+
+Select Tclin and Tchem targets with at least one drug record.
+
+::: {.module-activity}
+
+```{pyodide}
+# Select clinical and chemical targets with drug records.
+targets_with_drugs = target_summary[
+    target_summary["tdl"].isin(["Tclin", "Tchem"])
+    & target_summary["drug_count"].gt(0)
+]
+targets_with_drugs.loc[:, ["gene_symbol", "tdl", "drug_count"]]
+```
+:::
+
+The dated response returns the four Tclin targets, *TTR*, *DMD*, *KCNQ1*, and
+*MYH7*, plus the Tchem targets *MYLK3* and *TNNI3K*. *POLG* remains visible in
+the complete table with two ligand records and no drug records.
+
+## Check your understanding {.knowledge-check-heading}
+
+::: {.qmulti}
+
+Why can a Tchem target have ligand records but a drug count of zero?
+
+- TDL criteria and the ligand and drug counts describe different fields
+
+  > Correct. Tchem reflects qualifying small-molecule activity, while the count
+  > fields summarize ligand and drug records attached to the target.
+
+- Every qualifying ligand is counted as a drug
+
+  > Ligand and drug records are counted separately in the Pharos response.
+
+- Tchem means that no chemical information is available
+
+  > Tchem specifically identifies qualifying small-molecule activity.
+
+:::
+
+::: {.qmulti}
+
+Which field describes protein target development rather than the paper's
+classification of a specific variant?
+
+- TDL
+
+  > Correct. TDL belongs to the protein target record. `study_class` remains
+  > attached to the variant reported by the paper.
+
+- `study_class`
+
+  > `study_class` is the paper's classification of a specific variant.
+
+:::
+
+## Key points
+
+- The dated Pharos response contains 18 Tbio, 4 Tclin, and 3 Tchem targets.
+- TDL, publication counts, interaction counts, ligand counts, and drug counts
+  describe different parts of a protein target record.
+- Six Tclin or Tchem targets have at least one drug record in the dated
+  response; *POLG* is Tchem with ligand records and no drug records.
+
+**Next:** Join the GTEx, HuBMAP, and Pharos evidence back to all 54 variant rows
+and use the combined context to prioritize research follow-up.
+
+<div class="notebook-actions">
+<a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/05_pharos_target_context.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>
+</div>

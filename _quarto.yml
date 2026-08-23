@@ -3,18 +3,19 @@ project:
   output-dir: docs
   render:
     - index.qmd
-    - objectives.qmd
-    - variant-context.qmd
-    - gtex.qmd
-    - hubmap.qmd
-    - pharos.qmd
-    - prioritization.qmd
-    - conclusion.qmd
+    - lessons/objectives.qmd
+    - lessons/variant-context.qmd
+    - lessons/gtex.qmd
+    - lessons/hubmap.qmd
+    - lessons/pharos.qmd
+    - lessons/prioritization.qmd
+    - lessons/conclusion.qmd
+    - lessons/glossary.qmd
   resources:
+    - api_helpers.py
     - data
     - notebooks/*.ipynb
-    - images
-    - knowledge-checks.js
+    - assets/images
 
 website:
   title: "Prioritizing Candidate Genetic Variants"
@@ -27,6 +28,9 @@ website:
     foreground: light
     search: true
     right:
+      - href: lessons/glossary.qmd
+        text: "Glossary"
+        icon: book-fill
       - icon: github
         href: "https://github.com/CFDETrainingCenter/candidate-genetic-var"
         aria-label: "View the source repository on GitHub"
@@ -36,30 +40,38 @@ website:
     contents:
       - href: index.qmd
         text: "1. Module Introduction"
-      - href: objectives.qmd
+      - href: lessons/objectives.qmd
         text: "2. Introduction to APIs"
-      - href: variant-context.qmd
+      - href: lessons/variant-context.qmd
         text: "3. Variant and Gene Context"
-      - href: gtex.qmd
+      - href: lessons/gtex.qmd
         text: "4. Tissue-Level Expression: GTEx"
-      - href: hubmap.qmd
+      - href: lessons/hubmap.qmd
         text: "5. Cell-Type Resolution: HuBMAP"
-      - href: pharos.qmd
+      - href: lessons/pharos.qmd
         text: "6. Protein Context and Druggability: IDG/Pharos"
-      - href: prioritization.qmd
+      - href: lessons/prioritization.qmd
         text: "7. Variant Prioritization and Interpretation"
-      - href: conclusion.qmd
+      - href: lessons/conclusion.qmd
         text: "8. Conclusion"
+  page-footer:
+    left: |
+      Developed by [Shaurita D. Hutchins](https://github.com/sdhutchins)
+    center: |
+      ![](/assets/images/cfde.svg){.footer-logo}
+    right: |
+      A community-sourced [CFDE Training Center](https://orau.org/cfde-trainingcenter/) module.
 format:
   live-html:
+    filters:
+      - shortiquiz
     theme:
       - cosmo
-      - styles.scss
+      - assets/styles.scss
     toc: true
     toc-depth: 2
     code-copy: true
     code-overflow: wrap
-    include-after-body: includes/knowledge-checks.html
     link-external-icon: true
     link-external-newwindow: true
     pyodide:
@@ -68,6 +80,7 @@ format:
         - matplotlib
         - requests
       resources:
+        - api_helpers.py
         - data/variants.csv
         - data/gtex_expression.csv
         - data/hubmap_cell_expression.csv

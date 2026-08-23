@@ -1,0 +1,294 @@
+---
+title: "Variant and Gene Context"
+aliases:
+  - /variant-context.html
+---
+
+**Estimated time:** 25 minutes
+
+Review how the source study narrowed its variants, then load, check, and
+summarize the published candidate table.
+
+## From sequencing to candidate variants
+
+### Candidate-gene filtering and variant ranking
+
+The source study performed whole-genome sequencing on heart tissue from people
+with early-onset advanced heart failure. After sequencing and variant-quality
+checks, the researchers narrowed millions of variants in several steps:
+
+1. They focused on 369 genes connected to heart failure and related conditions.
+2. A ranking pipeline combined predicted consequence, splicing, conservation,
+   population frequency, protein predictions, and ClinVar annotations.
+3. Variants with a study score of at least 15, plus previously reported
+   likely pathogenic or pathogenic ClinVar variants, received manual review.
+4. Clinical geneticists applied ACMG guidance and condition-specific rules.
+
+### The published candidate table
+
+The published table is the input dataset for this module.
+
+Supplementary Table S4 contains the variants the authors reported as
+pathogenic, likely pathogenic, or VUS with suggestive evidence. It has 54 rows
+from 46 people and 25 genes.
+
+The study score and class are retained from the paper rather than recalculated.
+GTEx, HuBMAP, and Pharos answer different questions about the genes connected
+to those variants.
+
+::: {.callout-tip title="Why add biological context?"}
+The API results add information that can guide follow-up. GTEx reports
+expression in heart tissues, HuBMAP reports indexed expression in ventricular
+cardiac myocytes, and Pharos summarizes protein knowledge, reported ligand
+information, and target development. The study classification remains attached
+to each row as this context is added.
+:::
+
+## Inspect the published variants
+
+### Load the published fields
+
+Load the 54 published variant observations and display the first five rows.
+
+::: {.module-activity}
+
+```{pyodide}
+from pathlib import Path
+
+import pandas as pd
+
+# Locate the data directory.
+DATA_DIR = Path("data") if Path("data").exists() else Path("../data")
+
+# Load the published variants.
+variants = pd.read_csv(DATA_DIR / "variants.csv")
+variants.head()
+```
+:::
+
+Each row is one variant observation reported for one participant. The preview
+places the gene and HGVS descriptions beside the study score, classification,
+phenotype, and source information.
+
+### Understand the key columns
+
+The columns retain the participant, gene, HGVS descriptions, study
+classification, phenotype, and source for each observation.
+
+| Column | Meaning |
+|---|---|
+| `subject_id` | Study participant identifier |
+| `gene_symbol` | Standard gene symbol associated with the variant |
+| `hgvs_c` | Transcript-specific coding DNA HGVS description |
+| `hgvs_p` | Reported protein HGVS description; a blank means none was reported |
+| `study_pathogenicity_score` | Prioritization score reported by the source study |
+| `study_class` | Study-reported classification: P, LP, VUS, or `(P)` |
+| `phenotype` | Heart-failure phenotype reported for the participant |
+| `study_comment` | Additional context retained from the published table |
+| `source_doi`, `source_pmid`, `source_table` | Provenance linking the row to its source |
+
+::: {.callout-note title="Heart-failure phenotypes in this table"}
+| Label | Meaning |
+|---|---|
+| ACHD | Adult congenital heart disease |
+| ARVC | Arrhythmogenic right ventricular cardiomyopathy |
+| ATTR-CM | Transthyretin amyloid cardiomyopathy |
+| DCM | Dilated cardiomyopathy |
+| HCM | Hypertrophic cardiomyopathy |
+| `HCM*` | HCM phenocopy, a condition that resembles HCM |
+| ICM | Ischemic cardiomyopathy |
+| Myocarditis | Inflammation of the heart muscle |
+
+The source article groups HCM and HCM phenocopies together. This teaching table
+retains separate `HCM`, `HCM*`, and `ATTR-CM` labels from the published variant
+table so learners can see how those rows were recorded.
+:::
+
+::: {.callout-note title="Reading the HGVS columns"}
+HGVS descriptions name a variant relative to a specific reference sequence.
+
+- `NM_001276345.2:c.776A>C`
+  - `NM_001276345.2` is the RefSeq transcript accession and version.
+  - `c.` indicates coding DNA coordinates.
+  - `776A>C` means that the reference `A` at coding-DNA position 776 is
+    replaced by `C`.
+
+- `p.Asp259Ala`
+  - `p.` indicates a protein-level description.
+  - `Asp259Ala` means that aspartic acid at amino-acid position 259 is
+    replaced by alanine.
+
+The transcript accession and version matter because coordinates and predicted
+consequences can differ among transcripts and reference-sequence versions.
+The source table retains the HGVS descriptions reported by the study. A blank
+`hgvs_p` means that the source table did not report a protein HGVS description.
+
+See the
+[HGVS reference-sequence recommendations](https://hgvs-nomenclature.org/stable/background/refseq/)
+for additional guidance.
+:::
+
+### Validate the table
+
+Confirm that the table contains the required columns, 54 rows, and PMID
+39910139. A failed assertion indicates incomplete or incorrect input.
+
+::: {.module-activity}
+
+```{pyodide}
+# Define the required fields.
+required_columns = {
+    "subject_id",
+    "gene_symbol",
+    "hgvs_c",
+    "hgvs_p",
+    "study_pathogenicity_score",
+    "study_class",
+    "phenotype",
+    "source_pmid",
+}
+
+# Identify missing fields before relying on them later in the lesson.
+missing_columns = required_columns.difference(variants.columns)
+assert not missing_columns, f"Missing required columns: {sorted(missing_columns)}"
+
+# Confirm that the expected source extract was loaded.
+assert len(variants) == 54, "Expected all 54 rows from Supplementary Table S4"
+assert variants["source_pmid"].eq(39910139).all()
+print("Checked the expected columns, row count, and recorded PMID.")
+```
+:::
+
+These checks confirm the expected structure, row count, and recorded PMID.
+
+### Summarize the dataset
+
+Summarize the number of variant rows, people, genes, and missing protein HGVS
+annotations. Complete the method that counts distinct gene symbols.
+
+:::: {.module-activity}
+
+```{pyodide}
+#| exercise: summarize_variant_dataset
+#| envir: global
+# Count rows, identifiers, and missing HGVSp values.
+dataset_overview = pd.Series(
+    {
+        "variant rows": len(variants),
+        "subjects": variants["subject_id"].nunique(),
+        "genes": variants["gene_symbol"].______(),
+        "missing HGVSp values": variants["hgvs_p"].isna().sum(),
+    },
+    name="count",
+).to_frame()
+dataset_overview
+```
+
+::: {.hint exercise="summarize_variant_dataset"}
+Use the pandas method that counts distinct values in a Series.
+:::
+
+::: {.solution exercise="summarize_variant_dataset"}
+```python
+# Count rows, identifiers, and missing HGVSp values.
+dataset_overview = pd.Series(
+    {
+        "variant rows": len(variants),
+        "subjects": variants["subject_id"].nunique(),
+        "genes": variants["gene_symbol"].nunique(),
+        "missing HGVSp values": variants["hgvs_p"].isna().sum(),
+    },
+    name="count",
+).to_frame()
+dataset_overview
+```
+:::
+::::
+
+The table contains 54 variant rows from 46 participants and 25 genes. Four rows
+do not have a protein HGVS description reported in the source table.
+
+### Compare classifications by phenotype
+
+Count the published variant classes within each heart-failure phenotype. The
+result keeps the classifications reported by the source study.
+
+::: {.module-activity}
+
+```{pyodide}
+# Count rows by phenotype and study class.
+class_by_phenotype = (
+    variants.groupby(["phenotype", "study_class"], dropna=False)
+    .size()
+    .rename("variant_rows")
+    .reset_index()
+    .sort_values(["phenotype", "study_class"])
+)
+class_by_phenotype
+```
+:::
+
+::: {.callout-tip title="Read the table"}
+Which phenotype contributes the most rows? Within DCM, how many rows are
+classified as P, LP, and VUS?
+:::
+
+DCM contributes 28 of the 54 rows: 11 P, 11 LP, and 6 VUS. HCM contributes 8
+rows, and ARVC contributes 5. The remaining 13 rows are distributed across
+ATTR-CM, `HCM*`, ICM, ACHD, and myocarditis. The `(P)` label remains separate
+because the paper used it for pathogenic secondary findings.
+
+## Check your understanding {.knowledge-check-heading}
+
+::: {.qmulti}
+
+Why do 54 variant rows map to only 25 genes?
+
+- Several genes occur in more than one variant observation
+
+  > Correct. A gene can have several reported variants or the same variant can
+  > occur in several participants. For example, *MYBPC3* appears in multiple
+  > rows.
+
+- Each participant contributes exactly one gene
+
+  > Participants can contribute different genes, and several participants can
+  > have observations in the same gene.
+
+- The remaining rows have missing gene symbols
+
+  > All 54 rows retain a gene symbol. The smaller gene count reflects repeated
+  > genes.
+
+:::
+
+::: {.qmulti}
+
+What does a blank `hgvs_p` value mean in this dataset?
+
+- No protein HGVS value was reported
+
+  > Correct. The source table did not report a protein HGVS description for
+  > this row.
+
+- The variant has no protein effect
+
+  > A blank records that the source table did not report a protein HGVS
+  > description.
+
+:::
+
+## Key points
+
+- The source table contains 54 variant observations from 46 participants and
+  25 genes.
+- Four observations lack a reported protein HGVS description.
+- The study classification remains attached to each variant while gene-level
+  context is added in later lessons.
+
+**Next:** Carry the 25 genes from the published table into GTEx to add bulk
+heart-tissue expression context.
+
+<div class="notebook-actions">
+<a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/02_variant_background.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>
+</div>

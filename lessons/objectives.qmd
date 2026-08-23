@@ -1,0 +1,260 @@
+---
+title: "Introduction to APIs"
+aliases:
+  - /objectives.html
+---
+
+**Estimated time:** 15 minutes
+
+Learn the parts of an API request, compare the three resources used in this
+module, and build and send a request.
+
+## Understand APIs for biomedical data
+
+API stands for **application programming interface**. An API gives software a
+standard way to ask another service for data or an action.
+
+In this module, code sends the 25 gene identifiers from the heart-failure paper
+to biological data services and reads the returned information in Python. The
+same request can be run again without copying results from a website by hand.
+
+### Identify the parts of an API request
+
+These terms describe the parts of a request and the information returned.
+
+| Term | Meaning |
+|---|---|
+| Endpoint | The web address used for a specific task |
+| Request | The message sent to the API |
+| Parameter | A value that controls the request, such as a gene or tissue ID |
+| Response | The information returned by the API |
+| JSON | A common text format used to organize returned data |
+
+A reproducible API request records the endpoint, parameters, resource version,
+and date.
+
+## Compare the APIs used in this module
+
+GTEx, HuBMAP, and Pharos contain different types of biological information. The
+next lessons use each API to ask a different question about the 25 genes.
+
+| CFDE resource | Information returned | Question this resource helps answer |
+|---|---|---|
+| [GTEx Portal API](https://gtexportal.org/api/v2/docs) | Median expression reported for named genes in selected heart tissues | Are these genes expressed in either heart tissue? |
+| [HuBMAP APIs](https://docs.hubmapconsortium.org/apis.html) | Indexed expression availability and summaries for up to the first 500 ventricular cardiac-myocyte records | Which genes have indexed values in ventricular cardiac myocytes? |
+| [Pharos GraphQL API](https://pharos.nih.gov/api) | Protein annotations, target development level, and selected knowledge counts | What is known about the encoded protein, and how developed is it as a target? |
+
+The published variant table is saved in the repository. GTEx, HuBMAP, and
+Pharos are queried live by default, with dated saved responses as backups.
+
+Later, the prioritization lesson uses the
+[ProtVar API](https://www.ebi.ac.uk/ProtVar/api) to compare three protein-effect
+predictions for one missense VUS. ProtVar is not a CFDE resource. It is included
+as an example of using a focused follow-up API to extend the context returned by
+the CFDE resources.
+
+## Build an E-utilities request
+
+Before querying the three CFDE resources, use NCBI E-utilities to see the parts
+of a request in a single URL. Its endpoint and parameters are easy to inspect.
+Build the URL by choosing a gene symbol, defining the request parameters, and
+joining those parameters to the endpoint.
+
+Enter *MYH7* or another gene symbol and choose **Run Code**. The final line
+displays the NCBI request URL without sending it.
+
+::: {.module-activity}
+
+```{pyodide}
+#| exercise: build_ncbi_gene_request
+from urllib.parse import urlencode
+
+# Choose a gene.
+gene_symbol = "______"
+
+# Define the endpoint and search parameters.
+endpoint = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
+parameters = {
+    "db": "gene",
+    "term": f"{gene_symbol}[gene] AND Homo sapiens[organism]",
+    "retmode": "json",
+}
+
+# Build the request URL.
+request_url = f"{endpoint}?{urlencode(parameters)}"
+request_url
+```
+
+::: {.hint exercise="build_ncbi_gene_request"}
+Replace the blank inside the quotation marks with a gene symbol such as
+*MYH7* or *TTN*.
+:::
+
+::: {.solution exercise="build_ncbi_gene_request"}
+```python
+from urllib.parse import urlencode
+
+# Choose a gene.
+gene_symbol = "MYH7"
+
+# Define the endpoint and search parameters.
+endpoint = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
+parameters = {
+    "db": "gene",
+    "term": f"{gene_symbol}[gene] AND Homo sapiens[organism]",
+    "retmode": "json",
+}
+
+# Build the request URL.
+request_url = f"{endpoint}?{urlencode(parameters)}"
+request_url
+```
+:::
+
+:::
+
+The displayed URL sends `db=gene` to NCBI Gene, places the selected symbol and
+`Homo sapiens` in `term`, and requests JSON with `retmode=json`. Changing
+`gene_symbol` changes the search while leaving the endpoint and other
+parameters unchanged.
+
+### Send the request
+
+Run the URL-building activity first. Then run this cell to send the request and
+inspect selected fields from the JSON response.
+
+::: {.module-activity}
+
+```{pyodide}
+import requests
+
+response = requests.get(request_url, timeout=30)
+# Stop here if NCBI returns an error instead of interpreting an error page.
+response.raise_for_status()
+
+response_json = response.json()
+search_result = response_json["esearchresult"]
+
+# Display a small summary instead of the complete nested response.
+{
+    "status_code": response.status_code,
+    "match_count": int(search_result["count"]),
+    "ncbi_gene_ids": search_result["idlist"],
+}
+```
+
+:::
+
+A status code of `200` means that NCBI received and processed the request. The
+match count reports how many NCBI Gene records met the search terms, and
+`ncbi_gene_ids` contains their database identifiers.
+
+## Compare API request approaches
+
+The three APIs do not all structure requests in the same way.
+
+### Read a REST request
+
+GTEx and HuBMAP provide REST-style APIs with endpoints for tasks such as
+retrieving expression data or finding cells. Request parameters specify the
+genes, tissues, or cells to return.
+
+### Read a GraphQL query
+
+**GraphQL** is an API query language. A GraphQL service often uses one endpoint.
+The request contains a query that names the exact fields needed. Variables hold
+values that can change, such as a gene symbol. The response follows the shape
+of the query, so the client receives the fields it requested.
+
+Pharos uses GraphQL. This query asks for a protein symbol, name, UniProt ID,
+target development level, and publication count:
+
+```graphql
+# Give the request a name and declare the gene-symbol variable.
+query TargetContext($symbol: String!) {
+  # Request one target that matches the supplied symbol.
+  target(q: {sym: $symbol}) {
+    # Request the protein fields used in this module.
+    sym
+    name
+    uniprot
+    tdl
+    publicationCount
+  }
+}
+```
+
+The fields in this query describe a protein target. The response follows the
+same structure and contains only the requested fields.
+
+## Check your understanding {.knowledge-check-heading}
+
+::: {.qmulti}
+
+Which line defines one of the NCBI request parameters?
+
+- `"db": "gene"`
+
+  > Correct. The `db` parameter tells E-utilities to search the NCBI Gene
+  > database.
+
+- `endpoint = "https://eutils.ncbi.nlm.nih.gov/..."`
+
+  > This line defines the endpoint rather than a request parameter.
+
+- `response_json = response.json()`
+
+  > This line converts the returned JSON into a Python object after the request
+  > has been sent.
+
+:::
+
+::: {.qmulti}
+
+Which resource would you query to examine median gene expression in heart
+tissue?
+
+- GTEx
+
+  > Correct. GTEx reports median gene expression across human tissues,
+  > including the two heart tissues used in this module.
+
+- HuBMAP
+
+  > HuBMAP is used here to examine indexed expression in ventricular cardiac
+  > myocytes rather than whole heart tissues.
+
+- Pharos
+
+  > Pharos provides protein and target-development information rather than
+  > tissue expression.
+
+:::
+
+## Key points
+
+- An API request specifies an endpoint and the parameters that control the
+  response.
+- GTEx provides tissue expression, HuBMAP provides cell-type expression, and
+  Pharos provides protein and target-development information.
+- GTEx and HuBMAP use REST-style requests; Pharos uses GraphQL.
+- ProtVar adds variant-level protein predictions for one selected missense VUS.
+- Recording identifiers, versions, and retrieval dates makes a request easier
+  to repeat.
+
+## Other biomedical APIs
+
+::: {.callout-note collapse="true" title="Additional API examples"}
+| API | Example use |
+|---|---|
+| [NCBI E-utilities](https://www.ncbi.nlm.nih.gov/home/develop/api/) | Search and retrieve records from NCBI resources such as Gene, PubMed, and Protein |
+| [Ensembl REST API](https://rest.ensembl.org/) | Retrieve genes, variants, sequences, and comparative genomics data |
+| [UCSC Genome Browser API](https://genome.ucsc.edu/goldenpath/help/api.html) | Retrieve genome sequences and selected annotation tracks |
+:::
+
+**Next:** Inspect the 54 published variant rows and identify the 25 genes that
+will be carried into the API queries.
+
+<div class="notebook-actions">
+<a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/01_api_introduction.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>
+</div>
