@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Protein Knowledge and Research Context: IDG/Pharos – Prioritizing Candidate Genetic Variants</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lessons/prioritization.html" rel="next">
+<link href="../lessons/hubmap.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f55367e0801e5094f82c0f0d978e128e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-81132e90d9570a0e5d5392fbf3813738.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/sq-components-1.0.0/plain-draggable.min.js"></script>
+<script src="../site_libs/quarto-contrib/sq-components-1.0.0/sq-components.js"></script>
+<link href="../site_libs/quarto-contrib/qstyles-1/qstyles.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/qstyles-1/prism-theme-github-light.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Prioritizing Candidate Genetic Variants</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../lessons/glossary.html"> <i class="bi bi-book-fill" role="img">
+</i> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/CFDETrainingCenter/candidate-genetic-var"> <i class="bi bi-github" role="img" aria-label="View the source repository on GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/pharos.html">6. Protein Context and Druggability: IDG/Pharos</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Module Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/objectives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Introduction to APIs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/variant-context.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Variant and Gene Context</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/gtex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Tissue-Level Expression: GTEx</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/hubmap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Cell-Type Resolution: HuBMAP</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/pharos.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">6. Protein Context and Druggability: IDG/Pharos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/prioritization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Variant Prioritization and Interpretation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Conclusion</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#protein-target-context" id="toc-protein-target-context" class="nav-link active" data-scroll-target="#protein-target-context">Protein target context</a></li>
+  <li><a href="#querying-the-pharos-api" id="toc-querying-the-pharos-api" class="nav-link" data-scroll-target="#querying-the-pharos-api">Querying the Pharos API</a></li>
+  <li><a href="#review-the-protein-targets" id="toc-review-the-protein-targets" class="nav-link" data-scroll-target="#review-the-protein-targets">Review the protein targets</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key points</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/lessons/pharos.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CFDETrainingCenter/candidate-genetic-var/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Protein Knowledge and Research Context: IDG/Pharos</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Estimated time:</strong> 20 minutes</p>
+<p>Use Pharos to connect the paper’s genes with protein knowledge and identify biological, chemical, or clinical records for closer review.</p>
+<section id="protein-target-context" class="level2">
+<h2 class="anchored" data-anchor-id="protein-target-context">Protein target context</h2>
+<p>GTEx and HuBMAP added expression context to genes from the heart-failure paper. We now ask what is known about the proteins those genes encode.</p>
+<p>IDG stands for <strong>Illuminating the Druggable Genome</strong>. This NIH Common Fund program develops knowledge and research tools for understudied proteins in druggable protein families. Pharos is an IDG resource that combines information about human proteins and drug targets. It brings protein identifiers, annotations, publications, interactions, ligands, drugs, and target-development categories into one resource.</p>
+<section id="why-use-pharos-for-this-paper" class="level3">
+<h3 class="anchored" data-anchor-id="why-use-pharos-for-this-paper">Why use Pharos for this paper?</h3>
+<p>The paper reports candidate variants in 25 protein-coding genes. GTEx and HuBMAP showed where those genes have indexed expression. Pharos adds a different question: what protein knowledge and experimental starting points have already been recorded for each gene?</p>
+<p>We selected fields that support that question:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Why it is included</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gene symbol and UniProt ID</td>
+<td>Connect the paper’s gene to a specific protein target.</td>
+</tr>
+<tr class="even">
+<td>Target Development Level</td>
+<td>Summarize the target’s Pharos development category.</td>
+</tr>
+<tr class="odd">
+<td>Publication count</td>
+<td>Show the number of publications linked to the target.</td>
+</tr>
+<tr class="even">
+<td>Protein-interaction count</td>
+<td>Show the number of interaction records aggregated by Pharos.</td>
+</tr>
+<tr class="odd">
+<td>Ligand and drug counts</td>
+<td>Identify targets whose chemical records warrant closer inspection.</td>
+</tr>
+</tbody>
+</table>
+<p>Learn more about the available GraphQL fields in the <a href="https://pharos.nih.gov/api">Pharos API documentation</a>.</p>
+</section>
+<section id="target-development-levels" class="level3">
+<h3 class="anchored" data-anchor-id="target-development-levels">Target development levels</h3>
+<p>Pharos uses four Target Development Levels, called TDLs:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>TDL</th>
+<th>Pharos criteria</th>
+<th>How we use it here</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Tclin</strong></td>
+<td>The target meets Pharos criteria for activity involving an approved drug.</td>
+<td>Open the drug records and examine their mechanisms and indications.</td>
+</tr>
+<tr class="even">
+<td><strong>Tchem</strong></td>
+<td>The target has qualifying small-molecule activity but does not meet Tclin criteria.</td>
+<td>Examine the ligand records for potency, selectivity, and experimental use.</td>
+</tr>
+<tr class="odd">
+<td><strong>Tbio</strong></td>
+<td>Biological information is available, but the target does not meet Tclin or Tchem criteria.</td>
+<td>Begin with mechanism, pathway, phenotype, or assay information.</td>
+</tr>
+<tr class="even">
+<td><strong>Tdark</strong></td>
+<td>Available knowledge is limited under the Pharos criteria.</td>
+<td>Begin with foundational characterization and available reagents.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="scope-of-target-development-levels" class="level3">
+<h3 class="anchored" data-anchor-id="scope-of-target-development-levels">Scope of target development levels</h3>
+<p>TDL is a protein-level field. The study classification remains the variant-level field.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Why Pharos helps">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why Pharos helps
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The expression resources provide tissue and cell-type context. Pharos adds protein identifiers, knowledge categories, and counts of linked publications, interactions, ligands, and drugs. These fields help identify which target records to inspect next.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="querying-the-pharos-api" class="level2">
+<h2 class="anchored" data-anchor-id="querying-the-pharos-api">Querying the Pharos API</h2>
+<p>Pharos uses GraphQL. The request names the exact target fields to return. The helper repeats that query for each of the paper’s 25 gene symbols and puts the responses in one table.</p>
+<section id="prepare-the-gene-list-and-api-helper" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-the-gene-list-and-api-helper">Prepare the gene list and API helper</h3>
+<p>Load the published variants, select the 25 unique gene symbols, and import the Pharos wrapper.</p>
+<div class="module-activity">
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZnJvbSBwYXRobGliIGltcG9ydCBQYXRoXG5pbXBvcnQgc3lzXG5cbmltcG9ydCBwYW5kYXMgYXMgcGRcblxuIyBMb2NhdGUgdGhlIHJlcG9zaXRvcnkgcm9vdC5cblJFUE9fUk9PVCA9IFBhdGguY3dkKCkgaWYgUGF0aChcImFwaV9oZWxwZXJzLnB5XCIpLmV4aXN0cygpIGVsc2UgUGF0aC5jd2QoKS5wYXJlbnRcbmlmIHN0cihSRVBPX1JPT1QpIG5vdCBpbiBzeXMucGF0aDpcbiAgICBzeXMucGF0aC5pbnNlcnQoMCwgc3RyKFJFUE9fUk9PVCkpXG5cbiMgSW1wb3J0IHRoZSBBUEkgd3JhcHBlci5cbmZyb20gYXBpX2hlbHBlcnMgaW1wb3J0IGZldGNoX3BoYXJvc19jb250ZXh0XG5cbiMgTG9hZCB0aGUgcHVibGlzaGVkIHZhcmlhbnRzLlxuREFUQV9ESVIgPSBSRVBPX1JPT1QgLyBcImRhdGFcIlxudmFyaWFudHMgPSBwZC5yZWFkX2NzdihEQVRBX0RJUiAvIFwidmFyaWFudHMuY3N2XCIpXG5nZW5lX3N5bWJvbHMgPSBzb3J0ZWQodmFyaWFudHNbXCJnZW5lX3N5bWJvbFwiXS51bmlxdWUoKSlcbnBkLlNlcmllcyhnZW5lX3N5bWJvbHMsIG5hbWU9XCJnZW5lX3N5bWJvbFwiKS5oZWFkKCkifQ==
+</script>
+</div>
+</div>
+<p><code>gene_symbols</code> contains the 25 unique gene symbols in alphabetical order. <code>variants</code> retains all 54 published rows.</p>
+</section>
+<section id="request-protein-target-context" class="level3">
+<h3 class="anchored" data-anchor-id="request-protein-target-context">Request protein-target context</h3>
+<p>Request protein-target records for the 25 genes and display the first five targets. In the returned table, compare TDL with the separate publication, interaction, ligand, and drug counts.</p>
+<div class="module-activity">
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBRdWVyeSB0aGUgMjUgZ2VuZXMuXG5waGFyb3MgPSBmZXRjaF9waGFyb3NfY29udGV4dChnZW5lX3N5bWJvbHMpXG5cbiMgSWYgdGhlIGxpdmUgcmVxdWVzdCBpcyB1bmF2YWlsYWJsZSwgdXNlIHRoZSBkYXRlZCB0ZWFjaGluZyByZXNwb25zZSBpbnN0ZWFkLlxuIyBwaGFyb3MgPSBwZC5yZWFkX2NzdihEQVRBX0RJUiAvIFwicGhhcm9zX3RhcmdldF9jb250ZXh0LmNzdlwiKVxuXG4jIEluc3BlY3QgdGFyZ2V0IGlkZW50aWZpZXJzIGFuZCBldmlkZW5jZSBmaWVsZHMuXG5waGFyb3MuaGVhZCgpIn0=
+</script>
+</div>
+</div>
+<p>Each row represents one protein target. The preview connects its gene symbol and UniProt identifier to a TDL. The other fields count publications, protein-interaction records, ligands, and drugs linked to the target in Pharos.</p>
+<p>TDL and the count fields answer related but different questions. TDL follows Pharos development criteria. The counts describe records attached to the target. A Tchem target can therefore have ligand records while its drug count is zero.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Live data">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Live data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Target records are requested directly from Pharos. Target information and service availability can change.</p>
+</div>
+</div>
+</section>
+<section id="how-the-wrapper-works" class="level3">
+<h3 class="anchored" data-anchor-id="how-the-wrapper-works">How the wrapper works</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="GraphQL request">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>GraphQL request
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The query requests only the protein fields used in this lesson:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode graphql code-with-copy"><code class="sourceCode graphql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">query</span> TargetContext(<span class="va">$symbol</span>: <span class="dt">String</span>!) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  target(q: {sym: <span class="va">$symbol</span>}) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    sym</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    name</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    uniprot</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    tdl</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    publicationCount</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    ligandCounts { name value }</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    ppiCounts { name value }</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>$symbol</code> is a query variable. For <em>MYLK3</em>, the wrapper sends <code>{"symbol": "MYLK3"}</code> separately from the query text. Pharos returns the selected fields under <code>data</code> and <code>target</code>. The wrapper extracts those fields and creates one table row per gene.</p>
+<p>The complete implementation is in <a href="../api_helpers.py"><code>api_helpers.py</code></a>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="review-the-protein-targets" class="level2">
+<h2 class="anchored" data-anchor-id="review-the-protein-targets">Review the protein targets</h2>
+<p>Count the TDL categories and compare protein fields that can inform research follow-up.</p>
+<section id="summarize-target-development-levels" class="level3">
+<h3 class="anchored" data-anchor-id="summarize-target-development-levels">Summarize target development levels</h3>
+<p>Count the Target Development Levels in the current Pharos response. Complete the pandas method that counts each distinct category.</p>
+<div class="module-activity">
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJzdW1tYXJpemVfcGhhcm9zX3RkbCJ9LCJjb2RlIjoiIyBDb3VudCBnZW5lcyBieSBUREwuXG50ZGxfc3VtbWFyeSA9IChcbiAgICBwaGFyb3NbXCJ0ZGxcIl1cbiAgICAuX19fX19fKClcbiAgICAucmVuYW1lX2F4aXMoXCJ0ZGxcIilcbiAgICAucmVzZXRfaW5kZXgobmFtZT1cImdlbmVzXCIpXG4pXG50ZGxfc3VtbWFyeSJ9
+</script>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="summarize_pharos_tdl">
+<p>Use the pandas Series method that counts each distinct value.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="summarize_pharos_tdl">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count genes by TDL.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tdl_summary <span class="op">=</span> (</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    pharos[<span class="st">"tdl"</span>]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    .value_counts()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    .rename_axis(<span class="st">"tdl"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    .reset_index(name<span class="op">=</span><span class="st">"genes"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>tdl_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>The <code>genes</code> column counts the queried targets assigned to each Pharos TDL. In the dated teaching data, 18 targets are Tbio, 4 are Tclin, and 3 are Tchem. No Tdark targets were returned. The Tclin targets are <em>TTR</em>, <em>DMD</em>, <em>KCNQ1</em>, and <em>MYH7</em>; the Tchem targets are <em>MYLK3</em>, <em>POLG</em>, and <em>TNNI3K</em>.</p>
+</section>
+<section id="compare-target-fields" class="level3">
+<h3 class="anchored" data-anchor-id="compare-target-fields">Compare target fields</h3>
+<p>Keep the fields used for interpretation and order the proteins by TDL, drug count, and gene symbol. Include ligand counts so Tchem targets remain interpretable when their drug count is zero.</p>
+<div class="module-activity">
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBTZWxlY3QgdGhlIHRhcmdldCBldmlkZW5jZSBmaWVsZHMuXG50YXJnZXRfZmllbGRzID0gcGhhcm9zLmxvY1tcbiAgICA6LFxuICAgIFtcbiAgICAgICAgXCJnZW5lX3N5bWJvbFwiLFxuICAgICAgICBcInRhcmdldF9uYW1lXCIsXG4gICAgICAgIFwidGRsXCIsXG4gICAgICAgIFwibGlnYW5kX2NvdW50XCIsXG4gICAgICAgIFwiZHJ1Z19jb3VudFwiLFxuICAgICAgICBcInB1YmxpY2F0aW9uX2NvdW50XCIsXG4gICAgICAgIFwicHBpX2NvdW50XCIsXG4gICAgXSxcbl0uc29ydF92YWx1ZXMoXG4gICAgW1wiZHJ1Z19jb3VudFwiLCBcImdlbmVfc3ltYm9sXCJdLFxuICAgIGFzY2VuZGluZz1bRmFsc2UsIFRydWVdLFxuKVxuXG4jIFBsYWNlIHRoZSBuYW1lZCBUREwgY2F0ZWdvcmllcyBpbiBkaXNwbGF5IG9yZGVyLlxub3JkZXJlZF90YXJnZXRzID0gW11cbmZvciB0ZGwgaW4gW1wiVGNsaW5cIiwgXCJUY2hlbVwiLCBcIlRiaW9cIiwgXCJUZGFya1wiXTpcbiAgICBvcmRlcmVkX3RhcmdldHMuYXBwZW5kKHRhcmdldF9maWVsZHNbdGFyZ2V0X2ZpZWxkc1tcInRkbFwiXS5lcSh0ZGwpXSlcblxudGFyZ2V0X3N1bW1hcnkgPSBwZC5jb25jYXQob3JkZXJlZF90YXJnZXRzLCBpZ25vcmVfaW5kZXg9VHJ1ZSlcbnRhcmdldF9zdW1tYXJ5In0=
+</script>
+</div>
+</div>
+<p>Each row combines a target’s TDL with its linked record counts. The contrasting patterns suggest different starting points:</p>
+<ul>
+<li><em>TTR</em> is Tclin with 41 ligand and 11 drug records. Open its Pharos target record to inspect the named drugs, mechanisms, and indications.</li>
+<li><em>MYLK3</em> is Tchem with five ligand and one drug record. Its chemical records are the next place to review potency, selectivity, and possible experimental use.</li>
+<li><em>TNNT2</em> is Tbio with 441 linked publications and 167 protein-interaction records. Its starting point is the recorded biology rather than a qualifying chemical category.</li>
+<li><em>POLG</em> is Tchem with two ligand records and zero drug records. Its qualifying chemical activity and its drug count are separate parts of the target record.</li>
+</ul>
+</section>
+<section id="find-targets-with-drug-records" class="level3">
+<h3 class="anchored" data-anchor-id="find-targets-with-drug-records">Find targets with drug records</h3>
+<p>Select Tclin and Tchem targets with at least one drug record.</p>
+<div class="module-activity">
+<div>
+<div id="pyodide-5" class="exercise-cell">
+
+</div>
+<script type="pyodide-5-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBTZWxlY3QgY2xpbmljYWwgYW5kIGNoZW1pY2FsIHRhcmdldHMgd2l0aCBkcnVnIHJlY29yZHMuXG50YXJnZXRzX3dpdGhfZHJ1Z3MgPSB0YXJnZXRfc3VtbWFyeVtcbiAgICB0YXJnZXRfc3VtbWFyeVtcInRkbFwiXS5pc2luKFtcIlRjbGluXCIsIFwiVGNoZW1cIl0pXG4gICAgJiB0YXJnZXRfc3VtbWFyeVtcImRydWdfY291bnRcIl0uZ3QoMClcbl1cbnRhcmdldHNfd2l0aF9kcnVncy5sb2NbOiwgW1wiZ2VuZV9zeW1ib2xcIiwgXCJ0ZGxcIiwgXCJkcnVnX2NvdW50XCJdXSJ9
+</script>
+</div>
+</div>
+<p>The dated response returns the four Tclin targets, <em>TTR</em>, <em>DMD</em>, <em>KCNQ1</em>, and <em>MYH7</em>, plus the Tchem targets <em>MYLK3</em> and <em>TNNI3K</em>. <em>POLG</em> remains visible in the complete table with two ligand records and no drug records.</p>
+</section>
+</section>
+<section id="check-your-understanding" class="level2 knowledge-check-heading">
+<h2 class="knowledge-check-heading anchored" data-anchor-id="check-your-understanding">Check your understanding</h2>
+<div class="qmulti__formated">
+<div class="qmulti" :class="isAnswerCorrect &amp;&amp; attempt === 1 &amp;&amp; 'qmulti_first_try'" x-data="{
+                answer: '',
+                isAnswered: false,
+                attempt: 0,
+                isAnswerCorrect: false,
+                isHintVisible: false
+            }" data-gate="" x-init="$watch('isAnswerCorrect', value => {
+                if (value) {
+                    isCurrentAnswerCorrect = true;
+                    $dispatch('answer-notification', {
+                        isCorrect: true,
+                        type: 'qmulti',
+                        gate: '',
+                        attempt: attempt
+                    });
+                }
+            })">
+<div x-show="isAnswerCorrect" x-transition="" x-cloak="" class="qmulti__result__badge qmulti__result__correct">
+    <span>✔</span></div>
+<div class="qmulti__question">
+<p>Why can a Tchem target have ligand records but a drug count of zero?</p>
+</div>
+<hr class="hr-text" data-content="?">
+<div>
+<div>
+<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
+        <label for="ojpcwuesev">
+<div>
+<p>TDL criteria and the ligand and drug counts describe different fields</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="ojpcwuesev" value="0" x-model="answer" :disabled="isAnswerCorrect" name="kkobvyndiq" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="cxwdbncgcd">
+<div>
+<p>Every qualifying ligand is counted as a drug</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="cxwdbncgcd" value="1" x-model="answer" :disabled="isAnswerCorrect" name="kkobvyndiq" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="jxuhkhupts">
+<div>
+<p>Tchem means that no chemical information is available</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="jxuhkhupts" value="2" x-model="answer" :disabled="isAnswerCorrect" name="kkobvyndiq" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+</div>
+<div>
+<div class="qmulti__correct_result" x-show="answer === '0' &amp;&amp; isAnswered" x-transition="">
+<div>
+<p>Correct. Tchem reflects qualifying small-molecule activity, while the count fields summarize ligand and drug records attached to the target.</p>
+</div>
+</div>
+<div class="qmulti__wrong_result" x-show="answer === '1' &amp;&amp; isAnswered" x-transition="">
+<div>
+<p>Ligand and drug records are counted separately in the Pharos response.</p>
+</div>
+</div>
+<div class="qmulti__wrong_result" x-show="answer === '2' &amp;&amp; isAnswered" x-transition="">
+<div>
+<p>Tchem specifically identifies qualifying small-molecule activity.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="qmulti__formated">
+<div class="qmulti" :class="isAnswerCorrect &amp;&amp; attempt === 1 &amp;&amp; 'qmulti_first_try'" x-data="{
+                answer: '',
+                isAnswered: false,
+                attempt: 0,
+                isAnswerCorrect: false,
+                isHintVisible: false
+            }" data-gate="" x-init="$watch('isAnswerCorrect', value => {
+                if (value) {
+                    isCurrentAnswerCorrect = true;
+                    $dispatch('answer-notification', {
+                        isCorrect: true,
+                        type: 'qmulti',
+                        gate: '',
+                        attempt: attempt
+                    });
+                }
+            })">
+<div x-show="isAnswerCorrect" x-transition="" x-cloak="" class="qmulti__result__badge qmulti__result__correct">
+    <span>✔</span></div>
+<div class="qmulti__question">
+<p>Which field describes protein target development rather than the paper’s classification of a specific variant?</p>
+</div>
+<hr class="hr-text" data-content="?">
+<div>
+<div>
+<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
+        <label for="akttdperrf">
+<div>
+<p>TDL</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="akttdperrf" value="0" x-model="answer" :disabled="isAnswerCorrect" name="qreahzohxw" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="bbbuppenak">
+<div>
+<p><code>study_class</code></p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="bbbuppenak" value="1" x-model="answer" :disabled="isAnswerCorrect" name="qreahzohxw" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+</div>
+<div>
+<div class="qmulti__correct_result" x-show="answer === '0' &amp;&amp; isAnswered" x-transition="">
+<div>
+<p>Correct. TDL belongs to the protein target record. <code>study_class</code> remains attached to the variant reported by the paper.</p>
+</div>
+</div>
+<div class="qmulti__wrong_result" x-show="answer === '1' &amp;&amp; isAnswered" x-transition="">
+<div>
+<p><code>study_class</code> is the paper’s classification of a specific variant.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="key-points" class="level2">
+<h2 class="anchored" data-anchor-id="key-points">Key points</h2>
+<ul>
+<li>The dated Pharos response contains 18 Tbio, 4 Tclin, and 3 Tchem targets.</li>
+<li>TDL, publication counts, interaction counts, ligand counts, and drug counts describe different parts of a protein target record.</li>
+<li>Six Tclin or Tchem targets have at least one drug record in the dated response; <em>POLG</em> is Tchem with ligand records and no drug records.</li>
+</ul>
+<p><strong>Next:</strong> Join the GTEx, HuBMAP, and Pharos evidence back to all 54 variant rows and use the combined context to prioritize research follow-up.</p>
+<div class="notebook-actions">
+<p><a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/05_pharos_target_context.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a></p>
+</div>
+
+
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwicGFuZGFzIiwibWF0cGxvdGxpYiIsInJlcXVlc3RzIl19fQ==
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBleGVyY2lzZSBjb25maWd1cmF0aW9uXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKFxuICAgIHtcbiAgICAgIGlkOiBcInB5b2RpZGUtMy1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IocHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbl9weW9kaWRlX2ZlZWRiYWNrXzMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBQeW9kaWRlR3JhZGVyKF9weW9kaWRlX3ZhbHVlXzMuZXZhbHVhdG9yKTtcbiAgY29uc3QgZmVlZGJhY2sgPSBhd2FpdCBncmFkZXIuZ3JhZGVFeGVyY2lzZSgpO1xuICBpZiAoIWZlZWRiYWNrKSByZXR1cm4gZW1wdHlGZWVkYmFjaztcbiAgcmV0dXJuIGZlZWRiYWNrO1xufVxuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtMiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3B5b2RpZGVfZWRpdG9yXzIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTItY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgcHlvZGlkZS0yLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFB5b2RpZGVFeGVyY2lzZUVkaXRvcihcbiAgICBweW9kaWRlT2pzLnB5b2RpZGVQcm9taXNlLFxuICAgIGJsb2NrLmNvZGUsXG4gICAgb3B0aW9uc1xuICApO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3B5b2RpZGVfdmFsdWVfMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMiwge30pO1xuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtMSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3B5b2RpZGVfZWRpdG9yXzEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgcHlvZGlkZS0xLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFB5b2RpZGVFeGVyY2lzZUVkaXRvcihcbiAgICBweW9kaWRlT2pzLnB5b2RpZGVQcm9taXNlLFxuICAgIGJsb2NrLmNvZGUsXG4gICAgb3B0aW9uc1xuICApO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3B5b2RpZGVfdmFsdWVfMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMSwge30pO1xuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtcHJlbHVkZSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InB5b2RpZGVPanMgPSB7XG4gIGNvbnN0IHtcbiAgICBQeW9kaWRlRXZhbHVhdG9yLFxuICAgIFB5b2RpZGVFbnZpcm9ubWVudE1hbmFnZXIsXG4gICAgc2V0dXBQeXRob24sXG4gICAgc3RhcnRQeW9kaWRlV29ya2VyLFxuICAgIGI2NERlY29kZSxcbiAgICBjb2xsYXBzZVBhdGgsXG4gIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHN0YXR1c0NvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1zdGF0dXNcIik7XG4gIGNvbnN0IGluZGljYXRvckNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1pbmRpY2F0b3JcIik7XG4gIGluZGljYXRvckNvbnRhaW5lci5jbGFzc0xpc3QucmVtb3ZlKFwiZC1ub25lXCIpO1xuXG4gIGxldCBzdGF0dXNUZXh0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKVxuICBzdGF0dXNUZXh0LmNsYXNzTGlzdCA9IFwiZXhlcmNpc2UtbG9hZGluZy1kZXRhaWxzXCI7XG4gIHN0YXR1c1RleHQgPSBzdGF0dXNDb250YWluZXIuYXBwZW5kQ2hpbGQoc3RhdHVzVGV4dCk7XG4gIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgSW5pdGlhbGlzZWA7XG5cbiAgLy8gSG9pc3QgaW5kaWNhdG9yIG91dCBmcm9tIGZpbmFsIHNsaWRlIHdoZW4gcnVubmluZyB1bmRlciByZXZlYWxcbiAgY29uc3QgcmV2ZWFsU3RhdHVzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXZlYWwgLmV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpZiAocmV2ZWFsU3RhdHVzKSB7XG4gICAgcmV2ZWFsU3RhdHVzLnJlbW92ZSgpO1xuICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsID4gLnNsaWRlc1wiKS5hcHBlbmRDaGlsZChyZXZlYWxTdGF0dXMpO1xuICB9XG5cbiAgLy8gTWFrZSBhbnkgcmV2ZWFsIHNsaWRlcyB3aXRoIGxpdmUgY2VsbHMgc2Nyb2xsYWJsZVxuICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKFwiLnJldmVhbCAuZXhlcmNpc2UtY2VsbFwiKS5mb3JFYWNoKChlbCkgPT4ge1xuICAgIGVsLmNsb3Nlc3QoJ3NlY3Rpb24uc2xpZGUnKS5jbGFzc0xpc3QuYWRkKFwic2Nyb2xsYWJsZVwiKTtcbiAgfSlcblxuICAvLyBQeW9kaWRlIHN1cHBsZW1lbnRhbCBkYXRhIGFuZCBvcHRpb25zXG4gIGNvbnN0IGRhdGFDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtZGF0YVxcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGRhdGEgPSBKU09OLnBhcnNlKGI2NERlY29kZShkYXRhQ29udGVudCkpO1xuXG4gIC8vIEdyYWIgbGlzdCBvZiByZXNvdXJjZXMgdG8gYmUgZG93bmxvYWRlZFxuICBjb25zdCBmaWxlc0NvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwidmZzLWZpbGVcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBmaWxlcyA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKGZpbGVzQ29udGVudCkpO1xuXG4gIGxldCBweW9kaWRlUHJvbWlzZSA9IChhc3luYyAoKSA9PiB7XG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBQeW9kaWRlYDtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgc3RhcnRQeW9kaWRlV29ya2VyKGRhdGEub3B0aW9ucyk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6IG1pY3JvcGlwYDtcbiAgICBhd2FpdCBweW9kaWRlLmxvYWRQYWNrYWdlKFwibWljcm9waXBcIik7XG4gICAgY29uc3QgbWljcm9waXAgPSBhd2FpdCBweW9kaWRlLnB5aW1wb3J0KFwibWljcm9waXBcIik7XG4gICAgYXdhaXQgZGF0YS5wYWNrYWdlcy5wa2dzLm1hcCgocGtnKSA9PiAoKSA9PiB7XG4gICAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6ICR7cGtnfWA7XG4gICAgICByZXR1cm4gbWljcm9waXAuaW5zdGFsbChwa2cpO1xuICAgIH0pLnJlZHVjZSgoY3VyLCBuZXh0KSA9PiBjdXIudGhlbihuZXh0KSwgUHJvbWlzZS5yZXNvbHZlKCkpO1xuICAgIGF3YWl0IG1pY3JvcGlwLmRlc3Ryb3koKTtcblxuICAgIC8vIERvd25sb2FkIGFuZCBpbnN0YWxsIHJlc291cmNlc1xuICAgIGF3YWl0IGZpbGVzLm1hcCgoZmlsZSkgPT4gYXN5bmMgKCkgPT4ge1xuICAgICAgY29uc3QgbmFtZSA9IGZpbGUuc3Vic3RyaW5nKGZpbGUubGFzdEluZGV4T2YoJy8nKSArIDEpO1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyByZXNvdXJjZTogJHtuYW1lfWA7XG4gICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGZldGNoKGZpbGUpO1xuICAgICAgaWYgKCFyZXNwb25zZS5vaykge1xuICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYENhbid0IGRvd25sb2FkIFxcYCR7ZmlsZX1cXGAuIEVycm9yICR7cmVzcG9uc2Uuc3RhdHVzfTogXCIke3Jlc3BvbnNlLnN0YXR1c1RleHR9XCIuYCk7XG4gICAgICB9XG4gICAgICBjb25zdCBkYXRhID0gYXdhaXQgcmVzcG9uc2UuYXJyYXlCdWZmZXIoKTtcblxuICAgICAgLy8gU3RvcmUgVVJMcyBpbiB0aGUgY3dkIHdpdGhvdXQgYW55IHN1YmRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGlmIChmaWxlLmluY2x1ZGVzKFwiOi8vXCIpKSB7XG4gICAgICAgIGZpbGUgPSBuYW1lO1xuICAgICAgfVxuXG4gICAgICAvLyBDb2xsYXBzZSBoaWdoZXIgZGlyZWN0b3J5IHN0cnVjdHVyZVxuICAgICAgZmlsZSA9IGNvbGxhcHNlUGF0aChmaWxlKTtcblxuICAgICAgLy8gQ3JlYXRlIGRpcmVjdG9yeSB0cmVlLCBpZ25vcmluZyBcImRpcmVjdG9yeSBleGlzdHNcIiBWRlMgZXJyb3JzXG4gICAgICBjb25zdCBwYXJ0cyA9IGZpbGUuc3BsaXQoJy8nKS5zbGljZSgwLCAtMSk7XG4gICAgICBsZXQgcGF0aCA9ICcnO1xuICAgICAgd2hpbGUgKHBhcnRzLmxlbmd0aCA+IDApIHtcbiAgICAgICAgcGF0aCArPSBwYXJ0cy5zaGlmdCgpICsgJy8nO1xuICAgICAgICB0cnkge1xuICAgICAgICAgIGF3YWl0IHB5b2RpZGUuRlMubWtkaXIocGF0aCk7XG4gICAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgICBpZiAoZS5uYW1lICE9PSBcIkVycm5vRXJyb3JcIikgdGhyb3cgZTtcbiAgICAgICAgICBpZiAoZS5lcnJubyAhPT0gMjApIHtcbiAgICAgICAgICAgIGNvbnN0IGVycm9yVGV4dFB0ciA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5fc3RyZXJyb3IoZS5lcnJubyk7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYEZpbGVzeXN0ZW0gRXJyb3IgJHtlLmVycm5vfSBcIiR7ZXJyb3JUZXh0fVwiLmApO1xuICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgfVxuXG4gICAgICAvLyBXcml0ZSB0aGlzIGZpbGUgdG8gdGhlIFZGU1xuICAgICAgdHJ5IHtcbiAgICAgICAgcmV0dXJuIGF3YWl0IHB5b2RpZGUuRlMud3JpdGVGaWxlKGZpbGUsIG5ldyBVaW50OEFycmF5KGRhdGEpKTtcbiAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgIGNvbnN0IGVycm9yVGV4dFB0ciA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5fc3RyZXJyb3IoZS5lcnJubyk7XG4gICAgICAgIGNvbnN0IGVycm9yVGV4dCA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5VVEY4VG9TdHJpbmcoZXJyb3JUZXh0UHRyKTtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgIH1cbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcblxuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgUHlvZGlkZSBlbnZpcm9ubWVudCBzZXR1cGA7XG4gICAgYXdhaXQgc2V0dXBQeXRob24ocHlvZGlkZSk7XG5cbiAgICBzdGF0dXNUZXh0LnJlbW92ZSgpO1xuICAgIGlmIChzdGF0dXNDb250YWluZXIuY2hpbGRyZW4ubGVuZ3RoID09IDApIHtcbiAgICAgIHN0YXR1c0NvbnRhaW5lci5wYXJlbnROb2RlLnJlbW92ZSgpO1xuICAgIH1cbiAgICByZXR1cm4gcHlvZGlkZTtcbiAgfSkoKS5jYXRjaCgoZXJyKSA9PiB7XG4gICAgc3RhdHVzVGV4dC5zdHlsZS5jb2xvciA9IFwidmFyKC0tZXhlcmNpc2UtZWRpdG9yLWhsLWVyLCAjQUQwMDAwKVwiO1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBlcnIubWVzc2FnZTtcbiAgICAvL2luZGljYXRvckNvbnRhaW5lci5xdWVyeVNlbGVjdG9yKFwiLnNwaW5uZXItZ3Jvd1wiKS5jbGFzc0xpc3QuYWRkKFwiZC1ub25lXCIpO1xuICAgIHRocm93IGVycjtcbiAgfSk7XG5cbiAgLy8gS2VlcCB0cmFjayBvZiBpbml0aWFsIE9KUyBibG9jayByZW5kZXJcbiAgY29uc3QgcmVuZGVyZWRPanMgPSB7fTtcblxuICBjb25zdCBwcm9jZXNzID0gYXN5bmMgKGNvbnRleHQsIGlucHV0cykgPT4ge1xuICAgIGNvbnN0IHB5b2RpZGUgPSBhd2FpdCBweW9kaWRlUHJvbWlzZTtcbiAgICBjb25zdCBldmFsdWF0b3IgPSBuZXcgUHlvZGlkZUV2YWx1YXRvcihweW9kaWRlLCBjb250ZXh0KTtcbiAgICBhd2FpdCBldmFsdWF0b3IucHJvY2VzcyhpbnB1dHMpO1xuICAgIHJldHVybiBldmFsdWF0b3IuY29udGFpbmVyO1xuICB9XG5cbiAgcmV0dXJuIHtcbiAgICBweW9kaWRlUHJvbWlzZSxcbiAgICByZW5kZXJlZE9qcyxcbiAgICBwcm9jZXNzLFxuICB9O1xufVxuIn1dfQ==
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+WyIuLi9hcGlfaGVscGVycy5weSIsIi4uL2RhdGEvdmFyaWFudHMuY3N2IiwiLi4vZGF0YS9ndGV4X2V4cHJlc3Npb24uY3N2IiwiLi4vZGF0YS9odWJtYXBfY2VsbF9leHByZXNzaW9uLmNzdiIsIi4uL2RhdGEvcGhhcm9zX3RhcmdldF9jb250ZXh0LmNzdiIsIi4uL2RhdGEvaW50ZWdyYXRlZF9wcmlvcml0aXphdGlvbi5jc3YiXQ==
+</script>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../lessons";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cfdetrainingcenter\.github\.io\/candidate-genetic-var\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lessons/hubmap.html" class="pagination-link" aria-label="5. Cell-Type Resolution: HuBMAP">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">5. Cell-Type Resolution: HuBMAP</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lessons/prioritization.html" class="pagination-link" aria-label="7. Variant Prioritization and Interpretation">
+        <span class="nav-page-text">7. Variant Prioritization and Interpretation</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Developed by <a href="https://github.com/sdhutchins">Shaurita D. Hutchins</a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><img src="../assets/images/cfde.svg" class="footer-logo img-fluid"></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/lessons/pharos.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CFDETrainingCenter/candidate-genetic-var/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>A community-sourced <a href="https://orau.org/cfde-trainingcenter/">CFDE Training Center</a> module.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-contrib/prism-1/prism.js"></script>
+<script src="../site_libs/quarto-contrib/alpine-3.12/sort-alpine.min.js"></script>
+<script src="../site_libs/quarto-contrib/alpine-3.12/alpine.min.js"></script>
+</body></html>

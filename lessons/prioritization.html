@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Variant Prioritization and Interpretation – Prioritizing Candidate Genetic Variants</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lessons/conclusion.html" rel="next">
+<link href="../lessons/pharos.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f55367e0801e5094f82c0f0d978e128e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-81132e90d9570a0e5d5392fbf3813738.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/sq-components-1.0.0/plain-draggable.min.js"></script>
+<script src="../site_libs/quarto-contrib/sq-components-1.0.0/sq-components.js"></script>
+<link href="../site_libs/quarto-contrib/qstyles-1/qstyles.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/qstyles-1/prism-theme-github-light.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Prioritizing Candidate Genetic Variants</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../lessons/glossary.html"> <i class="bi bi-book-fill" role="img">
+</i> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/CFDETrainingCenter/candidate-genetic-var"> <i class="bi bi-github" role="img" aria-label="View the source repository on GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/prioritization.html">7. Variant Prioritization and Interpretation</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Module Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/objectives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Introduction to APIs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/variant-context.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Variant and Gene Context</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/gtex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Tissue-Level Expression: GTEx</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/hubmap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Cell-Type Resolution: HuBMAP</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/pharos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Protein Context and Druggability: IDG/Pharos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/prioritization.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">7. Variant Prioritization and Interpretation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Conclusion</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#plan-the-layered-evidence-matrix" id="toc-plan-the-layered-evidence-matrix" class="nav-link active" data-scroll-target="#plan-the-layered-evidence-matrix">Plan the layered evidence matrix</a></li>
+  <li><a href="#build-the-evidence-matrix" id="toc-build-the-evidence-matrix" class="nav-link" data-scroll-target="#build-the-evidence-matrix">Build the evidence matrix</a></li>
+  <li><a href="#prioritize-a-focused-dcm-follow-up-set" id="toc-prioritize-a-focused-dcm-follow-up-set" class="nav-link" data-scroll-target="#prioritize-a-focused-dcm-follow-up-set">Prioritize a focused DCM follow-up set</a></li>
+  <li><a href="#examine-one-missense-variant-with-protvar" id="toc-examine-one-missense-variant-with-protvar" class="nav-link" data-scroll-target="#examine-one-missense-variant-with-protvar">Examine one missense variant with ProtVar</a></li>
+  <li><a href="#interpret-the-integrated-evidence" id="toc-interpret-the-integrated-evidence" class="nav-link" data-scroll-target="#interpret-the-integrated-evidence">Interpret the integrated evidence</a></li>
+  <li><a href="#preserve-unresolved-information" id="toc-preserve-unresolved-information" class="nav-link" data-scroll-target="#preserve-unresolved-information">Preserve unresolved information</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
+  <li><a href="#optional-activity-interpret-one-candidate" id="toc-optional-activity-interpret-one-candidate" class="nav-link" data-scroll-target="#optional-activity-interpret-one-candidate">Optional activity: Interpret one candidate</a></li>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key points</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/lessons/prioritization.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CFDETrainingCenter/candidate-genetic-var/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Variant Prioritization and Interpretation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Estimated time:</strong> 25 minutes</p>
+<p>Combine the paper, GTEx, HuBMAP, and Pharos tables while preserving the meaning of each source. Table joins match rows that share the same gene symbol.</p>
+<section id="plan-the-layered-evidence-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="plan-the-layered-evidence-matrix">Plan the layered evidence matrix</h2>
+<p>The source paper starts us with 54 classified variant rows. GTEx, HuBMAP, and Pharos describe the 25 genes connected to those rows. The final step joins that gene-level context back to every published variant.</p>
+<section id="keep-evidence-types-separate" class="level3">
+<h3 class="anchored" data-anchor-id="keep-evidence-types-separate">Keep evidence types separate</h3>
+<p>Each layer keeps its own meaning:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Evidence</th>
+<th>What it establishes here</th>
+<th>Next decision supported</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Paper fields</td>
+<td>The exact variant, phenotype, score, and class reported by the study</td>
+<td>Which published candidate and clinical context must remain anchored in the interpretation?</td>
+</tr>
+<tr class="even">
+<td>GTEx</td>
+<td>Median gene expression reported in the selected reference heart tissues</td>
+<td>Which tissue context is appropriate for follow-up?</td>
+</tr>
+<tr class="odd">
+<td>HuBMAP</td>
+<td>Whether indexed values are available in up to the first 500 ventricular cardiac-myocyte records</td>
+<td>Is this cell context useful, or does a coverage gap require another atlas or experiment?</td>
+</tr>
+<tr class="even">
+<td>Pharos</td>
+<td>The current protein annotations and target development level</td>
+<td>Should follow-up begin with a known drug relationship, chemical probe, biological mechanism, or foundational characterization?</td>
+</tr>
+</tbody>
+</table>
+<p>We will not add these fields into one pathogenicity score. Instead, we will state a follow-up question and select the columns that answer it.</p>
+<p>A useful result is not simply the gene with the largest value or most developed target. It is an evidence-backed next step whose rationale remains visible. The integrated table supports research decisions while preserving the limits and provenance of every source.</p>
+</section>
+</section>
+<section id="build-the-evidence-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="build-the-evidence-matrix">Build the evidence matrix</h2>
+<section id="load-the-source-data-and-api-helpers" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-source-data-and-api-helpers">Load the source data and API helpers</h3>
+<p>Load the 54 published variant rows and import the GTEx, HuBMAP, and Pharos wrappers.</p>
+<div class="module-activity">
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZnJvbSBwYXRobGliIGltcG9ydCBQYXRoXG5pbXBvcnQgc3lzXG5cbmltcG9ydCBwYW5kYXMgYXMgcGRcbmltcG9ydCByZXF1ZXN0c1xuXG4jIExvY2F0ZSB0aGUgcmVwb3NpdG9yeSByb290LlxuUkVQT19ST09UID0gUGF0aC5jd2QoKSBpZiBQYXRoKFwiYXBpX2hlbHBlcnMucHlcIikuZXhpc3RzKCkgZWxzZSBQYXRoLmN3ZCgpLnBhcmVudFxuaWYgc3RyKFJFUE9fUk9PVCkgbm90IGluIHN5cy5wYXRoOlxuICAgIHN5cy5wYXRoLmluc2VydCgwLCBzdHIoUkVQT19ST09UKSlcblxuIyBJbXBvcnQgdGhlIEFQSSB3cmFwcGVycy5cbmZyb20gYXBpX2hlbHBlcnMgaW1wb3J0IChcbiAgICBmZXRjaF9ndGV4X2NvbnRleHQsXG4gICAgZmV0Y2hfaHVibWFwX3ZlbnRyaWN1bGFyX2NvbnRleHQsXG4gICAgZmV0Y2hfcGhhcm9zX2NvbnRleHQsXG4pXG5cbiMgTG9hZCB0aGUgcHVibGlzaGVkIHZhcmlhbnRzLlxuREFUQV9ESVIgPSBSRVBPX1JPT1QgLyBcImRhdGFcIlxudmFyaWFudHMgPSBwZC5yZWFkX2NzdihEQVRBX0RJUiAvIFwidmFyaWFudHMuY3N2XCIpXG52YXJpYW50cy5oZWFkKCkifQ==
+</script>
+</div>
+</div>
+<p>Each row contains one published observation with its gene, HGVS descriptions, study class, phenotype, and provenance. These 54 rows are the anchor for the later joins.</p>
+</section>
+<section id="request-gene-level-context" class="level3">
+<h3 class="anchored" data-anchor-id="request-gene-level-context">Request gene-level context</h3>
+<p>Query all three APIs for the paper’s 25 genes. HuBMAP takes the longest because it checks each gene separately.</p>
+<div class="module-activity">
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBLZWVwIG9uZSBjb3B5IG9mIGVhY2ggZ2VuZSBzeW1ib2wuXG5nZW5lX3N5bWJvbHMgPSBzb3J0ZWQodmFyaWFudHNbXCJnZW5lX3N5bWJvbFwiXS51bmlxdWUoKSlcbmd0ZXggPSBmZXRjaF9ndGV4X2NvbnRleHQoZ2VuZV9zeW1ib2xzKVxuaHVibWFwID0gZmV0Y2hfaHVibWFwX3ZlbnRyaWN1bGFyX2NvbnRleHQoZ2VuZV9zeW1ib2xzKVxucGhhcm9zID0gZmV0Y2hfcGhhcm9zX2NvbnRleHQoZ2VuZV9zeW1ib2xzKVxuXG5yZXRyaWV2YWxfc3VtbWFyeSA9IHBkLkRhdGFGcmFtZShcbiAgICB7XG4gICAgICAgIFwicmVzb3VyY2VcIjogW1wiR1RFeFwiLCBcIkh1Qk1BUFwiLCBcIlBoYXJvc1wiXSxcbiAgICAgICAgXCJyb3dzXCI6IFtsZW4oZ3RleCksIGxlbihodWJtYXApLCBsZW4ocGhhcm9zKV0sXG4gICAgfVxuKVxucmV0cmlldmFsX3N1bW1hcnkifQ==
+</script>
+</div>
+</div>
+<p>In the dated teaching data, the request returns 50 GTEx rows, one for each of 25 genes in two tissues, 25 HuBMAP rows, and 25 Pharos rows. These tables describe genes rather than individual variants.</p>
+</section>
+<section id="build-one-row-per-gene" class="level3">
+<h3 class="anchored" data-anchor-id="build-one-row-per-gene">Build one row per gene</h3>
+<p>Create one context row per gene using the two GTEx tissues, one HuBMAP cell type, and selected Pharos fields. A one-row-per-gene table prevents accidental duplication in the final join.</p>
+<div class="module-activity">
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBSZXNoYXBlIEdURXggdGlzc3VlcyBpbnRvIGNvbHVtbnMuXG5ndGV4X3dpZGUgPSBndGV4LnBpdm90KFxuICAgIGluZGV4PVwiZ2VuZV9zeW1ib2xcIixcbiAgICBjb2x1bW5zPVwidGlzc3VlX2lkXCIsXG4gICAgdmFsdWVzPVwibWVkaWFuX3RwbVwiLFxuKS5yZW5hbWUoXG4gICAgY29sdW1ucz17XG4gICAgICAgIFwiSGVhcnRfQXRyaWFsX0FwcGVuZGFnZVwiOiBcImd0ZXhfYXRyaWFsX3RwbVwiLFxuICAgICAgICBcIkhlYXJ0X0xlZnRfVmVudHJpY2xlXCI6IFwiZ3RleF92ZW50cmljbGVfdHBtXCIsXG4gICAgfVxuKVxuXG4jIFNlbGVjdCB2ZW50cmljdWxhciBjYXJkaWFjIG15b2N5dGVzLlxudmVudHJpY3VsYXIgPSAoXG4gICAgaHVibWFwW2h1Ym1hcFtcImNlbGxfdHlwZV9pZFwiXSA9PSBcIkNMOjAwMDIxMzFcIl1cbiAgICAubG9jW1xuICAgICAgICA6LFxuICAgICAgICBbXG4gICAgICAgICAgICBcImdlbmVfc3ltYm9sXCIsXG4gICAgICAgICAgICBcIm1lYW5fbm9ybWFsaXplZF9leHByZXNzaW9uXCIsXG4gICAgICAgICAgICBcInBlcmNlbnRfZGV0ZWN0ZWRcIixcbiAgICAgICAgICAgIFwiYXZhaWxhYmlsaXR5XCIsXG4gICAgICAgIF0sXG4gICAgXVxuICAgIC5yZW5hbWUoXG4gICAgICAgIGNvbHVtbnM9e1xuICAgICAgICAgICAgXCJtZWFuX25vcm1hbGl6ZWRfZXhwcmVzc2lvblwiOiBcImh1Ym1hcF92ZW50cmljdWxhcl9tZWFuXCIsXG4gICAgICAgICAgICBcInBlcmNlbnRfZGV0ZWN0ZWRcIjogXCJodWJtYXBfdmVudHJpY3VsYXJfcGVyY2VudF9kZXRlY3RlZFwiLFxuICAgICAgICAgICAgXCJhdmFpbGFiaWxpdHlcIjogXCJodWJtYXBfYXZhaWxhYmlsaXR5XCIsXG4gICAgICAgIH1cbiAgICApXG4pXG5cbiMgSm9pbiBvbmUtdG8tb25lIGdlbmUgcmVjb3Jkcy5cbmdlbmVfY29udGV4dCA9IChcbiAgICBndGV4X3dpZGUucmVzZXRfaW5kZXgoKVxuICAgIC5tZXJnZSh2ZW50cmljdWxhciwgb249XCJnZW5lX3N5bWJvbFwiLCBob3c9XCJsZWZ0XCIsIHZhbGlkYXRlPVwib25lX3RvX29uZVwiKVxuICAgIC5tZXJnZShcbiAgICAgICAgcGhhcm9zLmxvY1s6LCBbXCJnZW5lX3N5bWJvbFwiLCBcInRkbFwiLCBcImRydWdfY291bnRcIl1dLFxuICAgICAgICBvbj1cImdlbmVfc3ltYm9sXCIsXG4gICAgICAgIGhvdz1cImxlZnRcIixcbiAgICAgICAgdmFsaWRhdGU9XCJvbmVfdG9fb25lXCIsXG4gICAgKVxuKVxuXG4jIENvbmZpcm0gdGhhdCBhbGwgMjUgZ2VuZXMgcmVtYWluLlxuYXNzZXJ0IGxlbihnZW5lX2NvbnRleHQpID09IDI1XG5nZW5lX2NvbnRleHQuaGVhZCgpIn0=
+</script>
+</div>
+</div>
+<p><code>gene_context</code> contains 25 rows, one per gene. The <code>gtex_*</code> columns contain tissue-level median TPM, the <code>hubmap_*</code> columns contain cell-type expression and availability, and <code>tdl</code> and <code>drug_count</code> come from Pharos.</p>
+</section>
+<section id="join-context-to-every-variant" class="level3">
+<h3 class="anchored" data-anchor-id="join-context-to-every-variant">Join context to every variant</h3>
+<p>Match the 25 gene rows back to all 54 variant rows. Complete the join type that keeps every row from the published variant table.</p>
+<div class="module-activity">
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJqb2luX2dlbmVfY29udGV4dCJ9LCJjb2RlIjoiIyBKb2luIGNvbnRleHQgYnkgZ2VuZSBzeW1ib2wuXG5ldmlkZW5jZV9tYXRyaXggPSB2YXJpYW50cy5tZXJnZShcbiAgICBnZW5lX2NvbnRleHQsXG4gICAgb249XCJnZW5lX3N5bWJvbFwiLFxuICAgIGhvdz1cIl9fX19fX1wiLFxuICAgIHZhbGlkYXRlPVwibWFueV90b19vbmVcIixcbilcblxuIyBDb25maXJtIHRoYXQgYWxsIDU0IHZhcmlhbnQgcm93cyByZW1haW4uXG5hc3NlcnQgbGVuKGV2aWRlbmNlX21hdHJpeCkgPT0gbGVuKHZhcmlhbnRzKSA9PSA1NFxuXG4jIEluc3BlY3QgdmFyaWFudCBhbmQgZ2VuZS1sZXZlbCBmaWVsZHMgdG9nZXRoZXIuXG5ldmlkZW5jZV9tYXRyaXgubG9jW1xuICAgIDosXG4gICAgW1xuICAgICAgICBcInN1YmplY3RfaWRcIixcbiAgICAgICAgXCJnZW5lX3N5bWJvbFwiLFxuICAgICAgICBcImhndnNfY1wiLFxuICAgICAgICBcInN0dWR5X2NsYXNzXCIsXG4gICAgICAgIFwicGhlbm90eXBlXCIsXG4gICAgICAgIFwiZ3RleF92ZW50cmljbGVfdHBtXCIsXG4gICAgICAgIFwiaHVibWFwX2F2YWlsYWJpbGl0eVwiLFxuICAgICAgICBcInRkbFwiLFxuICAgIF0sXG5dLmhlYWQoMTApIn0=
+</script>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="join_gene_context">
+<p>Keep every row from the variant table, including variants without matching context data.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="join_gene_context">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Join context by gene symbol.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>evidence_matrix <span class="op">=</span> variants.merge(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    gene_context,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">"gene_symbol"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">"left"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    validate<span class="op">=</span><span class="st">"many_to_one"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm that all 54 variant rows remain.</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(evidence_matrix) <span class="op">==</span> <span class="bu">len</span>(variants) <span class="op">==</span> <span class="dv">54</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect variant and gene-level fields together.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>evidence_matrix.loc[</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    :,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"subject_id"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"gene_symbol"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"hgvs_c"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"study_class"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"phenotype"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"gtex_ventricle_tpm"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"hubmap_availability"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"tdl"</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>].head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Each displayed row retains the variant description, study class, and phenotype beside the corresponding GTEx, HuBMAP, and Pharos fields. The left join preserves all 54 published variant rows while allowing several rows to share the same gene context.</p>
+</section>
+</section>
+<section id="prioritize-a-focused-dcm-follow-up-set" class="level2">
+<h2 class="anchored" data-anchor-id="prioritize-a-focused-dcm-follow-up-set">Prioritize a focused DCM follow-up set</h2>
+<p>The full evidence matrix supports many questions. To make the next step clear, focus on dilated cardiomyopathy, abbreviated DCM, and one available HuBMAP cell context.</p>
+<section id="define-the-follow-up-question" class="level3">
+<h3 class="anchored" data-anchor-id="define-the-follow-up-question">Define the follow-up question</h3>
+<p>Ask a focused question: which DCM variant rows have measured ventricular cardiac-myocyte context, ordered by GTEx left-ventricle expression?</p>
+<div class="module-activity">
+<div>
+<div id="pyodide-5" class="exercise-cell">
+
+</div>
+<script type="pyodide-5-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBTZWxlY3QgRENNIHJvd3Mgd2l0aCBtZWFzdXJlZCBIdUJNQVAgdmFsdWVzLlxuZGNtX2ZvbGxvd191cCA9IChcbiAgICBldmlkZW5jZV9tYXRyaXhbXG4gICAgICAgIChldmlkZW5jZV9tYXRyaXhbXCJwaGVub3R5cGVcIl0gPT0gXCJEQ01cIilcbiAgICAgICAgJiAoZXZpZGVuY2VfbWF0cml4W1wiaHVibWFwX2F2YWlsYWJpbGl0eVwiXSA9PSBcImF2YWlsYWJsZVwiKVxuICAgIF1cbiAgICAuc29ydF92YWx1ZXMoXG4gICAgICAgIFtcImd0ZXhfdmVudHJpY2xlX3RwbVwiLCBcImdlbmVfc3ltYm9sXCIsIFwic3ViamVjdF9pZFwiXSxcbiAgICAgICAgYXNjZW5kaW5nPVtGYWxzZSwgVHJ1ZSwgVHJ1ZV0sXG4gICAgKVxuICAgIC5sb2NbXG4gICAgICAgIDosXG4gICAgICAgIFtcbiAgICAgICAgICAgIFwic3ViamVjdF9pZFwiLFxuICAgICAgICAgICAgXCJnZW5lX3N5bWJvbFwiLFxuICAgICAgICAgICAgXCJoZ3ZzX2NcIixcbiAgICAgICAgICAgIFwic3R1ZHlfY2xhc3NcIixcbiAgICAgICAgICAgIFwiZ3RleF92ZW50cmljbGVfdHBtXCIsXG4gICAgICAgICAgICBcImh1Ym1hcF92ZW50cmljdWxhcl9wZXJjZW50X2RldGVjdGVkXCIsXG4gICAgICAgICAgICBcInRkbFwiLFxuICAgICAgICBdLFxuICAgIF1cbilcblxuIyBJbnNwZWN0IHRoZSBjb21iaW5lZCBldmlkZW5jZS5cbmRjbV9mb2xsb3dfdXAifQ==
+</script>
+</div>
+</div>
+<p>From the displayed rows, identify how many remain, which genes contribute P or LP findings, and which VUS share gene-level context with P or LP findings.</p>
+<p>The filtered table contains 15 of the 28 DCM rows. Ten are P or LP in the paper, and five are VUS. The other 13 DCM rows are excluded only because the selected HuBMAP index did not return a ventricular cardiac-myocyte value.</p>
+</section>
+</section>
+<section id="examine-one-missense-variant-with-protvar" class="level2">
+<h2 class="anchored" data-anchor-id="examine-one-missense-variant-with-protvar">Examine one missense variant with ProtVar</h2>
+<p>The <em>TNNT2</em> <code>c.776A&gt;C</code> variant is a useful follow-up because the paper classified it as a VUS while two other <em>TNNT2</em> variants were P or LP. All three variants share the same GTEx, HuBMAP, and Pharos gene context. ProtVar adds predictions for the specific amino acid change, p.Asp259Ala.</p>
+<p>Learn more about the returned protein scores in the <a href="https://www.ebi.ac.uk/ProtVar/api/swagger-ui/index.html">ProtVar API documentation</a>.</p>
+<section id="request-protein-predictions" class="level3">
+<h3 class="anchored" data-anchor-id="request-protein-predictions">Request protein predictions</h3>
+<p>ProtVar maps p.Asp259Ala to UniProt accession P45379 at residue 259. Query the two score endpoints and the structural-stability endpoint directly.</p>
+<div class="module-activity">
+<div>
+<div id="pyodide-6" class="exercise-cell">
+
+</div>
+<script type="pyodide-6-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJvdHZhcl9hcGkgPSBcImh0dHBzOi8vd3d3LmViaS5hYy51ay9Qcm90VmFyL2FwaVwiXG5wcm90ZWluX2FjY2Vzc2lvbiA9IFwiUDQ1Mzc5XCJcbnByb3RlaW5fcG9zaXRpb24gPSAyNTlcbmFsdGVybmF0ZV9hbWlub19hY2lkID0gXCJBXCJcblxuIyBDb21wYXJlIHR3byB2YXJpYW50LWVmZmVjdCBwcmVkaWN0aW9ucyBmb3IgdGhlIHNhbWUgc3Vic3RpdHV0aW9uLlxuYWxwaGFtaXNzZW5zZV9yZXNwb25zZSA9IHJlcXVlc3RzLmdldChcbiAgICBmXCJ7cHJvdHZhcl9hcGl9L3Njb3JlL3twcm90ZWluX2FjY2Vzc2lvbn0ve3Byb3RlaW5fcG9zaXRpb259XCIsXG4gICAgcGFyYW1zPXtcIm10XCI6IGFsdGVybmF0ZV9hbWlub19hY2lkLCBcInR5cGVcIjogXCJBTVwifSxcbiAgICB0aW1lb3V0PTMwLFxuKVxuYWxwaGFtaXNzZW5zZV9yZXNwb25zZS5yYWlzZV9mb3Jfc3RhdHVzKClcbmFscGhhbWlzc2Vuc2UgPSBhbHBoYW1pc3NlbnNlX3Jlc3BvbnNlLmpzb24oKVswXVxuXG5ldmVfcmVzcG9uc2UgPSByZXF1ZXN0cy5nZXQoXG4gICAgZlwie3Byb3R2YXJfYXBpfS9zY29yZS97cHJvdGVpbl9hY2Nlc3Npb259L3twcm90ZWluX3Bvc2l0aW9ufVwiLFxuICAgIHBhcmFtcz17XCJtdFwiOiBhbHRlcm5hdGVfYW1pbm9fYWNpZCwgXCJ0eXBlXCI6IFwiRVZFXCJ9LFxuICAgIHRpbWVvdXQ9MzAsXG4pXG5ldmVfcmVzcG9uc2UucmFpc2VfZm9yX3N0YXR1cygpXG5ldmUgPSBldmVfcmVzcG9uc2UuanNvbigpWzBdXG5cbiMgQXNrIGhvdyB0aGUgc3Vic3RpdHV0aW9uIGlzIHByZWRpY3RlZCB0byBjaGFuZ2UgcHJvdGVpbiBzdGFiaWxpdHkuXG5mb2xkeF9yZXNwb25zZSA9IHJlcXVlc3RzLmdldChcbiAgICBmXCJ7cHJvdHZhcl9hcGl9L3ByZWRpY3Rpb24vZm9sZHgve3Byb3RlaW5fYWNjZXNzaW9ufS97cHJvdGVpbl9wb3NpdGlvbn1cIixcbiAgICBwYXJhbXM9e1widmFyaWFudEFBXCI6IGFsdGVybmF0ZV9hbWlub19hY2lkfSxcbiAgICB0aW1lb3V0PTMwLFxuKVxuZm9sZHhfcmVzcG9uc2UucmFpc2VfZm9yX3N0YXR1cygpXG5mb2xkeCA9IGZvbGR4X3Jlc3BvbnNlLmpzb24oKVswXVxuXG4jIERpc3BsYXkgdGhyZWUgcmVzdWx0cyB0aGF0IGhlbHAgcGxhbiBhIGZvbGxvdy11cCBleHBlcmltZW50LlxucHJvdHZhcl9zdW1tYXJ5ID0gcGQuRGF0YUZyYW1lKFxuICAgIHtcbiAgICAgICAgXCJwcmVkaWN0aW9uXCI6IFtcIkFscGhhTWlzc2Vuc2VcIiwgXCJFVkVcIiwgXCJGb2xkWCBzdGFiaWxpdHlcIl0sXG4gICAgICAgIFwicmVzdWx0XCI6IFtcbiAgICAgICAgICAgIChcbiAgICAgICAgICAgICAgICBmXCJ7YWxwaGFtaXNzZW5zZVsnYW1DbGFzcyddLnRpdGxlKCl9IFwiXG4gICAgICAgICAgICAgICAgZlwiKHthbHBoYW1pc3NlbnNlWydhbVBhdGhvZ2VuaWNpdHknXTouNGZ9KVwiXG4gICAgICAgICAgICApLFxuICAgICAgICAgICAgKFxuICAgICAgICAgICAgICAgIGZcIntldmVbJ2V2ZUNsYXNzJ10udGl0bGUoKX0gXCJcbiAgICAgICAgICAgICAgICBmXCIoe2V2ZVsnc2NvcmUnXTouM2Z9KVwiXG4gICAgICAgICAgICApLFxuICAgICAgICAgICAgKFxuICAgICAgICAgICAgICAgIGZcIntmb2xkeFsnZm9sZHhEZGcnXTouM2Z9IGtjYWwvbW9sOyBcIlxuICAgICAgICAgICAgICAgIGZcIkFscGhhRm9sZCBwTEREVCB7Zm9sZHhbJ3BsZGR0J106LjJmfVwiXG4gICAgICAgICAgICApLFxuICAgICAgICBdLFxuICAgIH1cbilcblxucHJvdHZhcl9zdW1tYXJ5In0=
+</script>
+</div>
+</div>
+<p>The current response illustrates why it helps to compare predictions. AlphaMissense labels p.Asp259Ala as pathogenic with a score of 0.8296, while EVE labels it uncertain with a score of 0.575. The FoldX change of -0.369 kcal/mol does not suggest a large stability change in this model. The local AlphaFold pLDDT of 92.88 indicates high confidence in the modeled structure at this position, not confidence that the variant is pathogenic.</p>
+<p>Together, the resources suggest a focused next step. GTEx and HuBMAP place <em>TNNT2</em> in the relevant tissue and cell context, Pharos shows that the protein is biologically characterized, and ProtVar shows mixed predictions for the specific substitution. An experiment could therefore examine troponin-complex function, calcium sensitivity, or cardiomyocyte contractility while the study classification remains VUS.</p>
+</section>
+</section>
+<section id="interpret-the-integrated-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="interpret-the-integrated-evidence">Interpret the integrated evidence</h2>
+<p>Interpret the combined evidence while keeping variant statements separate from gene statements.</p>
+<section id="interpret-the-dcm-follow-up-set" class="level3">
+<h3 class="anchored" data-anchor-id="interpret-the-dcm-follow-up-set">Interpret the DCM follow-up set</h3>
+<p>The study classification remains the variant-level anchor. The API results add gene-level context for evaluating a proposed mechanism. This follows the precision approach used by <a href="https://doi.org/10.1186/s12967-025-07586-w">Birch and colleagues</a>: integrate variant classification, phenotype concordance, and molecular context while keeping the confidence assigned to the individual finding explicit.</p>
+<p>For this tutorial, <strong>convergent contextual support</strong> means that the paper classified the variant as pathogenic or likely pathogenic and that both GTEx and HuBMAP provide relevant cardiac gene-expression context. This combination identifies a plausible, testable molecular contributor for follow-up.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Our interpretation</th>
+<th>Variants in <code>dcm_follow_up</code></th>
+<th>What the evidence supports</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Convergent contextual support</td>
+<td><em>DES</em> <code>c.735G&gt;A</code>; <em>ACTC1</em> <code>c.301G&gt;A</code>; <em>TNNT2</em> <code>c.547C&gt;T</code>; <em>TNNT2</em> <code>c.547C&gt;G</code>; <em>MYBPC3</em> <code>c.2490dup</code> in two subjects; <em>MYBPC3</em> <code>c.442G&gt;A</code>; <em>PLN</em> <code>c.25C&gt;T</code>; <em>MYLK3</em> <code>c.618dup</code>; <em>MYLK3</em> <code>c.1569-2A&gt;C</code></td>
+<td>The paper classified these variants as P/LP, and the APIs provide biologically anchored cardiac context for investigating their mechanisms.</td>
+</tr>
+<tr class="even">
+<td>Gene context supported, variant unresolved</td>
+<td><em>TNNI3</em> <code>c.337G&gt;A</code>; <em>ACTC1</em> <code>c.1132T&gt;C</code>; <em>TNNT2</em> <code>c.776A&gt;C</code>; <em>FLNC</em> <code>c.4181A&gt;G</code>; <em>TNNI3K</em> <code>c.827+1G&gt;T</code></td>
+<td>These remain VUS. Cardiac expression makes the genes relevant to investigate, but it cannot establish the effect of the specific alleles.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled" title="What the integrated evidence added">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What the integrated evidence added
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Variant analysis often produces a large candidate list. Even after review by a clinical geneticist or variant analyst, multiple findings may remain relevant for research follow-up. The next challenge is deciding which candidates to investigate first and which experimental systems are most appropriate.</p>
+<p>All 25 genes had measurable expression in the selected GTEx heart tissues, so bulk-tissue expression supported general cardiac relevance but did not substantially narrow the list. HuBMAP coverage provided the more selective cell-context filter.</p>
+<p>The findings in <em>DES</em>, <em>TNNT2</em>, <em>MYBPC3</em>, <em>ACTC1</em>, <em>PLN</em>, and <em>MYLK3</em> therefore have the clearest combined rationale for variant-specific cardiac cellular modeling. The integrated evidence helps select candidates and biologically relevant cell systems. It also identifies potential perturbation tools and focused follow-up questions.</p>
+</div>
+</div>
+</section>
+<section id="compare-variants-within-the-same-gene" class="level3">
+<h3 class="anchored" data-anchor-id="compare-variants-within-the-same-gene">Compare variants within the same gene</h3>
+<p>The comparison within <em>TNNT2</em> shows why these layers must remain separate. All three <em>TNNT2</em> rows inherit the same GTEx, HuBMAP, and Pharos values because the APIs describe the gene. The paper classified <code>c.547C&gt;T</code> as P, <code>c.547C&gt;G</code> as LP, and <code>c.776A&gt;C</code> as VUS. <em>TNNT2</em> had a GTEx left-ventricle median of 2,896.66 TPM and had a value above zero in 38.2% of retrieved HuBMAP ventricular cardiac-myocyte records. These results support a cardiac-cell model for all three variants, but only variant-specific functional testing can help distinguish their effects.</p>
+</section>
+<section id="identify-possible-experimental-starting-points" class="level3">
+<h3 class="anchored" data-anchor-id="identify-possible-experimental-starting-points">Identify possible experimental starting points</h3>
+<p>The two <em>MYLK3</em> variants are also useful examples. The paper describes <em>MYLK3</em> as an emerging DCM gene and classified both variants as LP. <em>MYLK3</em> had a GTEx left-ventricle median of 39.99 TPM and had a value above zero in 13.4% of retrieved HuBMAP ventricular cardiac-myocyte records. Pharos classifies the protein as <code>Tchem</code> and reports five ligands and one drug relationship. These results add a relevant cell context and potential perturbation starting points for testing the proposed mechanism.</p>
+<p>The <em>TNNI3K</em> <code>c.827+1G&gt;T</code> VUS illustrates a different decision. Although Pharos classifies <em>TNNI3K</em> as <code>Tchem</code>, the gene was detected in only 0.4% of sampled ventricular cardiac myocytes. The available chemical context may be useful, but the selected cell context provides less support for prioritizing this candidate over the P/LP findings above.</p>
+</section>
+</section>
+<section id="preserve-unresolved-information" class="level2">
+<h2 class="anchored" data-anchor-id="preserve-unresolved-information">Preserve unresolved information</h2>
+<p>Prioritization should retain what is missing and what recurs in the source table. These details can change the next research question.</p>
+<section id="keep-coverage-gaps-visible" class="level3">
+<h3 class="anchored" data-anchor-id="keep-coverage-gaps-visible">Keep coverage gaps visible</h3>
+<p>Create a unique gene list of HuBMAP coverage gaps. These genes may require another atlas, another cell type, or direct measurement.</p>
+<div class="module-activity">
+<div>
+<div id="pyodide-7" class="exercise-cell">
+
+</div>
+<script type="pyodide-7-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBTZWxlY3QgSHVCTUFQIGNvdmVyYWdlIGdhcHMuXG5jb3ZlcmFnZV9nYXBzID0gKFxuICAgIGV2aWRlbmNlX21hdHJpeFtcbiAgICAgICAgZXZpZGVuY2VfbWF0cml4W1wiaHVibWFwX2F2YWlsYWJpbGl0eVwiXVxuICAgICAgICAhPSBcImF2YWlsYWJsZVwiXG4gICAgXVxuICAgIC5sb2NbOiwgW1wiZ2VuZV9zeW1ib2xcIiwgXCJodWJtYXBfYXZhaWxhYmlsaXR5XCJdXVxuICAgIC5kcm9wX2R1cGxpY2F0ZXMoKVxuICAgIC5zb3J0X3ZhbHVlcyhcImdlbmVfc3ltYm9sXCIpXG4gICAgLnJlc2V0X2luZGV4KGRyb3A9VHJ1ZSlcbilcblxuIyBLZWVwIG9uZSByb3cgcGVyIHVuYXZhaWxhYmxlIGdlbmUuXG5jb3ZlcmFnZV9nYXBzLmhlYWQoKSJ9
+</script>
+</div>
+</div>
+<p>The 13 DCM rows absent from <code>dcm_follow_up</code> remain in the full evidence matrix. They include P/LP findings in <em>MYL3</em>, <em>TTN</em>, <em>GYG1</em>, <em>LMNA</em>, and <em>DMD</em>, plus one <em>LMNA</em> VUS. Their absence from the focused table reflects a HuBMAP coverage gap for the selected cell type. Another atlas or experimental system is needed to add comparable cell context for these genes.</p>
+</section>
+<section id="identify-recurrent-variants" class="level3">
+<h3 class="anchored" data-anchor-id="identify-recurrent-variants">Identify recurrent variants</h3>
+<p>Find exact variant observations that occur in more than one participant. The grouping uses both coding and protein HGVS fields so distinct variants are not combined accidentally.</p>
+<div class="module-activity">
+<div>
+<div id="pyodide-8" class="exercise-cell">
+
+</div>
+<script type="pyodide-8-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBDb3VudCBleGFjdCByZXBvcnRlZCB2YXJpYW50cyBhY3Jvc3MgcGFydGljaXBhbnRzLlxucmVjdXJyZW50X3ZhcmlhbnRzID0gKFxuICAgIHZhcmlhbnRzLmdyb3VwYnkoXG4gICAgICAgIFtcImdlbmVfc3ltYm9sXCIsIFwiaGd2c19jXCIsIFwiaGd2c19wXCJdLFxuICAgICAgICBkcm9wbmE9RmFsc2UsXG4gICAgKVxuICAgIC5hZ2coXG4gICAgICAgIHN1YmplY3RzPShcInN1YmplY3RfaWRcIiwgbGFtYmRhIHZhbHVlczogXCIsIFwiLmpvaW4obWFwKHN0ciwgdmFsdWVzKSkpLFxuICAgICAgICBvYnNlcnZhdGlvbnM9KFwic3ViamVjdF9pZFwiLCBcInNpemVcIiksXG4gICAgKVxuICAgIC5yZXNldF9pbmRleCgpXG4gICAgLnF1ZXJ5KFwib2JzZXJ2YXRpb25zID4gMVwiKVxuICAgIC5zb3J0X3ZhbHVlcyhbXCJvYnNlcnZhdGlvbnNcIiwgXCJnZW5lX3N5bWJvbFwiXSwgYXNjZW5kaW5nPVtGYWxzZSwgVHJ1ZV0pXG4pXG5cbiMgU2hvdyByZWN1cnJlbnQgb2JzZXJ2YXRpb25zLlxucmVjdXJyZW50X3ZhcmlhbnRzLmhlYWQoKSJ9
+</script>
+</div>
+</div>
+<p>The table identifies three recurrent observations. <em>MYBPC3</em> <code>c.2490dup</code> appears in three participants; <em>LMNA</em> <code>c.1304_1307dup</code> and <em>TTR</em> <code>c.323A&gt;G</code> each appear in two. Recurrence records frequency within this study and must be evaluated with variant-specific evidence.</p>
+</section>
+</section>
+<section id="check-your-understanding" class="level2 knowledge-check-heading">
+<h2 class="knowledge-check-heading anchored" data-anchor-id="check-your-understanding">Check your understanding</h2>
+<div class="qmulti__formated">
+<div class="qmulti" :class="isAnswerCorrect &amp;&amp; attempt === 1 &amp;&amp; 'qmulti_first_try'" x-data="{
+                answer: '',
+                isAnswered: false,
+                attempt: 0,
+                isAnswerCorrect: false,
+                isHintVisible: false
+            }" data-gate="" x-init="$watch('isAnswerCorrect', value => {
+                if (value) {
+                    isCurrentAnswerCorrect = true;
+                    $dispatch('answer-notification', {
+                        isCorrect: true,
+                        type: 'qmulti',
+                        gate: '',
+                        attempt: attempt
+                    });
+                }
+            })">
+<div x-show="isAnswerCorrect" x-transition="" x-cloak="" class="qmulti__result__badge qmulti__result__correct">
+    <span>✔</span></div>
+<div class="qmulti__question">
+<p>How many rows should remain after gene context is joined back to the variants?</p>
+</div>
+<hr class="hr-text" data-content="?">
+<div>
+<div>
+<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="mdzecebekj">
+<div>
+<p>25</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="mdzecebekj" value="1" x-model="answer" :disabled="isAnswerCorrect" name="foyxpkfhgi" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
+        <label for="wbylppbvrz">
+<div>
+<p>54</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="wbylppbvrz" value="0" x-model="answer" :disabled="isAnswerCorrect" name="foyxpkfhgi" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="hycgqptnrf">
+<div>
+<p>46</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="hycgqptnrf" value="2" x-model="answer" :disabled="isAnswerCorrect" name="foyxpkfhgi" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+</div>
+<div>
+<div class="qmulti__correct_result" x-show="answer === '0' &amp;&amp; isAnswered" x-transition="">
+<div>
+<p>Correct. The join returns the 25 gene-context rows to the full variant table without removing published variant records.</p>
+</div>
+</div>
+<div class="qmulti__wrong_result" x-show="answer === '1' &amp;&amp; isAnswered" x-transition="">
+<div>
+<p>This is the number of gene-context rows before they are joined back to the variants.</p>
+</div>
+</div>
+<div class="qmulti__wrong_result" x-show="answer === '2' &amp;&amp; isAnswered" x-transition="">
+<div>
+<p>This is the number of represented subjects, not the expected join size.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="qmulti__formated">
+<div class="qmulti" :class="isAnswerCorrect &amp;&amp; attempt === 1 &amp;&amp; 'qmulti_first_try'" x-data="{
+                answer: '',
+                isAnswered: false,
+                attempt: 0,
+                isAnswerCorrect: false,
+                isHintVisible: false
+            }" data-gate="" x-init="$watch('isAnswerCorrect', value => {
+                if (value) {
+                    isCurrentAnswerCorrect = true;
+                    $dispatch('answer-notification', {
+                        isCorrect: true,
+                        type: 'qmulti',
+                        gate: '',
+                        attempt: attempt
+                    });
+                }
+            })">
+<div x-show="isAnswerCorrect" x-transition="" x-cloak="" class="qmulti__result__badge qmulti__result__correct">
+    <span>✔</span></div>
+<div class="qmulti__question">
+<p>Why is this a many-to-one join?</p>
+</div>
+<hr class="hr-text" data-content="?">
+<div>
+<div>
+<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="vmtkkcluns">
+<div>
+<p>Every variant has several GTEx tissues</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="vmtkkcluns" value="1" x-model="answer" :disabled="isAnswerCorrect" name="kknvxpiaec" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
+        <label for="nijdtpeugb">
+<div>
+<p>Several variants can share one gene</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="nijdtpeugb" value="0" x-model="answer" :disabled="isAnswerCorrect" name="kknvxpiaec" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    </div>
+</div>
+</div>
+<div>
+<div class="qmulti__correct_result" x-show="answer === '0' &amp;&amp; isAnswered" x-transition="">
+<div>
+<p>Correct. The table has 54 variant rows but only 25 genes, so one gene-context row may match multiple variants.</p>
+</div>
+</div>
+<div class="qmulti__wrong_result" x-show="answer === '1' &amp;&amp; isAnswered" x-transition="">
+<div>
+<p>The relationship refers to multiple variant rows matching one gene-context row, not to the number of GTEx tissues.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="optional-activity-interpret-one-candidate" class="level2">
+<h2 class="anchored" data-anchor-id="optional-activity-interpret-one-candidate">Optional activity: Interpret one candidate</h2>
+<p>Practice separating variant-level evidence from gene-level context. This is a writing activity.</p>
+<div class="module-activity">
+<p>Choose one row from <code>dcm_follow_up</code> and write three sentences:</p>
+<ol type="1">
+<li>Report the exact variant, phenotype, and study class.</li>
+<li>Describe its GTEx and HuBMAP gene context with one limitation.</li>
+<li>Describe its Pharos target context and name a useful next study.</li>
+</ol>
+<p>Keep the conclusion at the level supported by each source: the paper supplies the variant class, and the APIs supply gene and protein context for follow-up.</p>
+</div>
+</section>
+<section id="key-points" class="level2">
+<h2 class="anchored" data-anchor-id="key-points">Key points</h2>
+<ul>
+<li>The many-to-one join preserves all 54 published variant observations.</li>
+<li>In the dated teaching data, 15 DCM rows have indexed ventricular cardiac-myocyte context; 10 are P or LP in the paper and 5 are VUS.</li>
+<li>Tissue, cell-type, and protein context can guide candidate and model selection while preserving study classifications and coverage gaps.</li>
+<li>Comparing AlphaMissense, EVE, and FoldX for one VUS shows how variant-level predictions can refine the next experiment without replacing the study class.</li>
+</ul>
+<p><strong>Next:</strong> Summarize the workflow and identify how to apply the same research-prioritization strategy to another expert-evaluated variant list.</p>
+<div class="notebook-actions">
+<p><a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/notebooks/06_variant_prioritization.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a></p>
+</div>
+
+
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwicGFuZGFzIiwibWF0cGxvdGxpYiIsInJlcXVlc3RzIl19fQ==
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl84ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS04LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzggPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl83ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS03LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzcgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl82ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzYgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBleGVyY2lzZSBjb25maWd1cmF0aW9uXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKFxuICAgIHtcbiAgICAgIGlkOiBcInB5b2RpZGUtNC1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IocHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbl9weW9kaWRlX2ZlZWRiYWNrXzQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBQeW9kaWRlR3JhZGVyKF9weW9kaWRlX3ZhbHVlXzQuZXZhbHVhdG9yKTtcbiAgY29uc3QgZmVlZGJhY2sgPSBhd2FpdCBncmFkZXIuZ3JhZGVFeGVyY2lzZSgpO1xuICBpZiAoIWZlZWRiYWNrKSByZXR1cm4gZW1wdHlGZWVkYmFjaztcbiAgcmV0dXJuIGZlZWRiYWNrO1xufVxuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtMyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3B5b2RpZGVfZWRpdG9yXzMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTMtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgcHlvZGlkZS0zLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFB5b2RpZGVFeGVyY2lzZUVkaXRvcihcbiAgICBweW9kaWRlT2pzLnB5b2RpZGVQcm9taXNlLFxuICAgIGJsb2NrLmNvZGUsXG4gICAgb3B0aW9uc1xuICApO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3B5b2RpZGVfdmFsdWVfMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMywge30pO1xuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtMiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3B5b2RpZGVfZWRpdG9yXzIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTItY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgcHlvZGlkZS0yLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFB5b2RpZGVFeGVyY2lzZUVkaXRvcihcbiAgICBweW9kaWRlT2pzLnB5b2RpZGVQcm9taXNlLFxuICAgIGJsb2NrLmNvZGUsXG4gICAgb3B0aW9uc1xuICApO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3B5b2RpZGVfdmFsdWVfMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMiwge30pO1xuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtMSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3B5b2RpZGVfZWRpdG9yXzEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgcHlvZGlkZS0xLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFB5b2RpZGVFeGVyY2lzZUVkaXRvcihcbiAgICBweW9kaWRlT2pzLnB5b2RpZGVQcm9taXNlLFxuICAgIGJsb2NrLmNvZGUsXG4gICAgb3B0aW9uc1xuICApO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3B5b2RpZGVfdmFsdWVfMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMSwge30pO1xuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtcHJlbHVkZSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InB5b2RpZGVPanMgPSB7XG4gIGNvbnN0IHtcbiAgICBQeW9kaWRlRXZhbHVhdG9yLFxuICAgIFB5b2RpZGVFbnZpcm9ubWVudE1hbmFnZXIsXG4gICAgc2V0dXBQeXRob24sXG4gICAgc3RhcnRQeW9kaWRlV29ya2VyLFxuICAgIGI2NERlY29kZSxcbiAgICBjb2xsYXBzZVBhdGgsXG4gIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHN0YXR1c0NvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1zdGF0dXNcIik7XG4gIGNvbnN0IGluZGljYXRvckNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1pbmRpY2F0b3JcIik7XG4gIGluZGljYXRvckNvbnRhaW5lci5jbGFzc0xpc3QucmVtb3ZlKFwiZC1ub25lXCIpO1xuXG4gIGxldCBzdGF0dXNUZXh0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKVxuICBzdGF0dXNUZXh0LmNsYXNzTGlzdCA9IFwiZXhlcmNpc2UtbG9hZGluZy1kZXRhaWxzXCI7XG4gIHN0YXR1c1RleHQgPSBzdGF0dXNDb250YWluZXIuYXBwZW5kQ2hpbGQoc3RhdHVzVGV4dCk7XG4gIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgSW5pdGlhbGlzZWA7XG5cbiAgLy8gSG9pc3QgaW5kaWNhdG9yIG91dCBmcm9tIGZpbmFsIHNsaWRlIHdoZW4gcnVubmluZyB1bmRlciByZXZlYWxcbiAgY29uc3QgcmV2ZWFsU3RhdHVzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXZlYWwgLmV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpZiAocmV2ZWFsU3RhdHVzKSB7XG4gICAgcmV2ZWFsU3RhdHVzLnJlbW92ZSgpO1xuICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsID4gLnNsaWRlc1wiKS5hcHBlbmRDaGlsZChyZXZlYWxTdGF0dXMpO1xuICB9XG5cbiAgLy8gTWFrZSBhbnkgcmV2ZWFsIHNsaWRlcyB3aXRoIGxpdmUgY2VsbHMgc2Nyb2xsYWJsZVxuICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKFwiLnJldmVhbCAuZXhlcmNpc2UtY2VsbFwiKS5mb3JFYWNoKChlbCkgPT4ge1xuICAgIGVsLmNsb3Nlc3QoJ3NlY3Rpb24uc2xpZGUnKS5jbGFzc0xpc3QuYWRkKFwic2Nyb2xsYWJsZVwiKTtcbiAgfSlcblxuICAvLyBQeW9kaWRlIHN1cHBsZW1lbnRhbCBkYXRhIGFuZCBvcHRpb25zXG4gIGNvbnN0IGRhdGFDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtZGF0YVxcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGRhdGEgPSBKU09OLnBhcnNlKGI2NERlY29kZShkYXRhQ29udGVudCkpO1xuXG4gIC8vIEdyYWIgbGlzdCBvZiByZXNvdXJjZXMgdG8gYmUgZG93bmxvYWRlZFxuICBjb25zdCBmaWxlc0NvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwidmZzLWZpbGVcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBmaWxlcyA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKGZpbGVzQ29udGVudCkpO1xuXG4gIGxldCBweW9kaWRlUHJvbWlzZSA9IChhc3luYyAoKSA9PiB7XG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBQeW9kaWRlYDtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgc3RhcnRQeW9kaWRlV29ya2VyKGRhdGEub3B0aW9ucyk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6IG1pY3JvcGlwYDtcbiAgICBhd2FpdCBweW9kaWRlLmxvYWRQYWNrYWdlKFwibWljcm9waXBcIik7XG4gICAgY29uc3QgbWljcm9waXAgPSBhd2FpdCBweW9kaWRlLnB5aW1wb3J0KFwibWljcm9waXBcIik7XG4gICAgYXdhaXQgZGF0YS5wYWNrYWdlcy5wa2dzLm1hcCgocGtnKSA9PiAoKSA9PiB7XG4gICAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6ICR7cGtnfWA7XG4gICAgICByZXR1cm4gbWljcm9waXAuaW5zdGFsbChwa2cpO1xuICAgIH0pLnJlZHVjZSgoY3VyLCBuZXh0KSA9PiBjdXIudGhlbihuZXh0KSwgUHJvbWlzZS5yZXNvbHZlKCkpO1xuICAgIGF3YWl0IG1pY3JvcGlwLmRlc3Ryb3koKTtcblxuICAgIC8vIERvd25sb2FkIGFuZCBpbnN0YWxsIHJlc291cmNlc1xuICAgIGF3YWl0IGZpbGVzLm1hcCgoZmlsZSkgPT4gYXN5bmMgKCkgPT4ge1xuICAgICAgY29uc3QgbmFtZSA9IGZpbGUuc3Vic3RyaW5nKGZpbGUubGFzdEluZGV4T2YoJy8nKSArIDEpO1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyByZXNvdXJjZTogJHtuYW1lfWA7XG4gICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGZldGNoKGZpbGUpO1xuICAgICAgaWYgKCFyZXNwb25zZS5vaykge1xuICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYENhbid0IGRvd25sb2FkIFxcYCR7ZmlsZX1cXGAuIEVycm9yICR7cmVzcG9uc2Uuc3RhdHVzfTogXCIke3Jlc3BvbnNlLnN0YXR1c1RleHR9XCIuYCk7XG4gICAgICB9XG4gICAgICBjb25zdCBkYXRhID0gYXdhaXQgcmVzcG9uc2UuYXJyYXlCdWZmZXIoKTtcblxuICAgICAgLy8gU3RvcmUgVVJMcyBpbiB0aGUgY3dkIHdpdGhvdXQgYW55IHN1YmRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGlmIChmaWxlLmluY2x1ZGVzKFwiOi8vXCIpKSB7XG4gICAgICAgIGZpbGUgPSBuYW1lO1xuICAgICAgfVxuXG4gICAgICAvLyBDb2xsYXBzZSBoaWdoZXIgZGlyZWN0b3J5IHN0cnVjdHVyZVxuICAgICAgZmlsZSA9IGNvbGxhcHNlUGF0aChmaWxlKTtcblxuICAgICAgLy8gQ3JlYXRlIGRpcmVjdG9yeSB0cmVlLCBpZ25vcmluZyBcImRpcmVjdG9yeSBleGlzdHNcIiBWRlMgZXJyb3JzXG4gICAgICBjb25zdCBwYXJ0cyA9IGZpbGUuc3BsaXQoJy8nKS5zbGljZSgwLCAtMSk7XG4gICAgICBsZXQgcGF0aCA9ICcnO1xuICAgICAgd2hpbGUgKHBhcnRzLmxlbmd0aCA+IDApIHtcbiAgICAgICAgcGF0aCArPSBwYXJ0cy5zaGlmdCgpICsgJy8nO1xuICAgICAgICB0cnkge1xuICAgICAgICAgIGF3YWl0IHB5b2RpZGUuRlMubWtkaXIocGF0aCk7XG4gICAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgICBpZiAoZS5uYW1lICE9PSBcIkVycm5vRXJyb3JcIikgdGhyb3cgZTtcbiAgICAgICAgICBpZiAoZS5lcnJubyAhPT0gMjApIHtcbiAgICAgICAgICAgIGNvbnN0IGVycm9yVGV4dFB0ciA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5fc3RyZXJyb3IoZS5lcnJubyk7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYEZpbGVzeXN0ZW0gRXJyb3IgJHtlLmVycm5vfSBcIiR7ZXJyb3JUZXh0fVwiLmApO1xuICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgfVxuXG4gICAgICAvLyBXcml0ZSB0aGlzIGZpbGUgdG8gdGhlIFZGU1xuICAgICAgdHJ5IHtcbiAgICAgICAgcmV0dXJuIGF3YWl0IHB5b2RpZGUuRlMud3JpdGVGaWxlKGZpbGUsIG5ldyBVaW50OEFycmF5KGRhdGEpKTtcbiAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgIGNvbnN0IGVycm9yVGV4dFB0ciA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5fc3RyZXJyb3IoZS5lcnJubyk7XG4gICAgICAgIGNvbnN0IGVycm9yVGV4dCA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5VVEY4VG9TdHJpbmcoZXJyb3JUZXh0UHRyKTtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgIH1cbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcblxuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgUHlvZGlkZSBlbnZpcm9ubWVudCBzZXR1cGA7XG4gICAgYXdhaXQgc2V0dXBQeXRob24ocHlvZGlkZSk7XG5cbiAgICBzdGF0dXNUZXh0LnJlbW92ZSgpO1xuICAgIGlmIChzdGF0dXNDb250YWluZXIuY2hpbGRyZW4ubGVuZ3RoID09IDApIHtcbiAgICAgIHN0YXR1c0NvbnRhaW5lci5wYXJlbnROb2RlLnJlbW92ZSgpO1xuICAgIH1cbiAgICByZXR1cm4gcHlvZGlkZTtcbiAgfSkoKS5jYXRjaCgoZXJyKSA9PiB7XG4gICAgc3RhdHVzVGV4dC5zdHlsZS5jb2xvciA9IFwidmFyKC0tZXhlcmNpc2UtZWRpdG9yLWhsLWVyLCAjQUQwMDAwKVwiO1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBlcnIubWVzc2FnZTtcbiAgICAvL2luZGljYXRvckNvbnRhaW5lci5xdWVyeVNlbGVjdG9yKFwiLnNwaW5uZXItZ3Jvd1wiKS5jbGFzc0xpc3QuYWRkKFwiZC1ub25lXCIpO1xuICAgIHRocm93IGVycjtcbiAgfSk7XG5cbiAgLy8gS2VlcCB0cmFjayBvZiBpbml0aWFsIE9KUyBibG9jayByZW5kZXJcbiAgY29uc3QgcmVuZGVyZWRPanMgPSB7fTtcblxuICBjb25zdCBwcm9jZXNzID0gYXN5bmMgKGNvbnRleHQsIGlucHV0cykgPT4ge1xuICAgIGNvbnN0IHB5b2RpZGUgPSBhd2FpdCBweW9kaWRlUHJvbWlzZTtcbiAgICBjb25zdCBldmFsdWF0b3IgPSBuZXcgUHlvZGlkZUV2YWx1YXRvcihweW9kaWRlLCBjb250ZXh0KTtcbiAgICBhd2FpdCBldmFsdWF0b3IucHJvY2VzcyhpbnB1dHMpO1xuICAgIHJldHVybiBldmFsdWF0b3IuY29udGFpbmVyO1xuICB9XG5cbiAgcmV0dXJuIHtcbiAgICBweW9kaWRlUHJvbWlzZSxcbiAgICByZW5kZXJlZE9qcyxcbiAgICBwcm9jZXNzLFxuICB9O1xufVxuIn1dfQ==
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+WyIuLi9hcGlfaGVscGVycy5weSIsIi4uL2RhdGEvdmFyaWFudHMuY3N2IiwiLi4vZGF0YS9ndGV4X2V4cHJlc3Npb24uY3N2IiwiLi4vZGF0YS9odWJtYXBfY2VsbF9leHByZXNzaW9uLmNzdiIsIi4uL2RhdGEvcGhhcm9zX3RhcmdldF9jb250ZXh0LmNzdiIsIi4uL2RhdGEvaW50ZWdyYXRlZF9wcmlvcml0aXphdGlvbi5jc3YiXQ==
+</script>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../lessons";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cfdetrainingcenter\.github\.io\/candidate-genetic-var\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lessons/pharos.html" class="pagination-link" aria-label="6. Protein Context and Druggability: IDG/Pharos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">6. Protein Context and Druggability: IDG/Pharos</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lessons/conclusion.html" class="pagination-link" aria-label="8. Conclusion">
+        <span class="nav-page-text">8. Conclusion</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Developed by <a href="https://github.com/sdhutchins">Shaurita D. Hutchins</a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><img src="../assets/images/cfde.svg" class="footer-logo img-fluid"></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/CFDETrainingCenter/candidate-genetic-var/blob/main/lessons/prioritization.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CFDETrainingCenter/candidate-genetic-var/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>A community-sourced <a href="https://orau.org/cfde-trainingcenter/">CFDE Training Center</a> module.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-contrib/prism-1/prism.js"></script>
+<script src="../site_libs/quarto-contrib/alpine-3.12/sort-alpine.min.js"></script>
+<script src="../site_libs/quarto-contrib/alpine-3.12/alpine.min.js"></script>
+</body></html>

@@ -35,7 +35,7 @@ contains one row for each combination of 25 genes and six selected heart cell
 types. For an available combination, the extract summarizes up to the first
 500 cells returned by `POST /api/celldetailevaluation/` after intersecting the
 Heart organ handle with a cell-type handle. `total_matching_cells` reports the
-full matching set, while `sampled_cells` reports the number summarized.
+full matching set, while `retrieved_records` reports the number summarized.
 
 The Cells API aggregate endpoint returned a server error during retrieval, so
 means and detection percentages were calculated from the returned cell-level
