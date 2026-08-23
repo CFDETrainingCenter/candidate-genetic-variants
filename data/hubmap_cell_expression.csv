@@ -1,31 +1,151 @@
-gene_symbol,cell_type_id,cell_type_label,total_matching_cells,sampled_cells,mean_normalized_expression,percent_detected,dataset_uuids,availability,retrieved_date
+gene_symbol,cell_type_id,cell_type_label,total_matching_cells,retrieved_records,mean_normalized_expression,percent_detected,dataset_uuids,availability,retrieved_date
+ACTC1,CL:0002131,regular ventricular cardiac myocyte,11033,500,52.9785,9.4,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+DES,CL:0002131,regular ventricular cardiac myocyte,11033,500,1115.6490,35.2,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+DMD,CL:0002131,regular ventricular cardiac myocyte,11033,0,,,,not_available_in_cells_api_index,2026-08-11
+DSC2,CL:0002131,regular ventricular cardiac myocyte,11033,500,1.2730,1.0,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+DSG2,CL:0002131,regular ventricular cardiac myocyte,11033,500,4.5942,1.0,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+FLNC,CL:0002131,regular ventricular cardiac myocyte,11033,500,33.8279,12.8,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+GBE1,CL:0002131,regular ventricular cardiac myocyte,11033,500,4.4653,0.4,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+GYG1,CL:0002131,regular ventricular cardiac myocyte,11033,0,,,,not_available_in_cells_api_index,2026-08-11
+KCNQ1,CL:0002131,regular ventricular cardiac myocyte,11033,500,0.0000,0.0,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+LAMP2,CL:0002131,regular ventricular cardiac myocyte,11033,0,,,,not_available_in_cells_api_index,2026-08-11
+LMNA,CL:0002131,regular ventricular cardiac myocyte,11033,0,,,,not_available_in_cells_api_index,2026-08-11
 MYBPC3,CL:0002131,regular ventricular cardiac myocyte,11033,500,232.2100,30.8,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
 MYH7,CL:0002131,regular ventricular cardiac myocyte,11033,500,1307.6360,39.8,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+MYL3,CL:0002131,regular ventricular cardiac myocyte,11033,0,,,,not_available_in_cells_api_index,2026-08-11
+MYLK3,CL:0002131,regular ventricular cardiac myocyte,11033,500,62.0061,13.4,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+PKD1,CL:0002131,regular ventricular cardiac myocyte,11033,0,,,,not_available_in_cells_api_index,2026-08-11
+PKP2,CL:0002131,regular ventricular cardiac myocyte,11033,0,,,,not_available_in_cells_api_index,2026-08-11
+PLN,CL:0002131,regular ventricular cardiac myocyte,11033,500,113.9126,7.8,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+POLG,CL:0002131,regular ventricular cardiac myocyte,11033,0,,,,not_available_in_cells_api_index,2026-08-11
+TNNI3,CL:0002131,regular ventricular cardiac myocyte,11033,500,314.8745,22.8,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+TNNI3K,CL:0002131,regular ventricular cardiac myocyte,11033,500,2.4065,0.4,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
 TNNT2,CL:0002131,regular ventricular cardiac myocyte,11033,500,103.6811,38.2,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
-LMNA,CL:0002131,regular ventricular cardiac myocyte,,,,,,not_available_in_cells_api_index,2026-08-11
-PKP2,CL:0002131,regular ventricular cardiac myocyte,,,,,,not_available_in_cells_api_index,2026-08-11
-MYBPC3,CL:0002129,regular atrial cardiac myocyte,10,10,475.7721,40.0,224e01ccfc20977ee5a6a6a5b96aa7d;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
-MYH7,CL:0002129,regular atrial cardiac myocyte,10,10,158.6831,10.0,224e01ccfc20977ee5a6a6a5b96aa7d;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
-TNNT2,CL:0002129,regular atrial cardiac myocyte,10,10,332.7680,70.0,224e01ccfc20977ee5a6a6a5b96aa7d;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+TPM1,CL:0002131,regular ventricular cardiac myocyte,11033,0,,,,not_available_in_cells_api_index,2026-08-11
+TTN,CL:0002131,regular ventricular cardiac myocyte,11033,0,,,,not_available_in_cells_api_index,2026-08-11
+TTR,CL:0002131,regular ventricular cardiac myocyte,11033,0,,,,not_available_in_cells_api_index,2026-08-11
+ACTC1,CL:0002129,regular atrial cardiac myocyte,10,10,116.9556,20.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+DES,CL:0002129,regular atrial cardiac myocyte,10,10,1196.5236,30.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+DMD,CL:0002129,regular atrial cardiac myocyte,,,,,,not_available_in_cells_api_index,2026-08-11
+DSC2,CL:0002129,regular atrial cardiac myocyte,10,10,21.6234,10.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+DSG2,CL:0002129,regular atrial cardiac myocyte,10,10,0.0000,0.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+FLNC,CL:0002129,regular atrial cardiac myocyte,10,10,95.0670,20.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+GBE1,CL:0002129,regular atrial cardiac myocyte,10,10,0.0000,0.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+GYG1,CL:0002129,regular atrial cardiac myocyte,,,,,,not_available_in_cells_api_index,2026-08-11
+KCNQ1,CL:0002129,regular atrial cardiac myocyte,10,10,0.0000,0.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+LAMP2,CL:0002129,regular atrial cardiac myocyte,,,,,,not_available_in_cells_api_index,2026-08-11
 LMNA,CL:0002129,regular atrial cardiac myocyte,,,,,,not_available_in_cells_api_index,2026-08-11
+MYBPC3,CL:0002129,regular atrial cardiac myocyte,10,10,475.7721,40.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+MYH7,CL:0002129,regular atrial cardiac myocyte,10,10,158.6831,10.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+MYL3,CL:0002129,regular atrial cardiac myocyte,,,,,,not_available_in_cells_api_index,2026-08-11
+MYLK3,CL:0002129,regular atrial cardiac myocyte,10,10,0.0000,0.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+PKD1,CL:0002129,regular atrial cardiac myocyte,,,,,,not_available_in_cells_api_index,2026-08-11
 PKP2,CL:0002129,regular atrial cardiac myocyte,,,,,,not_available_in_cells_api_index,2026-08-11
+PLN,CL:0002129,regular atrial cardiac myocyte,10,10,0.0000,0.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+POLG,CL:0002129,regular atrial cardiac myocyte,,,,,,not_available_in_cells_api_index,2026-08-11
+TNNI3,CL:0002129,regular atrial cardiac myocyte,10,10,0.0000,0.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+TNNI3K,CL:0002129,regular atrial cardiac myocyte,10,10,0.0000,0.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+TNNT2,CL:0002129,regular atrial cardiac myocyte,10,10,332.7680,70.0,224e01ccfc20977ee5a6a6a5b96aa7d7;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+TPM1,CL:0002129,regular atrial cardiac myocyte,,,,,,not_available_in_cells_api_index,2026-08-11
+TTN,CL:0002129,regular atrial cardiac myocyte,,,,,,not_available_in_cells_api_index,2026-08-11
+TTR,CL:0002129,regular atrial cardiac myocyte,,,,,,not_available_in_cells_api_index,2026-08-11
+ACTC1,CL:0000057,fibroblast,12228,500,3.3628,0.6,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+DES,CL:0000057,fibroblast,12228,500,78.7110,3.4,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+DMD,CL:0000057,fibroblast,,,,,,not_available_in_cells_api_index,2026-08-11
+DSC2,CL:0000057,fibroblast,12228,500,0.4503,0.2,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+DSG2,CL:0000057,fibroblast,12228,500,0.0000,0.0,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+FLNC,CL:0000057,fibroblast,12228,500,1.2395,1.0,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+GBE1,CL:0000057,fibroblast,12228,500,5.8525,0.8,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+GYG1,CL:0000057,fibroblast,,,,,,not_available_in_cells_api_index,2026-08-11
+KCNQ1,CL:0000057,fibroblast,12228,500,0.0000,0.0,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+LAMP2,CL:0000057,fibroblast,,,,,,not_available_in_cells_api_index,2026-08-11
+LMNA,CL:0000057,fibroblast,,,,,,not_available_in_cells_api_index,2026-08-11
 MYBPC3,CL:0000057,fibroblast,12228,500,1.6207,0.6,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
 MYH7,CL:0000057,fibroblast,12228,500,37.0915,4.0,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
-TNNT2,CL:0000057,fibroblast,12228,500,2.3672,1.6,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
-LMNA,CL:0000057,fibroblast,,,,,,not_available_in_cells_api_index,2026-08-11
+MYL3,CL:0000057,fibroblast,,,,,,not_available_in_cells_api_index,2026-08-11
+MYLK3,CL:0000057,fibroblast,12228,500,1.3592,0.4,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+PKD1,CL:0000057,fibroblast,,,,,,not_available_in_cells_api_index,2026-08-11
 PKP2,CL:0000057,fibroblast,,,,,,not_available_in_cells_api_index,2026-08-11
+PLN,CL:0000057,fibroblast,12228,500,11.9725,0.8,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+POLG,CL:0000057,fibroblast,,,,,,not_available_in_cells_api_index,2026-08-11
+TNNI3,CL:0000057,fibroblast,12228,500,30.5490,1.6,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+TNNI3K,CL:0000057,fibroblast,12228,500,0.9512,0.2,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+TNNT2,CL:0000057,fibroblast,12228,500,2.3672,1.6,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+TPM1,CL:0000057,fibroblast,,,,,,not_available_in_cells_api_index,2026-08-11
+TTN,CL:0000057,fibroblast,,,,,,not_available_in_cells_api_index,2026-08-11
+TTR,CL:0000057,fibroblast,,,,,,not_available_in_cells_api_index,2026-08-11
+ACTC1,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
+DES,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
+DMD,CL:0000115,endothelial cell,,,,,,not_available_in_cells_api_index,2026-08-11
+DSC2,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
+DSG2,CL:0000115,endothelial cell,7,7,65.4468,14.3,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
+FLNC,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
+GBE1,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
+GYG1,CL:0000115,endothelial cell,,,,,,not_available_in_cells_api_index,2026-08-11
+KCNQ1,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
+LAMP2,CL:0000115,endothelial cell,,,,,,not_available_in_cells_api_index,2026-08-11
+LMNA,CL:0000115,endothelial cell,,,,,,not_available_in_cells_api_index,2026-08-11
 MYBPC3,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
 MYH7,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
-TNNT2,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
-LMNA,CL:0000115,endothelial cell,,,,,,not_available_in_cells_api_index,2026-08-11
+MYL3,CL:0000115,endothelial cell,,,,,,not_available_in_cells_api_index,2026-08-11
+MYLK3,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
+PKD1,CL:0000115,endothelial cell,,,,,,not_available_in_cells_api_index,2026-08-11
 PKP2,CL:0000115,endothelial cell,,,,,,not_available_in_cells_api_index,2026-08-11
+PLN,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
+POLG,CL:0000115,endothelial cell,,,,,,not_available_in_cells_api_index,2026-08-11
+TNNI3,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
+TNNI3K,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
+TNNT2,CL:0000115,endothelial cell,7,7,0.0000,0.0,17f67cb15e59f65e640d85d2f3866cde;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169,available,2026-08-11
+TPM1,CL:0000115,endothelial cell,,,,,,not_available_in_cells_api_index,2026-08-11
+TTN,CL:0000115,endothelial cell,,,,,,not_available_in_cells_api_index,2026-08-11
+TTR,CL:0000115,endothelial cell,,,,,,not_available_in_cells_api_index,2026-08-11
+ACTC1,CL:0000192,smooth muscle cell,151,151,145.7507,28.5,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+DES,CL:0000192,smooth muscle cell,151,151,245.4402,23.2,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+DMD,CL:0000192,smooth muscle cell,,,,,,not_available_in_cells_api_index,2026-08-11
+DSC2,CL:0000192,smooth muscle cell,151,151,0.1962,1.3,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+DSG2,CL:0000192,smooth muscle cell,151,151,0.0000,0.0,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+FLNC,CL:0000192,smooth muscle cell,151,151,8.2849,7.9,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+GBE1,CL:0000192,smooth muscle cell,151,151,29.7415,2.6,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+GYG1,CL:0000192,smooth muscle cell,,,,,,not_available_in_cells_api_index,2026-08-11
+KCNQ1,CL:0000192,smooth muscle cell,151,151,0.0000,0.0,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+LAMP2,CL:0000192,smooth muscle cell,,,,,,not_available_in_cells_api_index,2026-08-11
+LMNA,CL:0000192,smooth muscle cell,,,,,,not_available_in_cells_api_index,2026-08-11
 MYBPC3,CL:0000192,smooth muscle cell,151,151,15.3090,6.6,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
 MYH7,CL:0000192,smooth muscle cell,151,151,362.2509,29.8,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
-TNNT2,CL:0000192,smooth muscle cell,151,151,16.6922,23.8,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
-LMNA,CL:0000192,smooth muscle cell,,,,,,not_available_in_cells_api_index,2026-08-11
+MYL3,CL:0000192,smooth muscle cell,,,,,,not_available_in_cells_api_index,2026-08-11
+MYLK3,CL:0000192,smooth muscle cell,151,151,10.0455,4.0,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+PKD1,CL:0000192,smooth muscle cell,,,,,,not_available_in_cells_api_index,2026-08-11
 PKP2,CL:0000192,smooth muscle cell,,,,,,not_available_in_cells_api_index,2026-08-11
+PLN,CL:0000192,smooth muscle cell,151,151,125.5663,11.3,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+POLG,CL:0000192,smooth muscle cell,,,,,,not_available_in_cells_api_index,2026-08-11
+TNNI3,CL:0000192,smooth muscle cell,151,151,143.8973,25.2,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+TNNI3K,CL:0000192,smooth muscle cell,151,151,0.0000,0.7,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+TNNT2,CL:0000192,smooth muscle cell,151,151,16.6922,23.8,007f3dfaaa287d5c7c227651f61a9c5b;17f67cb15e59f65e640d85d2f3866cde;224e01ccfc20977ee5a6a6a5b96aa7d7;22684b9011fc5aea5cb3f89670a461e8;35e9bf0f58152ceb6f4d01052ac8867d;7d70a4deb9e2f0592f0c56e20ca91169;a48ab0bf5d8084da24859c4e64336e9c;c616de3ce57804ede2dd519a1c8addf2,available,2026-08-11
+TPM1,CL:0000192,smooth muscle cell,,,,,,not_available_in_cells_api_index,2026-08-11
+TTN,CL:0000192,smooth muscle cell,,,,,,not_available_in_cells_api_index,2026-08-11
+TTR,CL:0000192,smooth muscle cell,,,,,,not_available_in_cells_api_index,2026-08-11
+ACTC1,CL:0000235,macrophage,3599,500,7.8917,1.4,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+DES,CL:0000235,macrophage,3599,500,104.5268,4.6,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+DMD,CL:0000235,macrophage,,,,,,not_available_in_cells_api_index,2026-08-11
+DSC2,CL:0000235,macrophage,3599,500,3.8595,1.6,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+DSG2,CL:0000235,macrophage,3599,500,0.0000,0.0,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+FLNC,CL:0000235,macrophage,3599,500,2.4990,0.6,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+GBE1,CL:0000235,macrophage,3599,500,0.0000,0.0,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+GYG1,CL:0000235,macrophage,,,,,,not_available_in_cells_api_index,2026-08-11
+KCNQ1,CL:0000235,macrophage,3599,500,3.2667,1.2,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+LAMP2,CL:0000235,macrophage,,,,,,not_available_in_cells_api_index,2026-08-11
+LMNA,CL:0000235,macrophage,,,,,,not_available_in_cells_api_index,2026-08-11
 MYBPC3,CL:0000235,macrophage,3599,500,6.9503,1.2,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
 MYH7,CL:0000235,macrophage,3599,500,50.6606,2.8,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
-TNNT2,CL:0000235,macrophage,3599,500,3.7948,2.4,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
-LMNA,CL:0000235,macrophage,,,,,,not_available_in_cells_api_index,2026-08-11
+MYL3,CL:0000235,macrophage,,,,,,not_available_in_cells_api_index,2026-08-11
+MYLK3,CL:0000235,macrophage,3599,500,1.0310,0.6,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+PKD1,CL:0000235,macrophage,,,,,,not_available_in_cells_api_index,2026-08-11
 PKP2,CL:0000235,macrophage,,,,,,not_available_in_cells_api_index,2026-08-11
+PLN,CL:0000235,macrophage,3599,500,11.4914,1.0,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+POLG,CL:0000235,macrophage,,,,,,not_available_in_cells_api_index,2026-08-11
+TNNI3,CL:0000235,macrophage,3599,500,36.6393,2.4,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+TNNI3K,CL:0000235,macrophage,3599,500,0.0000,0.0,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+TNNT2,CL:0000235,macrophage,3599,500,3.7948,2.4,007f3dfaaa287d5c7c227651f61a9c5b,available,2026-08-11
+TPM1,CL:0000235,macrophage,,,,,,not_available_in_cells_api_index,2026-08-11
+TTN,CL:0000235,macrophage,,,,,,not_available_in_cells_api_index,2026-08-11
+TTR,CL:0000235,macrophage,,,,,,not_available_in_cells_api_index,2026-08-11
