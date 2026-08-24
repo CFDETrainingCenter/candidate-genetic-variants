@@ -170,7 +170,6 @@ annotations. Complete the method that counts distinct gene symbols.
 
 ```{pyodide}
 #| exercise: summarize_variant_dataset
-#| envir: global
 # Count rows, identifiers, and missing HGVSp values.
 dataset_overview = pd.Series(
     {

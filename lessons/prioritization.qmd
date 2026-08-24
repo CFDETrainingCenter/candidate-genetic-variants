@@ -174,7 +174,6 @@ keeps every row from the published variant table.
 
 ```{pyodide}
 #| exercise: join_gene_context
-#| envir: global
 # Join context by gene symbol.
 evidence_matrix = variants.merge(
     gene_context,

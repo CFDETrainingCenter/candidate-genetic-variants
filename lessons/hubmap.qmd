@@ -222,7 +222,6 @@ mean-expression ranking.
 
 ```{pyodide}
 #| exercise: compare_hubmap_measures
-#| envir: global
 # Rank genes by detection frequency.
 top_detected_genes = (
     available_ventricular

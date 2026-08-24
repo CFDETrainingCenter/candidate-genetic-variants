@@ -233,7 +233,6 @@ Rank the same genes by atrial-appendage expression and compare the result with
 
 ```{pyodide}
 #| exercise: compare_gtex_tissues
-#| envir: global
 # Rank genes by atrial-appendage expression.
 top_atrial_genes = heart_expression.nlargest(
     10,

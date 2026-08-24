@@ -178,7 +178,6 @@ the pandas method that counts each distinct category.
 
 ```{pyodide}
 #| exercise: summarize_pharos_tdl
-#| envir: global
 # Count genes by TDL.
 tdl_summary = (
     pharos["tdl"]

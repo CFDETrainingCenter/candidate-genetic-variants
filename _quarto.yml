@@ -75,6 +75,8 @@ format:
     link-external-icon: true
     link-external-newwindow: true
     pyodide:
+      cell-options:
+        envir: global
       packages:
         - pandas
         - matplotlib
