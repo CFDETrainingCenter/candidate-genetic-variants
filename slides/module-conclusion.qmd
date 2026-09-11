@@ -1,0 +1,65 @@
+## Combining the evidence {.title-slide-custom}
+
+<p class="subtitle">A closer look at the <em>TNNT2</em> p.Asp259Ala example</p>
+
+<p class="byline">Shaurita D. Hutchins</p>
+
+<img class="title-logo nostretch" src="../assets/images/cfde.svg"
+alt="CFDE Training Center">
+
+## What the paper reports
+
+- **Gene:** *TNNT2*
+- **Variant:** c.776A&gt;C, p.Asp259Ala
+- **Study classification:** variant of uncertain significance
+- **Cohort evidence:** Two other participants with DCM carried pathogenic or
+  likely pathogenic *TNNT2* variants
+
+These findings support the relevance of *TNNT2* to DCM in this cohort.
+
+<p class="source-note">Source: Linnér et al. 2025,
+<a href="https://doi.org/10.1038/s41598-025-88465-8">Supplementary Table S4</a>.</p>
+
+## *TNNT2* expression and protein information
+
+- **GTEx:** Median expression of 2,896.66 TPM in left ventricle
+- **HuBMAP:** Expression above zero in 38.2% of the retrieved ventricular
+  cardiac-myocyte records
+- **Pharos:** Tbio with 441 publications and 167 protein-interaction records
+
+This evidence supports using cardiac myocytes as a model to study the variant.
+
+<p class="source-note">Sources:
+<a href="https://gtexportal.org/api/v2/docs">GTEx Portal API</a>,
+<a href="https://docs.hubmapconsortium.org/apis.html">HuBMAP APIs</a>, and
+<a href="https://pharos.nih.gov/api">Pharos API</a>.</p>
+
+## ProtVar supports testing thin-filament function
+
+::: {.prediction-table}
+| Source/Tool | Prediction | What it describes |
+|---|---|---|
+| AlphaMissense | Pathogenic, 0.8296 | Variant-effect prediction |
+| EVE | Uncertain, 0.575 | Evolutionary model |
+| FoldX | −0.369 kcal/mol | Protein stability estimate |
+| AlphaFold | pLDDT 92.88 | Confidence in predicted structure |
+:::
+
+<br>
+
+- Cardiac troponin T interacts with troponin I, troponin C, and tropomyosin to
+regulate thin-filament contraction.
+- Compare wild-type and p.Asp259Ala troponin complexes across calcium concentrations.
+- Measure calcium sensitivity and maximum thin-filament activation.
+
+The variant remains a variant of uncertain significance.
+
+<p class="source-note">Source:
+<a href="https://www.ebi.ac.uk/ProtVar/api/swagger-ui/index.html">ProtVar API</a>.</p>
+
+## Questions for another candidate genetic variant
+
+1. What did the source study report?
+2. Is the gene expressed in the relevant tissue and cell type?
+3. What is known about the protein and variant?
+4. Which experiment could test the predicted effect?
