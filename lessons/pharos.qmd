@@ -1,32 +1,29 @@
 ---
-title: "Protein Knowledge and Research Context: IDG/Pharos"
+title: "Protein Knowledge and Research Tools: IDG/Pharos"
 aliases:
   - /pharos.html
 ---
 
 **Estimated time:** 20 minutes
 
-Use Pharos to connect the paper's genes with protein knowledge and identify
+Move from gene expression to protein knowledge. Use Pharos to identify
 biological, chemical, or clinical records for closer review.
 
-## Protein target context
+## Protein annotations
 
-GTEx and HuBMAP added expression context to genes from the heart-failure paper.
-We now ask what is known about the proteins those genes encode.
+GTEx and HuBMAP showed where the genes have indexed expression. Pharos shows
+what is known about the encoded proteins and which research tools may exist.
 
 IDG stands for **Illuminating the Druggable Genome**. This NIH Common Fund
 program develops knowledge and research tools for understudied proteins in
-druggable protein families. Pharos is an IDG resource that combines information
-about human proteins and drug targets. It brings protein identifiers,
+druggable protein families. Its Pharos resource combines protein identifiers,
 annotations, publications, interactions, ligands, drugs, and target-development
-categories into one resource.
+categories.
 
 ### Why use Pharos for this paper?
 
-The paper reports candidate variants in 25 protein-coding genes. GTEx and
-HuBMAP showed where those genes have indexed expression. Pharos adds a different
-question: what protein knowledge and experimental starting points have already
-been recorded for each gene?
+The paper reports candidate variants in 25 protein-coding genes. Pharos shows
+the protein knowledge and experimental starting points recorded for each gene.
 
 We selected fields that support that question:
 
@@ -54,21 +51,19 @@ Pharos uses four Target Development Levels, called TDLs:
 
 ### Scope of target development levels
 
-TDL is a protein-level field. The study classification remains the
-variant-level field.
+TDL describes a protein. The study classification describes a variant.
 
 ::: {.callout-tip title="Why Pharos helps"}
-The expression resources provide tissue and cell-type context. Pharos adds
-protein identifiers, knowledge categories, and counts of linked publications,
-interactions, ligands, and drugs. These fields help identify which target
-records to inspect next.
+The expression resources help us decide where a gene may be relevant. Pharos
+helps us decide what might be possible next. Its protein identifiers, knowledge
+categories, and linked record counts point us toward targets with existing
+biology, chemical tools, or clinical relationships worth inspecting.
 :::
 
 ## Querying the Pharos API
 
-Pharos uses GraphQL. The request names the exact target fields to return. The
-helper repeats that query for each of the paper's 25 gene symbols and puts the
-responses in one table.
+Pharos uses GraphQL. The helper requests selected target fields for each of the
+25 gene symbols and combines the responses in one table.
 
 ### Prepare the gene list and API helper
 
@@ -102,7 +97,7 @@ pd.Series(gene_symbols, name="gene_symbol").head()
 `gene_symbols` contains the 25 unique gene symbols in alphabetical order.
 `variants` retains all 54 published rows.
 
-### Request protein-target context
+### Request protein annotations
 
 Request protein-target records for the 25 genes and display the first five
 targets. In the returned table, compare TDL with the separate publication,
@@ -122,14 +117,13 @@ pharos.head()
 ```
 :::
 
-Each row represents one protein target. The preview connects its gene symbol
-and UniProt identifier to a TDL. The other fields count publications,
-protein-interaction records, ligands, and drugs linked to the target in Pharos.
+One row represents one protein target. The gene symbol and UniProt identifier
+link it to Pharos. The other fields report its TDL and counts of publications,
+protein interactions, ligands, and drugs.
 
-TDL and the count fields answer related but different questions. TDL follows
-Pharos development criteria. The counts describe records attached to the
-target. A Tchem target can therefore have ligand records while its drug count
-is zero.
+TDL follows Pharos development criteria. The counts describe records attached
+to the target. A Tchem target can therefore have ligand records when its drug
+count is zero.
 
 ::: {.callout-note title="Live data"}
 Target records are requested directly from Pharos. Target information and
@@ -166,7 +160,7 @@ The complete implementation is in
 
 ## Review the protein targets
 
-Count the TDL categories and compare protein fields that can inform research
+First summarize target development, then examine records that may support
 follow-up.
 
 ### Summarize target development levels
@@ -206,10 +200,10 @@ tdl_summary
 :::
 ::::
 
-The `genes` column counts the queried targets assigned to each Pharos TDL. In
-the dated teaching data, 18 targets are Tbio, 4 are Tclin, and 3 are Tchem. No
-Tdark targets were returned. The Tclin targets are *TTR*, *DMD*, *KCNQ1*, and
-*MYH7*; the Tchem targets are *MYLK3*, *POLG*, and *TNNI3K*.
+The `genes` column counts how many queried targets fall into each Pharos TDL. In
+the dated teaching data, 18 are Tbio, 4 are Tclin, and 3 are Tchem. None are
+Tdark. The Tclin targets are *TTR*, *DMD*, *KCNQ1*, and *MYH7*; the Tchem
+targets are *MYLK3*, *POLG*, and *TNNI3K*.
 
 ### Compare target fields
 
@@ -247,8 +241,7 @@ target_summary
 ```
 :::
 
-Each row combines a target's TDL with its linked record counts. The contrasting
-patterns suggest different starting points:
+TDL and linked record counts suggest different starting points:
 
 - *TTR* is Tclin with 41 ligand and 11 drug records. Open its Pharos target
   record to inspect the named drugs, mechanisms, and indications.
@@ -277,9 +270,10 @@ targets_with_drugs.loc[:, ["gene_symbol", "tdl", "drug_count"]]
 ```
 :::
 
-The dated response returns the four Tclin targets, *TTR*, *DMD*, *KCNQ1*, and
-*MYH7*, plus the Tchem targets *MYLK3* and *TNNI3K*. *POLG* remains visible in
-the complete table with two ligand records and no drug records.
+The filter returns all four Tclin targets, *TTR*, *DMD*, *KCNQ1*, and *MYH7*,
+along with the Tchem targets *MYLK3* and *TNNI3K*. *POLG* does not meet the drug
+count condition, but it remains visible in the complete table with two ligand
+records and no drug records.
 
 ## Check your understanding {.knowledge-check-heading}
 
@@ -326,8 +320,8 @@ classification of a specific variant?
 - Six Tclin or Tchem targets have at least one drug record in the dated
   response; *POLG* is Tchem with ligand records and no drug records.
 
-**Next:** Join the GTEx, HuBMAP, and Pharos evidence back to all 54 variant rows
-and use the combined context to prioritize research follow-up.
+**Next:** Join the GTEx, HuBMAP, and Pharos results to all 54 variant rows and
+prioritize research follow-up.
 
 <div class="notebook-actions">
 <a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/05_pharos_target_context.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>

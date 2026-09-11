@@ -6,21 +6,21 @@ aliases:
 
 **Estimated time:** 15 minutes
 
-Learn the parts of an API request, compare the three resources used in this
-module, and build and send a request.
+Learn how an API request works, compare the resources in this module, and send
+a request.
 
 ## Understand APIs for biomedical data
 
 API stands for **application programming interface**. An API gives software a
-standard way to ask another service for data or an action.
+standard way to request data or an action from another system.
 
-In this module, code sends the 25 gene identifiers from the heart-failure paper
-to biological data services and reads the returned information in Python. The
-same request can be run again without copying results from a website by hand.
+We will send 25 gene identifiers from the heart-failure paper to biological
+data services and read the responses in Python. Unlike copied website results,
+API requests can be repeated, checked, and shared.
 
 ### Identify the parts of an API request
 
-These terms describe the parts of a request and the information returned.
+First, identify the parts of a request.
 
 | Term | Meaning |
 |---|---|
@@ -30,13 +30,13 @@ These terms describe the parts of a request and the information returned.
 | Response | The information returned by the API |
 | JSON | A common text format used to organize returned data |
 
-A reproducible API request records the endpoint, parameters, resource version,
-and date.
+A reproducible request records its endpoint, parameters, resource version, and
+date. Together, these details show exactly what was requested and when.
 
 ## Compare the APIs used in this module
 
-GTEx, HuBMAP, and Pharos contain different types of biological information. The
-next lessons use each API to ask a different question about the 25 genes.
+GTEx, HuBMAP, and Pharos contain different biological data. We will use each API
+to ask a different question about the same 25 genes.
 
 | CFDE resource | Information returned | Question this resource helps answer |
 |---|---|---|
@@ -44,21 +44,20 @@ next lessons use each API to ask a different question about the 25 genes.
 | [HuBMAP APIs](https://docs.hubmapconsortium.org/apis.html) | Indexed expression availability and summaries for up to the first 500 ventricular cardiac-myocyte records | Which genes have indexed values in ventricular cardiac myocytes? |
 | [Pharos GraphQL API](https://pharos.nih.gov/api) | Protein annotations, target development level, and selected knowledge counts | What is known about the encoded protein, and how developed is it as a target? |
 
-The published variant table is saved in the repository. GTEx, HuBMAP, and
-Pharos are queried live by default, with dated saved responses as backups.
+The published variant table is saved in the repository. By default, GTEx,
+HuBMAP, and Pharos are queried live. Dated responses are available as backups
+when a service cannot be reached.
 
-Later, the prioritization lesson uses the
+The prioritization lesson also uses the
 [ProtVar API](https://www.ebi.ac.uk/ProtVar/api) to compare three protein-effect
-predictions for one missense VUS. ProtVar is not a CFDE resource. It is included
-as an example of using a focused follow-up API to extend the context returned by
-the CFDE resources.
+predictions for one missense VUS. ProtVar is not a CFDE resource. It provides
+variant-level predictions that complement the gene and protein data.
 
 ## Build an E-utilities request
 
-Before querying the three CFDE resources, use NCBI E-utilities to see the parts
-of a request in a single URL. Its endpoint and parameters are easy to inspect.
-Build the URL by choosing a gene symbol, defining the request parameters, and
-joining those parameters to the endpoint.
+We will first use NCBI E-utilities because its endpoint and parameters are easy
+to inspect in one URL. Build the URL by choosing a gene symbol, defining the
+parameters, and joining them to the endpoint.
 
 Enter *MYH7* or another gene symbol and choose **Run Code**. The final line
 displays the NCBI request URL without sending it.
@@ -114,9 +113,9 @@ request_url
 :::
 
 The displayed URL sends `db=gene` to NCBI Gene, places the selected symbol and
-`Homo sapiens` in `term`, and requests JSON with `retmode=json`. Changing
-`gene_symbol` changes the search while leaving the endpoint and other
-parameters unchanged.
+`Homo sapiens` in `term`, and requests JSON with `retmode=json`. Change
+`gene_symbol`, and the search changes with it. The endpoint and remaining
+parameters stay the same.
 
 ### Send the request
 
@@ -145,13 +144,13 @@ search_result = response_json["esearchresult"]
 
 :::
 
-A status code of `200` means that NCBI received and processed the request. The
-match count reports how many NCBI Gene records met the search terms, and
-`ncbi_gene_ids` contains their database identifiers.
+A status code of `200` confirms that NCBI received and processed the request.
+The match count reports how many NCBI Gene records met the search terms, while
+`ncbi_gene_ids` provides their database identifiers.
 
 ## Compare API request approaches
 
-The three APIs do not all structure requests in the same way.
+The three resources use two common request styles.
 
 ### Read a REST request
 

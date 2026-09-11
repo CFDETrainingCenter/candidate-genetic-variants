@@ -6,28 +6,29 @@ aliases:
 
 **Estimated time:** 5 minutes
 
-Review the contribution and limits of each data source, then apply the workflow
-to a new candidate list.
+Review the decisions each resource supports and apply the workflow to a new
+candidate genetic variant list.
 
 ## What you accomplished
 
-The workflow retained all 54 published variant rows while adding bulk-tissue
-expression from GTEx, cell-type expression from HuBMAP, target information from
-Pharos, and protein predictions from ProtVar. Each result remained traceable to
-its source, identifiers, and retrieval date.
+We kept all 54 published variant rows while adding bulk-tissue expression from
+GTEx, cell-type measurements from HuBMAP, protein information from Pharos, and
+variant predictions from ProtVar. Each result remains traceable to its source,
+identifiers, and retrieval date.
 
 ## From evidence to the next action
 
+This workflow supports a next decision rather than producing one final score.
 GTEx can guide tissue selection, HuBMAP can guide cell-model selection, Pharos
-can identify existing target knowledge or tools, and ProtVar can guide
-protein-focused follow-up.
+can identify protein knowledge or tools, and ProtVar can guide protein-focused
+follow-up.
 
-For the *TNNT2* VUS, the results motivate experiments examining
+For the *TNNT2* VUS, those layers converge on experiments examining
 troponin-complex function, calcium sensitivity, or cardiomyocyte contractility.
 
-Before applying these findings clinically, an analyst would also evaluate
-phenotype concordance, segregation, population frequency, and appropriate
-functional evidence.
+That research direction does not resolve the VUS. Clinical application would
+also require evaluation of phenotype concordance, segregation, population
+frequency, and appropriate functional evidence.
 
 ## A reusable prioritization checklist
 
@@ -40,12 +41,13 @@ functional evidence.
 
 ## Suggested next steps and reading
 
-Use these papers to explore specific next steps:
+These papers offer several ways to continue the analysis:
 
 - **Variant prioritization:** [Stenton et al.
   (2024)](https://doi.org/10.1186/s40246-024-00604-w),
   co-authored by Elizabeth A. Worthey, compares rare-disease variant
-  prioritization methods and the evidence used to rank candidates.
+  prioritization methods and the evidence used to rank candidate genetic
+  variants.
 - **Protein structure:** [Varga et al.
   (2025)](https://doi.org/10.1016/j.ajhg.2025.03.010) explains
   how protein structures can inform variant interpretation and how the choice
@@ -59,8 +61,8 @@ Use these papers to explore specific next steps:
   variant quality, functional effect, disease knowledge, and phenotype
   relevance together.
 
-Use the Jupyter notebook to apply the workflow to another evaluated variant
-list.
+The accompanying Jupyter notebook provides a starting point for applying the
+same workflow to another evaluated variant list.
 
 <div class="notebook-actions">
 <a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/07_conclusion.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>

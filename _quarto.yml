@@ -43,13 +43,13 @@ website:
       - href: lessons/objectives.qmd
         text: "2. Introduction to APIs"
       - href: lessons/variant-context.qmd
-        text: "3. Variant and Gene Context"
+        text: "3. Published Variants and Candidate Genes"
       - href: lessons/gtex.qmd
         text: "4. Tissue-Level Expression: GTEx"
       - href: lessons/hubmap.qmd
         text: "5. Cell-Type Resolution: HuBMAP"
       - href: lessons/pharos.qmd
-        text: "6. Protein Context and Druggability: IDG/Pharos"
+        text: "6. Protein Knowledge and Research Tools: IDG/Pharos"
       - href: lessons/prioritization.qmd
         text: "7. Variant Prioritization and Interpretation"
       - href: lessons/conclusion.qmd

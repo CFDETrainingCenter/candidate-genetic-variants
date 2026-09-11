@@ -40,31 +40,32 @@ introductory level, see EMBL-EBI's
 [Variant identification and analysis](https://www.ebi.ac.uk/training/online/courses/human-genetic-variation-introduction/variant-identification-and-analysis/)
 lesson.
 
-Variant analysis can produce a large list of candidates. Even after evaluation
+Variant analysis can produce a large list of candidate genetic variants. Even
+after evaluation
 by a clinical geneticist or variant analyst, a research group may still need to
 decide which findings to investigate first and which experimental systems are
 most appropriate.
 
 The complete published table anchors the analysis. The workflow keeps all 54
-rows and adds gene-level context from three CFDE resources before prioritizing
-candidates for further study.
+rows and adds tissue expression, cell-type expression, and protein annotations
+before prioritizing candidate genetic variants for follow-up.
 
 ## Tutorial workflow
 
 ```{mermaid}
-%%| fig-alt: "Workflow from a published variant list through tissue, cell-type, and protein context to a prioritized research shortlist."
+%%| fig-alt: "Workflow from published variants through tissue expression, cell-type expression, and protein annotations to a shortlist of candidate genetic variants for follow-up."
 
 flowchart LR
     %% Begin with the variants already evaluated in the source paper.
     variants["Published variants<br/>54 rows, 25 genes"]
 
     %% Keep the three evidence sources visually distinct.
-    gtex["GTEx<br/>Tissue context"]
-    hubmap["HuBMAP<br/>Cell-type context"]
-    pharos["Pharos / IDG<br/>Protein context"]
+    gtex["GTEx<br/>Tissue expression"]
+    hubmap["HuBMAP<br/>Cell-type expression"]
+    pharos["Pharos / IDG<br/>Protein annotations"]
 
-    %% Use the combined context to choose focused research follow-up.
-    shortlist["Integrated shortlist<br/>Candidates for further study"]
+    %% Use the combined results to choose focused research follow-up.
+    shortlist["Shortlist of candidate genetic variants<br/>for follow-up"]
 
     %% Query each resource independently, then bring the results together.
     variants --> gtex
@@ -95,7 +96,8 @@ By the end of this module, you will be able to:
    for missing data and small groups.
 4. Use Pharos to interpret protein information and IDG Target Development
    Levels.
-5. Combine several data sources to prioritize candidate variants for follow-up.
+5. Combine several data sources to prioritize candidate genetic variants for
+   follow-up.
 
 ## Data sources
 

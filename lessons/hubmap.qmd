@@ -6,38 +6,34 @@ aliases:
 
 **Estimated time:** 25 minutes
 
-Check which genes have indexed HuBMAP expression values in ventricular cardiac
-myocytes. Compare the average returned value with the percentage of returned
-records above zero.
+Move from bulk heart tissue to ventricular cardiac myocytes. Compare the mean
+returned value with the percentage of records above zero.
 
 ## Cell-type expression
 
-GTEx showed that genes from the heart-failure paper are expressed in bulk heart
-tissue. HuBMAP lets us examine records assigned to a selected heart cell type.
+GTEx showed expression in bulk heart tissue, which contains many cell types.
+HuBMAP lets us examine records assigned to a selected heart cell type.
 
 HuBMAP stands for **Human BioMolecular Atlas Program**. This NIH Common Fund
-program maps cells and molecules within human tissues. The HuBMAP Cells API
-provides access to aggregated outputs from HuBMAP data-processing pipelines.
-It connects indexed expression values to labels such as ventricular cardiac
-myocyte, fibroblast, or macrophage.
+program maps cells and molecules within human tissues. Its Cells API connects
+aggregated pipeline outputs and indexed expression values to labels such as
+ventricular cardiac myocyte, fibroblast, or macrophage.
 
 ### Why ventricular cardiac myocytes?
 
 The [source paper](https://doi.org/10.1038/s41598-025-88465-8) studied
 early-onset advanced heart failure. The highest yield of pathogenic or likely
 pathogenic variants occurred in hypertrophic, dilated, and arrhythmogenic right
-ventricular cardiomyopathy. Sarcomeric variants were most common in the
-hypertrophic and dilated cardiomyopathy groups, while desmosomal variants were
-concentrated in arrhythmogenic right ventricular cardiomyopathy. Examples in
-the teaching table include the sarcomeric or contractile genes *MYH7*,
-*MYBPC3*, *TNNT2*, and *ACTC1*, and the desmosomal genes *DSG2*, *DSC2*, and
-*PKP2*.
+ventricular cardiomyopathy. Sarcomeric variants were most common in the first
+two groups, while desmosomal variants were concentrated in the third. The
+teaching table includes *MYH7*, *MYBPC3*, *TNNT2*, *ACTC1*, *DSG2*, *DSC2*,
+and *PKP2*.
 
-The paper did not perform a cell-type analysis. We select ventricular cardiac
-myocytes as a focused follow-up because the ventricles provide the heart's main
-pumping force, and many genes reported in the paper contribute to contraction
-or structural connections in cardiac muscle. This choice also follows directly
-from the GTEx left-ventricle result in the previous lesson.
+The paper did not analyze cell types, so HuBMAP adds new evidence rather than
+reproducing the study. We begin with ventricular cardiac myocytes because the
+ventricles provide the heart's main pumping force and many candidate genes
+contribute to cardiac-muscle contraction or structure. This choice also follows
+the GTEx left-ventricle comparison.
 
 The request retrieves up to the first 500 indexed records labeled as regular
 ventricular cardiac myocytes. The fixed limit keeps the browser activity
@@ -48,23 +44,21 @@ Learn more about the resource's APIs in the
 
 ### How to read the returned values
 
-Available samples and API indexing determine which genes can be compared.
-The returned values reflect the records, cell labels, and processed datasets
-available through the Cells API index.
+The available samples, cell labels, and processed datasets determine which
+genes return values and which remain unavailable.
 
 ::: {.callout-tip title="Why HuBMAP helps"}
-GTEx combines expression from all cell types in a tissue sample. HuBMAP lets us
-query records assigned to a selected cell type. Here, we use it to identify
-candidate genes with indexed values in ventricular cardiac myocytes and compare
-their average values with the frequency of values above zero.
+GTEx combines expression from all cell types in a tissue sample. HuBMAP allows
+us to ask a more focused question: which candidate genes have indexed values in
+ventricular cardiac myocytes? For the genes with data, we will compare their
+average returned values with how often those values are above zero.
 :::
 
 ## Querying the HuBMAP API
 
-The Cells API first creates query handles for the heart and ventricular cardiac
-myocytes. It intersects those sets, retrieves up to the first 500 records, and
-requests one gene at a time. A gene without an indexed value is labeled as
-unavailable.
+The Cells API intersects heart and ventricular cardiac-myocyte records, retrieves
+up to the first 500 records, and requests one gene at a time. A gene with no
+indexed value is unavailable, not zero.
 
 ### Prepare the gene list and API helper
 
@@ -123,12 +117,10 @@ hubmap.head()
 ```
 :::
 
-Each row represents one queried gene in ventricular cardiac myocytes. The Cells
-API returns a quantitative value for each retrieved record. The wrapper
-calculates `mean_normalized_expression` as the average of those values and
-`percent_detected` as the percentage greater than zero. In this lesson,
-`percent_detected` therefore means "percentage of retrieved records above
-zero." `availability` records whether the index returned values for the gene.
+One row represents one queried gene. `mean_normalized_expression` is the average
+returned value, and `percent_detected` is the percentage of retrieved records
+above zero. The separate `availability` field states whether the index returned
+any values.
 
 ::: {.callout-note title="Live data"}
 Values are requested directly from HuBMAP. Coverage and service availability
@@ -151,8 +143,8 @@ The implementation and its support functions are in
 
 ## Review ventricular cardiac myocytes
 
-Examine availability, expression, and detection for one disease-relevant cell
-type.
+We can now ask which genes have data, how large their returned values are, and
+how often those values are above zero.
 
 ### Summarize data availability
 
@@ -178,9 +170,9 @@ availability_summary
 ```
 :::
 
-In the dated teaching data, 14 of the 25 genes have indexed ventricular
-cardiac-myocyte values and 11 are unavailable in the Cells API index. The next
-activity compares the 14 available genes.
+In the dated teaching data, 14 genes have indexed ventricular cardiac-myocyte
+values and 11 are unavailable. Compare measurements only among the 14 genes
+with data.
 
 ### Compare available genes
 
@@ -208,10 +200,10 @@ mean_ranked_genes.loc[
 ```
 :::
 
-*MYH7* and *DES* have the highest mean returned values in the dated teaching
-data. Their values are above zero in 39.8% and 35.2% of the retrieved records.
-The mean describes the magnitude of the returned values, while the percentage
-above zero describes how frequently a positive value appears.
+In the dated teaching data, *MYH7* and *DES* have the highest mean returned
+values. Their values are above zero in 39.8% and 35.2% of the retrieved records.
+The mean describes magnitude, while the percentage above zero describes
+frequency.
 
 ### Compare detection frequency
 
@@ -252,9 +244,10 @@ top_detected_genes.loc[
 :::
 ::::
 
-*TNNT2* ranks second by percent detected but sixth by mean expression in the
-dated teaching data. *DES* ranks second by mean expression and third by percent
-detected. The two summaries identify different expression patterns.
+The change in ranking makes the distinction visible. In the dated teaching
+data, *TNNT2* ranks second by percent detected but sixth by mean expression.
+*DES* ranks second by mean expression and third by percent detected. Neither
+summary replaces the other because they describe different expression patterns.
 
 ### Plot ventricular expression
 
@@ -281,8 +274,9 @@ plt.show()
 ```
 :::
 
-The plot uses the 10 highest means from the complete 14-gene table. The 11
-unavailable genes remain visible in the availability summary.
+The plot shows the 10 highest means from the complete 14-gene table. It is a
+focused view, not the complete result. The 11 unavailable genes remain visible
+in the availability summary rather than disappearing from the analysis.
 
 ## Check your understanding {.knowledge-check-heading}
 
@@ -325,15 +319,14 @@ What does an unavailable HuBMAP value mean here?
 
 - HuBMAP connects indexed expression values with cell-type annotations from
   processed atlas data.
-- Ventricular cardiac myocytes provide a focused cell context for the
+- Ventricular cardiac myocytes provide a focused cell type for studying the
   cardiomyopathy phenotypes and cardiac-muscle genes reported in the paper.
 - The wrapper calculates a mean returned value and the percentage of returned
   records above zero. These summaries can produce different gene rankings.
 - An unavailable indexed value and a returned value of zero are recorded
   separately.
 
-**Next:** GTEx and HuBMAP provide tissue and cell-type expression context. Use
-Pharos to examine what is known about the proteins encoded by these genes and
+**Next:** Use Pharos to examine what is known about the encoded proteins and
 which research tools are available.
 
 <div class="notebook-actions">
