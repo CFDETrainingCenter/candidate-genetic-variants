@@ -1,11 +1,10 @@
 # Prioritizing Candidate Genetic Variants Using GTEx, HuBMAP, and IDG
 
-A reproducible CFDE training module that uses tissue, cell-type, and protein
-context to prioritize candidate genetic variants for further study.
+A CFDE training module that uses tissue expression, cell-type measurements, and
+protein annotations to prioritize candidate genetic variants for further study.
 
-The module is available as a [deployed training website](https://cfdetrainingcenter.github.io/candidate-genetic-variants/).
-Learners can run the analysis code in the website or use the accompanying
-Jupyter notebooks.
+The [interactive Quarto tutorial](https://cfdetrainingcenter.github.io/candidate-genetic-variants/)
+extends the Jupyter notebooks and runs the same analysis in a web browser.
 
 ## Table of contents
 
@@ -22,9 +21,8 @@ Jupyter notebooks.
 
 ## Project background
 
-This repository contains a CFDE training module about prioritizing candidate
-genetic variants. Early-onset advanced heart failure provides the teaching
-example. The starting dataset is the complete 54-row Supplementary Table S4
+Early-onset advanced heart failure provides the teaching example. The starting
+dataset is the complete 54-row Supplementary Table S4
 from Linnér and colleagues' 2025 whole-genome sequencing study ([PMID:
 39910139](https://pubmed.ncbi.nlm.nih.gov/39910139/), [DOI:
 10.1038/s41598-025-88465-8](https://doi.org/10.1038/s41598-025-88465-8)). The
@@ -34,39 +32,31 @@ through a single workflow:
 1. Review variant and gene annotations.
 2. Examine tissue-level gene expression with GTEx.
 3. Examine cell-type expression with HuBMAP.
-4. Review protein context and target development levels with IDG and Pharos.
-5. Combine the evidence to compare candidates.
+4. Review protein annotations and target development levels with IDG and Pharos.
+5. Combine the evidence to compare candidate genetic variants.
 
-The module also introduces application programming interfaces, or APIs. The
-website and notebooks query GTEx, HuBMAP, and Pharos by default, then use
-ProtVar for one selected missense variant. Dated teaching files provide a
-commented backup for the GTEx, HuBMAP, and Pharos activities when a live service
-is unavailable.
-
-GTEx expression, HuBMAP cell-type patterns, and Pharos target information add
-biological context. They do not prove that a variant causes disease. This
-module is for education and research training, not clinical variant
+The module introduces application programming interfaces, or APIs. GTEx
+expression, HuBMAP cell-type measurements, and Pharos protein annotations can
+guide research priorities but cannot establish that a variant causes disease.
+This module is for education and research training, not clinical variant
 classification.
 
 ## Module content
 
 The lesson takes about two hours and follows eight short sections:
 
-1. Module Introduction
+1. Module Introduction ([slides](https://cfdetrainingcenter.github.io/candidate-genetic-variants/slides/module-introduction.html))
 2. Introduction to APIs
-3. Variant and Gene Context
+3. Published Variants and Candidate Genes
 4. Tissue-Level Expression: GTEx
 5. Cell-Type Resolution: HuBMAP
-6. Protein Context and Druggability: IDG/Pharos
+6. Protein Knowledge and Research Tools: IDG/Pharos
 7. Variant Prioritization and Interpretation
-8. Conclusion
+8. Conclusion ([slides](https://cfdetrainingcenter.github.io/candidate-genetic-variants/slides/module-conclusion.html))
 
-The website includes explanations, executable activities, and knowledge checks
-where they support the lesson. Each instructional page links to a matching
-notebook. The notebooks preserve the lesson content and provide completed,
-executable examples. Interactive website questions appear as regular Markdown
-in Jupyter. `notebooks/06_variant_prioritization.ipynb` contains the complete
-prioritization workflow.
+Each page contains explanations, browser-based activities, knowledge checks,
+and a link to the matching notebook. The notebooks provide completed examples,
+and `notebooks/06_variant_prioritization.ipynb` contains the full workflow.
 
 ## Data resources
 
@@ -87,15 +77,16 @@ prioritization workflow.
 - [ProtVar](https://www.ebi.ac.uk/ProtVar/) provides protein-level annotations
   and predictions for the selected missense variant example.
 
-Small saved files let learners continue if a live API is unavailable:
+The website and notebooks query GTEx, HuBMAP, and Pharos by default. These saved
+files provide a backup when a live service is unavailable:
 
 - `data/variants.csv`: all 54 published variant rows
 - `data/gtex_expression.csv`: GTEx v10 values for the 25 genes and two heart
   tissues
 - `data/hubmap_cell_expression.csv`: HuBMAP values or explicit availability
   records for 25 genes and six heart cell types
-- `data/pharos_target_context.csv`: Pharos target context for the 25 genes
-- `data/integrated_prioritization.csv`: gene-level context joined to all 54
+- `data/pharos_target_context.csv`: Pharos protein annotations for the 25 genes
+- `data/integrated_prioritization.csv`: gene-level data joined to all 54
   variant rows
 
 See [`data/README.md`](data/README.md) for endpoints, retrieval dates,
@@ -103,23 +94,22 @@ transformations, missing-data handling, and limitations.
 
 ## Using the module
 
+Basic Python knowledge is required. Learners should be able to read variable
+assignments, call functions, work with pandas DataFrames, and interpret code
+cell output. Choose the website or notebooks based on your experience and
+preferred way of working.
+
 ### Use the website
 
 Open the [rendered training module](https://cfdetrainingcenter.github.io/candidate-genetic-variants/).
-The website is already deployed. You only need a current web browser and an
-internet connection. You do not need to install Python, Jupyter, `uv`, or
-Quarto.
+It runs in a current web browser and requires no local Python, Jupyter, `uv`, or
+Quarto installation.
 
 ### Use the notebooks in JupyterLab
 
-JupyterLab opens notebooks in a web-browser interface. A notebook contains text
-and code in separate cells. You can run one code cell at a time and inspect its
-output directly below it.
-
-For local notebook use, you need an internet connection and
-[`uv`](https://docs.astral.sh/uv/). You do not need an existing Python
-installation. `uv` downloads the requested Python version and creates an
-isolated environment for this module.
+Local notebook use requires an internet connection and
+[`uv`](https://docs.astral.sh/uv/). `uv` installs Python and creates an isolated
+environment for this module.
 
 #### 1. Get the repository
 
@@ -130,13 +120,13 @@ git clone https://github.com/CFDETrainingCenter/candidate-genetic-variants.git
 cd candidate-genetic-variants
 ```
 
-If you do not use Git, open the repository's
+Without Git, open the repository's
 [GitHub page](https://github.com/CFDETrainingCenter/candidate-genetic-variants),
-select **Code > Download ZIP**, and extract the downloaded file. Then open a
-terminal in the extracted `candidate-genetic-variants` folder.
+select **Code > Download ZIP**, extract the file, and open a terminal in the
+`candidate-genetic-variants` folder.
 
-The commands below must be run from the repository root. This is the folder
-that contains `README.md`, `requirements.txt`, and the `notebooks/` directory.
+Run the commands below from the folder containing `README.md`,
+`requirements.txt`, and `notebooks/`.
 
 #### 2. Install uv
 
@@ -158,9 +148,8 @@ uv venv --python 3.14
 uv pip install -r requirements.txt
 ```
 
-The first command creates a local `.venv` folder containing Python. The second
-installs JupyterLab and the packages used in the lessons. You do not need to
-activate the environment.
+These commands create `.venv` and install JupyterLab and the lesson packages.
+You do not need to activate the environment.
 
 #### 4. Open JupyterLab
 
@@ -181,33 +170,29 @@ in the terminal and paste it into the browser.
 
 #### 5. Run the notebooks
 
-Open `00_module_intro.ipynb` first, then continue through the numbered
-notebooks. Select the Python 3 kernel if Jupyter asks you to choose one. To run
-a selected code cell, press **Shift+Enter** or use the run button in the
+Open `00_module_intro.ipynb`, continue through the numbered notebooks, and
+select the Python 3 kernel if prompted. Run a cell with **Shift+Enter** or the
 notebook toolbar.
 
-The notebooks query live APIs, so returned values and response times can
-change. GTEx, HuBMAP, and Pharos lessons include instructions for using dated
-teaching files if a service is unavailable. Definitions for terms used in the
-module are available in [`GLOSSARY.md`](GLOSSARY.md).
+Live API values and response times can change. Definitions are available in
+[`GLOSSARY.md`](GLOSSARY.md).
 
 To stop JupyterLab, return to the terminal, press **Control+C**, and confirm the
 shutdown if prompted.
 
 #### Common setup problems
 
-- If `uv` is not found, close and reopen the terminal, then run `uv --version`.
+- If `uv` is not found, reopen the terminal and run `uv --version`.
 - If `requirements.txt` is not found, return to the folder containing
-  `README.md` before running the setup commands.
+  `README.md`.
 - If Jupyter asks for a kernel, select the Python 3 environment associated with
   this repository's `.venv` folder.
 
 ## Maintainer setup
 
-Learners do not need Quarto. Contributors who preview or build the website
-locally need [Quarto](https://quarto.org/) 1.6 or later and the Python
-environment created above. The Quarto Live extension is stored in
-`_extensions/` and does not require a separate installation.
+Local website builds require [Quarto](https://quarto.org/) 1.6 or later and the
+Python environment created above. The Quarto Live extension in `_extensions/`
+requires no separate installation.
 
 ### Preview the website locally
 
@@ -272,8 +257,7 @@ candidate-genetic-variants/
 
 ## Deployment
 
-A learner does not need to deploy the website. The deployed training module is
-available through the link at the top of this README.
+Learners use the deployed website and do not need to run these steps.
 
 A push to `main` starts `.github/workflows/publish.yml`. The workflow renders
 the Quarto project and publishes the result to the `gh-pages` branch.
