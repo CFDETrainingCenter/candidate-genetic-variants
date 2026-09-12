@@ -6,36 +6,37 @@ aliases:
 
 **Estimated time:** 5 minutes
 
-Review the decisions each resource supports and apply the workflow to a new
-candidate genetic variant list.
+Review the decisions each resource supports and apply the workflow to another
+expert-reviewed candidate genetic variant table.
 
 ## What you accomplished
 
 We kept all 54 published variant rows while adding bulk-tissue expression from
 GTEx, cell-type measurements from HuBMAP, protein information from Pharos, and
-variant predictions from ProtVar. Each result remains traceable to its source,
-identifiers, and retrieval date.
+variant predictions from ProtVar. The GTEx, HuBMAP, and Pharos results remain
+linked to their source identifiers and retrieval dates.
 
-## From evidence to the next action
+## From computational evidence to functional evidence
 
-This workflow supports a next decision rather than producing one final score.
-GTEx can guide tissue selection, HuBMAP can guide cell-model selection, Pharos
-can identify protein knowledge or tools, and ProtVar can guide protein-focused
-follow-up.
+This workflow helps researchers choose what to study next rather than producing
+one final score. GTEx helps select a tissue, HuBMAP helps select a cell model,
+Pharos shows what is known about a protein and which research tools are
+available, and ProtVar provides predictions that can inform protein-focused
+experiments.
 
-For the *TNNT2* VUS, those layers converge on experiments examining
-troponin-complex function, calcium sensitivity, or cardiomyocyte contractility.
-
-That research direction does not resolve the VUS. Clinical application would
-also require evaluation of phenotype concordance, segregation, population
-frequency, and appropriate functional evidence.
+For the *TNNT2* VUS, the next step is to compare wild-type and D259A troponin
+complexes across calcium concentrations. This experiment would test whether
+p.Asp259Ala changes calcium-regulated thin-filament activity. Clinical
+interpretation would also require checking whether the phenotype matches,
+whether the variant segregates with disease, how common it is in populations,
+and whether functional studies support an effect.
 
 ## A reusable prioritization checklist
 
 - Name the exact variant and the source of its annotation.
 - Ask what biological level each dataset measures.
 - Keep missing data separate from a measured zero.
-- Save dataset versions, identifiers, and retrieval dates.
+- Save dataset versions, identifiers, and retrieval dates for reproducibility.
 - Keep druggability separate from disease relevance.
 - End with a clear next step that can be tested.
 

@@ -6,8 +6,9 @@ aliases:
 
 **Estimated time:** 20 minutes
 
-Move from gene expression to protein knowledge. Use Pharos to identify
-biological, chemical, or clinical records for closer review.
+Move from gene expression to protein knowledge. Use Pharos to compare protein
+annotations, Target Development Levels, publications, interactions, ligands,
+and drugs.
 
 ## Protein annotations
 
@@ -22,8 +23,8 @@ categories.
 
 ### Why use Pharos for this paper?
 
-The paper reports candidate variants in 25 protein-coding genes. Pharos shows
-the protein knowledge and experimental starting points recorded for each gene.
+The paper reports candidate genetic variants in 25 protein-coding genes. Pharos
+fields can suggest where to begin follow-up for each gene.
 
 We selected fields that support that question:
 
@@ -47,17 +48,16 @@ Pharos uses four Target Development Levels, called TDLs:
 | **Tclin** | The target meets Pharos criteria for activity involving an approved drug. | Open the drug records and examine their mechanisms and indications. |
 | **Tchem** | The target has qualifying small-molecule activity but does not meet Tclin criteria. | Examine the ligand records for potency, selectivity, and experimental use. |
 | **Tbio** | Biological information is available, but the target does not meet Tclin or Tchem criteria. | Begin with mechanism, pathway, phenotype, or assay information. |
-| **Tdark** | Available knowledge is limited under the Pharos criteria. | Begin with foundational characterization and available reagents. |
+| **Tdark** | Available knowledge is limited under the Pharos criteria. | Begin by describing basic protein function and available reagents. |
 
 ### Scope of target development levels
 
 TDL describes a protein. The study classification describes a variant.
 
 ::: {.callout-tip title="Why Pharos helps"}
-The expression resources help us decide where a gene may be relevant. Pharos
-helps us decide what might be possible next. Its protein identifiers, knowledge
-categories, and linked record counts point us toward targets with existing
-biology, chemical tools, or clinical relationships worth inspecting.
+The expression resources help us select a biological system. Pharos shows the
+protein knowledge, chemical tools, and clinical relationships already recorded
+for a target.
 :::
 
 ## Querying the Pharos API
@@ -95,7 +95,7 @@ pd.Series(gene_symbols, name="gene_symbol").head()
 :::
 
 `gene_symbols` contains the 25 unique gene symbols in alphabetical order.
-`variants` retains all 54 published rows.
+`variants` contains all 54 published rows.
 
 ### Request protein annotations
 
@@ -214,7 +214,7 @@ interpretable when their drug count is zero.
 ::: {.module-activity}
 
 ```{pyodide}
-# Select the target evidence fields.
+# Select fields used to compare protein targets.
 target_fields = pharos.loc[
     :,
     [

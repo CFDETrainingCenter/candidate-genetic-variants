@@ -6,8 +6,8 @@ aliases:
 
 **Estimated time:** 25 minutes
 
-Move from bulk heart tissue to ventricular cardiac myocytes. Compare the mean
-returned value with the percentage of records above zero.
+Move from bulk heart tissue to ventricular cardiac myocytes. Compare mean
+normalized expression with the percentage of records above zero.
 
 ## Cell-type expression
 
@@ -29,14 +29,14 @@ two groups, while desmosomal variants were concentrated in the third. The
 teaching table includes *MYH7*, *MYBPC3*, *TNNT2*, *ACTC1*, *DSG2*, *DSC2*,
 and *PKP2*.
 
-The paper did not analyze cell types, so HuBMAP adds new evidence rather than
+The paper did not analyze cell types, so HuBMAP adds cell-type information rather than
 reproducing the study. We begin with ventricular cardiac myocytes because the
 ventricles provide the heart's main pumping force and many candidate genes
 contribute to cardiac-muscle contraction or structure. This choice also follows
 the GTEx left-ventricle comparison.
 
 The request retrieves up to the first 500 indexed records labeled as regular
-ventricular cardiac myocytes. The fixed limit keeps the browser activity
+ventricular cardiac myocytes. The fixed limit keeps the live request
 manageable.
 
 Learn more about the resource's APIs in the
@@ -50,8 +50,8 @@ genes return values and which remain unavailable.
 ::: {.callout-tip title="Why HuBMAP helps"}
 GTEx combines expression from all cell types in a tissue sample. HuBMAP allows
 us to ask a more focused question: which candidate genes have indexed values in
-ventricular cardiac myocytes? For the genes with data, we will compare their
-average returned values with how often those values are above zero.
+ventricular cardiac myocytes? For the genes with data, we will compare mean
+normalized expression with how often the values are above zero.
 :::
 
 ## Querying the HuBMAP API
@@ -91,7 +91,7 @@ pd.Series(gene_symbols, name="gene_symbol").head()
 :::
 
 `gene_symbols` contains the 25 unique gene symbols in alphabetical order.
-`variants` retains all 54 published rows.
+`variants` contains all 54 published rows.
 
 ### Request ventricular cardiac-myocyte expression
 
@@ -117,10 +117,10 @@ hubmap.head()
 ```
 :::
 
-One row represents one queried gene. `mean_normalized_expression` is the average
-returned value, and `percent_detected` is the percentage of retrieved records
-above zero. The separate `availability` field states whether the index returned
-any values.
+One row represents one queried gene. `mean_normalized_expression` is the mean
+normalized expression across retrieved records, and `percent_detected` is the
+percentage of those records with a value above zero. The separate
+`availability` field states whether the index returned any values.
 
 ::: {.callout-note title="Live data"}
 Values are requested directly from HuBMAP. Coverage and service availability
@@ -136,15 +136,15 @@ The wrapper follows five steps:
    (`CL:0002131`).
 3. Intersect the two sets.
 4. Retrieve up to the first 500 records for each gene.
-5. Calculate the mean returned value and the percentage of values above zero.
+5. Calculate mean normalized expression and the percentage of values above zero.
 
 The implementation and its support functions are in
 [`api_helpers.py`](../api_helpers.py).
 
 ## Review ventricular cardiac myocytes
 
-We can now ask which genes have data, how large their returned values are, and
-how often those values are above zero.
+We can now ask which genes have data, their mean normalized expression, and how
+often their values are above zero.
 
 ### Summarize data availability
 
@@ -176,8 +176,8 @@ with data.
 
 ### Compare available genes
 
-Display all available genes in descending order of their mean returned value.
-The table retains `percent_detected` so you can compare average values with the
+Display all available genes in descending order of mean normalized expression.
+The table includes `percent_detected` so you can compare average values with the
 percentage of retrieved records above zero.
 
 ::: {.module-activity}
@@ -188,7 +188,7 @@ available_ventricular = ventricular[
     ventricular["availability"] == "available"
 ]
 
-# Rank all available genes by their mean returned value.
+# Rank all available genes by mean normalized expression.
 mean_ranked_genes = (
     available_ventricular
     .sort_values("mean_normalized_expression", ascending=False)
@@ -200,10 +200,10 @@ mean_ranked_genes.loc[
 ```
 :::
 
-In the dated teaching data, *MYH7* and *DES* have the highest mean returned
-values. Their values are above zero in 39.8% and 35.2% of the retrieved records.
-The mean describes magnitude, while the percentage above zero describes
-frequency.
+In the dated teaching data, *MYH7* and *DES* have the highest mean normalized
+expression. Their values are above zero in 39.8% and 35.2% of the retrieved records.
+The mean summarizes expression across the retrieved records, while the
+percentage detected reports how many records had a value above zero.
 
 ### Compare detection frequency
 
@@ -251,7 +251,7 @@ summary replaces the other because they describe different expression patterns.
 
 ### Plot ventricular expression
 
-Plot the mean returned values for the selected genes. Interpret the chart
+Plot mean normalized expression for the selected genes. Interpret the chart
 together with the percentage-above-zero table and availability summary.
 
 ::: {.module-activity}
@@ -260,14 +260,14 @@ together with the percentage-above-zero table and availability summary.
 # Keep the 10 highest means for a readable plot.
 top_ventricular_genes = mean_ranked_genes.head(10)
 
-# Plot the mean returned values.
+# Plot mean normalized expression.
 axis = top_ventricular_genes["mean_normalized_expression"].plot.bar(
     color="#3d64b3",
     figsize=(10, 5),
 )
 axis.set_ylabel("Mean normalized expression")
 axis.set_xlabel("Gene from the source paper")
-axis.set_title("HuBMAP ventricular cardiac-myocyte context")
+axis.set_title("HuBMAP expression in ventricular cardiac myocytes")
 plt.xticks(rotation=35, ha="right")
 plt.tight_layout()
 plt.show()
@@ -282,12 +282,13 @@ in the availability summary rather than disappearing from the analysis.
 
 ::: {.qmulti}
 
-What does a high mean returned value with a lower `percent_detected` indicate?
+What does high mean normalized expression with a lower `percent_detected`
+indicate?
 
 - Larger returned values occur in a smaller portion of the retrieved records
 
-  > Correct. The mean captures value magnitude, while `percent_detected`
-  > captures the frequency of values above zero.
+  > Correct. The mean summarizes expression across the retrieved records, while
+  > `percent_detected` reports the percentage with a value above zero.
 
 - Every retrieved record has the same expression value
 
@@ -321,7 +322,7 @@ What does an unavailable HuBMAP value mean here?
   processed atlas data.
 - Ventricular cardiac myocytes provide a focused cell type for studying the
   cardiomyopathy phenotypes and cardiac-muscle genes reported in the paper.
-- The wrapper calculates a mean returned value and the percentage of returned
+- The wrapper calculates mean normalized expression and the percentage of returned
   records above zero. These summaries can produce different gene rankings.
 - An unavailable indexed value and a returned value of zero are recorded
   separately.

@@ -9,9 +9,7 @@ aliases:
 Follow how the source study narrowed whole-genome sequencing results to a
 candidate genetic variant list, then examine the published table.
 
-## From sequencing to candidate variants
-
-### Candidate-gene filtering and variant ranking
+## Candidate-gene filtering and variant ranking
 
 The source study performed whole-genome sequencing on heart tissue from people
 with early-onset advanced heart failure. The researchers narrowed millions of
@@ -25,16 +23,15 @@ clinical evaluation:
    likely pathogenic or pathogenic ClinVar variants, received manual review.
 4. Clinical geneticists applied ACMG guidance and condition-specific rules.
 
-### The published candidate genetic variant table
+## The published candidate genetic variant table
 
 Supplementary Table S4 is the starting point for this module. Its 54 rows cover
-46 people and 25 genes. The authors reported these variants as pathogenic,
-likely pathogenic, or VUS with suggestive evidence.
+46 people and 25 genes. The authors classified these variants as pathogenic,
+likely pathogenic, or VUS.
 
-We retain the reported study score and class. GTEx, HuBMAP, and Pharos then
-provide additional information about the genes.
+The reported study score and class stay attached to each variant.
 
-::: {.callout-tip title="Why add biological context?"}
+::: {.callout-tip title="Why add information about the genes?"}
 The candidate genetic variant table does not contain all the evidence needed
 for experimental follow-up. GTEx reports heart-tissue expression, HuBMAP
 reports indexed values for ventricular cardiac myocytes, and Pharos summarizes
@@ -82,8 +79,8 @@ classification, phenotype, and source for each observation.
 | `study_pathogenicity_score` | Prioritization score reported by the source study |
 | `study_class` | Study-reported classification: P, LP, VUS, or `(P)` |
 | `phenotype` | Heart-failure phenotype reported for the participant |
-| `study_comment` | Additional context retained from the published table |
-| `source_doi`, `source_pmid`, `source_table` | Provenance linking the row to its source |
+| `study_comment` | Additional information from the published table |
+| `source_doi`, `source_pmid`, `source_table` | Identifiers linking each row to its source |
 
 ::: {.callout-note title="Heart-failure phenotypes in this table"}
 | Label | Meaning |
@@ -98,7 +95,7 @@ classification, phenotype, and source for each observation.
 | Myocarditis | Inflammation of the heart muscle |
 
 The source article groups HCM and HCM phenocopies together. This teaching table
-retains separate `HCM`, `HCM*`, and `ATTR-CM` labels from the published variant
+uses separate `HCM`, `HCM*`, and `ATTR-CM` labels from the published variant
 table so learners can see how those rows were recorded.
 :::
 
@@ -118,7 +115,7 @@ HGVS descriptions name a variant relative to a specific reference sequence.
 
 The transcript accession and version matter because coordinates and predicted
 consequences can differ among transcripts and reference-sequence versions.
-The source table retains the HGVS descriptions reported by the study. A blank
+The HGVS columns contain the descriptions reported by the study. A blank
 `hgvs_p` means that the source table did not report a protein HGVS description.
 
 See the
@@ -209,8 +206,8 @@ protein HGVS description in the source table.
 ### Compare classifications by phenotype
 
 Next, count the published variant classes within each heart-failure phenotype.
-This comparison shows where the candidate genetic variant rows are concentrated
-while keeping the classifications reported by the source study.
+This comparison shows how the reported classifications are distributed across
+phenotypes.
 
 ::: {.module-activity}
 
@@ -256,7 +253,7 @@ Why do 54 variant rows map to only 25 genes?
 
 - The remaining rows have missing gene symbols
 
-  > All 54 rows retain a gene symbol. The smaller gene count reflects repeated
+  > All 54 rows have a gene symbol. The smaller gene count reflects repeated
   > genes.
 
 :::

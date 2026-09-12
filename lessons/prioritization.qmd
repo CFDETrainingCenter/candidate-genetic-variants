@@ -9,30 +9,32 @@ aliases:
 Combine the paper, GTEx, HuBMAP, and Pharos results while preserving what each
 source measures. Then define a focused next step.
 
-## Plan the layered evidence matrix
+## Combine the results
 
-The paper provides 54 classified variant rows. GTEx, HuBMAP, and Pharos describe
-the 25 associated genes. These sources can share a table, but gene-level results
-do not change a variant classification.
+The paper reports 54 variants across 25 genes. The analysis adds information
+from GTEx, HuBMAP, and Pharos to each variant based on its gene. This
+information can help prioritize variants for follow-up, but it does not change
+the classifications reported in the paper.
 
 ### Keep evidence types separate
 
 The resources can share a table without sharing the same meaning:
 
-| Evidence | What it establishes here | Next decision supported |
+| Source | What it provides | How it informs follow-up |
 |---|---|---|
-| Paper fields | The exact variant, phenotype, score, and class reported by the study | Which published candidate genetic variant and phenotype should guide the interpretation? |
+| Paper fields | The exact variant, phenotype, score, and class reported by the study | Which reported variant and phenotype are being evaluated? |
 | GTEx | Median gene expression reported in the selected reference heart tissues | Which heart tissue is appropriate for follow-up? |
 | HuBMAP | Whether indexed values are available in up to the first 500 ventricular cardiac-myocyte records | Are these cells suitable for follow-up, or is another atlas or experiment needed? |
-| Pharos | The current protein annotations and target development level | Should follow-up begin with a known drug relationship, chemical probe, biological mechanism, or foundational characterization? |
+| Pharos | The current protein annotations and target development level | Should follow-up begin with a known drug relationship, chemical probe, biological mechanism, or basic protein characterization? |
 
 Combining these fields into one pathogenicity score would hide what each source
 measures. We will instead choose columns that address a defined question.
 
 The gene with the largest value or most developed target is not automatically
-the best candidate genetic variant. The goal is a justified next step with visible source data.
+the best candidate genetic variant. The goal is a justified next step with
+each result tied to its source.
 
-## Build the evidence matrix
+## Build the combined table
 
 ### Load the source data and API helpers
 
@@ -140,7 +142,7 @@ ventricular = (
 )
 
 # Join one-to-one gene records.
-gene_context = (
+gene_results = (
     gtex_wide.reset_index()
     .merge(ventricular, on="gene_symbol", how="left", validate="one_to_one")
     .merge(
@@ -152,12 +154,12 @@ gene_context = (
 )
 
 # Confirm that all 25 genes remain.
-assert len(gene_context) == 25
-gene_context.head()
+assert len(gene_results) == 25
+gene_results.head()
 ```
 :::
 
-The 25-row `gene_context` table contains GTEx median TPM, HuBMAP expression and
+The 25-row `gene_results` table contains GTEx median TPM, HuBMAP expression and
 availability, and Pharos `tdl` and `drug_count`. Column prefixes identify each
 source.
 
@@ -169,20 +171,20 @@ keeps every row from the published variant table.
 :::: {.module-activity}
 
 ```{pyodide}
-#| exercise: join_gene_context
-# Join context by gene symbol.
-evidence_matrix = variants.merge(
-    gene_context,
+#| exercise: join_gene_results
+# Join gene-level data by gene symbol.
+combined_variants = variants.merge(
+    gene_results,
     on="gene_symbol",
     how="______",
     validate="many_to_one",
 )
 
 # Confirm that all 54 variant rows remain.
-assert len(evidence_matrix) == len(variants) == 54
+assert len(combined_variants) == len(variants) == 54
 
 # Inspect variant and gene-level fields together.
-evidence_matrix.loc[
+combined_variants.loc[
     :,
     [
         "subject_id",
@@ -197,26 +199,26 @@ evidence_matrix.loc[
 ].head(10)
 ```
 
-::: {.hint exercise="join_gene_context"}
+::: {.hint exercise="join_gene_results"}
 Keep every row from the variant table, including variants without matching
 gene-level data.
 :::
 
-::: {.solution exercise="join_gene_context"}
+::: {.solution exercise="join_gene_results"}
 ```python
-# Join context by gene symbol.
-evidence_matrix = variants.merge(
-    gene_context,
+# Join gene-level data by gene symbol.
+combined_variants = variants.merge(
+    gene_results,
     on="gene_symbol",
     how="left",
     validate="many_to_one",
 )
 
 # Confirm that all 54 variant rows remain.
-assert len(evidence_matrix) == len(variants) == 54
+assert len(combined_variants) == len(variants) == 54
 
 # Inspect variant and gene-level fields together.
-evidence_matrix.loc[
+combined_variants.loc[
     :,
     [
         "subject_id",
@@ -233,13 +235,13 @@ evidence_matrix.loc[
 :::
 ::::
 
-The matrix places each variant beside the corresponding GTEx, HuBMAP, and Pharos
-fields. A many-to-one join allows several variants to share gene data while
-preserving all 54 published rows.
+The combined table places each variant beside the corresponding GTEx, HuBMAP,
+and Pharos fields. A many-to-one join allows several variants to share gene data
+while preserving all 54 published rows.
 
 ## Prioritize a focused DCM follow-up set
 
-The full matrix could support many questions. This analysis focuses on dilated
+The full table could support many questions. This analysis focuses on dilated
 cardiomyopathy, abbreviated DCM, and ventricular cardiac myocytes.
 
 ### Define the follow-up question
@@ -252,9 +254,9 @@ how do they rank by GTEx left-ventricle expression?
 ```{pyodide}
 # Select DCM rows with measured HuBMAP values.
 dcm_follow_up = (
-    evidence_matrix[
-        (evidence_matrix["phenotype"] == "DCM")
-        & (evidence_matrix["hubmap_availability"] == "available")
+    combined_variants[
+        (combined_variants["phenotype"] == "DCM")
+        & (combined_variants["hubmap_availability"] == "available")
     ]
     .sort_values(
         ["gtex_ventricle_tpm", "gene_symbol", "subject_id"],
@@ -282,17 +284,27 @@ dcm_follow_up
 How many rows remain? Which genes contribute P or LP findings? Which VUS occur
 in those genes?
 
-The filter retains 15 of the 28 DCM rows. Ten are P or LP in the paper, and five
-are VUS. The other 13 have not become less important or less plausible. They are
-absent only because the selected HuBMAP index did not return a ventricular
-cardiac-myocyte value.
+The filter returns 15 of the 28 DCM rows. Ten are P or LP in the paper, and five
+are VUS. It excludes the other 13 only because the selected HuBMAP index did
+not return a ventricular cardiac-myocyte value. This filter does not rank their
+clinical importance.
 
 ## Examine one missense variant with ProtVar
 
-The paper classified *TNNT2* `c.776A>C` (p.Asp259Ala) as a VUS. Two other
-participants with DCM carried pathogenic or likely pathogenic *TNNT2* variants.
-These findings support the relevance of *TNNT2* to DCM in this cohort, but they
-do not determine the effect of p.Asp259Ala.
+The paper classified *TNNT2* `c.776A>C` (p.Asp259Ala) as a VUS. *TNNT2*
+encodes cardiac troponin T, a component of the troponin complex that helps
+regulate calcium-dependent contraction in heart muscle. Two other participants
+with DCM carried pathogenic or likely pathogenic *TNNT2* variants. These
+findings support the relevance of *TNNT2* to DCM in this cohort, but they do not
+determine the effect of p.Asp259Ala.
+
+ProtVar provides variant-level predictions for p.Asp259Ala. AlphaMissense
+predicts that the substitution may affect protein function, EVE returns an
+uncertain prediction, and FoldX does not predict a large change in overall
+protein stability.
+
+The AlphaFold pLDDT score reports confidence in the local structure around
+residue 259. It is not a prediction of the variant's effect.
 
 Learn more about the returned protein scores in the
 [ProtVar API documentation](https://www.ebi.ac.uk/ProtVar/api/swagger-ui/index.html).
@@ -300,7 +312,8 @@ Learn more about the returned protein scores in the
 ### Request protein predictions
 
 ProtVar maps p.Asp259Ala to UniProt accession P45379 at residue 259. Query the
-two score endpoints and the structural-stability endpoint directly.
+score endpoint for AlphaMissense and EVE, then query the FoldX stability
+endpoint.
 
 ::: {.module-activity}
 
@@ -367,12 +380,9 @@ biologically characterized protein with extensive interaction records. Cardiac
 troponin T interacts with troponin I, troponin C, and tropomyosin to regulate
 thin-filament contraction.
 
-ProtVar provides variant-level evidence for p.Asp259Ala. AlphaMissense predicts
-that the substitution may affect protein function, while FoldX does not predict
-a large change in overall protein stability. The next step would be to compare
-wild-type and D259A troponin complexes across calcium concentrations to test
-whether the substitution changes calcium-regulated thin-filament activity. The
-study classification remains VUS.
+The next step would be to compare wild-type and D259A troponin complexes across
+calcium concentrations to test whether the substitution changes
+calcium-regulated thin-filament activity. The study classification remains VUS.
 
 ## Interpret the integrated evidence
 
@@ -380,12 +390,12 @@ Interpret each field at the level measured by its source.
 
 ### Interpret the DCM follow-up set
 
-The study classification remains the variant-level anchor. The API results help
-select genes and experimental systems for follow-up. This distinction follows
-the precision approach used by
-[Birch and colleagues](https://doi.org/10.1186/s12967-025-07586-w): integrate
-variant classification, phenotype concordance, and molecular evidence while
-keeping confidence in each finding explicit.
+The paper's classification remains attached to each variant. The API results
+help select genes and experimental systems for follow-up. This distinction
+follows the approach used by
+[Birch and colleagues](https://doi.org/10.1186/s12967-025-07586-w): combine
+variant classification, whether the phenotype matches the expected condition,
+and molecular results while keeping the strength of each finding clear.
 
 The label **P/LP with cardiac expression support** means that the paper
 classified a variant as pathogenic or likely pathogenic and both GTEx and
@@ -395,7 +405,7 @@ supports follow-up but does not prove the variant's mechanism.
 | Our interpretation | Variants in `dcm_follow_up` | What the evidence supports |
 |---|---|---|
 | P/LP with cardiac expression support | *DES* `c.735G>A`; *ACTC1* `c.301G>A`; *TNNT2* `c.547C>T`; *TNNT2* `c.547C>G`; *MYBPC3* `c.2490dup` in two subjects; *MYBPC3* `c.442G>A`; *PLN* `c.25C>T`; *MYLK3* `c.618dup`; *MYLK3* `c.1569-2A>C` | The paper classified these variants as P/LP, and GTEx and HuBMAP support cardiac follow-up for their genes. |
-| Cardiac expression present, variant unresolved | *TNNI3* `c.337G>A`; *ACTC1* `c.1132T>C`; *TNNT2* `c.776A>C`; *FLNC* `c.4181A>G`; *TNNI3K* `c.827+1G>T` | These remain VUS. Cardiac expression supports studying the genes but does not establish the effect of an allele. |
+| VUS with cardiac expression support | *TNNI3* `c.337G>A`; *ACTC1* `c.1132T>C`; *TNNT2* `c.776A>C`; *FLNC* `c.4181A>G`; *TNNI3K* `c.827+1G>T` | These remain VUS. Cardiac expression supports studying the genes but does not establish the effect of an allele. |
 
 ::: {.callout-note title="What the integrated evidence added"}
 
@@ -407,10 +417,9 @@ All 25 genes had measurable expression in the selected GTEx heart tissues, so
 GTEx did not substantially narrow the list. HuBMAP coverage provided the more
 selective filter.
 
-Within this analysis, findings in *DES*, *TNNT2*, *MYBPC3*, *ACTC1*, *PLN*, and
-*MYLK3* have the clearest rationale for variant-specific cardiac cellular
-models. The results also identify possible perturbation tools and follow-up
-questions.
+Within this analysis, the results for *DES*, *TNNT2*, *MYBPC3*, *ACTC1*, *PLN*,
+and *MYLK3* support using cardiac myocytes to study the reported variants. The
+results also identify possible experimental tools and follow-up questions.
 :::
 
 ### Compare variants within the same gene
@@ -428,15 +437,15 @@ The paper describes *MYLK3* as an emerging DCM gene and classified both variants
 as LP. *MYLK3* had a GTEx left-ventricle median of 39.99 TPM and a value above
 zero in 13.4% of retrieved HuBMAP ventricular cardiac-myocyte records. Pharos
 classifies the protein as `Tchem` and reports five ligands and one drug
-relationship. These records suggest possible perturbation tools for testing the
-proposed mechanism.
+relationship. These records suggest compounds or other experimental tools for
+testing the proposed mechanism.
 
-Pharos classifies *TNNI3K* as `Tchem`, but the `c.827+1G>T` VUS gene was detected
-in only 0.4% of sampled ventricular cardiac myocytes. Its chemical records may
-still be useful, but these HuBMAP results provide less support for prioritizing
-it over the P/LP findings above.
+Pharos classifies *TNNI3K* as `Tchem`, but *TNNI3K* had a value above zero in
+only 0.4% of retrieved ventricular cardiac-myocyte records. Its chemical
+records may still be useful, but these HuBMAP results provide less support for
+prioritizing it over the P/LP findings above.
 
-## Preserve unresolved information
+## Keep missing and repeated observations visible
 
 Missing data and recurrent observations can change the next research question.
 
@@ -450,8 +459,8 @@ another atlas, another cell type, or direct measurement.
 ```{pyodide}
 # Select HuBMAP coverage gaps.
 coverage_gaps = (
-    evidence_matrix[
-        evidence_matrix["hubmap_availability"]
+    combined_variants[
+        combined_variants["hubmap_availability"]
         != "available"
     ]
     .loc[:, ["gene_symbol", "hubmap_availability"]]
@@ -465,10 +474,11 @@ coverage_gaps.head()
 ```
 :::
 
-The 13 DCM rows absent from `dcm_follow_up` remain in the full matrix. They
+The 13 DCM rows absent from `dcm_follow_up` remain in the full table. They
 include P/LP findings in *MYL3*, *TTN*, *GYG1*, *LMNA*, and *DMD*, plus one
-*LMNA* VUS. HuBMAP did not return values for the selected cell type, so these
-genes require another atlas or experimental system.
+*LMNA* VUS. HuBMAP did not return values for the selected cell type. Studying
+cell-level expression for these genes would require another atlas, cell type,
+or direct measurement.
 
 ### Identify recurrent variants
 
@@ -501,8 +511,8 @@ recurrent_variants.head()
 
 Three recurrent observations emerge from the table. *MYBPC3* `c.2490dup`
 appears in three participants, while *LMNA* `c.1304_1307dup` and *TTR*
-`c.323A>G` each appear in two. Recurrence tells us about frequency within this
-study. Its importance still depends on variant-specific evidence.
+`c.323A>G` each appear in two. Recurrence describes this study cohort. It does
+not establish pathogenicity or population frequency.
 
 ## Check your understanding {.knowledge-check-heading}
 

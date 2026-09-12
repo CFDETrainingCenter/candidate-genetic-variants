@@ -6,8 +6,7 @@ aliases:
 
 **Estimated time:** 25 minutes
 
-Use GTEx to compare median expression of the 25 genes in two heart tissues and
-identify how tissue choice changes the patterns we see.
+Use GTEx to compare the 25 genes across atrial appendage and left ventricle.
 
 ## Tissue-level expression
 
@@ -79,7 +78,7 @@ pd.Series(gene_symbols, name="gene_symbol").head()
 :::
 
 `gene_symbols` contains the 25 unique gene symbols in alphabetical order.
-`variants` retains all 54 published rows.
+`variants` contains all 54 published rows.
 
 ### Request heart-tissue expression
 
@@ -214,10 +213,10 @@ plt.show()
 ```
 :::
 
-The plot immediately shows that tissue choice matters. *DES* and *MYH7* have
-higher median expression in left ventricle than atrial appendage, while *ACTC1*
-is higher in atrial appendage. Because these values still represent bulk
-tissue, they also lead us toward the cell-type question in the HuBMAP lesson.
+In the dated teaching data, *DES* and *MYH7* have higher median expression in
+left ventricle than atrial appendage, while *ACTC1* is higher in atrial
+appendage. These bulk-tissue results lead to the cell-type question in the
+HuBMAP lesson.
 
 ### Compare the atrial ranking
 
@@ -284,7 +283,7 @@ What does `median_tpm` represent in this lesson?
 
 What does GTEx add to the published variant list?
 
-- Tissue-level expression context
+- Tissue-level gene expression
 
   > Correct. GTEx describes gene expression in the selected heart tissues.
 
@@ -302,9 +301,9 @@ What does GTEx add to the published variant list?
 - Ranking by atrial appendage instead of left ventricle changes the top-10 gene
   set.
 
-**Next:** GTEx summarizes whole heart tissues, which contain several cell types.
-Use HuBMAP to ask whether the same genes have indexed expression in ventricular
-cardiac myocytes.
+**Next:** GTEx summarizes bulk heart-tissue samples, which contain several cell
+types. Use HuBMAP to ask whether the same genes have indexed expression in
+ventricular cardiac myocytes.
 
 <div class="notebook-actions">
 <a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/03_gtex_tissue_expression.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>

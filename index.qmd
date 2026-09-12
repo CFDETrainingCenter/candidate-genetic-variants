@@ -1,13 +1,14 @@
 ---
 title: "Prioritizing Candidate Genetic Variants Using GTEx, HuBMAP, and IDG"
 subtitle: "A reproducible CFDE training module"
-description: "Use tissue, cell-type, and protein context to select candidate variants for further study."
+description: "Use tissue, cell-type, and protein data to select candidate genetic variants for further study."
 ---
 
 **Estimated total module time:** Approximately 2 hours
 
-Start with the published candidate variants, then examine the tissue, cell-type,
-and protein context used for research prioritization.
+Start with the published candidate genetic variants, then examine tissue
+expression, cell-type expression, and protein information to choose variants
+for follow-up.
 
 If a term is unfamiliar, refer to the [Glossary](lessons/glossary.qmd).
 
@@ -24,31 +25,33 @@ unavailable. You can also run the matching notebooks in Jupyter.
 
 ## The research question
 
-Which of the published candidate variants should be prioritized for further
-study, and what tissue, cell-type, or protein context can guide that work?
+Which published candidate genetic variants should be prioritized for further
+study, and which experimental models are most appropriate for testing them?
 
-This module begins with a [whole-genome sequencing study of early-onset
-advanced heart failure](https://doi.org/10.1038/s41598-025-88465-8)
+This module uses data from a [2025
+publication](https://doi.org/10.1038/s41598-025-88465-8) that reports results
+from a whole-genome sequencing study of early-onset advanced heart failure
 ([PMID: 39910139](https://pubmed.ncbi.nlm.nih.gov/39910139/)). The researchers
 studied 102 Swedish heart transplant or heart-assist-device recipients. They
 used a computational pipeline to rank variants and clinical experts to classify
 them. Their Supplementary Table S4 reports 54 variant rows from 46 people
 across 25 genes.
 
+Variant analysis can produce a large list of candidate genetic variants. Even
+after evaluation by a clinical geneticist or variant analyst, a research group
+may still need to decide which findings to investigate first and how to test
+them.
+
 If you want to learn more about variant identification and analysis at an
 introductory level, see EMBL-EBI's
 [Variant identification and analysis](https://www.ebi.ac.uk/training/online/courses/human-genetic-variation-introduction/variant-identification-and-analysis/)
 lesson.
 
-Variant analysis can produce a large list of candidate genetic variants. Even
-after evaluation
-by a clinical geneticist or variant analyst, a research group may still need to
-decide which findings to investigate first and which experimental systems are
-most appropriate.
-
-The complete published table anchors the analysis. The workflow keeps all 54
-rows and adds tissue expression, cell-type expression, and protein annotations
-before prioritizing candidate genetic variants for follow-up.
+The final lesson uses ProtVar, an EMBL-EBI resource for human missense variants,
+to compare complementary predictions for *TNNT2* p.Asp259Ala: AlphaMissense
+scores predicted pathogenicity, EVE evaluates the substitution against
+evolutionary patterns in related protein sequences, and FoldX estimates its
+effect on protein stability.
 
 ## Tutorial workflow
 
@@ -90,8 +93,8 @@ By the end of this module, you will be able to:
 
 1. Explain what an [application programming interface, or
    API](lessons/glossary.qmd#api) is and how APIs support repeatable research.
-2. Use GTEx to check whether genes linked to candidate variants are expressed
-   in a disease-related tissue.
+2. Use GTEx to check whether genes linked to candidate genetic variants are
+   expressed in a disease-related tissue.
 3. Use HuBMAP to study gene expression in specific cell types while accounting
    for missing data and small groups.
 4. Use Pharos to interpret protein information and IDG Target Development
@@ -103,22 +106,21 @@ By the end of this module, you will be able to:
 
 | Resource | What it is | How this module uses it |
 |---|---|---|
-| [Candidate variant table](data/variants.csv) and [source paper](https://doi.org/10.1038/s41598-025-88465-8) | The local table contains all 54 rows from the paper's Supplementary Table S4. | Provides the published [HGVS](lessons/glossary.qmd#hgvs) names, study scores, classifications, phenotypes, and comments. |
+| [Candidate genetic variant table](data/variants.csv) and [source paper](https://doi.org/10.1038/s41598-025-88465-8) | The local table contains all 54 rows from the paper's Supplementary Table S4. | Provides the published [HGVS](lessons/glossary.qmd#hgvs) names, study scores, classifications, phenotypes, and comments. |
 | [GTEx v10](https://gtexportal.org/home/) | GTEx is an NIH Common Fund reference resource for studying gene expression and genetic regulation across human tissues. | A GTEx Portal REST API response provides median expression in heart atrial appendage and left ventricle. |
 | [HuBMAP](https://portal.hubmapconsortium.org/) | HuBMAP is an NIH Common Fund program that maps cells and molecules within human tissues. | A HuBMAP Cells API response provides expression summaries for selected heart cell types. |
 | [IDG](https://commonfund.nih.gov/IDG/) and [Pharos](https://pharos.nih.gov/) | IDG is an NIH Common Fund program focused on understudied druggable proteins. Pharos is its integrated protein-target information resource. | A Pharos GraphQL API response provides protein information and [Target Development Levels](lessons/glossary.qmd#tdl). |
-| [Integrated teaching table](data/integrated_prioritization.csv) | A local table created by joining the published variants with the saved GTEx, HuBMAP, and Pharos data by [gene symbol](lessons/glossary.qmd#gene-symbol). | Returns gene-level context to all 54 variant rows while keeping each evidence layer separate. |
+| [Integrated teaching table](data/integrated_prioritization.csv) | A local table created by joining the published variants with the saved GTEx, HuBMAP, and Pharos data by [gene symbol](lessons/glossary.qmd#gene-symbol). | Adds GTEx, HuBMAP, and Pharos information to all 54 variant rows while keeping the source of each result clear. |
 
 ### Why combine these resources?
 
-Each API contributes a different evidence layer. Keeping the results separate lets
-you see which resource contributed each observation before viewing the evidence
-together.
+Each API answers a different question. Keeping the results separate shows what
+each resource contributes before you view them together.
 
 ::: {.callout-note collapse="true" title="Related approach"}
 [Rosalution](https://doi.org/10.21105/joss.05443) provides another example of
 combining annotations from several sources while keeping track of their
-provenance.
+sources.
 :::
 
 ## How to use the lessons
@@ -128,11 +130,10 @@ Work through the pages in order.
 - **Activities:** Run the same analysis code in the website or in the matching
   notebook.
 - **Knowledge checks:** Select an answer and review the feedback.
-- **Complete workflow:** Use the integrated notebook to run every evidence
-  layer in one place.
+- **Complete workflow:** Use the integrated notebook to run the complete
+  analysis in one place.
 
-**Next:** Learn how API requests make the three biological-context steps
-repeatable and traceable.
+**Next:** Learn how to make the three API requests repeatable and clear.
 
 <div class="notebook-actions">
 <a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/00_module_intro.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>

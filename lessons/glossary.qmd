@@ -24,8 +24,8 @@ These definitions reflect how each term is used in the module.
 
 [Application programming interface (API)]{#api}
 : A standard way for software to request data or services from another system.
-  In this module, APIs make the source, identifiers, and retrieval steps for
-  each evidence layer explicit and reproducible. [Learn more about
+  In this module, APIs keep the source, identifiers, and retrieval steps clear
+  and reproducible. [Learn more about
   APIs.](https://developer.mozilla.org/en-US/docs/Glossary/API)
 
 [Bulk tissue]{#bulk-tissue}
@@ -111,7 +111,7 @@ These definitions reflect how each term is used in the module.
 [Many-to-one join]{#many-to-one-join}
 : A table operation in which several variant rows can match one gene row. Used
   correctly, it preserves every original variant while
-  attaching shared gene-level evidence where appropriate. [Learn more about
+  attaching shared gene-level data where appropriate. [Learn more about
   validating joins in
   pandas.](https://pandas.pydata.org/docs/user_guide/merging.html#merge-key-uniqueness)
 
@@ -149,8 +149,8 @@ These definitions reflect how each term is used in the module.
 
 [Pharos]{#pharos}
 : A knowledge portal and API for exploring protein targets, diseases, ligands,
-  and Target Development Levels. This module uses Pharos to determine what
-  kinds of follow-up tools or knowledge may already exist for a gene product.
+  and Target Development Levels. This module uses Pharos to review what kinds
+  of follow-up tools or knowledge may already exist for a gene product.
   [Explore Pharos.](https://pharos.nih.gov/)
 
 [pLDDT]{#plddt}
@@ -207,7 +207,7 @@ These definitions reflect how each term is used in the module.
 [Tdark]{#tdark}
 : A TDL for understudied targets that meet IDG inclusion criteria but have
   limited characterized biology or chemical tools. These targets may require
-  foundational characterization before targeted experiments are possible.
+  basic protein characterization before targeted experiments are possible.
   [Learn more about TDLs in Pharos.](https://pharos.nih.gov/)
 
 [Transcript accession]{#transcript-accession}
@@ -225,5 +225,6 @@ These definitions reflect how each term is used in the module.
 [Variant of uncertain significance (VUS)]{#vus}
 : A variant for which the available evidence is insufficient or conflicting for
   a pathogenic or benign classification. Biological evidence can guide research
-  priorities, but it cannot resolve a VUS by itself. [Learn more about
-  the ACMG/AMP standards.](https://pubmed.ncbi.nlm.nih.gov/25741868/)
+  priorities, but it cannot establish whether a VUS is pathogenic or benign by
+  itself. [Learn more about the ACMG/AMP
+  standards.](https://pubmed.ncbi.nlm.nih.gov/25741868/)

@@ -14,7 +14,7 @@ a request.
 API stands for **application programming interface**. An API gives software a
 standard way to request data or an action from another system.
 
-We will send 25 gene identifiers from the heart-failure paper to biological
+We will send 25 gene symbols from the heart-failure paper to biological
 data services and read the responses in Python. Unlike copied website results,
 API requests can be repeated, checked, and shared.
 
@@ -35,8 +35,8 @@ date. Together, these details show exactly what was requested and when.
 
 ## Compare the APIs used in this module
 
-GTEx, HuBMAP, and Pharos contain different biological data. We will use each API
-to ask a different question about the same 25 genes.
+GTEx, HuBMAP, and Pharos contain different biological data. Each API answers a
+different question about the same 25 genes.
 
 | CFDE resource | Information returned | Question this resource helps answer |
 |---|---|---|
@@ -49,9 +49,10 @@ HuBMAP, and Pharos are queried live. Dated responses are available as backups
 when a service cannot be reached.
 
 The prioritization lesson also uses the
-[ProtVar API](https://www.ebi.ac.uk/ProtVar/api) to compare three protein-effect
-predictions for one missense VUS. ProtVar is not a CFDE resource. It provides
-variant-level predictions that complement the gene and protein data.
+[ProtVar API](https://www.ebi.ac.uk/ProtVar/api) for one missense VUS.
+AlphaMissense and EVE predict whether the substitution may affect protein
+function, while FoldX estimates its effect on protein stability. ProtVar is not
+a CFDE resource.
 
 ## Build an E-utilities request
 
@@ -221,7 +222,7 @@ tissue?
 - HuBMAP
 
   > HuBMAP is used here to examine indexed expression in ventricular cardiac
-  > myocytes rather than whole heart tissues.
+  > myocytes rather than bulk heart-tissue samples.
 
 - Pharos
 
