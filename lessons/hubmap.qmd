@@ -25,16 +25,18 @@ ventricular cardiac myocyte, fibroblast, or macrophage.
 The [source paper](https://doi.org/10.1038/s41598-025-88465-8) studied
 early-onset advanced heart failure. The highest yield of pathogenic or likely
 pathogenic variants occurred in hypertrophic, dilated, and arrhythmogenic right
-ventricular cardiomyopathy. Sarcomeric variants were most common in the first
-two groups, while desmosomal variants were concentrated in the third. The
-teaching table includes *MYH7*, *MYBPC3*, *TNNT2*, *ACTC1*, *DSG2*, *DSC2*,
-and *PKP2*.
+ventricular cardiomyopathy.
 
-The paper did not analyze cell types, so HuBMAP adds cell-type information rather than
-reproducing the study. We begin with ventricular cardiac myocytes because the
-ventricles provide the heart's main pumping force and many candidate genes
-contribute to cardiac-muscle contraction or structure. This choice also follows
-the GTEx left-ventricle comparison.
+Sarcomeric variants were most common in the first two groups, while desmosomal
+variants were concentrated in the third. The teaching table includes *MYH7*,
+*MYBPC3*, *TNNT2*, *ACTC1*, *DSG2*, *DSC2*, and *PKP2*.
+
+HuBMAP extends the paper's variant analysis with cell-type information. We
+begin with ventricular cardiac myocytes because the ventricles provide the
+heart's main pumping force.
+
+Many candidate genes contribute to cardiac-muscle contraction or structure.
+This cell-type choice also follows the GTEx left-ventricle comparison.
 
 The request retrieves up to the first 500 indexed records labeled as regular
 ventricular cardiac myocytes. The fixed limit keeps the live request
@@ -45,8 +47,8 @@ Learn more about the resource's APIs in the
 
 ### How to read the returned values
 
-The Cells API does not return values for every gene. Record a missing value as
-unavailable, not as zero expression.
+The Cells API returns values for a subset of genes. Record genes outside that
+subset as unavailable and keep them distinct from a measured zero.
 
 ::: {.callout-tip title="Why HuBMAP helps"}
 GTEx combines expression from all cell types in a tissue sample. HuBMAP allows
@@ -58,8 +60,8 @@ normalized expression with how often the values are above zero.
 ## Querying the HuBMAP API
 
 The Cells API intersects heart and ventricular cardiac-myocyte records, retrieves
-up to the first 500 records, and requests one gene at a time. A gene with no
-indexed value is unavailable, not zero.
+up to the first 500 records, and requests one gene at a time. An unavailable
+result records the API response separately from a measured zero.
 
 ### Prepare the gene list and API helper
 
@@ -120,8 +122,9 @@ hubmap.head()
 
 One row represents one queried gene. `mean_normalized_expression` is the mean
 normalized expression across retrieved records, and `percent_detected` is the
-percentage of those records with a value above zero. The separate
-`availability` field states whether the index returned any values.
+percentage of those records with a value above zero.
+
+The separate `availability` field states whether the index returned any values.
 
 ::: {.callout-note title="Live data"}
 Values are requested directly from HuBMAP. Coverage and service availability
@@ -149,8 +152,9 @@ of values above zero.
 
 ### Summarize data availability
 
-Keep the ventricular cardiac-myocyte rows and count the genes with and without
-indexed expression values. Start with coverage before comparing measurements.
+Keep the ventricular cardiac-myocyte rows and count genes with returned and
+unavailable expression values. Start with coverage before comparing
+measurements.
 
 ::: {.module-activity}
 
@@ -246,9 +250,10 @@ top_detected_genes.loc[
 ::::
 
 The two measures produce different rankings. In the dated teaching data,
-*TNNT2* ranks second by percent detected but sixth by mean expression.
-*DES* ranks second by mean expression and third by percent detected. Neither
-summary replaces the other because they describe different expression patterns.
+*TNNT2* ranks second by percent detected and sixth by mean expression.
+*DES* ranks second by mean expression and third by percent detected.
+
+The two summaries describe different expression patterns and work together.
 
 ### Plot ventricular expression
 
@@ -275,9 +280,10 @@ plt.show()
 ```
 :::
 
-The plot shows the 10 highest means from the complete 14-gene table. It is a
-focused view, not the complete result. The 11 unavailable genes remain visible
-in the availability summary rather than disappearing from the analysis.
+The plot shows the 10 highest means from the complete 14-gene table. The full
+table retains all 14 genes.
+
+The availability summary retains the 11 unavailable genes.
 
 ## Check your understanding {.knowledge-check-heading}
 
@@ -293,13 +299,13 @@ indicate?
 
 - Every retrieved record has the same expression value
 
-  > A mean and a percentage above zero do not show that every record has the
-  > same value.
+  > A mean and a percentage above zero summarize variation across the retrieved
+  > records.
 
 - The gene is unavailable in the Cells API index
 
-  > An unavailable gene has no returned values and is excluded from this
-  > comparison.
+  > An unavailable gene has an empty set of returned values, so this comparison
+  > contains genes with measurements.
 
 :::
 
@@ -307,13 +313,14 @@ indicate?
 
 What does an unavailable HuBMAP value mean here?
 
-- The expression index did not provide a value
+- The expression index returned an unavailable result
 
   > Correct. Keep this result separate from a returned value of zero.
 
-- The gene was not expressed
+- Every indexed record had a measured value of zero
 
-  > Choose unavailable because the index returned no value for this gene.
+  > Choose unavailable because that label records an empty API result for this
+  > gene.
 
 :::
 
@@ -323,8 +330,9 @@ What does an unavailable HuBMAP value mean here?
   processed atlas data.
 - Ventricular cardiac myocytes provide a focused cell type for studying the
   cardiomyopathy phenotypes and cardiac-muscle genes reported in the paper.
-- The wrapper calculates mean normalized expression and the percentage of returned
-  records above zero. These summaries can produce different gene rankings.
+- The wrapper calculates mean normalized expression and the percentage of
+  returned records above zero. These summaries can produce different gene
+  rankings.
 - An unavailable indexed value and a returned value of zero are recorded
   separately.
 

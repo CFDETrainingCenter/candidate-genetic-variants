@@ -18,9 +18,10 @@ tissues.
 ### What GTEx contains and why we use it
 
 GTEx stands for **Genotype-Tissue Expression**. This resource
-contains gene-expression data from human tissue donors. The donors were not
-selected for heart failure. We will compare atrial appendage and left ventricle,
-the two heart tissues represented in GTEx.
+contains gene-expression data from human tissue donors.
+
+GTEx represents a general reference donor cohort. We will compare atrial
+appendage and left ventricle, the two heart tissues represented in GTEx.
 
 Expression is reported as median transcripts per million, or TPM. TPM
 summarizes abundance while accounting for transcript length and sequencing
@@ -102,8 +103,10 @@ gtex.head()
 :::
 
 One row represents one gene in one tissue. `median_tpm` records median
-transcript abundance. The `gencode_id`, `dataset_id`, and `retrieved_date`
-fields record the source and retrieval, while `unit` confirms TPM.
+transcript abundance.
+
+The `gencode_id`, `dataset_id`, and `retrieved_date` fields record the source
+and retrieval, while `unit` confirms TPM.
 
 ### Check the returned data
 
@@ -181,8 +184,10 @@ heart_expression
 :::
 
 Each gene now has one row. The tissue columns contain median TPM, while
-`variant_rows` counts appearances in the published table. In the dated teaching
-data, *DES* and *MYH7* have the highest left-ventricle medians.
+`variant_rows` counts appearances in the published table.
+
+In the dated teaching data, *DES* and *MYH7* have the highest left-ventricle
+medians.
 
 ### Plot genes with the highest expression
 
@@ -216,8 +221,9 @@ plt.show()
 
 In the dated teaching data, *DES* and *MYH7* have higher median expression in
 left ventricle than atrial appendage, while *ACTC1* is higher in atrial
-appendage. These bulk-tissue results lead to the cell-type question in the
-HuBMAP lesson.
+appendage.
+
+These bulk-tissue results lead to the cell-type question in the HuBMAP lesson.
 
 ### Compare the atrial ranking
 
@@ -254,8 +260,10 @@ top_atrial_genes.head()
 
 *ACTC1* ranks first in atrial appendage, while *DES* ranks first in left
 ventricle. *LMNA* appears in the atrial top 10, while *MYL3* appears only in the
-left-ventricle top 10. These differences show that the tissue selected for
-comparison affects the gene ranking.
+left-ventricle top 10.
+
+These differences show that the tissue selected for comparison affects the
+gene ranking.
 
 ## Check your understanding {.knowledge-check-heading}
 
@@ -270,8 +278,8 @@ What does `median_tpm` represent in this lesson?
 
 - Expression measured in the heart-failure study participants
 
-  > The values come from the GTEx reference resource rather than the
-  > heart-failure study cohort.
+  > The values come from the GTEx reference resource. The heart-failure study
+  > cohort supplied the candidate variants.
 
 - The number of published variant rows for a gene
 

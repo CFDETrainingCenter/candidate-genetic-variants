@@ -44,8 +44,8 @@ Pharos uses four Target Development Levels, called TDLs:
 | TDL | Pharos criteria | How we use it here |
 |---|---|---|
 | **Tclin** | The target meets Pharos criteria for activity involving an approved drug. | Open the drug records and examine their mechanisms and indications. |
-| **Tchem** | The target has qualifying small-molecule activity but does not meet Tclin criteria. | Examine the ligand records for potency, selectivity, and experimental use. |
-| **Tbio** | Biological information is available, but the target does not meet Tclin or Tchem criteria. | Begin with mechanism, pathway, phenotype, or assay information. |
+| **Tchem** | The target has qualifying small-molecule activity below the Tclin threshold. | Examine the ligand records for potency, selectivity, and experimental use. |
+| **Tbio** | Biological information supports the Tbio criteria. | Begin with mechanism, pathway, phenotype, or assay information. |
 | **Tdark** | Available knowledge is limited under the Pharos criteria. | Begin by describing basic protein function and available reagents. |
 
 ### Scope of target development levels
@@ -116,8 +116,10 @@ pharos.head()
 :::
 
 One row represents one protein target. The gene symbol and UniProt identifier
-link it to Pharos. The other fields report its TDL and counts of publications,
-protein interactions, ligands, and drugs.
+link it to Pharos.
+
+The other fields report its TDL and counts of publications, protein
+interactions, ligands, and drugs.
 
 TDL follows Pharos development criteria. The counts describe records attached
 to the target. A Tchem target can therefore have ligand records when its drug
@@ -148,9 +150,10 @@ query TargetContext($symbol: String!) {
 ```
 
 `$symbol` is a query variable. For *MYLK3*, the wrapper sends
-`{"symbol": "MYLK3"}` separately from the query text. Pharos returns the
-selected fields under `data` and `target`. The wrapper extracts those fields
-and creates one table row per gene.
+`{"symbol": "MYLK3"}` separately from the query text.
+
+Pharos returns the selected fields under `data` and `target`. The wrapper
+extracts those fields and creates one table row per gene.
 
 The complete implementation is in
 [`api_helpers.py`](../api_helpers.py).
@@ -199,9 +202,10 @@ tdl_summary
 ::::
 
 The `genes` column counts how many queried targets fall into each Pharos TDL. In
-the dated teaching data, 18 are Tbio, 4 are Tclin, and 3 are Tchem. None are
-Tdark. The Tclin targets are *TTR*, *DMD*, *KCNQ1*, and *MYH7*; the Tchem
-targets are *MYLK3*, *POLG*, and *TNNI3K*.
+the dated teaching data, 18 are Tbio, 4 are Tclin, and 3 are Tchem.
+
+None are Tdark. The Tclin targets are *TTR*, *DMD*, *KCNQ1*, and *MYH7*; the
+Tchem targets are *MYLK3*, *POLG*, and *TNNI3K*.
 
 ### Compare target fields
 
@@ -269,9 +273,8 @@ targets_with_drugs.loc[:, ["gene_symbol", "tdl", "drug_count"]]
 :::
 
 The filter returns all four Tclin targets, *TTR*, *DMD*, *KCNQ1*, and *MYH7*,
-along with the Tchem targets *MYLK3* and *TNNI3K*. *POLG* does not meet the drug
-count condition, but it remains visible in the complete table with two ligand
-records and no drug records.
+along with the Tchem targets *MYLK3* and *TNNI3K*. *POLG* remains visible in the
+complete table with two ligand records and a drug count of zero.
 
 ## Check your understanding {.knowledge-check-heading}
 
@@ -288,7 +291,7 @@ Why can a Tchem target have ligand records but a drug count of zero?
 
   > Ligand and drug records are counted separately in the Pharos response.
 
-- Tchem means that no chemical information is available
+- Tchem identifies an approved-drug relationship
 
   > Tchem specifically identifies qualifying small-molecule activity.
 
@@ -296,7 +299,7 @@ Why can a Tchem target have ligand records but a drug count of zero?
 
 ::: {.qmulti}
 
-Which field describes protein target development rather than the paper's
+Which field describes protein target development alongside the paper's
 classification of a specific variant?
 
 - TDL
@@ -316,7 +319,7 @@ classification of a specific variant?
 - TDL, publication counts, interaction counts, ligand counts, and drug counts
   describe different parts of a protein target record.
 - Six Tclin or Tchem targets have at least one drug record in the dated
-  response; *POLG* is Tchem with ligand records and no drug records.
+  response; *POLG* is Tchem with ligand records and a drug count of zero.
 
 **Next:** Join the GTEx, HuBMAP, and Pharos results to all 54 variant rows and
 prioritize research follow-up.

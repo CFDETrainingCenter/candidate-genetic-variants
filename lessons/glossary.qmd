@@ -11,8 +11,8 @@ These definitions reflect how each term is used in the module.
 [ACMG/AMP classification]{#acmg-amp-classification}
 : A framework that classifies sequence variants as pathogenic, likely
   pathogenic, uncertain significance, likely benign, or benign. This module
-  begins with variants that have already been evaluated and does not repeat the
-  clinical classification process. [Learn more about the ACMG/AMP
+  begins with variants that have already been evaluated and retains those
+  clinical classifications. [Learn more about the ACMG/AMP
   standards.](https://pubmed.ncbi.nlm.nih.gov/25741868/)
 
 [AlphaMissense]{#alphamissense}
@@ -30,8 +30,8 @@ These definitions reflect how each term is used in the module.
 
 [Bulk tissue]{#bulk-tissue}
 : A tissue sample measured as a mixture of its component cell types. GTEx
-  provides bulk-tissue expression, which means its values do not identify the
-  cell type responsible for a transcript signal. [Learn more about the GTEx
+  provides bulk-tissue expression, while cell-type resources identify the
+  cellular source of a transcript signal. [Learn more about the GTEx
   project.](https://commonfund.nih.gov/gtex)
 
 [Cell type]{#cell-type}
@@ -61,8 +61,8 @@ These definitions reflect how each term is used in the module.
 
 [Gene symbol]{#gene-symbol}
 : A standardized short name for a gene, such as *TTN*. Gene symbols make it
-  possible to join resources, but aliases and identifier changes can cause
-  failed or incorrect matches. [Learn more about human gene-naming
+  possible to join resources. Checking aliases and identifier changes supports
+  accurate matches. [Learn more about human gene-naming
   guidelines.](https://www.genenames.org/about/guidelines/)
 
 [GraphQL]{#graphql}
@@ -71,8 +71,8 @@ These definitions reflect how each term is used in the module.
   information. [Learn more about GraphQL.](https://graphql.org/learn/)
 
 [GTEx]{#gtex}
-: The Genotype-Tissue Expression project. This module uses GTEx data to ask
-  whether a candidate gene is expressed in disease-relevant bulk tissues.
+: The Genotype-Tissue Expression project. This module uses GTEx data to compare
+  candidate-gene expression in selected bulk heart tissues.
   [Learn more about GTEx.](https://commonfund.nih.gov/gtex)
 
 [HGVS]{#hgvs}
@@ -89,14 +89,14 @@ These definitions reflect how each term is used in the module.
 
 [HGVSp]{#hgvsp} (`hgvs_p`)
 : An HGVS description of an observed or predicted protein-level consequence.
-  Parentheses commonly indicate that the protein consequence is predicted
-  rather than experimentally demonstrated. [Review HGVS syntax and
+  Parentheses commonly mark a predicted protein consequence. Experimental
+  evidence can then test that consequence. [Review HGVS syntax and
   examples.](https://hgvs-nomenclature.org/stable/recommendations/summary/)
 
 [HuBMAP]{#hubmap}
 : The Human BioMolecular Atlas Program. This module uses HuBMAP cell data to
-  identify potential cellular systems for
-  follow-up study. [Learn more about HuBMAP.](https://hubmapconsortium.org/)
+  assess ventricular cardiac myocytes as a possible experimental model.
+  [Learn more about HuBMAP.](https://hubmapconsortium.org/)
 
 [IDG]{#idg}
 : Illuminating the Druggable Genome, a program that develops and organizes
@@ -110,15 +110,14 @@ These definitions reflect how each term is used in the module.
 
 [Many-to-one join]{#many-to-one-join}
 : A table operation in which several variant rows can match one gene row. Used
-  correctly, it preserves every original variant while
-  attaching shared gene-level data where appropriate. [Learn more about
-  validating joins in
+  correctly, it preserves every original variant while attaching shared
+  gene-level data where appropriate. [Learn more about validating joins in
   pandas.](https://pandas.pydata.org/docs/user_guide/merging.html#merge-key-uniqueness)
 
 [Median TPM]{#median-tpm}
 : The median transcripts-per-million expression value across samples in a
-  group. It summarizes relative transcript abundance within a tissue but is
-  not a direct measure of protein abundance. [Learn more in the GTEx Portal
+  group. It summarizes relative transcript abundance within a tissue. Protein
+  abundance requires a protein-level measurement. [Learn more in the GTEx Portal
   documentation.](https://gtexportal.org/home/documentationPage)
 
 [Missense variant]{#missense-variant}
@@ -130,14 +129,14 @@ These definitions reflect how each term is used in the module.
 
 [Normalized expression]{#normalized-expression}
 : An expression value adjusted to make measurements more comparable within a
-  particular dataset. Values from different resources do not necessarily share
-  the same scale or normalization method. [Learn more in the
+  particular dataset. Each resource defines its own scale and normalization
+  method. [Learn more in the
   GTEx Portal documentation.](https://gtexportal.org/home/documentationPage)
 
 [Pathogenic or likely pathogenic (P/LP)]{#pathogenic-likely-pathogenic}
 : Clinical classification categories indicating different strengths of
-  evidence that a variant contributes to disease. These labels describe the
-  prior evaluation and are not reassigned by this module. [Learn more about the
+  evidence that a variant contributes to disease. These labels remain attached
+  to the prior evaluation throughout this module. [Learn more about the
   ACMG/AMP standards.](https://pubmed.ncbi.nlm.nih.gov/25741868/)
 
 [Percent detected]{#percent-detected}
@@ -182,13 +181,13 @@ These definitions reflect how each term is used in the module.
 [Target Development Level (TDL)]{#tdl}
 : An IDG classification describing how well a protein target has been studied
   and which types of knowledge or tools are available. TDL can help identify an
-  appropriate research next step, but it does not measure disease relevance.
+  appropriate research next step. Disease evidence addresses disease relevance.
   [Learn more about
   TDLs in Pharos.](https://pharos.nih.gov/)
 
 [Tbio]{#tbio}
 : A TDL for targets with substantial biological or disease-related knowledge
-  that do not meet the criteria for `Tclin` or `Tchem`. These targets may need
+  within the Tbio criteria. These targets may need
   focused mechanistic or functional follow-up. [Learn more about TDLs in
   Pharos.](https://pharos.nih.gov/)
 
@@ -200,12 +199,12 @@ These definitions reflect how each term is used in the module.
 
 [Tclin]{#tclin}
 : A TDL for targets associated with an approved drug and a known mechanism of
-  action. This can identify established pharmacological mechanisms to examine,
-  but it does not make a drug appropriate for a specific variant or patient.
+  action. This can identify established pharmacological mechanisms to examine.
+  Variant and patient evidence determine relevance to a specific case.
   [Learn more about TDLs in Pharos.](https://pharos.nih.gov/)
 
 [Tdark]{#tdark}
-: A TDL for understudied targets that meet IDG inclusion criteria but have
+: A TDL for understudied targets that meet IDG inclusion criteria and have
   limited characterized biology or chemical tools. These targets may require
   basic protein characterization before targeted experiments are possible.
   [Learn more about TDLs in Pharos.](https://pharos.nih.gov/)
@@ -223,8 +222,8 @@ These definitions reflect how each term is used in the module.
   accession numbers.](https://www.uniprot.org/help/accession_numbers)
 
 [Variant of uncertain significance (VUS)]{#vus}
-: A variant for which the available evidence is insufficient or conflicting for
-  a pathogenic or benign classification. Biological evidence can guide research
-  priorities, but it cannot establish whether a VUS is pathogenic or benign by
-  itself. [Learn more about the ACMG/AMP
+: A variant for which the available evidence supports an uncertain
+  classification. Biological evidence can guide research priorities, and
+  clinical classification requires the complete body of evidence. [Learn more
+  about the ACMG/AMP
   standards.](https://pubmed.ncbi.nlm.nih.gov/25741868/)
