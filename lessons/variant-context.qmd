@@ -17,8 +17,10 @@ variants through quality control, gene selection, computational ranking, and
 clinical evaluation:
 
 1. They focused on 369 genes connected to heart failure and related conditions.
-2. A ranking pipeline combined predicted consequence, splicing, conservation,
-   population frequency, protein predictions, and ClinVar annotations.
+2. A ranking pipeline assigned a pathogenicity score across eight categories:
+   variant-call quality, splicing, predicted consequence, gene intolerance,
+   conservation, protein-effect predictions, allele frequency, and ClinVar
+   evidence.
 3. Variants with a study score of at least 15, plus previously reported
    likely pathogenic or pathogenic ClinVar variants, received manual review.
 4. Clinical geneticists applied ACMG guidance and condition-specific rules.
@@ -26,17 +28,24 @@ clinical evaluation:
 ## The published candidate genetic variant table
 
 Supplementary Table S4 is the starting point for this module. Its 54 rows cover
-46 people and 25 genes. The authors classified these variants as pathogenic,
-likely pathogenic, or VUS.
+46 people and 25 genes.
 
-We will use the study score and classification as reported in the paper.
+The source study's [Supplementary
+Methods](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41598-025-88465-8/MediaObjects/41598_2025_88465_MOESM1_ESM.docx)
+specify PolyPhen, SIFT, REVEL, and CADD for the protein-effect component. The
+authors then classified the reviewed variants as pathogenic, likely pathogenic,
+or VUS.
+
+The study score and reported classification describe how the source paper
+evaluated each variant. We add tissue, cell-type, and protein data to formulate
+hypotheses and further prioritize experimental follow-up.
 
 ::: {.callout-tip title="Why add information about the genes?"}
-The candidate genetic variant table does not contain all the evidence needed
-for experimental follow-up. GTEx reports heart-tissue expression, HuBMAP
-reports indexed values for ventricular cardiac myocytes, and Pharos summarizes
-protein knowledge, ligands, and target development. Adding gene information
-does not change the study classification.
+The candidate genetic variant table provides the clinical starting point for
+experimental follow-up. GTEx reports heart-tissue expression, HuBMAP reports
+indexed values for ventricular cardiac myocytes, and Pharos summarizes protein
+knowledge, ligands, and target development. The study classification remains
+attached to each variant record.
 :::
 
 ## Inspect the published variants
@@ -113,8 +122,9 @@ HGVS descriptions name a variant relative to a specific reference sequence.
 
 The transcript accession and version matter because coordinates and predicted
 consequences can differ among transcripts and reference-sequence versions.
+
 The HGVS columns contain the descriptions reported by the study. A blank
-`hgvs_p` means that the source table did not report a protein HGVS description.
+`hgvs_p` means that the source left the protein HGVS field empty.
 
 See the
 [HGVS reference-sequence recommendations](https://hgvs-nomenclature.org/stable/background/refseq/)
@@ -226,9 +236,11 @@ classified as P, LP, and VUS?
 :::
 
 DCM contributes 28 of the 54 rows: 11 P, 11 LP, and 6 VUS. HCM contributes 8
-rows, and ARVC contributes 5. The remaining 13 rows are distributed across
-ATTR-CM, `HCM*`, ICM, ACHD, and myocarditis. The `(P)` label remains separate
-because the paper used it for pathogenic secondary findings.
+rows, and ARVC contributes 5.
+
+The remaining 13 rows are distributed across ATTR-CM, `HCM*`, ICM, ACHD, and
+myocarditis. The `(P)` label remains separate because the paper used it for
+pathogenic secondary findings.
 
 ## Check your understanding {.knowledge-check-heading}
 
@@ -258,15 +270,14 @@ Why do 54 variant rows map to only 25 genes?
 
 What does a blank `hgvs_p` value mean in this dataset?
 
-- No protein HGVS value was reported
+- The source table left the protein HGVS field blank
 
-  > Correct. The source table did not report a protein HGVS description for
-  > this row.
+  > Correct. The source table left the protein HGVS field blank for this row.
 
-- The variant has no protein effect
+- The blank field establishes the variant's protein effect
 
-  > A blank records that the source table did not report a protein HGVS
-  > description.
+  > A blank records an empty source field. Protein-effect evidence comes from
+  > the corresponding analysis.
 
 :::
 
