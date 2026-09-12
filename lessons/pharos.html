@@ -324,17 +324,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td><strong>Tclin</strong></td>
-<td>The target meets Pharos criteria for activity involving an approved drug.</td>
+<td>An approved drug acts through the target.</td>
 <td>Open the drug records and examine their mechanisms and indications.</td>
 </tr>
 <tr class="even">
 <td><strong>Tchem</strong></td>
-<td>The target has qualifying small-molecule activity but does not meet Tclin criteria.</td>
+<td>Among targets outside Tclin, the target has high-potency small-molecule binding data.</td>
 <td>Examine the ligand records for potency, selectivity, and experimental use.</td>
 </tr>
 <tr class="odd">
 <td><strong>Tbio</strong></td>
-<td>Biological information is available, but the target does not meet Tclin or Tchem criteria.</td>
+<td>The target has experimental Gene Ontology annotations or meets Pharos criteria based on publication, GeneRIF, and antibody records.</td>
 <td>Begin with mechanism, pathway, phenotype, or assay information.</td>
 </tr>
 <tr class="even">
@@ -394,7 +394,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </script>
 </div>
 </div>
-<p>One row represents one protein target. The gene symbol and UniProt identifier link it to Pharos. The other fields report its TDL and counts of publications, protein interactions, ligands, and drugs.</p>
+<p>One row represents one protein target. The gene symbol and UniProt identifier link it to Pharos.</p>
+<p>The other fields report its TDL and counts of publications, protein interactions, ligands, and drugs.</p>
 <p>TDL follows Pharos development criteria. The counts describe records attached to the target. A Tchem target can therefore have ligand records when its drug count is zero.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Live data">
 <div class="callout-header d-flex align-content-center">
@@ -436,7 +437,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    ppiCounts { name value }</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>$symbol</code> is a query variable. For <em>MYLK3</em>, the wrapper sends <code>{"symbol": "MYLK3"}</code> separately from the query text. Pharos returns the selected fields under <code>data</code> and <code>target</code>. The wrapper extracts those fields and creates one table row per gene.</p>
+<p><code>$symbol</code> is a query variable. For <em>MYLK3</em>, the wrapper sends <code>{"symbol": "MYLK3"}</code> separately from the query text.</p>
+<p>Pharos returns the selected fields under <code>data</code> and <code>target</code>. The wrapper extracts those fields and creates one table row per gene.</p>
 <p>The complete implementation is in <a href="../api_helpers.py"><code>api_helpers.py</code></a>.</p>
 </div>
 </div>
@@ -472,11 +474,12 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2Ui
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>tdl_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>The <code>genes</code> column counts how many queried targets fall into each Pharos TDL. In the dated teaching data, 18 are Tbio, 4 are Tclin, and 3 are Tchem. None are Tdark. The Tclin targets are <em>TTR</em>, <em>DMD</em>, <em>KCNQ1</em>, and <em>MYH7</em>; the Tchem targets are <em>MYLK3</em>, <em>POLG</em>, and <em>TNNI3K</em>.</p>
+<p>The <code>genes</code> column counts how many queried targets fall into each Pharos TDL. The dated teaching data contain 18 Tbio, 4 Tclin, 3 Tchem, and zero Tdark targets.</p>
+<p>The Tclin targets are <em>TTR</em>, <em>DMD</em>, <em>KCNQ1</em>, and <em>MYH7</em>. The Tchem targets are <em>MYLK3</em>, <em>POLG</em>, and <em>TNNI3K</em>.</p>
 </section>
 <section id="compare-target-fields" class="level3">
 <h3 class="anchored" data-anchor-id="compare-target-fields">Compare target fields</h3>
-<p>Keep the fields used for interpretation and order the proteins by TDL, drug count, and gene symbol. Include ligand counts so Tchem targets remain interpretable when their drug count is zero.</p>
+<p>Keep the fields used for interpretation and order the proteins by TDL, drug count, and gene symbol. Include ligand counts so the table shows both ligand and drug records for Tchem targets.</p>
 <div class="module-activity">
 <div>
 <div id="pyodide-4" class="exercise-cell">
@@ -508,7 +511,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </script>
 </div>
 </div>
-<p>The filter returns all four Tclin targets, <em>TTR</em>, <em>DMD</em>, <em>KCNQ1</em>, and <em>MYH7</em>, along with the Tchem targets <em>MYLK3</em> and <em>TNNI3K</em>. <em>POLG</em> does not meet the drug count condition, but it remains visible in the complete table with two ligand records and no drug records.</p>
+<p>The filter returns all four Tclin targets, <em>TTR</em>, <em>DMD</em>, <em>KCNQ1</em>, and <em>MYH7</em>, along with the Tchem targets <em>MYLK3</em> and <em>TNNI3K</em>. The complete table records two ligand records and a drug count of zero for <em>POLG</em>.</p>
 </section>
 </section>
 <section id="check-your-understanding" class="level2 knowledge-check-heading">
@@ -539,33 +542,33 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <hr class="hr-text" data-content="?">
 <div>
 <div>
+<div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="bleuncfwft">
+<div>
+<p>Tchem identifies an approved-drug relationship</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="bleuncfwft" value="2" x-model="answer" :disabled="isAnswerCorrect" name="qxgmqymmov" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+<div>
 <div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="wworocnzjq">
+        <label for="xfppshqtrr">
 <div>
 <p>Every qualifying ligand is counted as a drug</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="wworocnzjq" value="1" x-model="answer" :disabled="isAnswerCorrect" name="cxdykevmxa" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="xfppshqtrr" value="1" x-model="answer" :disabled="isAnswerCorrect" name="qxgmqymmov" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 <div>
 <div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="lkakaghlyc">
+        <label for="rzzbsbokws">
 <div>
 <p>TDL criteria and the ligand and drug counts describe different fields</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="lkakaghlyc" value="0" x-model="answer" :disabled="isAnswerCorrect" name="cxdykevmxa" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
-    </div>
-</div>
-<div>
-<div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="dwgchepksh">
-<div>
-<p>Tchem means that no chemical information is available</p>
-</div>
-</label>
-    <input type="radio" class="form-check-input" id="dwgchepksh" value="2" x-model="answer" :disabled="isAnswerCorrect" name="cxdykevmxa" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="rzzbsbokws" value="0" x-model="answer" :disabled="isAnswerCorrect" name="qxgmqymmov" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 </div>
@@ -609,35 +612,35 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <div x-show="isAnswerCorrect" x-transition="" x-cloak="" class="qmulti__result__badge qmulti__result__correct">
     <span>✔</span></div>
 <div class="qmulti__question">
-<p>Which field describes protein target development rather than the paper’s classification of a specific variant?</p>
+<p>Which field describes protein target development alongside the paper’s classification of a specific variant?</p>
 </div>
 <hr class="hr-text" data-content="?">
 <div>
 <div>
 <div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="fyvndhzhug">
+        <label for="idrruvkodw">
 <div>
 <p>TDL</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="fyvndhzhug" value="0" x-model="answer" :disabled="isAnswerCorrect" name="nyvijlbzox" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    <input type="radio" class="form-check-input" id="idrruvkodw" value="0" x-model="answer" :disabled="isAnswerCorrect" name="bobinrlxdi" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 <div>
 <div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="yosyutlzzv">
+        <label for="zgggdnlbjg">
 <div>
 <p><code>study_class</code></p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="yosyutlzzv" value="1" x-model="answer" :disabled="isAnswerCorrect" name="nyvijlbzox" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="zgggdnlbjg" value="1" x-model="answer" :disabled="isAnswerCorrect" name="bobinrlxdi" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 </div>
 <div>
 <div class="qmulti__correct_result" x-show="answer === '0' &amp;&amp; isAnswered" x-transition="">
 <div>
-<p>Correct. TDL belongs to the protein target record. <code>study_class</code> remains attached to the variant reported by the paper.</p>
+<p>Correct. TDL belongs to the protein target record. <code>study_class</code> records the paper’s classification of the variant.</p>
 </div>
 </div>
 <div class="qmulti__wrong_result" x-show="answer === '1' &amp;&amp; isAnswered" x-transition="">
@@ -654,7 +657,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <ul>
 <li>The dated Pharos response contains 18 Tbio, 4 Tclin, and 3 Tchem targets.</li>
 <li>TDL, publication counts, interaction counts, ligand counts, and drug counts describe different parts of a protein target record.</li>
-<li>Six Tclin or Tchem targets have at least one drug record in the dated response; <em>POLG</em> is Tchem with ligand records and no drug records.</li>
+<li>Six Tclin or Tchem targets have at least one drug record in the dated response; <em>POLG</em> is Tchem with ligand records and a drug count of zero.</li>
 </ul>
 <p><strong>Next:</strong> Join the GTEx, HuBMAP, and Pharos results to all 54 variant rows and prioritize research follow-up.</p>
 <div class="notebook-actions">

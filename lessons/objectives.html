@@ -337,13 +337,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>The published variant table is saved in the repository. By default, GTEx, HuBMAP, and Pharos are queried live. Dated responses are available as backups when a service cannot be reached.</p>
-<p>The prioritization lesson also uses the <a href="https://www.ebi.ac.uk/ProtVar/api">ProtVar API</a> for one missense VUS. AlphaMissense and EVE predict whether the substitution may affect protein function, while FoldX estimates its effect on protein stability. ProtVar is not a CFDE resource.</p>
+<p>The published variant table is saved in the repository. By default, GTEx, HuBMAP, and Pharos are queried live. Dated responses support the activities during a service interruption.</p>
+<p>The prioritization lesson also uses the <a href="https://www.ebi.ac.uk/ProtVar/api">ProtVar API</a> for one missense VUS. AlphaMissense and EVE provide results from two newer missense-effect models. FoldX estimates the change in protein stability. ProtVar is an EMBL-EBI resource used after the CFDE resource activities.</p>
 </section>
 <section id="build-an-e-utilities-request" class="level2">
 <h2 class="anchored" data-anchor-id="build-an-e-utilities-request">Build an E-utilities request</h2>
-<p>We will first use NCBI E-utilities because its endpoint and parameters are easy to inspect in one URL. Build the URL by choosing a gene symbol, defining the parameters, and joining them to the endpoint.</p>
-<p>Enter <em>MYH7</em> or another gene symbol and choose <strong>Run Code</strong>. The final line displays the NCBI request URL without sending it.</p>
+<p>This short syntax warm-up uses NCBI E-utilities because its endpoint and parameters are easy to inspect in one URL. Later lessons apply the same API concepts to the resources used in the analysis.</p>
+<p>Build the URL by choosing a gene symbol, defining the parameters, and joining them to the endpoint.</p>
+<p>Enter <em>MYH7</em> or another gene symbol and choose <strong>Run Code</strong>. The final line displays the constructed NCBI request URL.</p>
 <div class="module-activity">
 <div>
 <div id="pyodide-1" class="exercise-cell">
@@ -375,7 +376,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2Ui
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>request_url</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>The displayed URL sends <code>db=gene</code> to NCBI Gene, places the selected symbol and <code>Homo sapiens</code> in <code>term</code>, and requests JSON with <code>retmode=json</code>. Change <code>gene_symbol</code>, and the search changes with it. The endpoint and remaining parameters stay the same.</p>
+<p>The displayed URL sends <code>db=gene</code> to NCBI Gene, places the selected symbol and <code>Homo sapiens</code> in <code>term</code>, and requests JSON with <code>retmode=json</code>. Change <code>gene_symbol</code>, and the search changes with it. The endpoint and other parameters stay the same.</p>
 <section id="send-the-request" class="level3">
 <h3 class="anchored" data-anchor-id="send-the-request">Send the request</h3>
 <p>Run the URL-building activity first. Then run this cell to send the request and inspect selected fields from the JSON response.</p>
@@ -401,7 +402,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJp
 </section>
 <section id="read-a-graphql-query" class="level3">
 <h3 class="anchored" data-anchor-id="read-a-graphql-query">Read a GraphQL query</h3>
-<p><strong>GraphQL</strong> is an API query language. A GraphQL service often uses one endpoint. The request contains a query that names the exact fields needed. Variables hold values that can change, such as a gene symbol. The response follows the shape of the query, so the client receives the fields it requested.</p>
+<p><strong>GraphQL</strong> is an API query language. A GraphQL service often uses one endpoint.</p>
+<p>The request names the exact fields needed, while variables hold values that can change, such as a gene symbol. The response follows the shape of the query, so the client receives the fields it requested.</p>
 <p>Pharos uses GraphQL. This query asks for a protein symbol, name, UniProt ID, target development level, and publication count:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode graphql code-with-copy"><code class="sourceCode graphql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Give the request a name and declare the gene-symbol variable.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">query</span> TargetContext(<span class="va">$symbol</span>: <span class="dt">String</span>!) {</span>
@@ -446,33 +448,33 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJp
 <hr class="hr-text" data-content="?">
 <div>
 <div>
-<div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="iekauuukoz">
-<div>
-<p><code>response_json = response.json()</code></p>
-</div>
-</label>
-    <input type="radio" class="form-check-input" id="iekauuukoz" value="2" x-model="answer" :disabled="isAnswerCorrect" name="hxvcvxpjyy" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
-    </div>
-</div>
-<div>
 <div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="pljvzxkjqd">
+        <label for="ltpqcgyfpd">
 <div>
 <p><code>"db": "gene"</code></p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="pljvzxkjqd" value="0" x-model="answer" :disabled="isAnswerCorrect" name="hxvcvxpjyy" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    <input type="radio" class="form-check-input" id="ltpqcgyfpd" value="0" x-model="answer" :disabled="isAnswerCorrect" name="tbqygrniay" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="ydehalsfxh">
+<div>
+<p><code>response_json = response.json()</code></p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="ydehalsfxh" value="2" x-model="answer" :disabled="isAnswerCorrect" name="tbqygrniay" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 <div>
 <div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="yrniwmxmbx">
+        <label for="cmbeqwvkhl">
 <div>
 <p><code>endpoint = "https://eutils.ncbi.nlm.nih.gov/..."</code></p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="yrniwmxmbx" value="1" x-model="answer" :disabled="isAnswerCorrect" name="hxvcvxpjyy" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="cmbeqwvkhl" value="1" x-model="answer" :disabled="isAnswerCorrect" name="tbqygrniay" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 </div>
@@ -484,7 +486,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJp
 </div>
 <div class="qmulti__wrong_result" x-show="answer === '1' &amp;&amp; isAnswered" x-transition="">
 <div>
-<p>This line defines the endpoint rather than a request parameter.</p>
+<p>This line defines the endpoint. The <code>parameters</code> object contains the request parameters.</p>
 </div>
 </div>
 <div class="qmulti__wrong_result" x-show="answer === '2' &amp;&amp; isAnswered" x-transition="">
@@ -521,33 +523,33 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJp
 <hr class="hr-text" data-content="?">
 <div>
 <div>
-<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="lhiwdhnnho">
-<div>
-<p>GTEx</p>
-</div>
-</label>
-    <input type="radio" class="form-check-input" id="lhiwdhnnho" value="0" x-model="answer" :disabled="isAnswerCorrect" name="ayvhvdilqw" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
-    </div>
-</div>
-<div>
 <div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="xuypiyvnqv">
+        <label for="dooxbwrhhk">
 <div>
 <p>Pharos</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="xuypiyvnqv" value="2" x-model="answer" :disabled="isAnswerCorrect" name="ayvhvdilqw" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="dooxbwrhhk" value="2" x-model="answer" :disabled="isAnswerCorrect" name="rfghcxbgjq" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 <div>
 <div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="jpsxfmmiyc">
+        <label for="kwuqtfkemq">
 <div>
 <p>HuBMAP</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="jpsxfmmiyc" value="1" x-model="answer" :disabled="isAnswerCorrect" name="ayvhvdilqw" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="kwuqtfkemq" value="1" x-model="answer" :disabled="isAnswerCorrect" name="rfghcxbgjq" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
+        <label for="wajrvsqbgb">
+<div>
+<p>GTEx</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="wajrvsqbgb" value="0" x-model="answer" :disabled="isAnswerCorrect" name="rfghcxbgjq" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 </div>
@@ -559,12 +561,12 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJp
 </div>
 <div class="qmulti__wrong_result" x-show="answer === '1' &amp;&amp; isAnswered" x-transition="">
 <div>
-<p>HuBMAP is used here to examine indexed expression in ventricular cardiac myocytes rather than bulk heart-tissue samples.</p>
+<p>HuBMAP is used here to examine indexed expression in ventricular cardiac myocytes. GTEx provides the bulk heart-tissue measurements.</p>
 </div>
 </div>
 <div class="qmulti__wrong_result" x-show="answer === '2' &amp;&amp; isAnswered" x-transition="">
 <div>
-<p>Pharos provides protein and target-development information rather than tissue expression.</p>
+<p>Pharos provides protein and target-development information. GTEx and HuBMAP provide expression measurements.</p>
 </div>
 </div>
 </div>

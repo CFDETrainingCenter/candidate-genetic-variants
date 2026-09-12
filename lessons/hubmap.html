@@ -268,14 +268,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>HuBMAP stands for <strong>Human BioMolecular Atlas Program</strong>. This NIH Common Fund program maps cells and molecules within human tissues. Its Cells API connects aggregated pipeline outputs and indexed expression values to labels such as ventricular cardiac myocyte, fibroblast, or macrophage.</p>
 <section id="why-ventricular-cardiac-myocytes" class="level3">
 <h3 class="anchored" data-anchor-id="why-ventricular-cardiac-myocytes">Why ventricular cardiac myocytes?</h3>
-<p>The <a href="https://doi.org/10.1038/s41598-025-88465-8">source paper</a> studied early-onset advanced heart failure. The highest yield of pathogenic or likely pathogenic variants occurred in hypertrophic, dilated, and arrhythmogenic right ventricular cardiomyopathy. Sarcomeric variants were most common in the first two groups, while desmosomal variants were concentrated in the third. The teaching table includes <em>MYH7</em>, <em>MYBPC3</em>, <em>TNNT2</em>, <em>ACTC1</em>, <em>DSG2</em>, <em>DSC2</em>, and <em>PKP2</em>.</p>
-<p>The paper did not analyze cell types, so HuBMAP adds cell-type information rather than reproducing the study. We begin with ventricular cardiac myocytes because the ventricles provide the heart’s main pumping force and many candidate genes contribute to cardiac-muscle contraction or structure. This choice also follows the GTEx left-ventricle comparison.</p>
+<p>The <a href="https://doi.org/10.1038/s41598-025-88465-8">source paper</a> studied early-onset advanced heart failure. The highest yield of pathogenic or likely pathogenic variants occurred in hypertrophic, dilated, and arrhythmogenic right ventricular cardiomyopathy.</p>
+<p>Sarcomeric variants were most common in the first two groups, while desmosomal variants were concentrated in the third. The teaching table includes <em>MYH7</em>, <em>MYBPC3</em>, <em>TNNT2</em>, <em>ACTC1</em>, <em>DSG2</em>, <em>DSC2</em>, and <em>PKP2</em>.</p>
+<p>HuBMAP adds reference cell-type expression data to the follow-up analysis. We begin with ventricular cardiac myocytes because the ventricles provide the heart’s main pumping force.</p>
+<p>Many candidate genes contribute to cardiac-muscle contraction or structure. This cell-type choice also follows the GTEx left-ventricle comparison.</p>
 <p>The request retrieves up to the first 500 indexed records labeled as regular ventricular cardiac myocytes. The fixed limit keeps the live request manageable.</p>
 <p>Learn more about the resource’s APIs in the <a href="https://docs.hubmapconsortium.org/apis.html">HuBMAP API documentation</a>.</p>
 </section>
 <section id="how-to-read-the-returned-values" class="level3">
 <h3 class="anchored" data-anchor-id="how-to-read-the-returned-values">How to read the returned values</h3>
-<p>The Cells API does not return values for every gene. Record a missing value as unavailable, not as zero expression.</p>
+<p>The Cells API returns values for a subset of genes. Record genes outside that subset as unavailable and keep them distinct from a measured zero.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Why HuBMAP helps">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -293,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="querying-the-hubmap-api" class="level2">
 <h2 class="anchored" data-anchor-id="querying-the-hubmap-api">Querying the HuBMAP API</h2>
-<p>The Cells API intersects heart and ventricular cardiac-myocyte records, retrieves up to the first 500 records, and requests one gene at a time. A gene with no indexed value is unavailable, not zero.</p>
+<p>The Cells API intersects heart and ventricular cardiac-myocyte records, retrieves up to the first 500 records, and requests one gene at a time. An unavailable result records the API response separately from a measured zero.</p>
 <section id="prepare-the-gene-list-and-api-helper" class="level3">
 <h3 class="anchored" data-anchor-id="prepare-the-gene-list-and-api-helper">Prepare the gene list and API helper</h3>
 <p>Load the published variants, select the 25 unique gene symbols, and import the HuBMAP wrapper.</p>
@@ -322,7 +324,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </script>
 </div>
 </div>
-<p>One row represents one queried gene. <code>mean_normalized_expression</code> is the mean normalized expression across retrieved records, and <code>percent_detected</code> is the percentage of those records with a value above zero. The separate <code>availability</code> field states whether the index returned any values.</p>
+<p>One row represents one queried gene. <code>mean_normalized_expression</code> is the mean normalized expression across retrieved records, and <code>percent_detected</code> is the percentage of those records with a value above zero.</p>
+<p>The separate <code>availability</code> field states whether the index returned any values.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Live data">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -355,7 +358,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <p>Next, compare data availability, mean normalized expression, and the percentage of values above zero.</p>
 <section id="summarize-data-availability" class="level3">
 <h3 class="anchored" data-anchor-id="summarize-data-availability">Summarize data availability</h3>
-<p>Keep the ventricular cardiac-myocyte rows and count the genes with and without indexed expression values. Start with coverage before comparing measurements.</p>
+<p>Keep the ventricular cardiac-myocyte rows and count genes with returned and unavailable expression values. Start with coverage before comparing measurements.</p>
 <div class="module-activity">
 <div>
 <div id="pyodide-3" class="exercise-cell">
@@ -410,7 +413,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2Ui
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>The two measures produce different rankings. In the dated teaching data, <em>TNNT2</em> ranks second by percent detected but sixth by mean expression. <em>DES</em> ranks second by mean expression and third by percent detected. Neither summary replaces the other because they describe different expression patterns.</p>
+<p>The two measures produce different rankings. In the dated teaching data, <em>TNNT2</em> ranks second by percent detected and sixth by mean expression. <em>DES</em> ranks second by mean expression and third by percent detected.</p>
+<p>The two summaries describe different expression patterns and work together.</p>
 </section>
 <section id="plot-ventricular-expression" class="level3">
 <h3 class="anchored" data-anchor-id="plot-ventricular-expression">Plot ventricular expression</h3>
@@ -425,7 +429,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </script>
 </div>
 </div>
-<p>The plot shows the 10 highest means from the complete 14-gene table. It is a focused view, not the complete result. The 11 unavailable genes remain visible in the availability summary rather than disappearing from the analysis.</p>
+<p>The plot shows the 10 highest means from the complete 14-gene table. The table above includes all 14 genes with returned measurements.</p>
+<p>The availability summary also lists the 11 unavailable genes.</p>
 </section>
 </section>
 <section id="check-your-understanding" class="level2 knowledge-check-heading">
@@ -456,33 +461,33 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <hr class="hr-text" data-content="?">
 <div>
 <div>
-<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="pjddrsmuxk">
-<div>
-<p>Every retrieved record has the same expression value</p>
-</div>
-</label>
-    <input type="radio" class="form-check-input" id="pjddrsmuxk" value="1" x-model="answer" :disabled="isAnswerCorrect" name="iyfdikouca" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
-    </div>
-</div>
-<div>
-<div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="tntckxdpea">
-<div>
-<p>The gene is unavailable in the Cells API index</p>
-</div>
-</label>
-    <input type="radio" class="form-check-input" id="tntckxdpea" value="2" x-model="answer" :disabled="isAnswerCorrect" name="iyfdikouca" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
-    </div>
-</div>
-<div>
 <div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="ztwgfrzumr">
+        <label for="hmqvubhehu">
 <div>
 <p>Larger returned values occur in a smaller portion of the retrieved records</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="ztwgfrzumr" value="0" x-model="answer" :disabled="isAnswerCorrect" name="iyfdikouca" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    <input type="radio" class="form-check-input" id="hmqvubhehu" value="0" x-model="answer" :disabled="isAnswerCorrect" name="upofcqsrur" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="mcnihumeed">
+<div>
+<p>The gene is unavailable in the Cells API index</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="mcnihumeed" value="2" x-model="answer" :disabled="isAnswerCorrect" name="upofcqsrur" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="izxxmvepvs">
+<div>
+<p>Every retrieved record has the same expression value</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="izxxmvepvs" value="1" x-model="answer" :disabled="isAnswerCorrect" name="upofcqsrur" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 </div>
@@ -494,12 +499,12 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </div>
 <div class="qmulti__wrong_result" x-show="answer === '1' &amp;&amp; isAnswered" x-transition="">
 <div>
-<p>A mean and a percentage above zero do not show that every record has the same value.</p>
+<p>A mean and a percentage above zero summarize variation across the retrieved records.</p>
 </div>
 </div>
 <div class="qmulti__wrong_result" x-show="answer === '2' &amp;&amp; isAnswered" x-transition="">
 <div>
-<p>An unavailable gene has no returned values and is excluded from this comparison.</p>
+<p>An unavailable gene has an empty set of returned values, so this comparison contains genes with measurements.</p>
 </div>
 </div>
 </div>
@@ -531,23 +536,23 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <hr class="hr-text" data-content="?">
 <div>
 <div>
-<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="bgsawrpbeb">
+<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
+        <label for="tincllrbkl">
 <div>
-<p>The gene was not expressed</p>
+<p>The expression index returned an unavailable result</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="bgsawrpbeb" value="1" x-model="answer" :disabled="isAnswerCorrect" name="hfqzfffkcv" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="tincllrbkl" value="0" x-model="answer" :disabled="isAnswerCorrect" name="sbpaynoaaa" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 <div>
-<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="fdaaukatde">
+<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="hwqzflllin">
 <div>
-<p>The expression index did not provide a value</p>
+<p>Every indexed record had a measured value of zero</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="fdaaukatde" value="0" x-model="answer" :disabled="isAnswerCorrect" name="hfqzfffkcv" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    <input type="radio" class="form-check-input" id="hwqzflllin" value="1" x-model="answer" :disabled="isAnswerCorrect" name="sbpaynoaaa" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 </div>
@@ -559,7 +564,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </div>
 <div class="qmulti__wrong_result" x-show="answer === '1' &amp;&amp; isAnswered" x-transition="">
 <div>
-<p>Choose unavailable because the index returned no value for this gene.</p>
+<p>Choose unavailable because that label records an empty API result for this gene.</p>
 </div>
 </div>
 </div>

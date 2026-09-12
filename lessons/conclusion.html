@@ -191,7 +191,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#what-you-accomplished" id="toc-what-you-accomplished" class="nav-link active" data-scroll-target="#what-you-accomplished">What you accomplished</a></li>
-  <li><a href="#from-computational-evidence-to-functional-evidence" id="toc-from-computational-evidence-to-functional-evidence" class="nav-link" data-scroll-target="#from-computational-evidence-to-functional-evidence">From computational evidence to functional evidence</a></li>
+  <li><a href="#from-computational-results-to-experimental-follow-up" id="toc-from-computational-results-to-experimental-follow-up" class="nav-link" data-scroll-target="#from-computational-results-to-experimental-follow-up">From computational results to experimental follow-up</a></li>
   <li><a href="#a-reusable-prioritization-checklist" id="toc-a-reusable-prioritization-checklist" class="nav-link" data-scroll-target="#a-reusable-prioritization-checklist">A reusable prioritization checklist</a></li>
   <li><a href="#suggested-next-steps-and-reading" id="toc-suggested-next-steps-and-reading" class="nav-link" data-scroll-target="#suggested-next-steps-and-reading">Suggested next steps and reading</a></li>
   </ul>
@@ -223,21 +223,23 @@ ul.task-list li input[type="checkbox"] {
 <p>Review how each resource informs the choice of candidate genetic variant, experimental model, and follow-up experiment.</p>
 <section id="what-you-accomplished" class="level2">
 <h2 class="anchored" data-anchor-id="what-you-accomplished">What you accomplished</h2>
-<p>The workflow preserves all 54 published variant rows and adds bulk-tissue expression from GTEx, cell-type measurements from HuBMAP, protein information from Pharos, and variant predictions from ProtVar. The GTEx, HuBMAP, and Pharos results remain linked to their source identifiers and retrieval dates.</p>
+<p>The workflow includes all 54 published variant rows and adds bulk-tissue expression from GTEx, cell-type measurements from HuBMAP, protein information from Pharos, and variant predictions from ProtVar. The GTEx, HuBMAP, and Pharos results include their source identifiers and retrieval dates.</p>
 </section>
-<section id="from-computational-evidence-to-functional-evidence" class="level2">
-<h2 class="anchored" data-anchor-id="from-computational-evidence-to-functional-evidence">From computational evidence to functional evidence</h2>
-<p>This workflow helps researchers choose what to study next rather than producing one final score. GTEx helps select a tissue, HuBMAP helps select a cell model, Pharos shows what is known about a protein and which research tools are available, and ProtVar provides predictions that help select experiments of protein function or stability.</p>
-<p>For the <em>TNNT2</em> VUS, the next step is to compare wild-type and D259A troponin complexes across calcium concentrations. This experiment would test whether p.Asp259Ala changes calcium-regulated thin-filament activity. Clinical interpretation would also require checking whether the phenotype matches, whether the variant segregates with disease, how common it is in populations, and whether functional studies support an effect.</p>
+<section id="from-computational-results-to-experimental-follow-up" class="level2">
+<h2 class="anchored" data-anchor-id="from-computational-results-to-experimental-follow-up">From computational results to experimental follow-up</h2>
+<p>The combined results support a qualitative decision about what to study next.</p>
+<p>GTEx helps compare tissues for follow-up, and HuBMAP helps assess a possible cell model. Pharos shows what is known about a protein and which research tools are available, while ProtVar provides predictions that help select experiments of protein function or stability.</p>
+<p>For the <em>TNNT2</em> VUS, one possible follow-up experiment would compare wild-type and D259A troponin complexes across calcium concentrations. This experiment would test whether p.Asp259Ala changes calcium-regulated thin-filament activity.</p>
+<p>Clinical interpretation also draws on phenotype match, segregation with disease, population frequency, and functional studies of variant effect.</p>
 </section>
 <section id="a-reusable-prioritization-checklist" class="level2">
 <h2 class="anchored" data-anchor-id="a-reusable-prioritization-checklist">A reusable prioritization checklist</h2>
 <ul>
 <li>Name the exact variant and the source of its annotation.</li>
 <li>Ask what biological level each dataset measures.</li>
-<li>Keep missing data separate from a measured zero.</li>
+<li>Record unavailable data separately from a measured zero.</li>
 <li>Save dataset versions, identifiers, and retrieval dates for reproducibility.</li>
-<li>Keep druggability separate from disease relevance.</li>
+<li>Distinguish druggability from disease relevance.</li>
 <li>End with a clear next step that can be tested.</li>
 </ul>
 </section>

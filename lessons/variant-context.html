@@ -267,15 +267,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The source study performed whole-genome sequencing on heart tissue from people with early-onset advanced heart failure. The researchers narrowed millions of variants through quality control, gene selection, computational ranking, and clinical evaluation:</p>
 <ol type="1">
 <li>They focused on 369 genes connected to heart failure and related conditions.</li>
-<li>A ranking pipeline combined predicted consequence, splicing, conservation, population frequency, protein predictions, and ClinVar annotations.</li>
+<li>A ranking pipeline assigned a pathogenicity score across eight categories: variant-call quality, splicing, predicted consequence, gene intolerance, conservation, protein-effect predictions, allele frequency, and ClinVar evidence.</li>
 <li>Variants with a study score of at least 15, plus previously reported likely pathogenic or pathogenic ClinVar variants, received manual review.</li>
 <li>Clinical geneticists applied ACMG guidance and condition-specific rules.</li>
 </ol>
 </section>
 <section id="the-published-candidate-genetic-variant-table" class="level2">
 <h2 class="anchored" data-anchor-id="the-published-candidate-genetic-variant-table">The published candidate genetic variant table</h2>
-<p>Supplementary Table S4 is the starting point for this module. Its 54 rows cover 46 people and 25 genes. The authors classified these variants as pathogenic, likely pathogenic, or VUS.</p>
-<p>We will use the study score and classification as reported in the paper.</p>
+<p>Supplementary Table S4 is the starting point for this module. Its 54 rows cover 46 people and 25 genes.</p>
+<p>The source study’s <a href="https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41598-025-88465-8/MediaObjects/41598_2025_88465_MOESM1_ESM.docx">Supplementary Methods</a> specify PolyPhen, SIFT, REVEL, and CADD for the protein-effect component. The paper used its score, together with previously reported ClinVar classifications, to select variants for manual review. Clinical geneticists then assigned the reported ACMG classifications.</p>
+<p>This module uses those classifications as the published starting point. GTEx, HuBMAP, Pharos, and ProtVar results then inform hypotheses and experimental follow-up.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Why add information about the genes?">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -286,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The candidate genetic variant table does not contain all the evidence needed for experimental follow-up. GTEx reports heart-tissue expression, HuBMAP reports indexed values for ventricular cardiac myocytes, and Pharos summarizes protein knowledge, ligands, and target development. Adding gene information does not change the study classification.</p>
+<p>The candidate genetic variant table provides the clinical starting point for experimental follow-up. GTEx reports heart-tissue expression, HuBMAP reports indexed values for ventricular cardiac myocytes, and Pharos summarizes protein knowledge, ligands, and target development. The table records the study classification for each variant.</p>
 </div>
 </div>
 </section>
@@ -439,7 +440,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJm
 <li><code>Asp259Ala</code> means that aspartic acid at amino-acid position 259 is replaced by alanine.</li>
 </ul></li>
 </ul>
-<p>The transcript accession and version matter because coordinates and predicted consequences can differ among transcripts and reference-sequence versions. The HGVS columns contain the descriptions reported by the study. A blank <code>hgvs_p</code> means that the source table did not report a protein HGVS description.</p>
+<p>The transcript accession and version matter because coordinates and predicted consequences can differ among transcripts and reference-sequence versions.</p>
+<p>The HGVS columns contain the descriptions reported by the study. A blank <code>hgvs_p</code> means that the source left the protein HGVS field empty.</p>
 <p>See the <a href="https://hgvs-nomenclature.org/stable/background/refseq/">HGVS reference-sequence recommendations</a> for additional guidance.</p>
 </div>
 </div>
@@ -487,7 +489,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2Ui
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>dataset_overview</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>The 54 variant rows represent 46 participants and 25 genes. Four rows lack a protein HGVS description in the source table.</p>
+<p>The 54 variant rows represent 46 participants and 25 genes. Four rows have a blank protein HGVS field in the source table.</p>
 </section>
 <section id="compare-classifications-by-phenotype" class="level3">
 <h3 class="anchored" data-anchor-id="compare-classifications-by-phenotype">Compare classifications by phenotype</h3>
@@ -515,7 +517,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <p>Which phenotype contributes the most rows? Within DCM, how many rows are classified as P, LP, and VUS?</p>
 </div>
 </div>
-<p>DCM contributes 28 of the 54 rows: 11 P, 11 LP, and 6 VUS. HCM contributes 8 rows, and ARVC contributes 5. The remaining 13 rows are distributed across ATTR-CM, <code>HCM*</code>, ICM, ACHD, and myocarditis. The <code>(P)</code> label remains separate because the paper used it for pathogenic secondary findings.</p>
+<p>DCM contributes 28 of the 54 rows: 11 P, 11 LP, and 6 VUS. HCM contributes 8 rows, and ARVC contributes 5.</p>
+<p>The other 13 rows are distributed across ATTR-CM, <code>HCM*</code>, ICM, ACHD, and myocarditis. The table shows <code>(P)</code> as a separate label because the paper used it for pathogenic secondary findings.</p>
 </section>
 </section>
 <section id="check-your-understanding" class="level2 knowledge-check-heading">
@@ -546,33 +549,33 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <hr class="hr-text" data-content="?">
 <div>
 <div>
-<div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="iekauuukoz">
-<div>
-<p>The remaining rows have missing gene symbols</p>
-</div>
-</label>
-    <input type="radio" class="form-check-input" id="iekauuukoz" value="2" x-model="answer" :disabled="isAnswerCorrect" name="hxvcvxpjyy" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
-    </div>
-</div>
-<div>
 <div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="pljvzxkjqd">
+        <label for="ltpqcgyfpd">
 <div>
 <p>Several genes occur in more than one variant observation</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="pljvzxkjqd" value="0" x-model="answer" :disabled="isAnswerCorrect" name="hxvcvxpjyy" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    <input type="radio" class="form-check-input" id="ltpqcgyfpd" value="0" x-model="answer" :disabled="isAnswerCorrect" name="tbqygrniay" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="ydehalsfxh">
+<div>
+<p>The other rows have missing gene symbols</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="ydehalsfxh" value="2" x-model="answer" :disabled="isAnswerCorrect" name="tbqygrniay" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 <div>
 <div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="yrniwmxmbx">
+        <label for="cmbeqwvkhl">
 <div>
 <p>Each participant contributes exactly one gene</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="yrniwmxmbx" value="1" x-model="answer" :disabled="isAnswerCorrect" name="hxvcvxpjyy" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="cmbeqwvkhl" value="1" x-model="answer" :disabled="isAnswerCorrect" name="tbqygrniay" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 </div>
@@ -621,35 +624,35 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <hr class="hr-text" data-content="?">
 <div>
 <div>
-<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="lhiwdhnnho">
+<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="kwuqtfkemq">
 <div>
-<p>No protein HGVS value was reported</p>
+<p>The blank field establishes the variant’s protein effect</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="lhiwdhnnho" value="0" x-model="answer" :disabled="isAnswerCorrect" name="ayvhvdilqw" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    <input type="radio" class="form-check-input" id="kwuqtfkemq" value="1" x-model="answer" :disabled="isAnswerCorrect" name="rfghcxbgjq" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 <div>
-<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="jpsxfmmiyc">
+<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
+        <label for="wajrvsqbgb">
 <div>
-<p>The variant has no protein effect</p>
+<p>The source table left the protein HGVS field blank</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="jpsxfmmiyc" value="1" x-model="answer" :disabled="isAnswerCorrect" name="ayvhvdilqw" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="wajrvsqbgb" value="0" x-model="answer" :disabled="isAnswerCorrect" name="rfghcxbgjq" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 </div>
 <div>
 <div class="qmulti__correct_result" x-show="answer === '0' &amp;&amp; isAnswered" x-transition="">
 <div>
-<p>Correct. The source table did not report a protein HGVS description for this row.</p>
+<p>Correct. The source table left the protein HGVS field blank for this row.</p>
 </div>
 </div>
 <div class="qmulti__wrong_result" x-show="answer === '1' &amp;&amp; isAnswered" x-transition="">
 <div>
-<p>A blank records that the source table did not report a protein HGVS description.</p>
+<p>A blank records an empty source field. Protein-effect evidence comes from the corresponding analysis.</p>
 </div>
 </div>
 </div>
@@ -660,8 +663,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <h2 class="anchored" data-anchor-id="key-points">Key points</h2>
 <ul>
 <li>The source table contains 54 variant observations from 46 participants and 25 genes.</li>
-<li>Four observations lack a reported protein HGVS description.</li>
-<li>The study classification remains attached to each variant when later lessons add tissue expression, cell-type measurements, and protein information.</li>
+<li>Four observations have a blank protein HGVS field in the source table.</li>
+<li>The table records the study classification for each variant when later lessons add tissue expression, cell-type measurements, and protein information.</li>
 </ul>
 <p><strong>Next:</strong> Query GTEx for bulk heart-tissue expression of the 25 genes.</p>
 <div class="notebook-actions">

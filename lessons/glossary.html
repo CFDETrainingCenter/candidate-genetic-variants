@@ -224,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
 <dl>
 <dt><span id="acmg-amp-classification">ACMG/AMP classification</span></dt>
 <dd>
-A framework that classifies sequence variants as pathogenic, likely pathogenic, uncertain significance, likely benign, or benign. This module begins with variants that have already been evaluated and does not repeat the clinical classification process. <a href="https://pubmed.ncbi.nlm.nih.gov/25741868/">Learn more about the ACMG/AMP standards.</a>
+A framework that classifies sequence variants as pathogenic, likely pathogenic, uncertain significance, likely benign, or benign. This module begins with variants that have already been evaluated and records their clinical classifications. <a href="https://pubmed.ncbi.nlm.nih.gov/25741868/">Learn more about the ACMG/AMP standards.</a>
 </dd>
 <dt><span id="alphamissense">AlphaMissense</span></dt>
 <dd>
@@ -236,11 +236,11 @@ A standard way for software to request data or services from another system. In 
 </dd>
 <dt><span id="bulk-tissue">Bulk tissue</span></dt>
 <dd>
-A tissue sample measured as a mixture of its component cell types. GTEx provides bulk-tissue expression, which means its values do not identify the cell type responsible for a transcript signal. <a href="https://commonfund.nih.gov/gtex">Learn more about the GTEx project.</a>
+A tissue sample measured as a mixture of its component cell types. GTEx provides bulk-tissue expression, while cell-type resources identify the cellular source of a transcript signal. <a href="https://commonfund.nih.gov/gtex">Learn more about the GTEx project.</a>
 </dd>
 <dt><span id="cell-type">Cell type</span></dt>
 <dd>
-A group of cells that share biological characteristics. Cell-type-resolved expression can help identify a relevant cellular setting for follow-up experiments or disease modeling. <a href="https://www.ebi.ac.uk/ols4/ontologies/cl">Explore terms in the Cell Ontology.</a>
+A group of cells that share biological characteristics. Cell-type-resolved expression can help identify a relevant cell type for follow-up experiments or disease modeling. <a href="https://www.ebi.ac.uk/ols4/ontologies/cl">Explore terms in the Cell Ontology.</a>
 </dd>
 <dt><span id="endpoint">Endpoint</span></dt>
 <dd>
@@ -261,7 +261,7 @@ Software that uses an empirical energy function to estimate how a sequence chang
 <dl>
 <dt><span id="gene-symbol">Gene symbol</span></dt>
 <dd>
-A standardized short name for a gene, such as <em>TTN</em>. Gene symbols make it possible to join resources, but aliases and identifier changes can cause failed or incorrect matches. <a href="https://www.genenames.org/about/guidelines/">Learn more about human gene-naming guidelines.</a>
+A standardized short name for a gene, such as <em>TTN</em>. Gene symbols make it possible to join resources. Checking aliases and identifier changes supports accurate matches. <a href="https://www.genenames.org/about/guidelines/">Learn more about human gene-naming guidelines.</a>
 </dd>
 <dt><span id="graphql">GraphQL</span></dt>
 <dd>
@@ -269,7 +269,7 @@ An API query language in which a request specifies the fields that should be ret
 </dd>
 <dt><span id="gtex">GTEx</span></dt>
 <dd>
-The Genotype-Tissue Expression project. This module uses GTEx data to ask whether a candidate gene is expressed in disease-relevant bulk tissues. <a href="https://commonfund.nih.gov/gtex">Learn more about GTEx.</a>
+The Genotype-Tissue Expression project. This module uses GTEx data to compare candidate-gene expression in selected bulk heart tissues. <a href="https://commonfund.nih.gov/gtex">Learn more about GTEx.</a>
 </dd>
 <dt><span id="hgvs">HGVS</span></dt>
 <dd>
@@ -281,15 +281,15 @@ An HGVS description at the coding-DNA level. It usually reports the position and
 </dd>
 <dt><span id="hgvsp">HGVSp</span> (<code>hgvs_p</code>)</dt>
 <dd>
-An HGVS description of an observed or predicted protein-level consequence. Parentheses commonly indicate that the protein consequence is predicted rather than experimentally demonstrated. <a href="https://hgvs-nomenclature.org/stable/recommendations/summary/">Review HGVS syntax and examples.</a>
+An HGVS description of an observed or predicted protein-level consequence. Parentheses commonly mark a predicted protein consequence. Experimental evidence can then test that consequence. <a href="https://hgvs-nomenclature.org/stable/recommendations/summary/">Review HGVS syntax and examples.</a>
 </dd>
 <dt><span id="hubmap">HuBMAP</span></dt>
 <dd>
-The Human BioMolecular Atlas Program. This module uses HuBMAP cell data to identify potential cellular systems for follow-up study. <a href="https://hubmapconsortium.org/">Learn more about HuBMAP.</a>
+The Human BioMolecular Atlas Program. This module uses HuBMAP cell data to assess ventricular cardiac myocytes as a possible experimental model. <a href="https://hubmapconsortium.org/">Learn more about HuBMAP.</a>
 </dd>
 <dt><span id="idg">IDG</span></dt>
 <dd>
-Illuminating the Druggable Genome, a program that develops and organizes knowledge about human proteins, especially proteins that remain understudied. <a href="https://commonfund.nih.gov/idg">Learn more about IDG.</a>
+Illuminating the Druggable Genome, a program that develops and organizes knowledge about human proteins, with an emphasis on understudied proteins. <a href="https://commonfund.nih.gov/idg">Learn more about IDG.</a>
 </dd>
 <dt><span id="json">JSON</span></dt>
 <dd>
@@ -297,11 +297,11 @@ A structured text format commonly returned by APIs. JSON stores information as o
 </dd>
 <dt><span id="many-to-one-join">Many-to-one join</span></dt>
 <dd>
-A table operation in which several variant rows can match one gene row. Used correctly, it preserves every original variant while attaching shared gene-level data where appropriate. <a href="https://pandas.pydata.org/docs/user_guide/merging.html#merge-key-uniqueness">Learn more about validating joins in pandas.</a>
+A table operation in which several variant rows can match one gene row. Used correctly, the result includes every original variant and adds shared gene-level data where appropriate. <a href="https://pandas.pydata.org/docs/user_guide/merging.html#merge-key-uniqueness">Learn more about validating joins in pandas.</a>
 </dd>
 <dt><span id="median-tpm">Median TPM</span></dt>
 <dd>
-The median transcripts-per-million expression value across samples in a group. It summarizes relative transcript abundance within a tissue but is not a direct measure of protein abundance. <a href="https://gtexportal.org/home/documentationPage">Learn more in the GTEx Portal documentation.</a>
+The median transcripts-per-million expression value across samples in a group. It summarizes relative transcript abundance within a tissue. Protein abundance requires a protein-level measurement. <a href="https://gtexportal.org/home/documentationPage">Learn more in the GTEx Portal documentation.</a>
 </dd>
 <dt><span id="missense-variant">Missense variant</span></dt>
 <dd>
@@ -314,11 +314,11 @@ A sequence variant that changes a codon so that one amino acid is replaced by an
 <dl>
 <dt><span id="normalized-expression">Normalized expression</span></dt>
 <dd>
-An expression value adjusted to make measurements more comparable within a particular dataset. Values from different resources do not necessarily share the same scale or normalization method. <a href="https://gtexportal.org/home/documentationPage">Learn more in the GTEx Portal documentation.</a>
+An expression value adjusted to make measurements more comparable within a particular dataset. Each resource defines its own scale and normalization method. <a href="https://gtexportal.org/home/documentationPage">Learn more in the GTEx Portal documentation.</a>
 </dd>
 <dt><span id="pathogenic-likely-pathogenic">Pathogenic or likely pathogenic (P/LP)</span></dt>
 <dd>
-Clinical classification categories indicating different strengths of evidence that a variant contributes to disease. These labels describe the prior evaluation and are not reassigned by this module. <a href="https://pubmed.ncbi.nlm.nih.gov/25741868/">Learn more about the ACMG/AMP standards.</a>
+Clinical classification categories indicating different strengths of evidence that a variant contributes to disease. This module records the labels from the prior evaluation throughout the analysis. <a href="https://pubmed.ncbi.nlm.nih.gov/25741868/">Learn more about the ACMG/AMP standards.</a>
 </dd>
 <dt><span id="percent-detected">Percent detected</span></dt>
 <dd>
@@ -346,23 +346,23 @@ An API style that usually represents data as web resources addressed by URLs and
 </dd>
 <dt><span id="tdl">Target Development Level (TDL)</span></dt>
 <dd>
-An IDG classification describing how well a protein target has been studied and which types of knowledge or tools are available. TDL can help identify an appropriate research next step, but it does not measure disease relevance. <a href="https://pharos.nih.gov/">Learn more about TDLs in Pharos.</a>
+An IDG classification describing how well a protein target has been studied and which types of knowledge or tools are available. TDL can help identify an appropriate research next step. Disease evidence addresses disease relevance. <a href="https://pharos.nih.gov/">Learn more about TDLs in Pharos.</a>
 </dd>
 <dt><span id="tbio">Tbio</span></dt>
 <dd>
-A TDL for targets with substantial biological or disease-related knowledge that do not meet the criteria for <code>Tclin</code> or <code>Tchem</code>. These targets may need focused mechanistic or functional follow-up. <a href="https://pharos.nih.gov/">Learn more about TDLs in Pharos.</a>
+A TDL for targets with experimental Gene Ontology annotations or a qualifying combination of publication, GeneRIF, and antibody records. These targets are candidates for focused mechanistic or functional follow-up. <a href="https://pharos.nih.gov/">Learn more about TDLs in Pharos.</a>
 </dd>
 <dt><span id="tchem">Tchem</span></dt>
 <dd>
-A TDL for targets with sufficiently potent small-molecule activities that meet IDG criteria. These targets may have chemical tools suitable for experimental investigation. <a href="https://pharos.nih.gov/">Learn more about TDLs in Pharos.</a>
+A TDL for targets outside Tclin that have sufficiently potent small-molecule binding data. These targets may have chemical tools suitable for experimental investigation. <a href="https://pharos.nih.gov/">Learn more about TDLs in Pharos.</a>
 </dd>
 <dt><span id="tclin">Tclin</span></dt>
 <dd>
-A TDL for targets associated with an approved drug and a known mechanism of action. This can identify established pharmacological mechanisms to examine, but it does not make a drug appropriate for a specific variant or patient. <a href="https://pharos.nih.gov/">Learn more about TDLs in Pharos.</a>
+A TDL for targets associated with an approved drug and a known mechanism of action. This can identify established pharmacological mechanisms to examine. Variant and patient evidence determine relevance to a specific case. <a href="https://pharos.nih.gov/">Learn more about TDLs in Pharos.</a>
 </dd>
 <dt><span id="tdark">Tdark</span></dt>
 <dd>
-A TDL for understudied targets that meet IDG inclusion criteria but have limited characterized biology or chemical tools. These targets may require basic protein characterization before targeted experiments are possible. <a href="https://pharos.nih.gov/">Learn more about TDLs in Pharos.</a>
+A TDL for understudied targets that meet IDG inclusion criteria and have limited characterized biology or chemical tools. These targets may require basic protein characterization before targeted experiments are possible. <a href="https://pharos.nih.gov/">Learn more about TDLs in Pharos.</a>
 </dd>
 <dt><span id="transcript-accession">Transcript accession</span></dt>
 <dd>
@@ -374,7 +374,7 @@ A stable alphanumeric identifier assigned to a protein entry in UniProtKB. For e
 </dd>
 <dt><span id="vus">Variant of uncertain significance (VUS)</span></dt>
 <dd>
-A variant for which the available evidence is insufficient or conflicting for a pathogenic or benign classification. Biological evidence can guide research priorities, but it cannot establish whether a VUS is pathogenic or benign by itself. <a href="https://pubmed.ncbi.nlm.nih.gov/25741868/">Learn more about the ACMG/AMP standards.</a>
+A variant for which the available evidence supports an uncertain classification. Biological evidence can guide research priorities, and clinical classification requires the complete body of evidence. <a href="https://pubmed.ncbi.nlm.nih.gov/25741868/">Learn more about the ACMG/AMP standards.</a>
 </dd>
 </dl>
 

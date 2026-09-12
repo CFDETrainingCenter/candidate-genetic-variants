@@ -243,17 +243,59 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This module assumes basic familiarity with genes, genetic variants, and tabular data. The activities use Python and pandas, but you do not need previous experience working with APIs. You should be comfortable running a code cell and recognizing rows, columns, filters, and sorted results.</p>
-<p>These activities run in a web browser. They request live data, so results may change over time. Dated teaching files are available if a service is unavailable. You can also run the matching notebooks in Jupyter.</p>
+<p>This module assumes basic familiarity with genes, genetic variants, and tabular data. The lessons introduce the API concepts used in each activity. You should be comfortable running a code cell and recognizing rows, columns, filters, and sorted results.</p>
+<p>These activities run in a web browser and request live data, so results may change over time.</p>
+<p>Dated teaching files support the activities during a service interruption. You can also run the matching notebooks in Jupyter.</p>
 </div>
 </div>
 <section id="the-research-question" class="level2">
 <h2 class="anchored" data-anchor-id="the-research-question">The research question</h2>
-<p>Which published candidate genetic variants should be prioritized for further study, and which experimental models are most appropriate for testing them?</p>
-<p>This module uses data from a <a href="https://doi.org/10.1038/s41598-025-88465-8">2025 publication</a> that reports results from a whole-genome sequencing study of early-onset advanced heart failure (<a href="https://pubmed.ncbi.nlm.nih.gov/39910139/">PMID: 39910139</a>). The researchers studied 102 Swedish heart transplant or heart-assist-device recipients. They used a computational pipeline to rank variants and clinical experts to classify them. Their Supplementary Table S4 reports 54 variant rows from 46 people across 25 genes.</p>
+<p>Which published candidate genetic variants should be prioritized for further study, and which experimental models could be used to test them?</p>
+<p>This module uses data from a <a href="https://doi.org/10.1038/s41598-025-88465-8">2025 publication</a> that reports results from a whole-genome sequencing study of early-onset advanced heart failure (<a href="https://pubmed.ncbi.nlm.nih.gov/39910139/">PMID: 39910139</a>). The researchers studied 102 Swedish heart transplant or heart-assist-device recipients.</p>
+<p>They used a computational pipeline to rank variants and clinical experts to classify them. Their Supplementary Table S4 reports 54 variant rows from 46 people across 25 genes.</p>
 <p>Variant analysis can produce a large list of candidate genetic variants. Even after evaluation by a clinical geneticist or variant analyst, a research group may still need to decide which findings to investigate first and how to test them.</p>
 <p>If you want to learn more about variant identification and analysis at an introductory level, see EMBL-EBI’s <a href="https://www.ebi.ac.uk/training/online/courses/human-genetic-variation-introduction/variant-identification-and-analysis/">Variant identification and analysis</a> lesson.</p>
-<p>The final lesson uses ProtVar, an EMBL-EBI resource for human missense variants, to compare complementary predictions for <em>TNNT2</em> p.Asp259Ala: AlphaMissense scores predicted pathogenicity, EVE evaluates the substitution against evolutionary patterns in related protein sequences, and FoldX estimates its effect on protein stability.</p>
+<p>The prioritization lesson uses ProtVar, an EMBL-EBI resource for human missense variants, to compare complementary predictions for <em>TNNT2</em> p.Asp259Ala. AlphaMissense provides a predicted-pathogenicity score, EVE evaluates the substitution against evolutionary patterns in related protein sequences, and FoldX estimates its effect on protein stability.</p>
+<p>The module uses six evidence questions to guide prioritization:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Evidence dimension</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Published evidence</td>
+<td>What did the source study report about the exact variant and phenotype?</td>
+</tr>
+<tr class="even">
+<td>Tissue expression</td>
+<td>Is the associated gene expressed in a relevant heart tissue?</td>
+</tr>
+<tr class="odd">
+<td>Cell-type expression</td>
+<td>Is the gene detected in an appropriate cardiac cell type?</td>
+</tr>
+<tr class="even">
+<td>Protein knowledge</td>
+<td>What biological, disease, or therapeutic information is available for the protein?</td>
+</tr>
+<tr class="odd">
+<td>Variant-specific evidence</td>
+<td>What is known or predicted about the exact substitution?</td>
+</tr>
+<tr class="even">
+<td>Follow-up feasibility</td>
+<td>What experiment or experimental model could test the hypothesis?</td>
+</tr>
+</tbody>
+</table>
+<p>Together, these evidence types support a qualitative prioritization decision.</p>
 </section>
 <section id="tutorial-workflow" class="level2">
 <h2 class="anchored" data-anchor-id="tutorial-workflow">Tutorial workflow</h2>
@@ -347,7 +389,7 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <section id="why-combine-these-resources" class="level3">
 <h3 class="anchored" data-anchor-id="why-combine-these-resources">Why combine these resources?</h3>
-<p>Each API answers a different question. Keeping the results separate shows what each resource contributes before you view them together.</p>
+<p>Combining these resources helps us move from a list of candidate variants to a testable follow-up plan. The combined results help us choose a candidate, an experimental model, and an assay that addresses the proposed biological effect.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Related approach">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -360,7 +402,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><a href="https://doi.org/10.21105/joss.05443">Rosalution</a> provides another example of combining annotations from several sources, keeping track of their sources, and using multiple annotations to support prioritizing candidate genetic variants.</p>
+<p><a href="https://doi.org/10.21105/joss.05443">Rosalution</a> provides another example of combining annotations from several sources to prioritize candidate genetic variants. It keeps each annotation linked to its source.</p>
 </div>
 </div>
 </div>
