@@ -6,8 +6,9 @@ aliases:
 
 **Estimated time:** 25 minutes
 
-Move from bulk heart tissue to ventricular cardiac myocytes. Compare mean
-normalized expression with the percentage of records above zero.
+Use HuBMAP to examine which genes have indexed expression values in ventricular
+cardiac myocytes. For genes with data, compare mean normalized expression with
+the percentage of records above zero.
 
 ## Cell-type expression
 
@@ -44,8 +45,8 @@ Learn more about the resource's APIs in the
 
 ### How to read the returned values
 
-The available samples, cell labels, and processed datasets determine which
-genes return values and which remain unavailable.
+The Cells API does not return values for every gene. Record a missing value as
+unavailable, not as zero expression.
 
 ::: {.callout-tip title="Why HuBMAP helps"}
 GTEx combines expression from all cell types in a tissue sample. HuBMAP allows
@@ -143,8 +144,8 @@ The implementation and its support functions are in
 
 ## Review ventricular cardiac myocytes
 
-We can now ask which genes have data, their mean normalized expression, and how
-often their values are above zero.
+Next, compare data availability, mean normalized expression, and the percentage
+of values above zero.
 
 ### Summarize data availability
 
@@ -244,8 +245,8 @@ top_detected_genes.loc[
 :::
 ::::
 
-The change in ranking makes the distinction visible. In the dated teaching
-data, *TNNT2* ranks second by percent detected but sixth by mean expression.
+The two measures produce different rankings. In the dated teaching data,
+*TNNT2* ranks second by percent detected but sixth by mean expression.
 *DES* ranks second by mean expression and third by percent detected. Neither
 summary replaces the other because they describe different expression patterns.
 

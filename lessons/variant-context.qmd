@@ -6,8 +6,8 @@ aliases:
 
 **Estimated time:** 25 minutes
 
-Follow how the source study narrowed whole-genome sequencing results to a
-candidate genetic variant list, then examine the published table.
+See how the source study narrowed its whole-genome sequencing results, then
+examine the 54 reported variant rows.
 
 ## Candidate-gene filtering and variant ranking
 
@@ -29,14 +29,14 @@ Supplementary Table S4 is the starting point for this module. Its 54 rows cover
 46 people and 25 genes. The authors classified these variants as pathogenic,
 likely pathogenic, or VUS.
 
-The reported study score and class stay attached to each variant.
+We will use the study score and classification as reported in the paper.
 
 ::: {.callout-tip title="Why add information about the genes?"}
 The candidate genetic variant table does not contain all the evidence needed
 for experimental follow-up. GTEx reports heart-tissue expression, HuBMAP
 reports indexed values for ventricular cardiac myocytes, and Pharos summarizes
-protein knowledge, ligands, and target development. The study classification
-remains attached to every row.
+protein knowledge, ligands, and target development. Adding gene information
+does not change the study classification.
 :::
 
 ## Inspect the published variants
@@ -61,14 +61,12 @@ variants.head()
 ```
 :::
 
-One row represents one variant observation for one participant. The gene and
-HGVS descriptions remain beside the study score, classification, phenotype,
-and source.
+Each row records one variant observation for one participant.
 
 ### Understand the key columns
 
-The columns record the participant, gene, HGVS descriptions, study
-classification, phenotype, and source for each observation.
+The key columns describe the variant, its reported classification and
+phenotype, and its source.
 
 | Column | Meaning |
 |---|---|
@@ -154,8 +152,6 @@ assert variants["source_pmid"].eq(39910139).all()
 print("Checked the expected columns, row count, and recorded PMID.")
 ```
 :::
-
-These checks confirm the expected structure, row count, and PMID.
 
 ### Summarize the dataset
 

@@ -14,9 +14,9 @@ a request.
 API stands for **application programming interface**. An API gives software a
 standard way to request data or an action from another system.
 
-We will send 25 gene symbols from the heart-failure paper to biological
-data services and read the responses in Python. Unlike copied website results,
-API requests can be repeated, checked, and shared.
+We will use Python to request data for the paper's 25 gene symbols and examine
+the responses. Unlike results copied from a website, API requests can be
+repeated, checked, and shared.
 
 ### Identify the parts of an API request
 
@@ -252,8 +252,8 @@ tissue?
 | [UCSC Genome Browser API](https://genome.ucsc.edu/goldenpath/help/api.html) | Retrieve genome sequences and selected annotation tracks |
 :::
 
-**Next:** Inspect the 54 published variant rows and identify the 25 genes that
-will be carried into the API queries.
+**Next:** Inspect the 54 published variant rows and identify the 25 gene symbols
+used in the API requests.
 
 <div class="notebook-actions">
 <a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/01_api_introduction.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>

@@ -6,13 +6,14 @@ aliases:
 
 **Estimated time:** 25 minutes
 
-Use GTEx to compare the 25 genes across atrial appendage and left ventricle.
+Use GTEx to compare expression of the 25 genes in atrial appendage and left
+ventricle.
 
 ## Tissue-level expression
 
-The paper narrows millions of variants to 54 observations across 25 genes. GTEx
-helps answer the next question: where are these genes expressed? We will compare
-median expression in two reference heart tissues.
+The study narrowed millions of variants to 54 observations across 25 genes. We
+will use GTEx to compare median expression of these genes in two reference heart
+tissues.
 
 ### What GTEx contains and why we use it
 
@@ -252,9 +253,9 @@ top_atrial_genes.head()
 ::::
 
 *ACTC1* ranks first in atrial appendage, while *DES* ranks first in left
-ventricle. The change also moves *LMNA* into the atrial top 10, while *MYL3*
-appears only in the left-ventricle top 10. The genes have not changed. The
-tissue used to view them has, and the ranking changes with it.
+ventricle. *LMNA* appears in the atrial top 10, while *MYL3* appears only in the
+left-ventricle top 10. These differences show that the tissue selected for
+comparison affects the gene ranking.
 
 ## Check your understanding {.knowledge-check-heading}
 

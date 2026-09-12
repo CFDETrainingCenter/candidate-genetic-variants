@@ -6,8 +6,8 @@ aliases:
 
 **Estimated time:** 25 minutes
 
-Combine the paper, GTEx, HuBMAP, and Pharos results while preserving what each
-source measures. Then define a focused next step.
+Combine the paper, GTEx, HuBMAP, and Pharos results without treating them as
+equivalent. Then use the combined table to choose a follow-up question.
 
 ## Combine the results
 
@@ -18,7 +18,8 @@ the classifications reported in the paper.
 
 ### Keep evidence types separate
 
-The resources can share a table without sharing the same meaning:
+Each source measures a different level of biology, even when the results appear
+in the same table:
 
 | Source | What it provides | How it informs follow-up |
 |---|---|---|
@@ -27,8 +28,8 @@ The resources can share a table without sharing the same meaning:
 | HuBMAP | Whether indexed values are available in up to the first 500 ventricular cardiac-myocyte records | Are these cells suitable for follow-up, or is another atlas or experiment needed? |
 | Pharos | The current protein annotations and target development level | Should follow-up begin with a known drug relationship, chemical probe, biological mechanism, or basic protein characterization? |
 
-Combining these fields into one pathogenicity score would hide what each source
-measures. We will instead choose columns that address a defined question.
+Combining these fields into one pathogenicity score would hide these
+differences. We will use each column only for the question it can answer.
 
 The gene with the largest value or most developed target is not automatically
 the best candidate genetic variant. The goal is a justified next step with
@@ -70,7 +71,7 @@ variants.head()
 :::
 
 One row represents one published observation with its gene, HGVS descriptions,
-study class, phenotype, and source. All 54 rows remain through each join.
+study class, phenotype, and source. Each join must preserve all 54 rows.
 
 ### Request gene-level data
 
@@ -241,8 +242,8 @@ while preserving all 54 published rows.
 
 ## Prioritize a focused DCM follow-up set
 
-The full table could support many questions. This analysis focuses on dilated
-cardiomyopathy, abbreviated DCM, and ventricular cardiac myocytes.
+We focus on dilated cardiomyopathy, abbreviated DCM, and ventricular cardiac
+myocytes.
 
 ### Define the follow-up question
 
@@ -386,16 +387,15 @@ calcium-regulated thin-filament activity. The study classification remains VUS.
 
 ## Interpret the integrated evidence
 
-Interpret each field at the level measured by its source.
+Interpret each result according to what its source measures.
 
 ### Interpret the DCM follow-up set
 
 The paper's classification remains attached to each variant. The API results
-help select genes and experimental systems for follow-up. This distinction
-follows the approach used by
-[Birch and colleagues](https://doi.org/10.1186/s12967-025-07586-w): combine
-variant classification, whether the phenotype matches the expected condition,
-and molecular results while keeping the strength of each finding clear.
+help select genes and experimental systems for follow-up.
+[Birch and colleagues](https://doi.org/10.1186/s12967-025-07586-w) use a similar
+approach by combining variant classification, phenotype match, and molecular
+results while reporting the strength of each finding separately.
 
 The label **P/LP with cardiac expression support** means that the paper
 classified a variant as pathogenic or likely pathogenic and both GTEx and
@@ -437,8 +437,8 @@ The paper describes *MYLK3* as an emerging DCM gene and classified both variants
 as LP. *MYLK3* had a GTEx left-ventricle median of 39.99 TPM and a value above
 zero in 13.4% of retrieved HuBMAP ventricular cardiac-myocyte records. Pharos
 classifies the protein as `Tchem` and reports five ligands and one drug
-relationship. These records suggest compounds or other experimental tools for
-testing the proposed mechanism.
+relationship. These records identify compounds to inspect before designing
+functional studies of *MYLK3*.
 
 Pharos classifies *TNNI3K* as `Tchem`, but *TNNI3K* had a value above zero in
 only 0.4% of retrieved ventricular cardiac-myocyte records. Its chemical
@@ -447,7 +447,7 @@ prioritizing it over the P/LP findings above.
 
 ## Keep missing and repeated observations visible
 
-Missing data and recurrent observations can change the next research question.
+Coverage gaps and repeated variants affect which findings are prioritized.
 
 ### Keep coverage gaps visible
 
@@ -509,7 +509,7 @@ recurrent_variants.head()
 ```
 :::
 
-Three recurrent observations emerge from the table. *MYBPC3* `c.2490dup`
+Three variants appear in more than one participant. *MYBPC3* `c.2490dup`
 appears in three participants, while *LMNA* `c.1304_1307dup` and *TTR*
 `c.323A>G` each appear in two. Recurrence describes this study cohort. It does
 not establish pathogenicity or population frequency.
@@ -563,7 +563,8 @@ Choose one row from `dcm_follow_up` and write three sentences:
 
 1. Report the exact variant, phenotype, and study class.
 2. Describe its GTEx and HuBMAP results with one limitation.
-3. Describe its Pharos protein information and name a useful next study.
+3. Describe its Pharos protein information and propose one experiment or
+   additional data source for follow-up.
 
 The paper supplies the variant class. The APIs supply gene and protein evidence
 for follow-up.
@@ -580,8 +581,8 @@ for follow-up.
 - Comparing AlphaMissense, EVE, and FoldX for one VUS shows how variant-level
   predictions can refine the next experiment without replacing the study class.
 
-**Next:** Summarize the workflow and identify how to apply the same
-research-prioritization strategy to another expert-evaluated variant list.
+**Next:** Review the workflow and apply it to another expert-reviewed variant
+table.
 
 <div class="notebook-actions">
 <a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/06_variant_prioritization.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>

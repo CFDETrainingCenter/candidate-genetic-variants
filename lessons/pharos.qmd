@@ -6,9 +6,8 @@ aliases:
 
 **Estimated time:** 20 minutes
 
-Move from gene expression to protein knowledge. Use Pharos to compare protein
-annotations, Target Development Levels, publications, interactions, ligands,
-and drugs.
+Use Pharos to compare protein annotations, Target Development Levels,
+publications, interactions, ligands, and drugs for the 25 genes.
 
 ## Protein annotations
 
@@ -23,10 +22,9 @@ categories.
 
 ### Why use Pharos for this paper?
 
-The paper reports candidate genetic variants in 25 protein-coding genes. Pharos
-fields can suggest where to begin follow-up for each gene.
-
-We selected fields that support that question:
+The paper reports candidate genetic variants in 25 protein-coding genes. We use
+the following fields to compare existing knowledge and available research tools
+for each encoded protein:
 
 | Field | Why it is included |
 |---|---|
@@ -160,8 +158,8 @@ The complete implementation is in
 
 ## Review the protein targets
 
-First summarize target development, then examine records that may support
-follow-up.
+Summarize the Target Development Levels, then inspect the publication,
+interaction, ligand, and drug records.
 
 ### Summarize target development levels
 
@@ -249,8 +247,8 @@ TDL and linked record counts suggest different starting points:
   are the next place to review potency, selectivity, and possible experimental
   use.
 - *TNNT2* is Tbio with 441 linked publications and 167 protein-interaction
-  records. Its starting point is the recorded biology rather than a qualifying
-  chemical category.
+  records. These records point to known protein biology and interactions as
+  starting points for follow-up.
 - *POLG* is Tchem with two ligand records and zero drug records. Its qualifying
   chemical activity and its drug count are separate parts of the target record.
 

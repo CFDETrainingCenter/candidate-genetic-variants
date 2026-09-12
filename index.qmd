@@ -119,8 +119,8 @@ each resource contributes before you view them together.
 
 ::: {.callout-note collapse="true" title="Related approach"}
 [Rosalution](https://doi.org/10.21105/joss.05443) provides another example of
-combining annotations from several sources while keeping track of their
-sources.
+combining annotations from several sources, keeping track of their
+sources, and using multiple annotations to support prioritizing candidate genetic variants.
 :::
 
 ## How to use the lessons
@@ -133,7 +133,7 @@ Work through the pages in order.
 - **Complete workflow:** Use the integrated notebook to run the complete
   analysis in one place.
 
-**Next:** Learn how to make the three API requests repeatable and clear.
+**Next:** Learn how APIs provide repeatable access to biomedical data.
 
 <div class="notebook-actions">
 <a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/00_module_intro.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>
