@@ -37,20 +37,21 @@ This evidence supports using cardiac myocytes as a model to study the variant.
 ## ProtVar supports testing thin-filament function
 
 ::: {.prediction-table}
-| Source/Tool | Prediction | What it describes |
+| Source/Tool | Prediction | Interpretation |
 |---|---|---|
-| AlphaMissense | Pathogenic, 0.8296 | Variant-effect prediction |
-| EVE | Uncertain, 0.575 | Evolutionary model |
-| FoldX | −0.369 kcal/mol | Protein stability estimate |
-| AlphaFold | pLDDT 92.88 | Confidence in predicted structure |
+| AlphaMissense | Pathogenic, 0.8296 | May affect protein function |
+| EVE | Uncertain, 0.575 | Uncertain evolutionary prediction |
+| FoldX | −0.369 kcal/mol | No large predicted stability change |
+| AlphaFold | pLDDT 92.88 | High confidence in local 3D structure |
 :::
 
 <br>
 
-- Cardiac troponin T interacts with troponin I, troponin C, and tropomyosin to
-regulate thin-filament contraction.
-- Compare wild-type and p.Asp259Ala troponin complexes across calcium concentrations.
-- Measure calcium sensitivity and maximum thin-filament activation.
+- One potential functional assay could compare thin filaments reconstituted with
+  wild-type cardiac troponin to filaments reconstituted with cardiac troponin
+  containing the variant.
+- Testing both across calcium concentrations could show whether the variant
+  changes calcium sensitivity or filament movement.
 
 The variant remains a variant of uncertain significance.
 
