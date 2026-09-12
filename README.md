@@ -1,49 +1,60 @@
 # Prioritizing Candidate Genetic Variants Using GTEx, HuBMAP, and IDG
 
-A CFDE training module that uses tissue expression, cell-type measurements, and
-protein annotations to prioritize candidate genetic variants for further study.
+This CFDE training module uses tissue expression, cell-type expression, and
+protein information to prioritize candidate genetic variants for follow-up.
 
 The [interactive Quarto tutorial](https://cfdetrainingcenter.github.io/candidate-genetic-variants/)
-extends the Jupyter notebooks and runs the same analysis in a web browser.
+extends the Jupyter notebooks by making the same analysis interactive and
+available in a web browser. Learners can choose either format based on their
+experience.
 
 ## Table of contents
 
 - [Project background](#project-background)
+- [What you will learn](#what-you-will-learn)
 - [Module content](#module-content)
 - [Data resources](#data-resources)
-- [Using the module](#using-the-module)
+- [Using this module](#using-this-module)
+- [Development setup](#development-setup)
 - [Repository structure](#repository-structure)
-- [Maintainer setup](#maintainer-setup)
 - [Deployment](#deployment)
 - [Contributing](#contributing)
 - [License](#license)
-- [Author and maintenance](#author-and-maintenance)
+- [Author and maintainer](#author-and-maintainer)
 
 ## Project background
 
-Early-onset advanced heart failure provides the teaching example. The starting
-dataset is the complete 54-row Supplementary Table S4
-from Linnér and colleagues' 2025 whole-genome sequencing study ([PMID:
+This module uses Supplementary Table S4 from a 2025 whole-genome sequencing
+study of early-onset advanced heart failure by Linnér and colleagues ([PMID:
 39910139](https://pubmed.ncbi.nlm.nih.gov/39910139/), [DOI:
-10.1038/s41598-025-88465-8](https://doi.org/10.1038/s41598-025-88465-8)). The
-table represents 46 study participants and 25 genes. Those records move
-through a single workflow:
+10.1038/s41598-025-88465-8](https://doi.org/10.1038/s41598-025-88465-8)).
+The table contains 54 variant rows from 46 participants and covers 25 genes. It
+includes the reported variant classifications, participant phenotypes, and
+study comments.
 
-1. Review variant and gene annotations.
-2. Examine tissue-level gene expression with GTEx.
-3. Examine cell-type expression with HuBMAP.
-4. Review protein annotations and target development levels with IDG and Pharos.
-5. Combine the evidence to compare candidate genetic variants.
+In this module, we will build on the published variant evidence with
+tissue-level expression, cell-type expression, protein information, and
+computational predictions. This dataset provides a practical example of how
+multiple sources can help prioritize candidate genetic variants for follow-up.
 
-The module introduces application programming interfaces, or APIs. GTEx
-expression, HuBMAP cell-type measurements, and Pharos protein annotations can
-guide research priorities but cannot establish that a variant causes disease.
-This module is for education and research training, not clinical variant
-classification.
+## What you will learn
+
+By the end of this module, you will be able to:
+
+1. Explain what an application programming interface, or API, is and how APIs
+   support repeatable research.
+2. Use GTEx to check whether genes linked to candidate genetic variants are
+   expressed in a disease-related tissue.
+3. Use HuBMAP to study gene expression in specific cell types while accounting
+   for missing data and small groups.
+4. Use Pharos to interpret protein information and IDG Target Development
+   Levels.
+5. Combine several data sources to prioritize candidate genetic variants for
+   follow-up.
 
 ## Module content
 
-The lesson takes about two hours and follows eight short sections:
+The module takes about two hours and follows eight short sections:
 
 1. Module Introduction ([slides](https://cfdetrainingcenter.github.io/candidate-genetic-variants/slides/module-introduction.html))
 2. Introduction to APIs
@@ -54,31 +65,28 @@ The lesson takes about two hours and follows eight short sections:
 7. Variant Prioritization and Interpretation
 8. Conclusion ([slides](https://cfdetrainingcenter.github.io/candidate-genetic-variants/slides/module-conclusion.html))
 
-Each page contains explanations, browser-based activities, knowledge checks,
-and a link to the matching notebook. The notebooks provide completed examples,
-and `notebooks/06_variant_prioritization.ipynb` contains the full workflow.
+Each lesson includes explanations, browser-based activities, knowledge checks,
+and a link to the matching notebook. The notebooks follow the same analysis.
 
 ## Data resources
 
-- [Source paper](https://doi.org/10.1038/s41598-025-88465-8) provides the
-  published variant table, study scores, classifications, phenotypes, and
-  comments used as the starting dataset. ClinVar contributed to the paper's
-  ranking process, but this module does not query ClinVar or repeat the
-  clinical classification.
-- [GTEx](https://gtexportal.org/home/) is a reference resource for gene
-  expression and genetic regulation across human tissues. The module uses
-  median expression from two heart tissues.
-- [HuBMAP](https://portal.hubmapconsortium.org/) maps cells and molecules within
+- The [source paper](https://doi.org/10.1038/s41598-025-88465-8) provides the
+  published variants, classifications, phenotypes, and study comments. The
+  module starts with these reported results and focuses on research follow-up.
+- [GTEx](https://gtexportal.org/home/) provides gene-expression data across
+  human tissues. The module uses median expression from two heart tissues.
+- [HuBMAP](https://portal.hubmapconsortium.org/) maps cells and molecules in
   human tissues. The module uses expression summaries for selected heart cell
   types.
-- [IDG](https://commonfund.nih.gov/IDG/) studies understudied druggable proteins.
-  [Pharos](https://pharos.nih.gov/) provides integrated protein and target
-  development information from IDG and other resources.
-- [ProtVar](https://www.ebi.ac.uk/ProtVar/) provides protein-level annotations
-  and predictions for the selected missense variant example.
+- [IDG](https://commonfund.nih.gov/IDG/) studies understudied druggable
+  proteins. [Pharos](https://pharos.nih.gov/) provides protein information and
+  IDG Target Development Levels.
+- [ProtVar](https://www.ebi.ac.uk/ProtVar/) provides protein annotations and
+  predictions for one missense variant.
 
-The website and notebooks query GTEx, HuBMAP, and Pharos by default. These saved
-files provide a backup when a live service is unavailable:
+The website and notebooks query GTEx, HuBMAP, and Pharos by default. The
+repository also includes dated teaching data for comparison and for times when
+a live service is unavailable:
 
 - `data/variants.csv`: all 54 published variant rows
 - `data/gtex_expression.csv`: GTEx v10 values for the 25 genes and two heart
@@ -86,29 +94,31 @@ files provide a backup when a live service is unavailable:
 - `data/hubmap_cell_expression.csv`: HuBMAP values or explicit availability
   records for 25 genes and six heart cell types
 - `data/pharos_target_context.csv`: Pharos protein annotations for the 25 genes
+- `data/protvar_predictions.csv`: ProtVar predictions for *TNNT2* p.Asp259Ala
 - `data/integrated_prioritization.csv`: gene-level data joined to all 54
   variant rows
 
-See [`data/README.md`](data/README.md) for endpoints, retrieval dates,
-transformations, missing-data handling, and limitations.
+See [`data/README.md`](data/README.md) for sources, versions, retrieval dates,
+and processing notes.
 
-## Using the module
+## Using this module
 
-Basic Python knowledge is required. Learners should be able to read variable
-assignments, call functions, work with pandas DataFrames, and interpret code
-cell output. Choose the website or notebooks based on your experience and
-preferred way of working.
+The interactive website runs in a browser. The same lessons are available as
+Jupyter notebooks that you can run locally in JupyterLab.
+
+Some Python knowledge is required for either format. You should be comfortable
+reading variable assignments, calling functions, working with pandas
+DataFrames, and interpreting code-cell output.
 
 ### Use the website
 
 Open the [rendered training module](https://cfdetrainingcenter.github.io/candidate-genetic-variants/).
-It runs in a current web browser and requires no local Python, Jupyter, `uv`, or
-Quarto installation.
+It requires a current web browser and no local setup.
 
 ### Use the notebooks in JupyterLab
 
-Local notebook use requires an internet connection and
-[`uv`](https://docs.astral.sh/uv/). `uv` installs Python and creates an isolated
+Running the notebooks locally requires an internet connection and
+[`uv`](https://docs.astral.sh/uv/). `uv` installs Python and creates an
 environment for this module.
 
 #### 1. Get the repository
@@ -120,7 +130,7 @@ git clone https://github.com/CFDETrainingCenter/candidate-genetic-variants.git
 cd candidate-genetic-variants
 ```
 
-Without Git, open the repository's
+To download the repository without Git, open its
 [GitHub page](https://github.com/CFDETrainingCenter/candidate-genetic-variants),
 select **Code > Download ZIP**, extract the file, and open a terminal in the
 `candidate-genetic-variants` folder.
@@ -130,10 +140,9 @@ Run the commands below from the folder containing `README.md`,
 
 #### 2. Install uv
 
-Follow the [official uv installation
+Follow the [uv installation
 instructions](https://docs.astral.sh/uv/getting-started/installation/) for your
-operating system. Close and reopen the terminal after installation, then
-confirm that `uv` is available:
+operating system. Reopen the terminal, then confirm that `uv` is available:
 
 ```bash
 uv --version
@@ -148,8 +157,8 @@ uv venv --python 3.14
 uv pip install -r requirements.txt
 ```
 
-These commands create `.venv` and install JupyterLab and the lesson packages.
-You do not need to activate the environment.
+These commands create `.venv` and install JupyterLab and the packages used in
+the lessons. The commands below use this environment directly.
 
 #### 4. Open JupyterLab
 
@@ -170,9 +179,9 @@ in the terminal and paste it into the browser.
 
 #### 5. Run the notebooks
 
-Open `00_module_intro.ipynb`, continue through the numbered notebooks, and
-select the Python 3 kernel if prompted. Run a cell with **Shift+Enter** or the
-notebook toolbar.
+Open `00_module_intro.ipynb` and continue through the numbered notebooks. If
+Jupyter asks for a kernel, select Python 3. Run a cell with **Shift+Enter** or
+the notebook toolbar.
 
 Live API values and response times can change. Definitions are available in
 [`GLOSSARY.md`](GLOSSARY.md).
@@ -188,11 +197,11 @@ shutdown if prompted.
 - If Jupyter asks for a kernel, select the Python 3 environment associated with
   this repository's `.venv` folder.
 
-## Maintainer setup
+## Development setup
 
-Local website builds require [Quarto](https://quarto.org/) 1.6 or later and the
-Python environment created above. The Quarto Live extension in `_extensions/`
-requires no separate installation.
+Building the website requires [Quarto](https://quarto.org/) 1.6 or later and
+the Python environment created above. The Quarto Live extension is already in
+`_extensions/`.
 
 ### Preview the website locally
 
@@ -209,13 +218,13 @@ $env:QUARTO_PYTHON=".venv\Scripts\python.exe"
 quarto preview
 ```
 
-To create the complete website locally, replace `quarto preview` with
-`quarto render`. Setting `QUARTO_PYTHON` ensures that Quarto uses the Python
-packages installed for this repository.
+To create the complete website, replace `quarto preview` with `quarto render`.
+`QUARTO_PYTHON` tells Quarto to use the Python packages installed for this
+repository.
 
-The landing page and project configuration remain at the repository root.
-Lesson source files are organized under `lessons/`. The ignored `docs/`
-directory contains rendered website files.
+The landing page and project configuration are at the repository root. Lesson
+source files are under `lessons/`. The ignored `docs/` directory contains the
+rendered website.
 
 ## Repository structure
 
@@ -257,21 +266,20 @@ candidate-genetic-variants/
 
 ## Deployment
 
-Learners use the deployed website and do not need to run these steps.
+Each push to `main` runs `.github/workflows/publish.yml`. The workflow renders
+the Quarto project and publishes the website to the `gh-pages` branch.
 
-A push to `main` starts `.github/workflows/publish.yml`. The workflow renders
-the Quarto project and publishes the result to the `gh-pages` branch.
+Deployment requires two repository settings:
 
-The repository must allow GitHub Actions read and write access under
-**Settings > Actions > General > Workflow permissions**. GitHub Pages must use
-the `gh-pages` branch as its publishing source.
+1. Give GitHub Actions read and write access under
+   **Settings > Actions > General > Workflow permissions**.
+2. Set GitHub Pages to publish from the `gh-pages` branch.
 
 ## Contributing
 
 Use [GitHub Issues](https://github.com/CFDETrainingCenter/candidate-genetic-variants/issues)
-to report problems or suggest improvements. Pull requests should keep the
-Quarto source files in the repository root and should not commit rendered files
-from `docs/`.
+to report problems or suggest improvements. Keep Quarto source files in the
+repository root. Leave rendered files from `docs/` out of pull requests.
 
 ## License
 
@@ -280,9 +288,8 @@ made available under the [CC0 1.0 Universal](LICENSE) public-domain dedication.
 
 Third-party software and materials retain their original licenses.
 
-## Author and maintenance
+## Author and maintainer
 
-- **Author:** Shaurita D. Hutchins
-- **Development and maintenance:** This is a community-sourced module from the
-  [CFDE Training Center](https://github.com/CFDETrainingCenter), which
-  coordinates training module development and maintenance.
+- **Author and maintainer:** Shaurita D. Hutchins
+- **Project:** A community-sourced module from the
+  [CFDE Training Center](https://github.com/CFDETrainingCenter)
