@@ -18,18 +18,21 @@ results remain linked to their source identifiers and retrieval dates.
 
 ## From computational evidence to functional evidence
 
-This workflow helps researchers choose what to study next rather than producing
-one final score. GTEx helps select a tissue, HuBMAP helps select a cell model,
-Pharos shows what is known about a protein and which research tools are
-available, and ProtVar provides predictions that help select experiments of
-protein function or stability.
+This workflow helps researchers choose what to study next through a qualitative
+decision supported by several evidence types.
 
-For the *TNNT2* VUS, the next step is to compare wild-type and D259A troponin
-complexes across calcium concentrations. This experiment would test whether
-p.Asp259Ala changes calcium-regulated thin-filament activity. Clinical
-interpretation would also require checking whether the phenotype matches,
-whether the variant segregates with disease, how common it is in populations,
-and whether functional studies support an effect.
+GTEx helps compare tissues for follow-up, and HuBMAP helps assess a possible
+cell model. Pharos shows what is known about a protein and which research tools
+are available, while ProtVar provides predictions that help select experiments
+of protein function or stability.
+
+For the *TNNT2* VUS, one possible follow-up experiment would compare wild-type
+and D259A troponin complexes across calcium concentrations. This experiment
+would test whether p.Asp259Ala changes calcium-regulated thin-filament activity.
+
+Clinical interpretation would also require checking whether the phenotype
+matches, whether the variant segregates with disease, how common it is in
+populations, and whether functional studies support an effect.
 
 ## A reusable prioritization checklist
 

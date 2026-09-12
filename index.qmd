@@ -14,28 +14,31 @@ If a term is unfamiliar, refer to the [Glossary](lessons/glossary.qmd).
 
 ::: {.callout-note title="Before you begin"}
 This module assumes basic familiarity with genes, genetic variants, and tabular
-data. The activities use Python and pandas, but you do not need previous
-experience working with APIs. You should be comfortable running a code cell and
-recognizing rows, columns, filters, and sorted results.
+data. The lessons introduce the API concepts used in each activity. You should
+be comfortable running a code cell and recognizing rows, columns, filters, and
+sorted results.
 
-These activities run in a web browser. They request live data, so results
-may change over time. Dated teaching files are available if a service is
-unavailable. You can also run the matching notebooks in Jupyter.
+These activities run in a web browser and request live data, so results may
+change over time.
+
+Dated teaching files support the activities during a service interruption. You
+can also run the matching notebooks in Jupyter.
 :::
 
 ## The research question
 
 Which published candidate genetic variants should be prioritized for further
-study, and which experimental models are most appropriate for testing them?
+study, and which experimental models could be used to test them?
 
 This module uses data from a [2025
 publication](https://doi.org/10.1038/s41598-025-88465-8) that reports results
 from a whole-genome sequencing study of early-onset advanced heart failure
 ([PMID: 39910139](https://pubmed.ncbi.nlm.nih.gov/39910139/)). The researchers
-studied 102 Swedish heart transplant or heart-assist-device recipients. They
-used a computational pipeline to rank variants and clinical experts to classify
-them. Their Supplementary Table S4 reports 54 variant rows from 46 people
-across 25 genes.
+studied 102 Swedish heart transplant or heart-assist-device recipients.
+
+They used a computational pipeline to rank variants and clinical experts to
+classify them. Their Supplementary Table S4 reports 54 variant rows from 46
+people across 25 genes.
 
 Variant analysis can produce a large list of candidate genetic variants. Even
 after evaluation by a clinical geneticist or variant analyst, a research group
@@ -47,11 +50,24 @@ introductory level, see EMBL-EBI's
 [Variant identification and analysis](https://www.ebi.ac.uk/training/online/courses/human-genetic-variation-introduction/variant-identification-and-analysis/)
 lesson.
 
-The final lesson uses ProtVar, an EMBL-EBI resource for human missense variants,
-to compare complementary predictions for *TNNT2* p.Asp259Ala: AlphaMissense
-scores predicted pathogenicity, EVE evaluates the substitution against
-evolutionary patterns in related protein sequences, and FoldX estimates its
-effect on protein stability.
+The prioritization lesson uses ProtVar, an EMBL-EBI resource for human missense
+variants, to compare complementary predictions for *TNNT2* p.Asp259Ala.
+AlphaMissense provides a predicted-pathogenicity score, EVE evaluates the
+substitution against evolutionary patterns in related protein sequences, and
+FoldX estimates its effect on protein stability.
+
+The module uses six evidence questions to guide prioritization:
+
+| Evidence dimension | Question |
+|---|---|
+| Published evidence | What did the source study report about the exact variant and phenotype? |
+| Tissue expression | Is the associated gene expressed in a relevant heart tissue? |
+| Cell-type expression | Is the gene detected in an appropriate cardiac cell type? |
+| Protein knowledge | What biological, disease, or therapeutic information is available for the protein? |
+| Variant-specific evidence | What is known or predicted about the exact substitution? |
+| Follow-up feasibility | What experiment or experimental model could test the hypothesis? |
+
+Together, these evidence types support a qualitative prioritization decision.
 
 ## Tutorial workflow
 
@@ -114,13 +130,15 @@ By the end of this module, you will be able to:
 
 ### Why combine these resources?
 
-Each API answers a different question. Keeping the results separate shows what
-each resource contributes before you view them together.
+Combining these resources helps us interpret each candidate across tissue,
+cell-type, protein, and variant levels. Together, these data help us formulate
+hypotheses and further prioritize candidates for follow-up experiments and
+experimental models.
 
 ::: {.callout-note collapse="true" title="Related approach"}
 [Rosalution](https://doi.org/10.21105/joss.05443) provides another example of
-combining annotations from several sources, keeping track of their
-sources, and using multiple annotations to support prioritizing candidate genetic variants.
+combining annotations from several sources to prioritize candidate genetic
+variants. It keeps each annotation linked to its source.
 :::
 
 ## How to use the lessons
