@@ -46,7 +46,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-f55367e0801e5094f82c0f0d978e128e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-81132e90d9570a0e5d5392fbf3813738.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0498a9dadacb2a4a562ecc9de7c0ca36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/variant-context.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3. Variant and Gene Context</span></a>
+ <span class="menu-text">3. Published Variants and Candidate Genes</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -165,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/pharos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6. Protein Context and Druggability: IDG/Pharos</span></a>
+ <span class="menu-text">6. Protein Knowledge and Research Tools: IDG/Pharos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -191,7 +191,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#what-you-accomplished" id="toc-what-you-accomplished" class="nav-link active" data-scroll-target="#what-you-accomplished">What you accomplished</a></li>
-  <li><a href="#from-evidence-to-the-next-action" id="toc-from-evidence-to-the-next-action" class="nav-link" data-scroll-target="#from-evidence-to-the-next-action">From evidence to the next action</a></li>
+  <li><a href="#from-computational-evidence-to-functional-evidence" id="toc-from-computational-evidence-to-functional-evidence" class="nav-link" data-scroll-target="#from-computational-evidence-to-functional-evidence">From computational evidence to functional evidence</a></li>
   <li><a href="#a-reusable-prioritization-checklist" id="toc-a-reusable-prioritization-checklist" class="nav-link" data-scroll-target="#a-reusable-prioritization-checklist">A reusable prioritization checklist</a></li>
   <li><a href="#suggested-next-steps-and-reading" id="toc-suggested-next-steps-and-reading" class="nav-link" data-scroll-target="#suggested-next-steps-and-reading">Suggested next steps and reading</a></li>
   </ul>
@@ -220,16 +220,15 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><strong>Estimated time:</strong> 5 minutes</p>
-<p>Review the contribution and limits of each data source, then apply the workflow to a new candidate list.</p>
+<p>Review how each resource informs the choice of candidate genetic variant, experimental model, and follow-up experiment.</p>
 <section id="what-you-accomplished" class="level2">
 <h2 class="anchored" data-anchor-id="what-you-accomplished">What you accomplished</h2>
-<p>The workflow retained all 54 published variant rows while adding bulk-tissue expression from GTEx, cell-type expression from HuBMAP, target information from Pharos, and protein predictions from ProtVar. Each result remained traceable to its source, identifiers, and retrieval date.</p>
+<p>The workflow preserves all 54 published variant rows and adds bulk-tissue expression from GTEx, cell-type measurements from HuBMAP, protein information from Pharos, and variant predictions from ProtVar. The GTEx, HuBMAP, and Pharos results remain linked to their source identifiers and retrieval dates.</p>
 </section>
-<section id="from-evidence-to-the-next-action" class="level2">
-<h2 class="anchored" data-anchor-id="from-evidence-to-the-next-action">From evidence to the next action</h2>
-<p>GTEx can guide tissue selection, HuBMAP can guide cell-model selection, Pharos can identify existing target knowledge or tools, and ProtVar can guide protein-focused follow-up.</p>
-<p>For the <em>TNNT2</em> VUS, the results motivate experiments examining troponin-complex function, calcium sensitivity, or cardiomyocyte contractility.</p>
-<p>Before applying these findings clinically, an analyst would also evaluate phenotype concordance, segregation, population frequency, and appropriate functional evidence.</p>
+<section id="from-computational-evidence-to-functional-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="from-computational-evidence-to-functional-evidence">From computational evidence to functional evidence</h2>
+<p>This workflow helps researchers choose what to study next rather than producing one final score. GTEx helps select a tissue, HuBMAP helps select a cell model, Pharos shows what is known about a protein and which research tools are available, and ProtVar provides predictions that help select experiments of protein function or stability.</p>
+<p>For the <em>TNNT2</em> VUS, the next step is to compare wild-type and D259A troponin complexes across calcium concentrations. This experiment would test whether p.Asp259Ala changes calcium-regulated thin-filament activity. Clinical interpretation would also require checking whether the phenotype matches, whether the variant segregates with disease, how common it is in populations, and whether functional studies support an effect.</p>
 </section>
 <section id="a-reusable-prioritization-checklist" class="level2">
 <h2 class="anchored" data-anchor-id="a-reusable-prioritization-checklist">A reusable prioritization checklist</h2>
@@ -237,21 +236,21 @@ ul.task-list li input[type="checkbox"] {
 <li>Name the exact variant and the source of its annotation.</li>
 <li>Ask what biological level each dataset measures.</li>
 <li>Keep missing data separate from a measured zero.</li>
-<li>Save dataset versions, identifiers, and retrieval dates.</li>
+<li>Save dataset versions, identifiers, and retrieval dates for reproducibility.</li>
 <li>Keep druggability separate from disease relevance.</li>
 <li>End with a clear next step that can be tested.</li>
 </ul>
 </section>
 <section id="suggested-next-steps-and-reading" class="level2">
 <h2 class="anchored" data-anchor-id="suggested-next-steps-and-reading">Suggested next steps and reading</h2>
-<p>Use these papers to explore specific next steps:</p>
+<p>These papers offer several ways to continue the analysis:</p>
 <ul>
-<li><strong>Variant prioritization:</strong> <a href="https://doi.org/10.1186/s40246-024-00604-w">Stenton et al. (2024)</a>, co-authored by Elizabeth A. Worthey, compares rare-disease variant prioritization methods and the evidence used to rank candidates.</li>
+<li><strong>Variant prioritization:</strong> <a href="https://doi.org/10.1186/s40246-024-00604-w">Stenton et al. (2024)</a>, co-authored by Elizabeth A. Worthey, compares rare-disease variant prioritization methods and the evidence used to rank candidate genetic variants.</li>
 <li><strong>Protein structure:</strong> <a href="https://doi.org/10.1016/j.ajhg.2025.03.010">Varga et al. (2025)</a> explains how protein structures can inform variant interpretation and how the choice of structural model affects the analysis.</li>
 <li><strong>Splicing and RNA evidence:</strong> <a href="https://doi.org/10.1016/j.ajhg.2021.03.006">Truty et al. (2021)</a> examines how RNA analysis can help interpret variants predicted to affect splicing.</li>
 <li><strong>Clinical WGS workflow:</strong> <a href="https://doi.org/10.1186/1753-6561-6-S6-O11">Worthey et al. (2012)</a> describes an early clinical whole-genome sequencing workflow that considered variant quality, functional effect, disease knowledge, and phenotype relevance together.</li>
 </ul>
-<p>Use the Jupyter notebook to apply the workflow to another evaluated variant list.</p>
+<p><a href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/06_variant_prioritization.ipynb">Use the complete workflow notebook</a> to apply this approach to another expert-reviewed variant table.</p>
 <div class="notebook-actions">
 <p><a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/07_conclusion.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a></p>
 </div>

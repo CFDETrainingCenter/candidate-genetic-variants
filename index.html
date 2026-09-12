@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Use tissue, cell-type, and protein context to select candidate variants for further study.">
+<meta name="description" content="Use tissue, cell-type, and protein data to select candidate genetic variants for further study.">
 
 <title>Prioritizing Candidate Genetic Variants Using GTEx, HuBMAP, and IDG – Prioritizing Candidate Genetic Variants</title>
 <style>
@@ -47,7 +47,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-f55367e0801e5094f82c0f0d978e128e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-81132e90d9570a0e5d5392fbf3813738.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0498a9dadacb2a4a562ecc9de7c0ca36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -151,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lessons/variant-context.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3. Variant and Gene Context</span></a>
+ <span class="menu-text">3. Published Variants and Candidate Genes</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -169,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lessons/pharos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6. Protein Context and Druggability: IDG/Pharos</span></a>
+ <span class="menu-text">6. Protein Knowledge and Research Tools: IDG/Pharos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -213,7 +213,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    Use tissue, cell-type, and protein context to select candidate variants for further study.
+    Use tissue, cell-type, and protein data to select candidate genetic variants for further study.
   </div>
 </div>
 
@@ -231,7 +231,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><strong>Estimated total module time:</strong> Approximately 2 hours</p>
-<p>Start with the published candidate variants, then examine the tissue, cell-type, and protein context used for research prioritization.</p>
+<p>Start with the published candidate genetic variants, then examine tissue expression, cell-type expression, and protein information to choose variants for follow-up.</p>
 <p>If a term is unfamiliar, refer to the <a href="./lessons/glossary.html">Glossary</a>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Before you begin">
 <div class="callout-header d-flex align-content-center">
@@ -249,11 +249,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="the-research-question" class="level2">
 <h2 class="anchored" data-anchor-id="the-research-question">The research question</h2>
-<p>Which of the published candidate variants should be prioritized for further study, and what tissue, cell-type, or protein context can guide that work?</p>
-<p>This module begins with a <a href="https://doi.org/10.1038/s41598-025-88465-8">whole-genome sequencing study of early-onset advanced heart failure</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/39910139/">PMID: 39910139</a>). The researchers studied 102 Swedish heart transplant or heart-assist-device recipients. They used a computational pipeline to rank variants and clinical experts to classify them. Their Supplementary Table S4 reports 54 variant rows from 46 people across 25 genes.</p>
+<p>Which published candidate genetic variants should be prioritized for further study, and which experimental models are most appropriate for testing them?</p>
+<p>This module uses data from a <a href="https://doi.org/10.1038/s41598-025-88465-8">2025 publication</a> that reports results from a whole-genome sequencing study of early-onset advanced heart failure (<a href="https://pubmed.ncbi.nlm.nih.gov/39910139/">PMID: 39910139</a>). The researchers studied 102 Swedish heart transplant or heart-assist-device recipients. They used a computational pipeline to rank variants and clinical experts to classify them. Their Supplementary Table S4 reports 54 variant rows from 46 people across 25 genes.</p>
+<p>Variant analysis can produce a large list of candidate genetic variants. Even after evaluation by a clinical geneticist or variant analyst, a research group may still need to decide which findings to investigate first and how to test them.</p>
 <p>If you want to learn more about variant identification and analysis at an introductory level, see EMBL-EBI’s <a href="https://www.ebi.ac.uk/training/online/courses/human-genetic-variation-introduction/variant-identification-and-analysis/">Variant identification and analysis</a> lesson.</p>
-<p>Variant analysis can produce a large list of candidates. Even after evaluation by a clinical geneticist or variant analyst, a research group may still need to decide which findings to investigate first and which experimental systems are most appropriate.</p>
-<p>The complete published table anchors the analysis. The workflow keeps all 54 rows and adds gene-level context from three CFDE resources before prioritizing candidates for further study.</p>
+<p>The final lesson uses ProtVar, an EMBL-EBI resource for human missense variants, to compare complementary predictions for <em>TNNT2</em> p.Asp259Ala: AlphaMissense scores predicted pathogenicity, EVE evaluates the substitution against evolutionary patterns in related protein sequences, and FoldX estimates its effect on protein stability.</p>
 </section>
 <section id="tutorial-workflow" class="level2">
 <h2 class="anchored" data-anchor-id="tutorial-workflow">Tutorial workflow</h2>
@@ -267,12 +267,12 @@ ul.task-list li input[type="checkbox"] {
     variants["Published variants&lt;br/&gt;54 rows, 25 genes"]
 
     %% Keep the three evidence sources visually distinct.
-    gtex["GTEx&lt;br/&gt;Tissue context"]
-    hubmap["HuBMAP&lt;br/&gt;Cell-type context"]
-    pharos["Pharos / IDG&lt;br/&gt;Protein context"]
+    gtex["GTEx&lt;br/&gt;Tissue expression"]
+    hubmap["HuBMAP&lt;br/&gt;Cell-type expression"]
+    pharos["Pharos / IDG&lt;br/&gt;Protein annotations"]
 
-    %% Use the combined context to choose focused research follow-up.
-    shortlist["Integrated shortlist&lt;br/&gt;Candidates for further study"]
+    %% Use the combined results to choose focused research follow-up.
+    shortlist["Shortlist of candidate genetic variants&lt;br/&gt;for follow-up"]
 
     %% Query each resource independently, then bring the results together.
     variants --&gt; gtex
@@ -301,10 +301,10 @@ ul.task-list li input[type="checkbox"] {
 <p>By the end of this module, you will be able to:</p>
 <ol type="1">
 <li>Explain what an <a href="./lessons/glossary.html#api">application programming interface, or API</a> is and how APIs support repeatable research.</li>
-<li>Use GTEx to check whether genes linked to candidate variants are expressed in a disease-related tissue.</li>
+<li>Use GTEx to check whether genes linked to candidate genetic variants are expressed in a disease-related tissue.</li>
 <li>Use HuBMAP to study gene expression in specific cell types while accounting for missing data and small groups.</li>
 <li>Use Pharos to interpret protein information and IDG Target Development Levels.</li>
-<li>Combine several data sources to prioritize candidate variants for follow-up.</li>
+<li>Combine several data sources to prioritize candidate genetic variants for follow-up.</li>
 </ol>
 </section>
 <section id="data-sources" class="level2">
@@ -319,7 +319,7 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="data/variants.csv">Candidate variant table</a> and <a href="https://doi.org/10.1038/s41598-025-88465-8">source paper</a></td>
+<td><a href="data/variants.csv">Candidate genetic variant table</a> and <a href="https://doi.org/10.1038/s41598-025-88465-8">source paper</a></td>
 <td>The local table contains all 54 rows from the paper’s Supplementary Table S4.</td>
 <td>Provides the published <a href="./lessons/glossary.html#hgvs">HGVS</a> names, study scores, classifications, phenotypes, and comments.</td>
 </tr>
@@ -341,13 +341,13 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td><a href="data/integrated_prioritization.csv">Integrated teaching table</a></td>
 <td>A local table created by joining the published variants with the saved GTEx, HuBMAP, and Pharos data by <a href="./lessons/glossary.html#gene-symbol">gene symbol</a>.</td>
-<td>Returns gene-level context to all 54 variant rows while keeping each evidence layer separate.</td>
+<td>Adds GTEx, HuBMAP, and Pharos information to all 54 variant rows while keeping the source of each result clear.</td>
 </tr>
 </tbody>
 </table>
 <section id="why-combine-these-resources" class="level3">
 <h3 class="anchored" data-anchor-id="why-combine-these-resources">Why combine these resources?</h3>
-<p>Each API contributes a different evidence layer. Keeping the results separate lets you see which resource contributed each observation before viewing the evidence together.</p>
+<p>Each API answers a different question. Keeping the results separate shows what each resource contributes before you view them together.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Related approach">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -360,7 +360,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><a href="https://doi.org/10.21105/joss.05443">Rosalution</a> provides another example of combining annotations from several sources while keeping track of their provenance.</p>
+<p><a href="https://doi.org/10.21105/joss.05443">Rosalution</a> provides another example of combining annotations from several sources, keeping track of their sources, and using multiple annotations to support prioritizing candidate genetic variants.</p>
 </div>
 </div>
 </div>
@@ -372,9 +372,9 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><strong>Activities:</strong> Run the same analysis code in the website or in the matching notebook.</li>
 <li><strong>Knowledge checks:</strong> Select an answer and review the feedback.</li>
-<li><strong>Complete workflow:</strong> Use the integrated notebook to run every evidence layer in one place.</li>
+<li><strong>Complete workflow:</strong> Use the integrated notebook to run the complete analysis in one place.</li>
 </ul>
-<p><strong>Next:</strong> Learn how API requests make the three biological-context steps repeatable and traceable.</p>
+<p><strong>Next:</strong> Learn how APIs provide repeatable access to biomedical data.</p>
 <div class="notebook-actions">
 <p><a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/00_module_intro.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a></p>
 </div>

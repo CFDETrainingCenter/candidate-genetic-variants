@@ -5,6 +5,7 @@ from datetime import date
 import pandas as pd
 import requests
 
+# Keep the service endpoints in one place so each request uses the same API.
 GTEX_GENE_URL = "https://gtexportal.org/api/v2/reference/gene"
 GTEX_EXPRESSION_URL = (
     "https://gtexportal.org/api/v2/expression/medianGeneExpression"
@@ -12,13 +13,19 @@ GTEX_EXPRESSION_URL = (
 HUBMAP_CELLS_URL = "https://cells.api.hubmapconsortium.org/api/"
 PHAROS_GRAPHQL_URL = "https://pharos-api.ncats.io/graphql"
 
+# GTEx represents the heart with these two tissue categories. Both are used so
+# learners can compare atrial and ventricular tissue-level expression.
 HEART_TISSUES = {
     "Heart_Atrial_Appendage": "Heart - Atrial Appendage",
     "Heart_Left_Ventricle": "Heart - Left Ventricle",
 }
+
+# The source study includes cardiomyopathy phenotypes and sarcomeric variants,
+# which makes ventricular cardiac myocytes a relevant cell type for follow-up.
 VENTRICULAR_CELL_TYPE_ID = "CL:0002131"
 VENTRICULAR_CELL_TYPE_LABEL = "regular ventricular cardiac myocyte"
 
+# Request only the Pharos fields used in the lessons and teaching datasets.
 PHAROS_TARGET_QUERY = """
 query TargetContext($symbol: String!) {
   target(q: {sym: $symbol}) {
@@ -56,8 +63,11 @@ def fetch_gtex_context(
     )
     gene_response.raise_for_status()
     gene_records = gene_response.json()["data"]
+
+    # Keep the identifiers needed by the expression endpoint.
     gencode_ids = [record["gencodeId"] for record in gene_records]
 
+    # Retrieve median expression from the fixed GTEx release and heart tissues.
     expression_response = requests.get(
         GTEX_EXPRESSION_URL,
         params={
@@ -70,6 +80,7 @@ def fetch_gtex_context(
     )
     expression_response.raise_for_status()
 
+    # Standardize API field names for the lessons and saved teaching data.
     expression = (
         pd.DataFrame(expression_response.json()["data"])
         .rename(
@@ -87,6 +98,8 @@ def fetch_gtex_context(
         HEART_TISSUES
     )
     expression.loc[:, "retrieved_date"] = date.today().isoformat()
+
+    # Return only documented columns in a stable order for reproducible output.
     return (
         expression.loc[
             :,
@@ -113,6 +126,7 @@ def _post_hubmap(
     timeout_seconds: int,
 ) -> list[dict[str, object]]:
     """Post one Cells API form and return its result records."""
+    # HuBMAP Cells API operations use form-encoded POST requests.
     response = requests.post(
         f"{HUBMAP_CELLS_URL}{path}",
         data=form_data,
@@ -120,6 +134,8 @@ def _post_hubmap(
     )
     response.raise_for_status()
     payload = response.json()
+
+    # Surface the API message rather than failing later on a missing key.
     if "results" not in payload:
         raise LookupError(payload.get("error", "Cells API returned no results"))
     return payload["results"]
@@ -130,8 +146,11 @@ def _create_cell_handle(
     input_values: list[str],
     timeout_seconds: int,
 ) -> str:
+    """Create a reusable HuBMAP handle for one input set."""
     form_data: list[tuple[str, object]] = [("input_type", input_type)]
     form_data.extend(("input_set", value) for value in input_values)
+
+    # Later Cells API operations refer to this server-side set by its handle.
     results = _post_hubmap("cell/", form_data, timeout_seconds)
     return str(results[0]["query_handle"])
 
@@ -141,6 +160,8 @@ def _intersect_cell_handles(
     second_handle: str,
     timeout_seconds: int,
 ) -> str:
+    """Return a handle for cells shared by two HuBMAP sets."""
+    # Intersecting handles restricts the query to the selected organ and type.
     results = _post_hubmap(
         "intersection/",
         {
@@ -154,6 +175,7 @@ def _intersect_cell_handles(
 
 
 def _count_cells(query_handle: str, timeout_seconds: int) -> int:
+    """Count the cells represented by a HuBMAP query handle."""
     results = _post_hubmap(
         "count/",
         {"key": query_handle, "set_type": "cell"},
@@ -168,6 +190,7 @@ def _fetch_hubmap_gene_values(
     record_limit: int,
     timeout_seconds: int,
 ) -> list[dict[str, object]]:
+    """Retrieve indexed values for one gene from a selected cell set."""
     form_data: list[tuple[str, object]] = [
         ("key", query_handle),
         ("set_type", "cell"),
@@ -207,11 +230,14 @@ def fetch_hubmap_ventricular_context(
         cell_type_handle,
         timeout_seconds,
     )
+
+    # Report the full matching population separately from the record limit.
     total_matching_cells = _count_cells(query_handle, timeout_seconds)
     retrieved_date = date.today().isoformat()
 
     summary_records: list[dict[str, object]] = []
     for gene_symbol in gene_symbols:
+        # These fields describe the same selected cell population for each gene.
         base_record = {
             "gene_symbol": gene_symbol,
             "cell_type_id": VENTRICULAR_CELL_TYPE_ID,
@@ -240,10 +266,13 @@ def fetch_hubmap_ventricular_context(
             )
             continue
 
+        # Summarize only the records returned under the requested record limit.
         values = pd.Series(
             [record["values"][gene_symbol] for record in cell_records],
             dtype="float64",
         )
+
+        # Preserve dataset identifiers so learners can trace the summary.
         dataset_uuids = sorted(
             {str(record["dataset"]) for record in cell_records}
         )
@@ -276,7 +305,7 @@ def fetch_pharos_context(
     """Return selected Pharos target fields for explicit gene symbols."""
     target_records: list[dict[str, object]] = []
     for gene_symbol in gene_symbols:
-        # The target query resolves one explicit gene symbol per request.
+        # Resolve one explicit gene symbol per request to avoid ambiguous targets.
         response = requests.post(
             PHAROS_GRAPHQL_URL,
             json={
@@ -287,12 +316,15 @@ def fetch_pharos_context(
         )
         response.raise_for_status()
         payload = response.json()
+
+        # GraphQL may return HTTP 200 while reporting query errors in the body.
         if payload.get("errors"):
             raise RuntimeError(payload["errors"])
         target = payload["data"]["target"]
         if target is None:
             raise LookupError(f"Pharos returned no target for {gene_symbol}")
 
+        # Flatten the selected target fields into one learner-friendly row.
         target_records.append(
             {
                 "gene_symbol": target["sym"],

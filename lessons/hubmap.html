@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-f55367e0801e5094f82c0f0d978e128e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-81132e90d9570a0e5d5392fbf3813738.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0498a9dadacb2a4a562ecc9de7c0ca36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/sq-components-1.0.0/plain-draggable.min.js"></script>
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/variant-context.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3. Variant and Gene Context</span></a>
+ <span class="menu-text">3. Published Variants and Candidate Genes</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/pharos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6. Protein Context and Druggability: IDG/Pharos</span></a>
+ <span class="menu-text">6. Protein Knowledge and Research Tools: IDG/Pharos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -261,21 +261,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><strong>Estimated time:</strong> 25 minutes</p>
-<p>Check which genes have indexed HuBMAP expression values in ventricular cardiac myocytes. Compare the average returned value with the percentage of returned records above zero.</p>
+<p>Use HuBMAP to examine which genes have indexed expression values in ventricular cardiac myocytes. For genes with data, compare mean normalized expression with the percentage of records above zero.</p>
 <section id="cell-type-expression" class="level2">
 <h2 class="anchored" data-anchor-id="cell-type-expression">Cell-type expression</h2>
-<p>GTEx showed that genes from the heart-failure paper are expressed in bulk heart tissue. HuBMAP lets us examine records assigned to a selected heart cell type.</p>
-<p>HuBMAP stands for <strong>Human BioMolecular Atlas Program</strong>. This NIH Common Fund program maps cells and molecules within human tissues. The HuBMAP Cells API provides access to aggregated outputs from HuBMAP data-processing pipelines. It connects indexed expression values to labels such as ventricular cardiac myocyte, fibroblast, or macrophage.</p>
+<p>GTEx showed expression in bulk heart tissue, which contains many cell types. HuBMAP lets us examine records assigned to a selected heart cell type.</p>
+<p>HuBMAP stands for <strong>Human BioMolecular Atlas Program</strong>. This NIH Common Fund program maps cells and molecules within human tissues. Its Cells API connects aggregated pipeline outputs and indexed expression values to labels such as ventricular cardiac myocyte, fibroblast, or macrophage.</p>
 <section id="why-ventricular-cardiac-myocytes" class="level3">
 <h3 class="anchored" data-anchor-id="why-ventricular-cardiac-myocytes">Why ventricular cardiac myocytes?</h3>
-<p>The <a href="https://doi.org/10.1038/s41598-025-88465-8">source paper</a> studied early-onset advanced heart failure. The highest yield of pathogenic or likely pathogenic variants occurred in hypertrophic, dilated, and arrhythmogenic right ventricular cardiomyopathy. Sarcomeric variants were most common in the hypertrophic and dilated cardiomyopathy groups, while desmosomal variants were concentrated in arrhythmogenic right ventricular cardiomyopathy. Examples in the teaching table include the sarcomeric or contractile genes <em>MYH7</em>, <em>MYBPC3</em>, <em>TNNT2</em>, and <em>ACTC1</em>, and the desmosomal genes <em>DSG2</em>, <em>DSC2</em>, and <em>PKP2</em>.</p>
-<p>The paper did not perform a cell-type analysis. We select ventricular cardiac myocytes as a focused follow-up because the ventricles provide the heart’s main pumping force, and many genes reported in the paper contribute to contraction or structural connections in cardiac muscle. This choice also follows directly from the GTEx left-ventricle result in the previous lesson.</p>
-<p>The request retrieves up to the first 500 indexed records labeled as regular ventricular cardiac myocytes. The fixed limit keeps the browser activity manageable.</p>
+<p>The <a href="https://doi.org/10.1038/s41598-025-88465-8">source paper</a> studied early-onset advanced heart failure. The highest yield of pathogenic or likely pathogenic variants occurred in hypertrophic, dilated, and arrhythmogenic right ventricular cardiomyopathy. Sarcomeric variants were most common in the first two groups, while desmosomal variants were concentrated in the third. The teaching table includes <em>MYH7</em>, <em>MYBPC3</em>, <em>TNNT2</em>, <em>ACTC1</em>, <em>DSG2</em>, <em>DSC2</em>, and <em>PKP2</em>.</p>
+<p>The paper did not analyze cell types, so HuBMAP adds cell-type information rather than reproducing the study. We begin with ventricular cardiac myocytes because the ventricles provide the heart’s main pumping force and many candidate genes contribute to cardiac-muscle contraction or structure. This choice also follows the GTEx left-ventricle comparison.</p>
+<p>The request retrieves up to the first 500 indexed records labeled as regular ventricular cardiac myocytes. The fixed limit keeps the live request manageable.</p>
 <p>Learn more about the resource’s APIs in the <a href="https://docs.hubmapconsortium.org/apis.html">HuBMAP API documentation</a>.</p>
 </section>
 <section id="how-to-read-the-returned-values" class="level3">
 <h3 class="anchored" data-anchor-id="how-to-read-the-returned-values">How to read the returned values</h3>
-<p>Available samples and API indexing determine which genes can be compared. The returned values reflect the records, cell labels, and processed datasets available through the Cells API index.</p>
+<p>The Cells API does not return values for every gene. Record a missing value as unavailable, not as zero expression.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Why HuBMAP helps">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -286,14 +286,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>GTEx combines expression from all cell types in a tissue sample. HuBMAP lets us query records assigned to a selected cell type. Here, we use it to identify candidate genes with indexed values in ventricular cardiac myocytes and compare their average values with the frequency of values above zero.</p>
+<p>GTEx combines expression from all cell types in a tissue sample. HuBMAP allows us to ask a more focused question: which candidate genes have indexed values in ventricular cardiac myocytes? For the genes with data, we will compare mean normalized expression with how often the values are above zero.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="querying-the-hubmap-api" class="level2">
 <h2 class="anchored" data-anchor-id="querying-the-hubmap-api">Querying the HuBMAP API</h2>
-<p>The Cells API first creates query handles for the heart and ventricular cardiac myocytes. It intersects those sets, retrieves up to the first 500 records, and requests one gene at a time. A gene without an indexed value is labeled as unavailable.</p>
+<p>The Cells API intersects heart and ventricular cardiac-myocyte records, retrieves up to the first 500 records, and requests one gene at a time. A gene with no indexed value is unavailable, not zero.</p>
 <section id="prepare-the-gene-list-and-api-helper" class="level3">
 <h3 class="anchored" data-anchor-id="prepare-the-gene-list-and-api-helper">Prepare the gene list and API helper</h3>
 <p>Load the published variants, select the 25 unique gene symbols, and import the HuBMAP wrapper.</p>
@@ -307,7 +307,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJm
 </script>
 </div>
 </div>
-<p><code>gene_symbols</code> contains the 25 unique gene symbols in alphabetical order. <code>variants</code> retains all 54 published rows.</p>
+<p><code>gene_symbols</code> contains the 25 unique gene symbols in alphabetical order. <code>variants</code> contains all 54 published rows.</p>
 </section>
 <section id="request-ventricular-cardiac-myocyte-expression" class="level3">
 <h3 class="anchored" data-anchor-id="request-ventricular-cardiac-myocyte-expression">Request ventricular cardiac-myocyte expression</h3>
@@ -322,7 +322,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </script>
 </div>
 </div>
-<p>Each row represents one queried gene in ventricular cardiac myocytes. The Cells API returns a quantitative value for each retrieved record. The wrapper calculates <code>mean_normalized_expression</code> as the average of those values and <code>percent_detected</code> as the percentage greater than zero. In this lesson, <code>percent_detected</code> therefore means “percentage of retrieved records above zero.” <code>availability</code> records whether the index returned values for the gene.</p>
+<p>One row represents one queried gene. <code>mean_normalized_expression</code> is the mean normalized expression across retrieved records, and <code>percent_detected</code> is the percentage of those records with a value above zero. The separate <code>availability</code> field states whether the index returned any values.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Live data">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -345,14 +345,14 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <li>Create a query handle for regular ventricular cardiac myocytes (<code>CL:0002131</code>).</li>
 <li>Intersect the two sets.</li>
 <li>Retrieve up to the first 500 records for each gene.</li>
-<li>Calculate the mean returned value and the percentage of values above zero.</li>
+<li>Calculate mean normalized expression and the percentage of values above zero.</li>
 </ol>
 <p>The implementation and its support functions are in <a href="../api_helpers.py"><code>api_helpers.py</code></a>.</p>
 </section>
 </section>
 <section id="review-ventricular-cardiac-myocytes" class="level2">
 <h2 class="anchored" data-anchor-id="review-ventricular-cardiac-myocytes">Review ventricular cardiac myocytes</h2>
-<p>Examine availability, expression, and detection for one disease-relevant cell type.</p>
+<p>Next, compare data availability, mean normalized expression, and the percentage of values above zero.</p>
 <section id="summarize-data-availability" class="level3">
 <h3 class="anchored" data-anchor-id="summarize-data-availability">Summarize data availability</h3>
 <p>Keep the ventricular cardiac-myocyte rows and count the genes with and without indexed expression values. Start with coverage before comparing measurements.</p>
@@ -366,22 +366,22 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </script>
 </div>
 </div>
-<p>In the dated teaching data, 14 of the 25 genes have indexed ventricular cardiac-myocyte values and 11 are unavailable in the Cells API index. The next activity compares the 14 available genes.</p>
+<p>In the dated teaching data, 14 genes have indexed ventricular cardiac-myocyte values and 11 are unavailable. Compare measurements only among the 14 genes with data.</p>
 </section>
 <section id="compare-available-genes" class="level3">
 <h3 class="anchored" data-anchor-id="compare-available-genes">Compare available genes</h3>
-<p>Display all available genes in descending order of their mean returned value. The table retains <code>percent_detected</code> so you can compare average values with the percentage of retrieved records above zero.</p>
+<p>Display all available genes in descending order of mean normalized expression. The table includes <code>percent_detected</code> so you can compare average values with the percentage of retrieved records above zero.</p>
 <div class="module-activity">
 <div>
 <div id="pyodide-4" class="exercise-cell">
 
 </div>
 <script type="pyodide-4-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIjIEtlZXAgZ2VuZXMgd2l0aCByZXR1cm5lZCB2YWx1ZXMuXG5hdmFpbGFibGVfdmVudHJpY3VsYXIgPSB2ZW50cmljdWxhcltcbiAgICB2ZW50cmljdWxhcltcImF2YWlsYWJpbGl0eVwiXSA9PSBcImF2YWlsYWJsZVwiXG5dXG5cbiMgUmFuayBhbGwgYXZhaWxhYmxlIGdlbmVzIGJ5IHRoZWlyIG1lYW4gcmV0dXJuZWQgdmFsdWUuXG5tZWFuX3JhbmtlZF9nZW5lcyA9IChcbiAgICBhdmFpbGFibGVfdmVudHJpY3VsYXJcbiAgICAuc29ydF92YWx1ZXMoXCJtZWFuX25vcm1hbGl6ZWRfZXhwcmVzc2lvblwiLCBhc2NlbmRpbmc9RmFsc2UpXG4gICAgLnNldF9pbmRleChcImdlbmVfc3ltYm9sXCIpXG4pXG5tZWFuX3JhbmtlZF9nZW5lcy5sb2NbXG4gICAgOiwgW1wibWVhbl9ub3JtYWxpemVkX2V4cHJlc3Npb25cIiwgXCJwZXJjZW50X2RldGVjdGVkXCJdXG5dIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIjIEtlZXAgZ2VuZXMgd2l0aCByZXR1cm5lZCB2YWx1ZXMuXG5hdmFpbGFibGVfdmVudHJpY3VsYXIgPSB2ZW50cmljdWxhcltcbiAgICB2ZW50cmljdWxhcltcImF2YWlsYWJpbGl0eVwiXSA9PSBcImF2YWlsYWJsZVwiXG5dXG5cbiMgUmFuayBhbGwgYXZhaWxhYmxlIGdlbmVzIGJ5IG1lYW4gbm9ybWFsaXplZCBleHByZXNzaW9uLlxubWVhbl9yYW5rZWRfZ2VuZXMgPSAoXG4gICAgYXZhaWxhYmxlX3ZlbnRyaWN1bGFyXG4gICAgLnNvcnRfdmFsdWVzKFwibWVhbl9ub3JtYWxpemVkX2V4cHJlc3Npb25cIiwgYXNjZW5kaW5nPUZhbHNlKVxuICAgIC5zZXRfaW5kZXgoXCJnZW5lX3N5bWJvbFwiKVxuKVxubWVhbl9yYW5rZWRfZ2VuZXMubG9jW1xuICAgIDosIFtcIm1lYW5fbm9ybWFsaXplZF9leHByZXNzaW9uXCIsIFwicGVyY2VudF9kZXRlY3RlZFwiXVxuXSJ9
 </script>
 </div>
 </div>
-<p><em>MYH7</em> and <em>DES</em> have the highest mean returned values in the dated teaching data. Their values are above zero in 39.8% and 35.2% of the retrieved records. The mean describes the magnitude of the returned values, while the percentage above zero describes how frequently a positive value appears.</p>
+<p>In the dated teaching data, <em>MYH7</em> and <em>DES</em> have the highest mean normalized expression. Their values are above zero in 39.8% and 35.2% of the retrieved records. The mean summarizes expression across the retrieved records, while the percentage detected reports how many records had a value above zero.</p>
 </section>
 <section id="compare-detection-frequency" class="level3">
 <h3 class="anchored" data-anchor-id="compare-detection-frequency">Compare detection frequency</h3>
@@ -410,22 +410,22 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2Ui
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p><em>TNNT2</em> ranks second by percent detected but sixth by mean expression in the dated teaching data. <em>DES</em> ranks second by mean expression and third by percent detected. The two summaries identify different expression patterns.</p>
+<p>The two measures produce different rankings. In the dated teaching data, <em>TNNT2</em> ranks second by percent detected but sixth by mean expression. <em>DES</em> ranks second by mean expression and third by percent detected. Neither summary replaces the other because they describe different expression patterns.</p>
 </section>
 <section id="plot-ventricular-expression" class="level3">
 <h3 class="anchored" data-anchor-id="plot-ventricular-expression">Plot ventricular expression</h3>
-<p>Plot the mean returned values for the selected genes. Interpret the chart together with the percentage-above-zero table and availability summary.</p>
+<p>Plot mean normalized expression for the selected genes. Interpret the chart together with the percentage-above-zero table and availability summary.</p>
 <div class="module-activity">
 <div>
 <div id="pyodide-6" class="exercise-cell">
 
 </div>
 <script type="pyodide-6-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIjIEtlZXAgdGhlIDEwIGhpZ2hlc3QgbWVhbnMgZm9yIGEgcmVhZGFibGUgcGxvdC5cbnRvcF92ZW50cmljdWxhcl9nZW5lcyA9IG1lYW5fcmFua2VkX2dlbmVzLmhlYWQoMTApXG5cbiMgUGxvdCB0aGUgbWVhbiByZXR1cm5lZCB2YWx1ZXMuXG5heGlzID0gdG9wX3ZlbnRyaWN1bGFyX2dlbmVzW1wibWVhbl9ub3JtYWxpemVkX2V4cHJlc3Npb25cIl0ucGxvdC5iYXIoXG4gICAgY29sb3I9XCIjM2Q2NGIzXCIsXG4gICAgZmlnc2l6ZT0oMTAsIDUpLFxuKVxuYXhpcy5zZXRfeWxhYmVsKFwiTWVhbiBub3JtYWxpemVkIGV4cHJlc3Npb25cIilcbmF4aXMuc2V0X3hsYWJlbChcIkdlbmUgZnJvbSB0aGUgc291cmNlIHBhcGVyXCIpXG5heGlzLnNldF90aXRsZShcIkh1Qk1BUCB2ZW50cmljdWxhciBjYXJkaWFjLW15b2N5dGUgY29udGV4dFwiKVxucGx0Lnh0aWNrcyhyb3RhdGlvbj0zNSwgaGE9XCJyaWdodFwiKVxucGx0LnRpZ2h0X2xheW91dCgpXG5wbHQuc2hvdygpIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIjIEtlZXAgdGhlIDEwIGhpZ2hlc3QgbWVhbnMgZm9yIGEgcmVhZGFibGUgcGxvdC5cbnRvcF92ZW50cmljdWxhcl9nZW5lcyA9IG1lYW5fcmFua2VkX2dlbmVzLmhlYWQoMTApXG5cbiMgUGxvdCBtZWFuIG5vcm1hbGl6ZWQgZXhwcmVzc2lvbi5cbmF4aXMgPSB0b3BfdmVudHJpY3VsYXJfZ2VuZXNbXCJtZWFuX25vcm1hbGl6ZWRfZXhwcmVzc2lvblwiXS5wbG90LmJhcihcbiAgICBjb2xvcj1cIiMzZDY0YjNcIixcbiAgICBmaWdzaXplPSgxMCwgNSksXG4pXG5heGlzLnNldF95bGFiZWwoXCJNZWFuIG5vcm1hbGl6ZWQgZXhwcmVzc2lvblwiKVxuYXhpcy5zZXRfeGxhYmVsKFwiR2VuZSBmcm9tIHRoZSBzb3VyY2UgcGFwZXJcIilcbmF4aXMuc2V0X3RpdGxlKFwiSHVCTUFQIGV4cHJlc3Npb24gaW4gdmVudHJpY3VsYXIgY2FyZGlhYyBteW9jeXRlc1wiKVxucGx0Lnh0aWNrcyhyb3RhdGlvbj0zNSwgaGE9XCJyaWdodFwiKVxucGx0LnRpZ2h0X2xheW91dCgpXG5wbHQuc2hvdygpIn0=
 </script>
 </div>
 </div>
-<p>The plot uses the 10 highest means from the complete 14-gene table. The 11 unavailable genes remain visible in the availability summary.</p>
+<p>The plot shows the 10 highest means from the complete 14-gene table. It is a focused view, not the complete result. The 11 unavailable genes remain visible in the availability summary rather than disappearing from the analysis.</p>
 </section>
 </section>
 <section id="check-your-understanding" class="level2 knowledge-check-heading">
@@ -451,45 +451,45 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <div x-show="isAnswerCorrect" x-transition="" x-cloak="" class="qmulti__result__badge qmulti__result__correct">
     <span>✔</span></div>
 <div class="qmulti__question">
-<p>What does a high mean returned value with a lower <code>percent_detected</code> indicate?</p>
+<p>What does high mean normalized expression with a lower <code>percent_detected</code> indicate?</p>
 </div>
 <hr class="hr-text" data-content="?">
 <div>
 <div>
 <div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="qmibwefvim">
+        <label for="seixrttqyu">
 <div>
 <p>Every retrieved record has the same expression value</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="qmibwefvim" value="1" x-model="answer" :disabled="isAnswerCorrect" name="bbcxvaggpt" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="seixrttqyu" value="1" x-model="answer" :disabled="isAnswerCorrect" name="otquvddtkp" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 <div>
 <div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="aeocgomtxu">
+        <label for="lfyckblqcn">
 <div>
 <p>Larger returned values occur in a smaller portion of the retrieved records</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="aeocgomtxu" value="0" x-model="answer" :disabled="isAnswerCorrect" name="bbcxvaggpt" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    <input type="radio" class="form-check-input" id="lfyckblqcn" value="0" x-model="answer" :disabled="isAnswerCorrect" name="otquvddtkp" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 <div>
 <div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="ctitfxemag">
+        <label for="fqywssjjcf">
 <div>
 <p>The gene is unavailable in the Cells API index</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="ctitfxemag" value="2" x-model="answer" :disabled="isAnswerCorrect" name="bbcxvaggpt" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="fqywssjjcf" value="2" x-model="answer" :disabled="isAnswerCorrect" name="otquvddtkp" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 </div>
 <div>
 <div class="qmulti__correct_result" x-show="answer === '0' &amp;&amp; isAnswered" x-transition="">
 <div>
-<p>Correct. The mean captures value magnitude, while <code>percent_detected</code> captures the frequency of values above zero.</p>
+<p>Correct. The mean summarizes expression across the retrieved records, while <code>percent_detected</code> reports the percentage with a value above zero.</p>
 </div>
 </div>
 <div class="qmulti__wrong_result" x-show="answer === '1' &amp;&amp; isAnswered" x-transition="">
@@ -532,22 +532,22 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <div>
 <div>
 <div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="pgzgtkkfzu">
+        <label for="zbndllblle">
 <div>
 <p>The gene was not expressed</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="pgzgtkkfzu" value="1" x-model="answer" :disabled="isAnswerCorrect" name="zlpslyrukd" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="zbndllblle" value="1" x-model="answer" :disabled="isAnswerCorrect" name="zyeyotwqpx" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 <div>
 <div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="khqixinlbp">
+        <label for="ybyyziqhwu">
 <div>
 <p>The expression index did not provide a value</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="khqixinlbp" value="0" x-model="answer" :disabled="isAnswerCorrect" name="zlpslyrukd" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    <input type="radio" class="form-check-input" id="ybyyziqhwu" value="0" x-model="answer" :disabled="isAnswerCorrect" name="zyeyotwqpx" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 </div>
@@ -570,11 +570,11 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <h2 class="anchored" data-anchor-id="key-points">Key points</h2>
 <ul>
 <li>HuBMAP connects indexed expression values with cell-type annotations from processed atlas data.</li>
-<li>Ventricular cardiac myocytes provide a focused cell context for the cardiomyopathy phenotypes and cardiac-muscle genes reported in the paper.</li>
-<li>The wrapper calculates a mean returned value and the percentage of returned records above zero. These summaries can produce different gene rankings.</li>
+<li>Ventricular cardiac myocytes provide a focused cell type for studying the cardiomyopathy phenotypes and cardiac-muscle genes reported in the paper.</li>
+<li>The wrapper calculates mean normalized expression and the percentage of returned records above zero. These summaries can produce different gene rankings.</li>
 <li>An unavailable indexed value and a returned value of zero are recorded separately.</li>
 </ul>
-<p><strong>Next:</strong> GTEx and HuBMAP provide tissue and cell-type expression context. Use Pharos to examine what is known about the proteins encoded by these genes and which research tools are available.</p>
+<p><strong>Next:</strong> Use Pharos to examine what is known about the encoded proteins and which research tools are available.</p>
 <div class="notebook-actions">
 <p><a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/04_hubmap_cell_type_expression.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a></p>
 </div>
@@ -1025,8 +1025,8 @@ window._ojs.runtime.interpretFromScriptTags();
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lessons/pharos.html" class="pagination-link" aria-label="6. Protein Context and Druggability: IDG/Pharos">
-        <span class="nav-page-text">6. Protein Context and Druggability: IDG/Pharos</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lessons/pharos.html" class="pagination-link" aria-label="6. Protein Knowledge and Research Tools: IDG/Pharos">
+        <span class="nav-page-text">6. Protein Knowledge and Research Tools: IDG/Pharos</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

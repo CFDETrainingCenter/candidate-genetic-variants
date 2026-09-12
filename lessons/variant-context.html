@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Variant and Gene Context – Prioritizing Candidate Genetic Variants</title>
+<title>Published Variants and Candidate Genes – Prioritizing Candidate Genetic Variants</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-f55367e0801e5094f82c0f0d978e128e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-81132e90d9570a0e5d5392fbf3813738.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0498a9dadacb2a4a562ecc9de7c0ca36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/sq-components-1.0.0/plain-draggable.min.js"></script>
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/variant-context.html">3. Variant and Gene Context</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/variant-context.html">3. Published Variants and Candidate Genes</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/variant-context.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">3. Variant and Gene Context</span></a>
+ <span class="menu-text">3. Published Variants and Candidate Genes</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/pharos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6. Protein Context and Druggability: IDG/Pharos</span></a>
+ <span class="menu-text">6. Protein Knowledge and Research Tools: IDG/Pharos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -230,7 +230,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#from-sequencing-to-candidate-variants" id="toc-from-sequencing-to-candidate-variants" class="nav-link active" data-scroll-target="#from-sequencing-to-candidate-variants">From sequencing to candidate variants</a></li>
+  <li><a href="#candidate-gene-filtering-and-variant-ranking" id="toc-candidate-gene-filtering-and-variant-ranking" class="nav-link active" data-scroll-target="#candidate-gene-filtering-and-variant-ranking">Candidate-gene filtering and variant ranking</a></li>
+  <li><a href="#the-published-candidate-genetic-variant-table" id="toc-the-published-candidate-genetic-variant-table" class="nav-link" data-scroll-target="#the-published-candidate-genetic-variant-table">The published candidate genetic variant table</a></li>
   <li><a href="#inspect-the-published-variants" id="toc-inspect-the-published-variants" class="nav-link" data-scroll-target="#inspect-the-published-variants">Inspect the published variants</a></li>
   <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key points</a></li>
@@ -242,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Variant and Gene Context</h1>
+<h1 class="title">Published Variants and Candidate Genes</h1>
 </div>
 
 
@@ -260,12 +261,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><strong>Estimated time:</strong> 25 minutes</p>
-<p>Review how the source study narrowed its variants, then load, check, and summarize the published candidate table.</p>
-<section id="from-sequencing-to-candidate-variants" class="level2">
-<h2 class="anchored" data-anchor-id="from-sequencing-to-candidate-variants">From sequencing to candidate variants</h2>
-<section id="candidate-gene-filtering-and-variant-ranking" class="level3">
-<h3 class="anchored" data-anchor-id="candidate-gene-filtering-and-variant-ranking">Candidate-gene filtering and variant ranking</h3>
-<p>The source study performed whole-genome sequencing on heart tissue from people with early-onset advanced heart failure. After sequencing and variant-quality checks, the researchers narrowed millions of variants in several steps:</p>
+<p>See how the source study narrowed its whole-genome sequencing results, then examine the 54 reported variant rows.</p>
+<section id="candidate-gene-filtering-and-variant-ranking" class="level2">
+<h2 class="anchored" data-anchor-id="candidate-gene-filtering-and-variant-ranking">Candidate-gene filtering and variant ranking</h2>
+<p>The source study performed whole-genome sequencing on heart tissue from people with early-onset advanced heart failure. The researchers narrowed millions of variants through quality control, gene selection, computational ranking, and clinical evaluation:</p>
 <ol type="1">
 <li>They focused on 369 genes connected to heart failure and related conditions.</li>
 <li>A ranking pipeline combined predicted consequence, splicing, conservation, population frequency, protein predictions, and ClinVar annotations.</li>
@@ -273,25 +272,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Clinical geneticists applied ACMG guidance and condition-specific rules.</li>
 </ol>
 </section>
-<section id="the-published-candidate-table" class="level3">
-<h3 class="anchored" data-anchor-id="the-published-candidate-table">The published candidate table</h3>
-<p>The published table is the input dataset for this module.</p>
-<p>Supplementary Table S4 contains the variants the authors reported as pathogenic, likely pathogenic, or VUS with suggestive evidence. It has 54 rows from 46 people and 25 genes.</p>
-<p>The study score and class are retained from the paper rather than recalculated. GTEx, HuBMAP, and Pharos answer different questions about the genes connected to those variants.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Why add biological context?">
+<section id="the-published-candidate-genetic-variant-table" class="level2">
+<h2 class="anchored" data-anchor-id="the-published-candidate-genetic-variant-table">The published candidate genetic variant table</h2>
+<p>Supplementary Table S4 is the starting point for this module. Its 54 rows cover 46 people and 25 genes. The authors classified these variants as pathogenic, likely pathogenic, or VUS.</p>
+<p>We will use the study score and classification as reported in the paper.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Why add information about the genes?">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Why add biological context?
+<span class="screen-reader-only">Tip</span>Why add information about the genes?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The API results add information that can guide follow-up. GTEx reports expression in heart tissues, HuBMAP reports indexed expression in ventricular cardiac myocytes, and Pharos summarizes protein knowledge, reported ligand information, and target development. The study classification remains attached to each row as this context is added.</p>
+<p>The candidate genetic variant table does not contain all the evidence needed for experimental follow-up. GTEx reports heart-tissue expression, HuBMAP reports indexed values for ventricular cardiac myocytes, and Pharos summarizes protein knowledge, ligands, and target development. Adding gene information does not change the study classification.</p>
 </div>
 </div>
-</section>
 </section>
 <section id="inspect-the-published-variants" class="level2">
 <h2 class="anchored" data-anchor-id="inspect-the-published-variants">Inspect the published variants</h2>
@@ -308,11 +305,11 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJm
 </script>
 </div>
 </div>
-<p>Each row is one variant observation reported for one participant. The preview places the gene and HGVS descriptions beside the study score, classification, phenotype, and source information.</p>
+<p>Each row records one variant observation for one participant.</p>
 </section>
 <section id="understand-the-key-columns" class="level3">
 <h3 class="anchored" data-anchor-id="understand-the-key-columns">Understand the key columns</h3>
-<p>The columns retain the participant, gene, HGVS descriptions, study classification, phenotype, and source for each observation.</p>
+<p>The key columns describe the variant, its reported classification and phenotype, and its source.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -355,11 +352,11 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJm
 </tr>
 <tr class="even">
 <td><code>study_comment</code></td>
-<td>Additional context retained from the published table</td>
+<td>Additional information from the published table</td>
 </tr>
 <tr class="odd">
 <td><code>source_doi</code>, <code>source_pmid</code>, <code>source_table</code></td>
-<td>Provenance linking the row to its source</td>
+<td>Identifiers linking each row to its source</td>
 </tr>
 </tbody>
 </table>
@@ -415,7 +412,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJm
 </tr>
 </tbody>
 </table>
-<p>The source article groups HCM and HCM phenocopies together. This teaching table retains separate <code>HCM</code>, <code>HCM*</code>, and <code>ATTR-CM</code> labels from the published variant table so learners can see how those rows were recorded.</p>
+<p>The source article groups HCM and HCM phenocopies together. This teaching table uses separate <code>HCM</code>, <code>HCM*</code>, and <code>ATTR-CM</code> labels from the published variant table so learners can see how those rows were recorded.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Reading the HGVS columns">
@@ -442,14 +439,14 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJm
 <li><code>Asp259Ala</code> means that aspartic acid at amino-acid position 259 is replaced by alanine.</li>
 </ul></li>
 </ul>
-<p>The transcript accession and version matter because coordinates and predicted consequences can differ among transcripts and reference-sequence versions. The source table retains the HGVS descriptions reported by the study. A blank <code>hgvs_p</code> means that the source table did not report a protein HGVS description.</p>
+<p>The transcript accession and version matter because coordinates and predicted consequences can differ among transcripts and reference-sequence versions. The HGVS columns contain the descriptions reported by the study. A blank <code>hgvs_p</code> means that the source table did not report a protein HGVS description.</p>
 <p>See the <a href="https://hgvs-nomenclature.org/stable/background/refseq/">HGVS reference-sequence recommendations</a> for additional guidance.</p>
 </div>
 </div>
 </section>
 <section id="validate-the-table" class="level3">
 <h3 class="anchored" data-anchor-id="validate-the-table">Validate the table</h3>
-<p>Confirm that the table contains the required columns, 54 rows, and PMID 39910139. A failed assertion indicates incomplete or incorrect input.</p>
+<p>Before interpreting the data, confirm that the expected table was loaded. It should contain the required columns, 54 rows, and PMID 39910139. A failed assertion signals incomplete or incorrect input.</p>
 <div class="module-activity">
 <div>
 <div id="pyodide-2" class="exercise-cell">
@@ -460,7 +457,6 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </script>
 </div>
 </div>
-<p>These checks confirm the expected structure, row count, and recorded PMID.</p>
 </section>
 <section id="summarize-the-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="summarize-the-dataset">Summarize the dataset</h3>
@@ -491,11 +487,11 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2Ui
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>dataset_overview</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>The table contains 54 variant rows from 46 participants and 25 genes. Four rows do not have a protein HGVS description reported in the source table.</p>
+<p>The 54 variant rows represent 46 participants and 25 genes. Four rows lack a protein HGVS description in the source table.</p>
 </section>
 <section id="compare-classifications-by-phenotype" class="level3">
 <h3 class="anchored" data-anchor-id="compare-classifications-by-phenotype">Compare classifications by phenotype</h3>
-<p>Count the published variant classes within each heart-failure phenotype. The result keeps the classifications reported by the source study.</p>
+<p>Next, count the published variant classes within each heart-failure phenotype. This comparison shows how the reported classifications are distributed across phenotypes.</p>
 <div class="module-activity">
 <div>
 <div id="pyodide-4" class="exercise-cell">
@@ -550,33 +546,33 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <hr class="hr-text" data-content="?">
 <div>
 <div>
-<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="wlngiffhvm">
-<div>
-<p>Each participant contributes exactly one gene</p>
-</div>
-</label>
-    <input type="radio" class="form-check-input" id="wlngiffhvm" value="1" x-model="answer" :disabled="isAnswerCorrect" name="iiaksefwox" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
-    </div>
-</div>
-<div>
 <div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="mrpxhmwhnp">
+        <label for="cxjgssvejc">
 <div>
 <p>Several genes occur in more than one variant observation</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="mrpxhmwhnp" value="0" x-model="answer" :disabled="isAnswerCorrect" name="iiaksefwox" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    <input type="radio" class="form-check-input" id="cxjgssvejc" value="0" x-model="answer" :disabled="isAnswerCorrect" name="gdlkbmutvu" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 <div>
 <div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="hjwpxlddkf">
+        <label for="hooutvfikn">
 <div>
 <p>The remaining rows have missing gene symbols</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="hjwpxlddkf" value="2" x-model="answer" :disabled="isAnswerCorrect" name="iiaksefwox" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="hooutvfikn" value="2" x-model="answer" :disabled="isAnswerCorrect" name="gdlkbmutvu" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="tsdyrznnkq">
+<div>
+<p>Each participant contributes exactly one gene</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="tsdyrznnkq" value="1" x-model="answer" :disabled="isAnswerCorrect" name="gdlkbmutvu" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 </div>
@@ -593,7 +589,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </div>
 <div class="qmulti__wrong_result" x-show="answer === '2' &amp;&amp; isAnswered" x-transition="">
 <div>
-<p>All 54 rows retain a gene symbol. The smaller gene count reflects repeated genes.</p>
+<p>All 54 rows have a gene symbol. The smaller gene count reflects repeated genes.</p>
 </div>
 </div>
 </div>
@@ -625,23 +621,23 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <hr class="hr-text" data-content="?">
 <div>
 <div>
-<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="vxljvkoiuv">
-<div>
-<p>No protein HGVS value was reported</p>
-</div>
-</label>
-    <input type="radio" class="form-check-input" id="vxljvkoiuv" value="0" x-model="answer" :disabled="isAnswerCorrect" name="vuemvpymid" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
-    </div>
-</div>
-<div>
 <div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="ucqeedwpsk">
+        <label for="fdjkpkmleb">
 <div>
 <p>The variant has no protein effect</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="ucqeedwpsk" value="1" x-model="answer" :disabled="isAnswerCorrect" name="vuemvpymid" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="fdjkpkmleb" value="1" x-model="answer" :disabled="isAnswerCorrect" name="bogwwzcokp" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
+        <label for="coruhgvyqj">
+<div>
+<p>No protein HGVS value was reported</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="coruhgvyqj" value="0" x-model="answer" :disabled="isAnswerCorrect" name="bogwwzcokp" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 </div>
@@ -665,9 +661,9 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <ul>
 <li>The source table contains 54 variant observations from 46 participants and 25 genes.</li>
 <li>Four observations lack a reported protein HGVS description.</li>
-<li>The study classification remains attached to each variant while gene-level context is added in later lessons.</li>
+<li>The study classification remains attached to each variant when later lessons add tissue expression, cell-type measurements, and protein information.</li>
 </ul>
-<p><strong>Next:</strong> Carry the 25 genes from the published table into GTEx to add bulk heart-tissue expression context.</p>
+<p><strong>Next:</strong> Query GTEx for bulk heart-tissue expression of the 25 genes.</p>
 <div class="notebook-actions">
 <p><a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/02_variant_background.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a></p>
 </div>

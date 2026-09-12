@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Protein Knowledge and Research Context: IDG/Pharos – Prioritizing Candidate Genetic Variants</title>
+<title>Protein Knowledge and Research Tools: IDG/Pharos – Prioritizing Candidate Genetic Variants</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-f55367e0801e5094f82c0f0d978e128e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-81132e90d9570a0e5d5392fbf3813738.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0498a9dadacb2a4a562ecc9de7c0ca36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/sq-components-1.0.0/plain-draggable.min.js"></script>
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/pharos.html">6. Protein Context and Druggability: IDG/Pharos</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/pharos.html">6. Protein Knowledge and Research Tools: IDG/Pharos</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/variant-context.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3. Variant and Gene Context</span></a>
+ <span class="menu-text">3. Published Variants and Candidate Genes</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/pharos.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">6. Protein Context and Druggability: IDG/Pharos</span></a>
+ <span class="menu-text">6. Protein Knowledge and Research Tools: IDG/Pharos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -230,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#protein-target-context" id="toc-protein-target-context" class="nav-link active" data-scroll-target="#protein-target-context">Protein target context</a></li>
+  <li><a href="#protein-annotations" id="toc-protein-annotations" class="nav-link active" data-scroll-target="#protein-annotations">Protein annotations</a></li>
   <li><a href="#querying-the-pharos-api" id="toc-querying-the-pharos-api" class="nav-link" data-scroll-target="#querying-the-pharos-api">Querying the Pharos API</a></li>
   <li><a href="#review-the-protein-targets" id="toc-review-the-protein-targets" class="nav-link" data-scroll-target="#review-the-protein-targets">Review the protein targets</a></li>
   <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
@@ -243,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Protein Knowledge and Research Context: IDG/Pharos</h1>
+<h1 class="title">Protein Knowledge and Research Tools: IDG/Pharos</h1>
 </div>
 
 
@@ -261,15 +261,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><strong>Estimated time:</strong> 20 minutes</p>
-<p>Use Pharos to connect the paper’s genes with protein knowledge and identify biological, chemical, or clinical records for closer review.</p>
-<section id="protein-target-context" class="level2">
-<h2 class="anchored" data-anchor-id="protein-target-context">Protein target context</h2>
-<p>GTEx and HuBMAP added expression context to genes from the heart-failure paper. We now ask what is known about the proteins those genes encode.</p>
-<p>IDG stands for <strong>Illuminating the Druggable Genome</strong>. This NIH Common Fund program develops knowledge and research tools for understudied proteins in druggable protein families. Pharos is an IDG resource that combines information about human proteins and drug targets. It brings protein identifiers, annotations, publications, interactions, ligands, drugs, and target-development categories into one resource.</p>
+<p>Use Pharos to compare protein annotations, Target Development Levels, publications, interactions, ligands, and drugs for the 25 genes.</p>
+<section id="protein-annotations" class="level2">
+<h2 class="anchored" data-anchor-id="protein-annotations">Protein annotations</h2>
+<p>GTEx and HuBMAP showed where the genes have indexed expression. Pharos shows what is known about the encoded proteins and which research tools may exist.</p>
+<p>IDG stands for <strong>Illuminating the Druggable Genome</strong>. This NIH Common Fund program develops knowledge and research tools for understudied proteins in druggable protein families. Its Pharos resource combines protein identifiers, annotations, publications, interactions, ligands, drugs, and target-development categories.</p>
 <section id="why-use-pharos-for-this-paper" class="level3">
 <h3 class="anchored" data-anchor-id="why-use-pharos-for-this-paper">Why use Pharos for this paper?</h3>
-<p>The paper reports candidate variants in 25 protein-coding genes. GTEx and HuBMAP showed where those genes have indexed expression. Pharos adds a different question: what protein knowledge and experimental starting points have already been recorded for each gene?</p>
-<p>We selected fields that support that question:</p>
+<p>The paper reports candidate genetic variants in 25 protein-coding genes. We use the following fields to compare existing knowledge and available research tools for each encoded protein:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -341,14 +340,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td><strong>Tdark</strong></td>
 <td>Available knowledge is limited under the Pharos criteria.</td>
-<td>Begin with foundational characterization and available reagents.</td>
+<td>Begin by describing basic protein function and available reagents.</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="scope-of-target-development-levels" class="level3">
 <h3 class="anchored" data-anchor-id="scope-of-target-development-levels">Scope of target development levels</h3>
-<p>TDL is a protein-level field. The study classification remains the variant-level field.</p>
+<p>TDL describes a protein. The study classification describes a variant.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Why Pharos helps">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -359,14 +358,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The expression resources provide tissue and cell-type context. Pharos adds protein identifiers, knowledge categories, and counts of linked publications, interactions, ligands, and drugs. These fields help identify which target records to inspect next.</p>
+<p>The expression resources help us select a biological system. Pharos shows the protein knowledge, chemical tools, and clinical relationships already recorded for a target.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="querying-the-pharos-api" class="level2">
 <h2 class="anchored" data-anchor-id="querying-the-pharos-api">Querying the Pharos API</h2>
-<p>Pharos uses GraphQL. The request names the exact target fields to return. The helper repeats that query for each of the paper’s 25 gene symbols and puts the responses in one table.</p>
+<p>Pharos uses GraphQL. The helper requests selected target fields for each of the 25 gene symbols and combines the responses in one table.</p>
 <section id="prepare-the-gene-list-and-api-helper" class="level3">
 <h3 class="anchored" data-anchor-id="prepare-the-gene-list-and-api-helper">Prepare the gene list and API helper</h3>
 <p>Load the published variants, select the 25 unique gene symbols, and import the Pharos wrapper.</p>
@@ -380,10 +379,10 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJm
 </script>
 </div>
 </div>
-<p><code>gene_symbols</code> contains the 25 unique gene symbols in alphabetical order. <code>variants</code> retains all 54 published rows.</p>
+<p><code>gene_symbols</code> contains the 25 unique gene symbols in alphabetical order. <code>variants</code> contains all 54 published rows.</p>
 </section>
-<section id="request-protein-target-context" class="level3">
-<h3 class="anchored" data-anchor-id="request-protein-target-context">Request protein-target context</h3>
+<section id="request-protein-annotations" class="level3">
+<h3 class="anchored" data-anchor-id="request-protein-annotations">Request protein annotations</h3>
 <p>Request protein-target records for the 25 genes and display the first five targets. In the returned table, compare TDL with the separate publication, interaction, ligand, and drug counts.</p>
 <div class="module-activity">
 <div>
@@ -395,8 +394,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </script>
 </div>
 </div>
-<p>Each row represents one protein target. The preview connects its gene symbol and UniProt identifier to a TDL. The other fields count publications, protein-interaction records, ligands, and drugs linked to the target in Pharos.</p>
-<p>TDL and the count fields answer related but different questions. TDL follows Pharos development criteria. The counts describe records attached to the target. A Tchem target can therefore have ligand records while its drug count is zero.</p>
+<p>One row represents one protein target. The gene symbol and UniProt identifier link it to Pharos. The other fields report its TDL and counts of publications, protein interactions, ligands, and drugs.</p>
+<p>TDL follows Pharos development criteria. The counts describe records attached to the target. A Tchem target can therefore have ligand records when its drug count is zero.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Live data">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -446,7 +445,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </section>
 <section id="review-the-protein-targets" class="level2">
 <h2 class="anchored" data-anchor-id="review-the-protein-targets">Review the protein targets</h2>
-<p>Count the TDL categories and compare protein fields that can inform research follow-up.</p>
+<p>Summarize the Target Development Levels, then inspect the publication, interaction, ligand, and drug records.</p>
 <section id="summarize-target-development-levels" class="level3">
 <h3 class="anchored" data-anchor-id="summarize-target-development-levels">Summarize target development levels</h3>
 <p>Count the Target Development Levels in the current Pharos response. Complete the pandas method that counts each distinct category.</p>
@@ -473,7 +472,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2Ui
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>tdl_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>The <code>genes</code> column counts the queried targets assigned to each Pharos TDL. In the dated teaching data, 18 targets are Tbio, 4 are Tclin, and 3 are Tchem. No Tdark targets were returned. The Tclin targets are <em>TTR</em>, <em>DMD</em>, <em>KCNQ1</em>, and <em>MYH7</em>; the Tchem targets are <em>MYLK3</em>, <em>POLG</em>, and <em>TNNI3K</em>.</p>
+<p>The <code>genes</code> column counts how many queried targets fall into each Pharos TDL. In the dated teaching data, 18 are Tbio, 4 are Tclin, and 3 are Tchem. None are Tdark. The Tclin targets are <em>TTR</em>, <em>DMD</em>, <em>KCNQ1</em>, and <em>MYH7</em>; the Tchem targets are <em>MYLK3</em>, <em>POLG</em>, and <em>TNNI3K</em>.</p>
 </section>
 <section id="compare-target-fields" class="level3">
 <h3 class="anchored" data-anchor-id="compare-target-fields">Compare target fields</h3>
@@ -484,15 +483,15 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2Ui
 
 </div>
 <script type="pyodide-4-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIjIFNlbGVjdCB0aGUgdGFyZ2V0IGV2aWRlbmNlIGZpZWxkcy5cbnRhcmdldF9maWVsZHMgPSBwaGFyb3MubG9jW1xuICAgIDosXG4gICAgW1xuICAgICAgICBcImdlbmVfc3ltYm9sXCIsXG4gICAgICAgIFwidGFyZ2V0X25hbWVcIixcbiAgICAgICAgXCJ0ZGxcIixcbiAgICAgICAgXCJsaWdhbmRfY291bnRcIixcbiAgICAgICAgXCJkcnVnX2NvdW50XCIsXG4gICAgICAgIFwicHVibGljYXRpb25fY291bnRcIixcbiAgICAgICAgXCJwcGlfY291bnRcIixcbiAgICBdLFxuXS5zb3J0X3ZhbHVlcyhcbiAgICBbXCJkcnVnX2NvdW50XCIsIFwiZ2VuZV9zeW1ib2xcIl0sXG4gICAgYXNjZW5kaW5nPVtGYWxzZSwgVHJ1ZV0sXG4pXG5cbiMgUGxhY2UgdGhlIG5hbWVkIFRETCBjYXRlZ29yaWVzIGluIGRpc3BsYXkgb3JkZXIuXG5vcmRlcmVkX3RhcmdldHMgPSBbXVxuZm9yIHRkbCBpbiBbXCJUY2xpblwiLCBcIlRjaGVtXCIsIFwiVGJpb1wiLCBcIlRkYXJrXCJdOlxuICAgIG9yZGVyZWRfdGFyZ2V0cy5hcHBlbmQodGFyZ2V0X2ZpZWxkc1t0YXJnZXRfZmllbGRzW1widGRsXCJdLmVxKHRkbCldKVxuXG50YXJnZXRfc3VtbWFyeSA9IHBkLmNvbmNhdChvcmRlcmVkX3RhcmdldHMsIGlnbm9yZV9pbmRleD1UcnVlKVxudGFyZ2V0X3N1bW1hcnkifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIjIFNlbGVjdCBmaWVsZHMgdXNlZCB0byBjb21wYXJlIHByb3RlaW4gdGFyZ2V0cy5cbnRhcmdldF9maWVsZHMgPSBwaGFyb3MubG9jW1xuICAgIDosXG4gICAgW1xuICAgICAgICBcImdlbmVfc3ltYm9sXCIsXG4gICAgICAgIFwidGFyZ2V0X25hbWVcIixcbiAgICAgICAgXCJ0ZGxcIixcbiAgICAgICAgXCJsaWdhbmRfY291bnRcIixcbiAgICAgICAgXCJkcnVnX2NvdW50XCIsXG4gICAgICAgIFwicHVibGljYXRpb25fY291bnRcIixcbiAgICAgICAgXCJwcGlfY291bnRcIixcbiAgICBdLFxuXS5zb3J0X3ZhbHVlcyhcbiAgICBbXCJkcnVnX2NvdW50XCIsIFwiZ2VuZV9zeW1ib2xcIl0sXG4gICAgYXNjZW5kaW5nPVtGYWxzZSwgVHJ1ZV0sXG4pXG5cbiMgUGxhY2UgdGhlIG5hbWVkIFRETCBjYXRlZ29yaWVzIGluIGRpc3BsYXkgb3JkZXIuXG5vcmRlcmVkX3RhcmdldHMgPSBbXVxuZm9yIHRkbCBpbiBbXCJUY2xpblwiLCBcIlRjaGVtXCIsIFwiVGJpb1wiLCBcIlRkYXJrXCJdOlxuICAgIG9yZGVyZWRfdGFyZ2V0cy5hcHBlbmQodGFyZ2V0X2ZpZWxkc1t0YXJnZXRfZmllbGRzW1widGRsXCJdLmVxKHRkbCldKVxuXG50YXJnZXRfc3VtbWFyeSA9IHBkLmNvbmNhdChvcmRlcmVkX3RhcmdldHMsIGlnbm9yZV9pbmRleD1UcnVlKVxudGFyZ2V0X3N1bW1hcnkifQ==
 </script>
 </div>
 </div>
-<p>Each row combines a target’s TDL with its linked record counts. The contrasting patterns suggest different starting points:</p>
+<p>TDL and linked record counts suggest different starting points:</p>
 <ul>
 <li><em>TTR</em> is Tclin with 41 ligand and 11 drug records. Open its Pharos target record to inspect the named drugs, mechanisms, and indications.</li>
 <li><em>MYLK3</em> is Tchem with five ligand and one drug record. Its chemical records are the next place to review potency, selectivity, and possible experimental use.</li>
-<li><em>TNNT2</em> is Tbio with 441 linked publications and 167 protein-interaction records. Its starting point is the recorded biology rather than a qualifying chemical category.</li>
+<li><em>TNNT2</em> is Tbio with 441 linked publications and 167 protein-interaction records. These records point to known protein biology and interactions as starting points for follow-up.</li>
 <li><em>POLG</em> is Tchem with two ligand records and zero drug records. Its qualifying chemical activity and its drug count are separate parts of the target record.</li>
 </ul>
 </section>
@@ -509,7 +508,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </script>
 </div>
 </div>
-<p>The dated response returns the four Tclin targets, <em>TTR</em>, <em>DMD</em>, <em>KCNQ1</em>, and <em>MYH7</em>, plus the Tchem targets <em>MYLK3</em> and <em>TNNI3K</em>. <em>POLG</em> remains visible in the complete table with two ligand records and no drug records.</p>
+<p>The filter returns all four Tclin targets, <em>TTR</em>, <em>DMD</em>, <em>KCNQ1</em>, and <em>MYH7</em>, along with the Tchem targets <em>MYLK3</em> and <em>TNNI3K</em>. <em>POLG</em> does not meet the drug count condition, but it remains visible in the complete table with two ligand records and no drug records.</p>
 </section>
 </section>
 <section id="check-your-understanding" class="level2 knowledge-check-heading">
@@ -540,33 +539,33 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <hr class="hr-text" data-content="?">
 <div>
 <div>
-<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="qmibwefvim">
-<div>
-<p>Every qualifying ligand is counted as a drug</p>
-</div>
-</label>
-    <input type="radio" class="form-check-input" id="qmibwefvim" value="1" x-model="answer" :disabled="isAnswerCorrect" name="bbcxvaggpt" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
-    </div>
-</div>
-<div>
-<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="aeocgomtxu">
-<div>
-<p>TDL criteria and the ligand and drug counts describe different fields</p>
-</div>
-</label>
-    <input type="radio" class="form-check-input" id="aeocgomtxu" value="0" x-model="answer" :disabled="isAnswerCorrect" name="bbcxvaggpt" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
-    </div>
-</div>
-<div>
 <div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="ctitfxemag">
+        <label for="hvkomjriya">
 <div>
 <p>Tchem means that no chemical information is available</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="ctitfxemag" value="2" x-model="answer" :disabled="isAnswerCorrect" name="bbcxvaggpt" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="hvkomjriya" value="2" x-model="answer" :disabled="isAnswerCorrect" name="ssmgzrkdwn" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
+        <label for="nzkhwyjfdy">
+<div>
+<p>TDL criteria and the ligand and drug counts describe different fields</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="nzkhwyjfdy" value="0" x-model="answer" :disabled="isAnswerCorrect" name="ssmgzrkdwn" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="huxhjmocer">
+<div>
+<p>Every qualifying ligand is counted as a drug</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="huxhjmocer" value="1" x-model="answer" :disabled="isAnswerCorrect" name="ssmgzrkdwn" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 </div>
@@ -616,22 +615,22 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <div>
 <div>
 <div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="pgzgtkkfzu">
+        <label for="kctpmgxpiu">
 <div>
 <p><code>study_class</code></p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="pgzgtkkfzu" value="1" x-model="answer" :disabled="isAnswerCorrect" name="zlpslyrukd" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="kctpmgxpiu" value="1" x-model="answer" :disabled="isAnswerCorrect" name="jdohboponb" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 <div>
 <div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="khqixinlbp">
+        <label for="vkoaenqyur">
 <div>
 <p>TDL</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="khqixinlbp" value="0" x-model="answer" :disabled="isAnswerCorrect" name="zlpslyrukd" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    <input type="radio" class="form-check-input" id="vkoaenqyur" value="0" x-model="answer" :disabled="isAnswerCorrect" name="jdohboponb" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 </div>
@@ -657,7 +656,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <li>TDL, publication counts, interaction counts, ligand counts, and drug counts describe different parts of a protein target record.</li>
 <li>Six Tclin or Tchem targets have at least one drug record in the dated response; <em>POLG</em> is Tchem with ligand records and no drug records.</li>
 </ul>
-<p><strong>Next:</strong> Join the GTEx, HuBMAP, and Pharos evidence back to all 54 variant rows and use the combined context to prioritize research follow-up.</p>
+<p><strong>Next:</strong> Join the GTEx, HuBMAP, and Pharos results to all 54 variant rows and prioritize research follow-up.</p>
 <div class="notebook-actions">
 <p><a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/05_pharos_target_context.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a></p>
 </div>

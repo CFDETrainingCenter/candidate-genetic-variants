@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-f55367e0801e5094f82c0f0d978e128e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-81132e90d9570a0e5d5392fbf3813738.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0498a9dadacb2a4a562ecc9de7c0ca36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/sq-components-1.0.0/plain-draggable.min.js"></script>
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/variant-context.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3. Variant and Gene Context</span></a>
+ <span class="menu-text">3. Published Variants and Candidate Genes</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/pharos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6. Protein Context and Druggability: IDG/Pharos</span></a>
+ <span class="menu-text">6. Protein Knowledge and Research Tools: IDG/Pharos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -261,19 +261,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><strong>Estimated time:</strong> 25 minutes</p>
-<p>Compare median expression of the 25 genes in two GTEx heart tissues and identify which tissue has the higher reference value for selected genes.</p>
+<p>Use GTEx to compare expression of the 25 genes in atrial appendage and left ventricle.</p>
 <section id="tissue-level-expression" class="level2">
 <h2 class="anchored" data-anchor-id="tissue-level-expression">Tissue-level expression</h2>
-<p>The source paper gives us 54 variants in 25 genes, but its candidate table does not show where those genes are expressed. Our next question is how median gene expression compares between two reference heart tissues.</p>
+<p>The study narrowed millions of variants to 54 observations across 25 genes. We will use GTEx to compare median expression of these genes in two reference heart tissues.</p>
 <section id="what-gtex-contains-and-why-we-use-it" class="level3">
 <h3 class="anchored" data-anchor-id="what-gtex-contains-and-why-we-use-it">What GTEx contains and why we use it</h3>
-<p>GTEx stands for <strong>Genotype-Tissue Expression</strong>. This NIH Common Fund resource contains gene-expression data from human tissue donors. It provides a reference for comparing expression across tissues rather than a cohort selected for heart failure. This lesson uses the two heart tissues represented in GTEx: atrial appendage and left ventricle.</p>
-<p>Expression is reported as median transcripts per million, or TPM. TPM summarizes gene-expression abundance while accounting for transcript length and sequencing depth. The median gives one value across the GTEx samples represented for a tissue.</p>
+<p>GTEx stands for <strong>Genotype-Tissue Expression</strong>. This resource contains gene-expression data from human tissue donors. The donors were not selected for heart failure. We will compare atrial appendage and left ventricle, the two heart tissues represented in GTEx.</p>
+<p>Expression is reported as median transcripts per million, or TPM. TPM summarizes abundance while accounting for transcript length and sequencing depth. The median gives one reference value across the GTEx samples for a tissue.</p>
 <p>Learn more about the resource and its endpoints in the <a href="https://gtexportal.org/api/v2/docs">GTEx Portal API documentation</a>.</p>
 </section>
 <section id="how-to-read-gtex-values" class="level3">
 <h3 class="anchored" data-anchor-id="how-to-read-gtex-values">How to read GTEx values</h3>
-<p>Use the median TPM values as a descriptive comparison between reference tissues. GTEx uses bulk tissue, so each value combines signals from the cell types present in those samples.</p>
+<p>Treat the median TPM values as a descriptive comparison between reference tissues. Because GTEx measures bulk tissue, each value combines signals from all cell types present in those samples.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Why GTEx helps">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -284,14 +284,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The candidate table identifies genes but does not provide tissue expression. GTEx adds a reference value for each gene in atrial appendage and left ventricle. A higher median in one tissue can suggest which heart tissue to examine in follow-up work.</p>
+<p>GTEx adds an atrial-appendage and left-ventricle reference value for each gene. A higher median in one tissue can guide tissue selection for follow-up.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="querying-the-gtex-api" class="level2">
 <h2 class="anchored" data-anchor-id="querying-the-gtex-api">Querying the GTEx API</h2>
-<p>The live request first matches the paper’s 25 gene symbols to GENCODE v39 IDs. A second request asks for GTEx v10 median expression in two heart tissues. This module specifies v10 so the live request and dated teaching response refer to the same GTEx release.</p>
+<p>The live request begins by matching the paper’s 25 gene symbols to GENCODE v39 IDs. Once those identifiers are resolved, a second request retrieves GTEx v10 median expression for the two heart tissues. Specifying v10 keeps the live request aligned with the dated teaching response.</p>
 <section id="prepare-the-gene-list-and-api-helper" class="level3">
 <h3 class="anchored" data-anchor-id="prepare-the-gene-list-and-api-helper">Prepare the gene list and API helper</h3>
 <p>Load the published variants, select the 25 unique gene symbols, and import the GTEx wrapper.</p>
@@ -305,7 +305,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJm
 </script>
 </div>
 </div>
-<p><code>gene_symbols</code> contains the 25 unique gene symbols in alphabetical order. <code>variants</code> retains all 54 published rows.</p>
+<p><code>gene_symbols</code> contains the 25 unique gene symbols in alphabetical order. <code>variants</code> contains all 54 published rows.</p>
 </section>
 <section id="request-heart-tissue-expression" class="level3">
 <h3 class="anchored" data-anchor-id="request-heart-tissue-expression">Request heart-tissue expression</h3>
@@ -320,11 +320,11 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </script>
 </div>
 </div>
-<p>Each row contains one gene-tissue combination. <code>median_tpm</code> is the median transcript abundance reported for that tissue. <code>gencode_id</code>, <code>dataset_id</code>, and <code>retrieved_date</code> record the identifiers and retrieval context. The <code>unit</code> field confirms that the returned expression values are TPM.</p>
+<p>One row represents one gene in one tissue. <code>median_tpm</code> records median transcript abundance. The <code>gencode_id</code>, <code>dataset_id</code>, and <code>retrieved_date</code> fields record the source and retrieval, while <code>unit</code> confirms TPM.</p>
 </section>
 <section id="check-the-returned-data" class="level3">
 <h3 class="anchored" data-anchor-id="check-the-returned-data">Check the returned data</h3>
-<p>Summarize the response before comparing tissues. For this request, expect 25 genes, 50 gene-tissue rows, two tissues, and TPM units.</p>
+<p>Before comparing tissues, make sure the response is complete. This request should return 25 genes, 50 gene-tissue rows, two tissues, and TPM units.</p>
 <div class="module-activity">
 <div>
 <div id="pyodide-3" class="exercise-cell">
@@ -335,7 +335,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJy
 </script>
 </div>
 </div>
-<p>The summary makes missing genes or tissue rows visible before the expression values are reshaped.</p>
+<p>If a gene or tissue row is missing, this summary exposes the problem before we reshape or interpret the expression values.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Live data">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -399,7 +399,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJy
 </section>
 <section id="compare-heart-tissues" class="level2">
 <h2 class="anchored" data-anchor-id="compare-heart-tissues">Compare heart tissues</h2>
-<p>Reshape the API result into a gene-by-tissue table, add the number of published rows per gene, and then plot a readable subset.</p>
+<p>Reshape the response into a gene-by-tissue table, add the number of published rows per gene, and plot a readable subset.</p>
 <section id="summarize-genes-and-tissues" class="level3">
 <h3 class="anchored" data-anchor-id="summarize-genes-and-tissues">Summarize genes and tissues</h3>
 <p>Reshape the GTEx values so each gene has one column per tissue. Then add the number of published rows connected to each gene for reference.</p>
@@ -413,7 +413,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </script>
 </div>
 </div>
-<p>Each row now represents one gene. The two tissue columns contain median TPM, and <code>variant_rows</code> counts its occurrences in the published variant table. In the dated teaching data, <em>DES</em> and <em>MYH7</em> have the highest left-ventricle median TPM values. The <code>variant_rows</code> column describes the source table, while the two TPM columns contain the GTEx expression context.</p>
+<p>Each gene now has one row. The tissue columns contain median TPM, while <code>variant_rows</code> counts appearances in the published table. In the dated teaching data, <em>DES</em> and <em>MYH7</em> have the highest left-ventricle medians.</p>
 </section>
 <section id="plot-genes-with-the-highest-expression" class="level3">
 <h3 class="anchored" data-anchor-id="plot-genes-with-the-highest-expression">Plot genes with the highest expression</h3>
@@ -428,7 +428,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 </script>
 </div>
 </div>
-<p><em>DES</em> and <em>MYH7</em> have higher median expression in left ventricle than atrial appendage, while <em>ACTC1</em> is higher in atrial appendage. These are bulk-tissue patterns that motivate the cell-type question in the HuBMAP lesson.</p>
+<p>In the dated teaching data, <em>DES</em> and <em>MYH7</em> have higher median expression in left ventricle than atrial appendage, while <em>ACTC1</em> is higher in atrial appendage. These bulk-tissue results lead to the cell-type question in the HuBMAP lesson.</p>
 </section>
 <section id="compare-the-atrial-ranking" class="level3">
 <h3 class="anchored" data-anchor-id="compare-the-atrial-ranking">Compare the atrial ranking</h3>
@@ -454,7 +454,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2Ui
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>top_atrial_genes.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p><em>ACTC1</em> ranks first in atrial appendage, while <em>DES</em> ranks first in left ventricle. <em>LMNA</em> enters the atrial top 10, and <em>MYL3</em> appears only in the left-ventricle top 10. The selected tissue changes which genes receive the most prominent expression context.</p>
+<p><em>ACTC1</em> ranks first in atrial appendage, while <em>DES</em> ranks first in left ventricle. <em>LMNA</em> appears in the atrial top 10, while <em>MYL3</em> appears only in the left-ventricle top 10. These differences show that the tissue selected for comparison affects the gene ranking.</p>
 </section>
 </section>
 <section id="check-your-understanding" class="level2 knowledge-check-heading">
@@ -486,32 +486,32 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2Ui
 <div>
 <div>
 <div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="zcpfsgopje">
+        <label for="cvxovuebvh">
 <div>
 <p>Median gene-level TPM across the GTEx samples represented for a tissue</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="zcpfsgopje" value="0" x-model="answer" :disabled="isAnswerCorrect" name="szuojvqrmw" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
-    </div>
-</div>
-<div>
-<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="quqaagrkga">
-<div>
-<p>Expression measured in the heart-failure study participants</p>
-</div>
-</label>
-    <input type="radio" class="form-check-input" id="quqaagrkga" value="1" x-model="answer" :disabled="isAnswerCorrect" name="szuojvqrmw" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="cvxovuebvh" value="0" x-model="answer" :disabled="isAnswerCorrect" name="quyicpkkps" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 <div>
 <div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="shtbpdhjid">
+        <label for="xqhonlwjmr">
 <div>
 <p>The number of published variant rows for a gene</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="shtbpdhjid" value="2" x-model="answer" :disabled="isAnswerCorrect" name="szuojvqrmw" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="xqhonlwjmr" value="2" x-model="answer" :disabled="isAnswerCorrect" name="quyicpkkps" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
+        <label for="wztbsneemo">
+<div>
+<p>Expression measured in the heart-failure study participants</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="wztbsneemo" value="1" x-model="answer" :disabled="isAnswerCorrect" name="quyicpkkps" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 </div>
@@ -528,7 +528,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2Ui
 </div>
 <div class="qmulti__wrong_result" x-show="answer === '2' &amp;&amp; isAnswered" x-transition="">
 <div>
-<p>The separate <code>variant_rows</code> column records how often a gene occurs in the published candidate table.</p>
+<p>The separate <code>variant_rows</code> column records how often a gene occurs in the published candidate genetic variant table.</p>
 </div>
 </div>
 </div>
@@ -561,22 +561,22 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2Ui
 <div>
 <div>
 <div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="dkxyzjsfnu">
+        <label for="azfanptnrj">
 <div>
 <p>A new ACMG classification</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="dkxyzjsfnu" value="1" x-model="answer" :disabled="isAnswerCorrect" name="cdmkgbvdro" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="azfanptnrj" value="1" x-model="answer" :disabled="isAnswerCorrect" name="aufybddjcw" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 <div>
 <div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="juqiitguio">
+        <label for="nswchfwdfz">
 <div>
-<p>Tissue-level expression context</p>
+<p>Tissue-level gene expression</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="juqiitguio" value="0" x-model="answer" :disabled="isAnswerCorrect" name="cdmkgbvdro" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
+    <input type="radio" class="form-check-input" id="nswchfwdfz" value="0" x-model="answer" :disabled="isAnswerCorrect" name="aufybddjcw" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 </div>
@@ -602,7 +602,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2Ui
 <li><em>DES</em> and <em>MYH7</em> have the highest left-ventricle median TPM in the dated data.</li>
 <li>Ranking by atrial appendage instead of left ventricle changes the top-10 gene set.</li>
 </ul>
-<p><strong>Next:</strong> GTEx summarizes whole heart tissues, which contain several cell types. Use HuBMAP to ask whether the same genes have indexed expression in ventricular cardiac myocytes.</p>
+<p><strong>Next:</strong> GTEx summarizes bulk heart-tissue samples, which contain several cell types. Use HuBMAP to ask whether the same genes have indexed expression in ventricular cardiac myocytes.</p>
 <div class="notebook-actions">
 <p><a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/03_gtex_tissue_expression.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a></p>
 </div>
@@ -1048,8 +1048,8 @@ window._ojs.runtime.interpretFromScriptTags();
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lessons/variant-context.html" class="pagination-link" aria-label="3. Variant and Gene Context">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3. Variant and Gene Context</span>
+      <a href="../lessons/variant-context.html" class="pagination-link" aria-label="3. Published Variants and Candidate Genes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3. Published Variants and Candidate Genes</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
