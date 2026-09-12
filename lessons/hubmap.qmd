@@ -31,7 +31,7 @@ Sarcomeric variants were most common in the first two groups, while desmosomal
 variants were concentrated in the third. The teaching table includes *MYH7*,
 *MYBPC3*, *TNNT2*, *ACTC1*, *DSG2*, *DSC2*, and *PKP2*.
 
-HuBMAP extends the paper's variant analysis with cell-type information. We
+HuBMAP adds reference cell-type expression data to the follow-up analysis. We
 begin with ventricular cardiac myocytes because the ventricles provide the
 heart's main pumping force.
 
@@ -280,10 +280,10 @@ plt.show()
 ```
 :::
 
-The plot shows the 10 highest means from the complete 14-gene table. The full
-table retains all 14 genes.
+The plot shows the 10 highest means from the complete 14-gene table. The table
+above includes all 14 genes with returned measurements.
 
-The availability summary retains the 11 unavailable genes.
+The availability summary also lists the 11 unavailable genes.
 
 ## Check your understanding {.knowledge-check-heading}
 

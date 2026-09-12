@@ -11,7 +11,7 @@ These definitions reflect how each term is used in the module.
 [ACMG/AMP classification]{#acmg-amp-classification}
 : A framework that classifies sequence variants as pathogenic, likely
   pathogenic, uncertain significance, likely benign, or benign. This module
-  begins with variants that have already been evaluated and retains those
+  begins with variants that have already been evaluated and records their
   clinical classifications. [Learn more about the ACMG/AMP
   standards.](https://pubmed.ncbi.nlm.nih.gov/25741868/)
 
@@ -36,7 +36,7 @@ These definitions reflect how each term is used in the module.
 
 [Cell type]{#cell-type}
 : A group of cells that share biological characteristics. Cell-type-resolved
-  expression can help identify a relevant cellular setting for follow-up
+  expression can help identify a relevant cell type for follow-up
   experiments or disease modeling. [Explore terms in the Cell
   Ontology.](https://www.ebi.ac.uk/ols4/ontologies/cl)
 
@@ -100,8 +100,8 @@ These definitions reflect how each term is used in the module.
 
 [IDG]{#idg}
 : Illuminating the Druggable Genome, a program that develops and organizes
-  knowledge about human proteins, especially proteins that remain
-  understudied. [Learn more about IDG.](https://commonfund.nih.gov/idg)
+  knowledge about human proteins, with an emphasis on understudied proteins.
+  [Learn more about IDG.](https://commonfund.nih.gov/idg)
 
 [JSON]{#json}
 : A structured text format commonly returned by APIs. JSON stores information
@@ -110,7 +110,7 @@ These definitions reflect how each term is used in the module.
 
 [Many-to-one join]{#many-to-one-join}
 : A table operation in which several variant rows can match one gene row. Used
-  correctly, it preserves every original variant while attaching shared
+  correctly, the result includes every original variant and adds shared
   gene-level data where appropriate. [Learn more about validating joins in
   pandas.](https://pandas.pydata.org/docs/user_guide/merging.html#merge-key-uniqueness)
 
@@ -135,8 +135,8 @@ These definitions reflect how each term is used in the module.
 
 [Pathogenic or likely pathogenic (P/LP)]{#pathogenic-likely-pathogenic}
 : Clinical classification categories indicating different strengths of
-  evidence that a variant contributes to disease. These labels remain attached
-  to the prior evaluation throughout this module. [Learn more about the
+  evidence that a variant contributes to disease. This module records the
+  labels from the prior evaluation throughout the analysis. [Learn more about the
   ACMG/AMP standards.](https://pubmed.ncbi.nlm.nih.gov/25741868/)
 
 [Percent detected]{#percent-detected}
@@ -186,15 +186,15 @@ These definitions reflect how each term is used in the module.
   TDLs in Pharos.](https://pharos.nih.gov/)
 
 [Tbio]{#tbio}
-: A TDL for targets with substantial biological or disease-related knowledge
-  within the Tbio criteria. These targets may need
-  focused mechanistic or functional follow-up. [Learn more about TDLs in
+: A TDL for targets with experimental Gene Ontology annotations or a qualifying
+  combination of publication, GeneRIF, and antibody records. These targets are
+  candidates for focused mechanistic or functional follow-up. [Learn more about TDLs in
   Pharos.](https://pharos.nih.gov/)
 
 [Tchem]{#tchem}
-: A TDL for targets with sufficiently potent small-molecule activities that
-  meet IDG criteria. These targets may have chemical tools suitable for
-  experimental investigation. [Learn more about TDLs in
+: A TDL for targets outside Tclin that have sufficiently potent small-molecule
+  binding data. These targets may have chemical tools suitable for experimental
+  investigation. [Learn more about TDLs in
   Pharos.](https://pharos.nih.gov/)
 
 [Tclin]{#tclin}

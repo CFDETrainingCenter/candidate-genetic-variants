@@ -192,7 +192,8 @@ medians.
 ### Plot genes with the highest expression
 
 Plot the ten genes with the highest median left-ventricle expression. This
-smaller view keeps labels readable; the complete 25-gene table remains above.
+smaller view keeps labels readable. The complete table above includes all 25
+genes.
 
 ::: {.module-activity}
 
@@ -298,7 +299,7 @@ What does GTEx add to the published variant list?
 
 - A new ACMG classification
 
-  > The study classification remains attached to the published variant rows.
+  > The paper supplies the classification for each published variant row.
 
 :::
 

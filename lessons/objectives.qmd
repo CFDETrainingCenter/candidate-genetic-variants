@@ -50,14 +50,14 @@ during a service interruption.
 
 The prioritization lesson also uses the
 [ProtVar API](https://www.ebi.ac.uk/ProtVar/api) for one missense VUS.
-AlphaMissense and EVE provide complementary, modern predictions of missense
-variant effect, while FoldX estimates the change in protein stability. ProtVar
-is an EMBL-EBI resource used after the CFDE resource activities.
+AlphaMissense and EVE provide results from two newer missense-effect models.
+FoldX estimates the change in protein stability. ProtVar is an EMBL-EBI
+resource used after the CFDE resource activities.
 
 ## Build an E-utilities request
 
 This short syntax warm-up uses NCBI E-utilities because its endpoint and
-parameters are easy to inspect in one URL. The remaining lessons apply the same
+parameters are easy to inspect in one URL. Later lessons apply the same
 API concepts to the resources used in the analysis.
 
 Build the URL by choosing a gene symbol, defining the parameters, and joining
@@ -118,7 +118,7 @@ request_url
 
 The displayed URL sends `db=gene` to NCBI Gene, places the selected symbol and
 `Homo sapiens` in `term`, and requests JSON with `retmode=json`. Change
-`gene_symbol`, and the search changes with it. The endpoint and remaining
+`gene_symbol`, and the search changes with it. The endpoint and other
 parameters stay the same.
 
 ### Send the request

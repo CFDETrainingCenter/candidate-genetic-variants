@@ -33,19 +33,20 @@ Supplementary Table S4 is the starting point for this module. Its 54 rows cover
 The source study's [Supplementary
 Methods](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41598-025-88465-8/MediaObjects/41598_2025_88465_MOESM1_ESM.docx)
 specify PolyPhen, SIFT, REVEL, and CADD for the protein-effect component. The
-authors then classified the reviewed variants as pathogenic, likely pathogenic,
-or VUS.
+paper used its score, together with previously reported ClinVar classifications,
+to select variants for manual review. Clinical geneticists then assigned the
+reported ACMG classifications.
 
-The study score and reported classification describe how the source paper
-evaluated each variant. We add tissue, cell-type, and protein data to formulate
-hypotheses and further prioritize experimental follow-up.
+This module uses those classifications as the published starting point. GTEx,
+HuBMAP, Pharos, and ProtVar results then inform hypotheses and experimental
+follow-up.
 
 ::: {.callout-tip title="Why add information about the genes?"}
 The candidate genetic variant table provides the clinical starting point for
 experimental follow-up. GTEx reports heart-tissue expression, HuBMAP reports
 indexed values for ventricular cardiac myocytes, and Pharos summarizes protein
-knowledge, ligands, and target development. The study classification remains
-attached to each variant record.
+knowledge, ligands, and target development. The table records the study
+classification for each variant.
 :::
 
 ## Inspect the published variants
@@ -206,8 +207,8 @@ dataset_overview
 :::
 ::::
 
-The 54 variant rows represent 46 participants and 25 genes. Four rows lack a
-protein HGVS description in the source table.
+The 54 variant rows represent 46 participants and 25 genes. Four rows have a
+blank protein HGVS field in the source table.
 
 ### Compare classifications by phenotype
 
@@ -238,9 +239,9 @@ classified as P, LP, and VUS?
 DCM contributes 28 of the 54 rows: 11 P, 11 LP, and 6 VUS. HCM contributes 8
 rows, and ARVC contributes 5.
 
-The remaining 13 rows are distributed across ATTR-CM, `HCM*`, ICM, ACHD, and
-myocarditis. The `(P)` label remains separate because the paper used it for
-pathogenic secondary findings.
+The other 13 rows are distributed across ATTR-CM, `HCM*`, ICM, ACHD, and
+myocarditis. The table shows `(P)` as a separate label because the paper used it
+for pathogenic secondary findings.
 
 ## Check your understanding {.knowledge-check-heading}
 
@@ -259,7 +260,7 @@ Why do 54 variant rows map to only 25 genes?
   > Participants can contribute different genes, and several participants can
   > have observations in the same gene.
 
-- The remaining rows have missing gene symbols
+- The other rows have missing gene symbols
 
   > All 54 rows have a gene symbol. The smaller gene count reflects repeated
   > genes.
@@ -285,9 +286,10 @@ What does a blank `hgvs_p` value mean in this dataset?
 
 - The source table contains 54 variant observations from 46 participants and
   25 genes.
-- Four observations lack a reported protein HGVS description.
-- The study classification remains attached to each variant when later lessons
-  add tissue expression, cell-type measurements, and protein information.
+- Four observations have a blank protein HGVS field in the source table.
+- The table records the study classification for each variant when later
+  lessons add tissue expression, cell-type measurements, and protein
+  information.
 
 **Next:** Query GTEx for bulk heart-tissue expression of the 25 genes.
 

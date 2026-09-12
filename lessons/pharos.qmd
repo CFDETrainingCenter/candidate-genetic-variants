@@ -43,9 +43,9 @@ Pharos uses four Target Development Levels, called TDLs:
 
 | TDL | Pharos criteria | How we use it here |
 |---|---|---|
-| **Tclin** | The target meets Pharos criteria for activity involving an approved drug. | Open the drug records and examine their mechanisms and indications. |
-| **Tchem** | The target has qualifying small-molecule activity below the Tclin threshold. | Examine the ligand records for potency, selectivity, and experimental use. |
-| **Tbio** | Biological information supports the Tbio criteria. | Begin with mechanism, pathway, phenotype, or assay information. |
+| **Tclin** | An approved drug acts through the target. | Open the drug records and examine their mechanisms and indications. |
+| **Tchem** | Among targets outside Tclin, the target has high-potency small-molecule binding data. | Examine the ligand records for potency, selectivity, and experimental use. |
+| **Tbio** | The target has experimental Gene Ontology annotations or meets Pharos criteria based on publication, GeneRIF, and antibody records. | Begin with mechanism, pathway, phenotype, or assay information. |
 | **Tdark** | Available knowledge is limited under the Pharos criteria. | Begin by describing basic protein function and available reagents. |
 
 ### Scope of target development levels
@@ -201,17 +201,17 @@ tdl_summary
 :::
 ::::
 
-The `genes` column counts how many queried targets fall into each Pharos TDL. In
-the dated teaching data, 18 are Tbio, 4 are Tclin, and 3 are Tchem.
+The `genes` column counts how many queried targets fall into each Pharos TDL. The
+dated teaching data contain 18 Tbio, 4 Tclin, 3 Tchem, and zero Tdark targets.
 
-None are Tdark. The Tclin targets are *TTR*, *DMD*, *KCNQ1*, and *MYH7*; the
-Tchem targets are *MYLK3*, *POLG*, and *TNNI3K*.
+The Tclin targets are *TTR*, *DMD*, *KCNQ1*, and *MYH7*. The Tchem targets are
+*MYLK3*, *POLG*, and *TNNI3K*.
 
 ### Compare target fields
 
 Keep the fields used for interpretation and order the proteins by TDL, drug
-count, and gene symbol. Include ligand counts so Tchem targets remain
-interpretable when their drug count is zero.
+count, and gene symbol. Include ligand counts so the table shows both ligand
+and drug records for Tchem targets.
 
 ::: {.module-activity}
 
@@ -273,8 +273,8 @@ targets_with_drugs.loc[:, ["gene_symbol", "tdl", "drug_count"]]
 :::
 
 The filter returns all four Tclin targets, *TTR*, *DMD*, *KCNQ1*, and *MYH7*,
-along with the Tchem targets *MYLK3* and *TNNI3K*. *POLG* remains visible in the
-complete table with two ligand records and a drug count of zero.
+along with the Tchem targets *MYLK3* and *TNNI3K*. The complete table records
+two ligand records and a drug count of zero for *POLG*.
 
 ## Check your understanding {.knowledge-check-heading}
 
@@ -304,8 +304,8 @@ classification of a specific variant?
 
 - TDL
 
-  > Correct. TDL belongs to the protein target record. `study_class` remains
-  > attached to the variant reported by the paper.
+  > Correct. TDL belongs to the protein target record. `study_class` records the
+  > paper's classification of the variant.
 
 - `study_class`
 

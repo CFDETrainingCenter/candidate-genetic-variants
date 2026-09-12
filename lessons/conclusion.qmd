@@ -11,15 +11,14 @@ experimental model, and follow-up experiment.
 
 ## What you accomplished
 
-The workflow preserves all 54 published variant rows and adds bulk-tissue
+The workflow includes all 54 published variant rows and adds bulk-tissue
 expression from GTEx, cell-type measurements from HuBMAP, protein information
 from Pharos, and variant predictions from ProtVar. The GTEx, HuBMAP, and Pharos
-results remain linked to their source identifiers and retrieval dates.
+results include their source identifiers and retrieval dates.
 
-## From computational evidence to functional evidence
+## From computational results to experimental follow-up
 
-This workflow helps researchers choose what to study next through a qualitative
-decision supported by several evidence types.
+The combined results support a qualitative decision about what to study next.
 
 GTEx helps compare tissues for follow-up, and HuBMAP helps assess a possible
 cell model. Pharos shows what is known about a protein and which research tools
@@ -30,17 +29,16 @@ For the *TNNT2* VUS, one possible follow-up experiment would compare wild-type
 and D259A troponin complexes across calcium concentrations. This experiment
 would test whether p.Asp259Ala changes calcium-regulated thin-filament activity.
 
-Clinical interpretation would also require checking whether the phenotype
-matches, whether the variant segregates with disease, how common it is in
-populations, and whether functional studies support an effect.
+Clinical interpretation also draws on phenotype match, segregation with
+disease, population frequency, and functional studies of variant effect.
 
 ## A reusable prioritization checklist
 
 - Name the exact variant and the source of its annotation.
 - Ask what biological level each dataset measures.
-- Keep missing data separate from a measured zero.
+- Record unavailable data separately from a measured zero.
 - Save dataset versions, identifiers, and retrieval dates for reproducibility.
-- Keep druggability separate from disease relevance.
+- Distinguish druggability from disease relevance.
 - End with a clear next step that can be tested.
 
 ## Suggested next steps and reading
