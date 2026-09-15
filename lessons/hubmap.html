@@ -273,6 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>HuBMAP adds reference cell-type expression data to the follow-up analysis. We begin with ventricular cardiac myocytes because the ventricles provide the heart’s main pumping force.</p>
 <p>Many candidate genes contribute to cardiac-muscle contraction or structure. This cell-type choice also follows the GTEx left-ventricle comparison.</p>
 <p>The request retrieves up to the first 500 indexed records labeled as regular ventricular cardiac myocytes. The fixed limit keeps the live request manageable.</p>
+<p>Treat this arbitrarily ordered subset as a feasibility screen; low, zero, or unavailable values do not establish biological absence.</p>
 <p>Learn more about the resource’s APIs in the <a href="https://docs.hubmapconsortium.org/apis.html">HuBMAP API documentation</a>.</p>
 </section>
 <section id="how-to-read-the-returned-values" class="level3">
@@ -461,33 +462,33 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <hr class="hr-text" data-content="?">
 <div>
 <div>
-<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="hmqvubhehu">
-<div>
-<p>Larger returned values occur in a smaller portion of the retrieved records</p>
-</div>
-</label>
-    <input type="radio" class="form-check-input" id="hmqvubhehu" value="0" x-model="answer" :disabled="isAnswerCorrect" name="upofcqsrur" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
-    </div>
-</div>
-<div>
 <div class="qmulti__stem" :class="answer === '2' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="mcnihumeed">
+        <label for="alfnqovrul">
 <div>
 <p>The gene is unavailable in the Cells API index</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="mcnihumeed" value="2" x-model="answer" :disabled="isAnswerCorrect" name="upofcqsrur" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="alfnqovrul" value="2" x-model="answer" :disabled="isAnswerCorrect" name="scmxbgfqfe" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
+        <label for="efnibkmvrt">
+<div>
+<p>Larger returned values occur in a smaller portion of the retrieved records</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="efnibkmvrt" value="0" x-model="answer" :disabled="isAnswerCorrect" name="scmxbgfqfe" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 <div>
 <div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="izxxmvepvs">
+        <label for="ibioeagbyc">
 <div>
 <p>Every retrieved record has the same expression value</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="izxxmvepvs" value="1" x-model="answer" :disabled="isAnswerCorrect" name="upofcqsrur" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="ibioeagbyc" value="1" x-model="answer" :disabled="isAnswerCorrect" name="scmxbgfqfe" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
     </div>
 </div>
 </div>
@@ -536,23 +537,23 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIj
 <hr class="hr-text" data-content="?">
 <div>
 <div>
-<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
-        <label for="tincllrbkl">
-<div>
-<p>The expression index returned an unavailable result</p>
-</div>
-</label>
-    <input type="radio" class="form-check-input" id="tincllrbkl" value="0" x-model="answer" :disabled="isAnswerCorrect" name="sbpaynoaaa" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
-    </div>
-</div>
-<div>
 <div class="qmulti__stem" :class="answer === '1' &amp;&amp; isAnswered &amp;&amp; 'qmulti__wrong'">
-        <label for="hwqzflllin">
+        <label for="gqdpzxglcz">
 <div>
 <p>Every indexed record had a measured value of zero</p>
 </div>
 </label>
-    <input type="radio" class="form-check-input" id="hwqzflllin" value="1" x-model="answer" :disabled="isAnswerCorrect" name="sbpaynoaaa" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    <input type="radio" class="form-check-input" id="gqdpzxglcz" value="1" x-model="answer" :disabled="isAnswerCorrect" name="olsjmylaxs" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';">
+    </div>
+</div>
+<div>
+<div class="qmulti__stem" :class="isAnswerCorrect &amp;&amp; 'qmulti__correct'">
+        <label for="lehinbuagq">
+<div>
+<p>The expression index returned an unavailable result</p>
+</div>
+</label>
+    <input type="radio" class="form-check-input" id="lehinbuagq" value="0" x-model="answer" :disabled="isAnswerCorrect" name="olsjmylaxs" x-on:click="attempt++; isAnswered = true; isAnswerCorrect = answer === '0';isAnswerCorrect=true">
     </div>
 </div>
 </div>
