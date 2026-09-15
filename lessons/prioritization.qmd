@@ -4,7 +4,7 @@ aliases:
   - /prioritization.html
 ---
 
-**Estimated time:** 25 minutes
+**Estimated time:** 45 minutes
 
 Combine the paper, GTEx, HuBMAP, and Pharos results while preserving what each
 source measures. Then use the combined table to choose a follow-up question.

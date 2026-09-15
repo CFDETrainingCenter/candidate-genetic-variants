@@ -54,7 +54,7 @@ By the end of this module, you will be able to:
 
 ## Module content
 
-The module takes about two hours and follows eight short sections:
+The module takes about two hours and 45 minutes and follows eight short sections:
 
 1. Module Introduction ([slides](https://cfdetrainingcenter.github.io/candidate-genetic-variants/slides/module-introduction.html))
 2. Introduction to APIs

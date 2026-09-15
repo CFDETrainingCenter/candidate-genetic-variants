@@ -4,7 +4,7 @@ subtitle: "A reproducible CFDE training module"
 description: "Use tissue, cell-type, and protein data to select candidate genetic variants for further study."
 ---
 
-**Estimated total module time:** Approximately 2 hours
+**Estimated total module time:** Approximately 2 hours 45 minutes
 
 Start with the published candidate genetic variants, then examine tissue
 expression, cell-type expression, and protein information to choose variants
