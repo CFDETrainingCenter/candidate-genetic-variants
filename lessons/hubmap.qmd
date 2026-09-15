@@ -42,6 +42,9 @@ The request retrieves up to the first 500 indexed records labeled as regular
 ventricular cardiac myocytes. The fixed limit keeps the live request
 manageable.
 
+Treat this arbitrarily ordered subset as a feasibility screen; low, zero, or
+unavailable values do not establish biological absence.
+
 Learn more about the resource's APIs in the
 [HuBMAP API documentation](https://docs.hubmapconsortium.org/apis.html).
 
