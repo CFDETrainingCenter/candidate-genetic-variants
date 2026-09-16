@@ -69,3 +69,9 @@ to apply this approach to another expert-reviewed variant table.
 <div class="notebook-actions">
 <a class="btn btn-primary" href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/blob/main/notebooks/07_conclusion.ipynb"><i class="bi bi-github" aria-hidden="true"></i>View Jupyter notebook</a>
 </div>
+
+::: {.callout-note title="To Finish the Module"}
+Close the Module window and return to the e-Learning Dashboard instance.
+
+Watch the Conclusion video to complete the module.
+:::
