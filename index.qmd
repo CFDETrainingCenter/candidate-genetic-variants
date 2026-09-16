@@ -10,7 +10,7 @@ Start with the published candidate genetic variants, then examine tissue
 expression, cell-type expression, and protein information to choose variants
 for follow-up.
 
-If a term is unfamiliar, refer to the [Glossary](lessons/glossary.qmd).
+If a term is unfamiliar, refer to the <a href="https://github.com/CFDETrainingCenter/candidate-genetic-variants/lessons/lessons/glossary.qmd" target="_blank">Glossary</a>.
 
 ::: {.callout-note title="Before you begin"}
 This module assumes basic familiarity with genes, genetic variants, and tabular
